@@ -4,12 +4,12 @@
 <head>
         
         <meta charset="utf-8" />
-        <title>Himasela Community</title>
+        <title>Sahabat Pena Kita</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta content="Halaman login admin sistem informasi database anggota" name="description" />
         <meta content="Sahabat Pena Kita" name="author" />
         <!-- App favicon -->
-        <link rel="shortcut icon" href="<?php echo base_url() ?>assets/login/assets/images/icon.png">
+        <link rel="shortcut icon" href="<?php echo base_url() ?>Favicon/favicon.ico">
 
         <!-- Bootstrap Css -->
         <link href="<?php echo base_url() ?>assets/login/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
@@ -34,7 +34,7 @@
                                     <div class="col-7">
                                         <div class="text-primary p-4">
                                             <h5 class="text-primary">Hallo, Silahkan Login !</h5>
-                                            <p>Sistem Himasela</p>
+                                            <p>Sistem Sahabat Pena Kita</p>
                                         </div>
                                     </div>
                                     <div class="col-5 align-self-end">
@@ -47,7 +47,7 @@
                                     <a href="index.html">
                                         <div class="avatar-md profile-user-wid mb-4">
                                             <span class="avatar-title rounded-circle bg-light">
-                                                <img src="<?php echo base_url() ?>favicon/LOGO HIMASELA.png" alt="" class="rounded-circle" height="34">
+                                                <img src="<?php echo base_url() ?>Favicon/ms-icon-310x310.png" alt="" class="rounded-circle" height="34">
                                             </span>
                                         </div>
                                     </a>

@@ -287,16 +287,55 @@ function toggle(source) {
     }
      
 </script>
+<script type='text/javascript'>
+    var error = 1; // nilai default untuk error 1
+    function cek_anggota(){
+        $("#pesananggota").hide();
+        var noanggota = $("#noanggota").val();
+        if(noanggota != ""){
+            $.ajax({
+                url: "<?php echo site_url() . '/C_User/cek_anggota'; ?>", //arahkan pada proses_tambah di controller member
+                data: 'noanggota='+noanggota,
+                type: "POST",
+                success: function(msg){
+                    if(msg==1){
+                        $("#pesananggota").css("color","#fc5d32");
+                        $("#noanggota").css("border-color","#fc5d32");
+                        $("#pesananggota").html("Anggota sudah digunakan !");
+ 
+                        error = 1;
+                    }else{
+                        $("#pesananggota").css("color","#59c113");
+                        $("#noanggota").css("border-color","#59c113");
+                        $("#pesananggota").html("");
+                        error = 0;
+                    }
+ 
+                    $("#pesananggota").fadeIn(1000);
+                }
+            });
+        }                
+    }
+     
+</script>
 <script type="text/javascript">
 function ValidateSize(file) {
     var FileSize = file.files[0].size / 1024 / 1024; // in MB
     if (FileSize > 2) {
-        alert('File size exceeds 2 MB');
+        alert('Maaf File anda terlalu besar');
        $(file).val(''); //for clearing with Jquery
     } else {
-
+      var inputFile = document.getElementById('foto');
+      var pathFile = inputFile.value;
+      var ekstensiOk = /(\.jpg|\.jpeg|\.png)$/i;
+      if(!ekstensiOk.exec(pathFile)){
+          alert('Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png');
+          inputFile.value = '';
+          return false;
+      }
     }
 }
+
 </script>
 </body>
 </html>

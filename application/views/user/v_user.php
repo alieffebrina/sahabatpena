@@ -39,15 +39,12 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>No</th>
+                  <th>No Anggota</th>
                   <th>NIK</th>
                   <th>Nama</th>
-                  <th>Username</th>
-                  <th>Password</th>
                   <th>Alamat</th>
-                  <th>Upline</th>
-                  <th>Pembayaran</th>
-                  <th>Status</th>
+                  <th>Status Anggota</th>
+                  <th>Domisili Anggota</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -56,15 +53,12 @@
                   $no=1;
                   foreach ($user as $user) { ?>
                 <tr>
-                  <td><?php echo $no++; ?></td>
+                  <td><?php echo $user->id_anggota; ?></td>
                   <td><?php echo $user->nik; ?></td>
                   <td><?php echo $user->nama; ?></td>
-                  <td><?php echo $user->username; ?></td>
-                  <td><?php echo $user->password; ?></td>
                   <td><?php echo $user->alamat.', '.$user->name_kota.', '.$user->name_prov; ?></td>
-                  <td><?php echo $user->namaupline; ?></td>
-                  <td><?php echo $user->statusbayar; ?></td>
                   <td><?php echo $user->statusanggota; ?></td>
+                  <td><?php echo $user->domisilianggota; ?></td>
                   <td> 
                     <div class="btn-group">
                     <?php if($header == 'Calon Anggota'){ ?>

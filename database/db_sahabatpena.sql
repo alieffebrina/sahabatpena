@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2020 at 07:28 AM
+-- Generation Time: Aug 24, 2020 at 05:26 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_himasela`
+-- Database: `db_sahabatpena`
 --
 
 -- --------------------------------------------------------
@@ -59,9 +59,7 @@ INSERT INTO `tb_akses` (`id_akses`, `id_menu`, `tipeuser`, `view`, `add`, `edit`
 --
 
 CREATE TABLE `tb_anggota` (
-  `id_anggota` int(11) NOT NULL,
-  `username` char(16) NOT NULL,
-  `password` char(10) NOT NULL,
+  `id_anggota` char(20) NOT NULL,
   `nik` char(16) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `alamat` varchar(200) NOT NULL,
@@ -70,30 +68,50 @@ CREATE TABLE `tb_anggota` (
   `id_kecamatan` char(7) NOT NULL,
   `email` varchar(100) NOT NULL,
   `tlp` char(12) NOT NULL,
-  `bank` varchar(100) NOT NULL,
-  `norek` varchar(100) NOT NULL,
-  `pemilik` varchar(100) NOT NULL,
-  `jumlahhu` varchar(10) NOT NULL,
-  `namasponsor` varchar(200) NOT NULL,
   `id_user` int(11) NOT NULL,
   `tglupdate` datetime NOT NULL,
-  `id_upline` int(11) NOT NULL,
-  `buktitransfer` varchar(250) DEFAULT NULL,
-  `statusanggota` enum('administrator','admin','upline','downline','menunggu konfirmasi upline','menunggu konfirmasi admin') NOT NULL DEFAULT 'menunggu konfirmasi upline',
-  `statusbayar` enum('belum bayar','menunggu konfirmasi','sudah bayar') NOT NULL
+  `foto` varchar(250) DEFAULT NULL,
+  `statusanggota` enum('administrator','korwil','pengurus','anggota','menunggu konfirmasi','tidak aktif') NOT NULL DEFAULT 'anggota',
+  `tempatlahir` varchar(100) NOT NULL,
+  `tgllahir` date NOT NULL,
+  `facebook` varchar(100) DEFAULT NULL,
+  `instagram` varchar(100) DEFAULT NULL,
+  `twitter` varchar(100) DEFAULT NULL,
+  `youtube` varchar(100) DEFAULT NULL,
+  `institusi` varchar(100) NOT NULL,
+  `latarbelakang` varchar(250) NOT NULL,
+  `tglregistrasi` date NOT NULL,
+  `domisilianggota` enum('SPK Pusat','SPK Daerah') NOT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_anggota`
 --
 
-INSERT INTO `tb_anggota` (`id_anggota`, `username`, `password`, `nik`, `nama`, `alamat`, `id_provinsi`, `id_kota`, `id_kecamatan`, `email`, `tlp`, `bank`, `norek`, `pemilik`, `jumlahhu`, `namasponsor`, `id_user`, `tglupdate`, `id_upline`, `buktitransfer`, `statusanggota`, `statusbayar`) VALUES
-(1, 'admin', 'admin', '', 'administrator', '', '', '', '', '', '', '', '', '', '', '', 1, '2020-08-23 10:54:13', 1, '', 'administrator', 'sudah bayar'),
-(3, '1111111111111111', 'RglDXH9b', '1111111111111111', 'downline admin 1', 'sad', '11', '1102', '1102031', 'asd@asd', '131', 'dsa', 'asd', 'asd', '10', 'asd', 0, '0000-00-00 00:00:00', 1, 'WhatsApp_Image_2020-08-23_at_13_40_112.jpeg', 'downline', 'sudah bayar'),
-(4, '1111111111111112', 'SJETJYje', '1111111111111112', 'downline admin 2', 'asdasdsad', '15', '1504', '1504020', 'asd@asd', '131', 'dsa', 'asd', 'asd', '10', 'asd', 1, '2020-08-23 04:50:16', 1, 'WhatsApp_Image_2020-08-23_at_13_40_113.jpeg', 'downline', 'sudah bayar'),
-(5, '1111111111111113', 'GCE5POsb', '1111111111111113', 'a11', 'asd', '17', '1703', '1703073', 'asd@asd', '131', 'dsa', 'asd', 'asd', '10', 'asd', 0, '0000-00-00 00:00:00', 3, 'WhatsApp_Image_2020-08-23_at_13_40_114.jpeg', 'downline', 'sudah bayar'),
-(6, '1111111111111114', '1qhmu4xw', '1111111111111114', 'a12', 'asd', '13', '1301', '1301013', 'asd@asd', '2131212313', 'dsa', 'asd', 'asd', '10', 'asd', 0, '0000-00-00 00:00:00', 3, NULL, 'downline', 'sudah bayar'),
-(7, '1111111111111115', 'zfNSu0fW', '1111111111111115', 'a21', 'sad', '16', '1603', '1603033', 'asd@asd', '2131212313', 'dsa', 'asd', 'asd', '10', 'asd', 1, '2020-08-23 05:59:54', 3, 'WhatsApp_Image_2020-08-23_at_13_40_115.jpeg', 'downline', 'sudah bayar');
+INSERT INTO `tb_anggota` (`id_anggota`, `nik`, `nama`, `alamat`, `id_provinsi`, `id_kota`, `id_kecamatan`, `email`, `tlp`, `id_user`, `tglupdate`, `foto`, `statusanggota`, `tempatlahir`, `tgllahir`, `facebook`, `instagram`, `twitter`, `youtube`, `institusi`, `latarbelakang`, `tglregistrasi`, `domisilianggota`, `username`, `password`) VALUES
+('1', '', 'administrator', '', '', '', '', '', '', 1, '2020-08-24 21:57:03', NULL, 'anggota', '', '0000-00-00', NULL, NULL, NULL, NULL, '', '', '2020-08-24', '', 'admin', 'admin'),
+('a1', '1111111111111111', 'RIZKY FEBRIANTO', 'asd', '12', '1202', '1202054', 'ad@ads', '131123', 1, '2020-08-24 04:59:39', 'happy_ied_mubarak_alief.jpg', 'anggota', 'ad', '2020-07-29', '', '', '', '', 'asd', 'sadasd', '2020-08-24', 'SPK Pusat', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_karyatulis`
+--
+
+CREATE TABLE `tb_karyatulis` (
+  `id_karyatulis` int(11) NOT NULL,
+  `id_anggota` varchar(20) NOT NULL,
+  `karyatulis` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_karyatulis`
+--
+
+INSERT INTO `tb_karyatulis` (`id_karyatulis`, `id_anggota`, `karyatulis`) VALUES
+(2, 'a1', 'sdadadasdasd');
 
 -- --------------------------------------------------------
 
@@ -7762,10 +7780,10 @@ CREATE TABLE `tb_menu` (
 --
 
 INSERT INTO `tb_menu` (`id_menu`, `urutan`, `icon`, `link`, `menu`, `status`) VALUES
-(1, 2, 'fa fa-unlock-alt', 'C_User/all', 'Data Anggota', 'aktif'),
-(2, 1, 'fa fa-users', 'C_User', 'Data Calon Anggota', 'aktif'),
-(3, 3, 'fa fa-suitcase', 'C_Muatan', 'Profil', 'tidak'),
-(4, 4, 'fa fa-dollar', 'C_Harga', 'Data Harga', 'tidak'),
+(1, 2, 'fa fa-unlock-alt', 'C_User/all', 'Data Pengurus', 'aktif'),
+(2, 1, 'fa fa-users', 'C_User', 'Data Anggota', 'aktif'),
+(3, 3, 'fa fa-suitcase', 'C_Muatan', 'Data Korwil', 'aktif'),
+(4, 4, 'fa fa-dollar', 'C_Harga', 'Data Kode', 'tidak'),
 (5, 5, 'fa fa-files-o', 'C_Transaksi', 'Transaksi', 'tidak'),
 (6, 6, 'fa fa-table', 'C_User/laporan', 'Laporan', 'aktif');
 
@@ -7837,6 +7855,12 @@ ALTER TABLE `tb_anggota`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
+-- Indexes for table `tb_karyatulis`
+--
+ALTER TABLE `tb_karyatulis`
+  ADD PRIMARY KEY (`id_karyatulis`);
+
+--
 -- Indexes for table `tb_kecamatan`
 --
 ALTER TABLE `tb_kecamatan`
@@ -7871,10 +7895,10 @@ ALTER TABLE `tb_akses`
   MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
--- AUTO_INCREMENT for table `tb_anggota`
+-- AUTO_INCREMENT for table `tb_karyatulis`
 --
-ALTER TABLE `tb_anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+ALTER TABLE `tb_karyatulis`
+  MODIFY `id_karyatulis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_menu`

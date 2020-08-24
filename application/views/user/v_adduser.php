@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Calon Anggota
+        Data Anggota
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="<?php echo site_url('C_User'); ?>">Data Anggota</a></li>
-        <li class="active">Calon Anggota</li>
+        <li class="active">Tambah Anggota</li>
       </ol>
     </section>
 
@@ -21,23 +21,42 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Tambah Data Calon Anggota</h3>
+              <h3 class="box-title">Tambah Data Anggota</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
             <?php echo form_open("C_User/tambah", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
               <div class="box-body">
                 <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">No Anggota</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="noanggota" name="noanggota" maxlength="20" placeholder="No Anggota" onkeyup="cek_anggota()" required>
+                  <span id="pesananggota"></span>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">NIK</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" placeholder="NIK" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()">
+                    <input type="text" class="form-control" id="nik" name="nik" required maxlength="16" minlength="16" placeholder="NIK" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()">
                   <span id="pesannik"></span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Nama</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama">
+                    <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" required>
+                  </div>
+                </div>                
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Tempat Lahir</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="tempatlahir" name="tempatlahir" placeholder="Tempat Lahir" required>
+                  </div>
+                </div>                
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Lahir</label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" id="tgllahir" name="tgllahir" placeholder="Tanggal Lahir" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -83,56 +102,73 @@
                     <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail" required>
                   </div>
                 </div>
-                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Upline</label>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Instagram</label>
                   <div class="col-sm-9">
-                    <select class="form-control select2" id="upline" name="upline" style="width: 100%;" required>
-                      <option value="">--Pilih--</option>
-                      <?php foreach ($user as $user) { 
-                        $a = $this->db->query("select * from tb_anggota where id_upline = '$user->id_anggota'"); 
-                        $b = $a->result();
-                        if ($user->id_anggota == '1'){ $max = 2; } else { $max = 3; }
-                        if(count($b)<=$max){ 
-                          ?> <option value="<?php echo $user->id_anggota?>"><?php echo $user->nama ?></option>  
-                      <?php } 
-                    }?>
-                    </select>                
+                    <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Instagram">
+                  </div>
+                </div>       
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Facebook</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Facebook">
+                  </div>
+                </div>       
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Twitter</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="twitter" name="twitter" placeholder="Twitter">
+                  </div>
+                </div>       
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Youtube Channel</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="youtube" name="youtube" placeholder="Youtube Channel">
+                  </div>
+                </div>     
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Institusi</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="institusi" name="institusi" placeholder="Institusi" required>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Jumlah HU</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Latar Belakang</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jumlahhu" name="jumlahhu" placeholder="Jumlah HU">
+                    <input type="text" class="form-control" id="latarbelakang" name="latarbelakang" placeholder="Latar Belakang" required>
+                  </div>
+                </div>  
+                <!-- <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Karya Tulis</label>
+                  <div class="col-sm-9">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modaladdgudang">
+                          Karya Tulis
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>  -->      
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Registrasi</label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" id="tglregistrasi" name="tglregistrasi" value="<?php echo date('Y-m-d'); ?>">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Bank</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Domisili Anggota</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="bank" name="bank" placeholder="Bank">
+                    <input type="radio" id="Pusat" name="domisili" value="SPK Pusat">
+                    SPK Pusat &nbsp;&nbsp;&nbsp;
+                    <input type="radio" id="Daerah" name="domisili" value="SPK Daerah">
+                    SPK Daerah
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">No Rekening</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Foto</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="norek" name="norek" placeholder="No Rekening">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Pemilik</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="pemilik" name="pemilik" placeholder="Nama Pemilik">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Sponsor</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="namasponsor" name="namasponsor" placeholder="Nama Sponsor">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Bukti Transfer</label>
-                  <div class="col-sm-9">
-                    <input type="file" id="image-file" class="demoInputBox" name="input_gambar" required onchange="ValidateSize(this)">
+                    <input type="file" id="foto" class="demoInputBox" name="foto" onchange="ValidateSize(this)">
                   <p><span class="text-danger">Maksimal 2Mb </span></p>
                   </div>
                 </div>
