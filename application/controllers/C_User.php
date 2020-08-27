@@ -19,11 +19,28 @@ class C_User extends CI_Controller{
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        // if ($id == 'upline' || $id == 'downline'){
-        //     $data['user'] = $this->M_User->getuserspek($iduser);
-        // } else {
-        //     $data['user'] = $this->M_User->getuser();            
-        // }
+        $tabel = 'tb_akses';
+        $edit = array(
+            'tipeuser' => $id,
+            'edit' => '1',
+            'id_menu' => '1'
+        );
+        $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
+        if(count($hasiledit)!=0){ 
+            $tomboledit = 'aktif';
+        }
+
+        $hapus = array(
+            'tipeuser' => $id,
+            'hapus' => '1',
+            'id_menu' => '1'
+        );
+        $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
+        if(count($hasilhapus)!=0){ 
+            $tombolhapus = 'aktif';
+        }
+        $data['akseshapus'] = $tombolhapus;
+        $data['aksesedit'] = $tomboledit;
         $data['user'] = $this->M_User->getuser();   
         $data['header'] = 'Anggota';
         $this->load->view('user/v_user',$data); 
@@ -89,6 +106,7 @@ class C_User extends CI_Controller{
         }
          
     }
+
 
     function cek_anggota(){
         $tabel = 'tb_anggota';

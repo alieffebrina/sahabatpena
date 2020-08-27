@@ -36,6 +36,11 @@ class M_Setting extends CI_Model {
         return $query->result();
     }
 
+    function cekakses($tabel, $where){
+        $query = $this->db->get_where($tabel, $where);
+        return $query->result();
+    }
+
     function getmenu1($id){
         $this->db->distinct();
         $this->db->select('tb_menu.*');
