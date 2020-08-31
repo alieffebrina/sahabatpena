@@ -17,9 +17,11 @@ class M_User extends CI_Model {
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
         // $anggota = array('downline', 'upline', 'administrator', 'admin');
-        $this->db->where_not_in('statusanggota', 'menunggu konfirmasi');
+        $this->db->where("statusanggota != 'menunggu konfirmasi'");
+        $this->db->group_start();
         $this->db->like('nama', $id);
         $this->db->or_like('noanggota', $id);
+        $this->db->group_end();
         $query = $this->db->get('tb_anggota');
         return $query->result();
     }
