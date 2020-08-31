@@ -210,38 +210,23 @@ class C_User extends CI_Controller{
     function edituser()
     {   
         $this->M_User->edit();
-        $this->session->set_flashdata('Sukses', "Update Data Successfully!!");
-        if($this->input->post('statusanggota') == 'menunggu konfirmasi admin' || $this->input->post('statusanggota') == 'menunggu konfirmasi upline' ){
-            redirect('C_User');
-        } else {
-            redirect('C_User/all');
-        }
+        $this->session->set_flashdata('Sukses', "Data Berhasil Dirubah!!");
+        redirect('C_User');
     }
 
     function hapus($id){
         $where = array('id_anggota' => $id);
         $this->M_Setting->delete($where,'tb_anggota');
-        $this->session->set_flashdata('Sukses', "Delete Data Successfully!!");
-        redirect('C_User/all');
+        $this->session->set_flashdata('Sukses', "Data Berhasil Di Hapus!!");
+        redirect('C_User');
     }
 
     function konfirm($iduser)
     {   
         $id = $this->session->userdata('statusanggota');
-        $data = $this->M_User->getnama($iduser);
-        foreach ($data as $data) {
-            $bayar = $data->statusbayar;
-            $anggota = $data->statusanggota;
-            $username = $data->nik;
-        }
-        $this->M_User->konfirm($iduser,$bayar,$anggota,$id,$username);
-        $this->session->set_flashdata('Sukses', "Konfirm Data Successfully!!");
-
-        if($anggota == 'menunggu konfirmasi admin' || $anggota == 'menunggu konfirmasi upline' ){
+        $this->M_User->konfirm($iduser,$id);
+        $this->session->set_flashdata('Sukses', "Data Berhasil Di Anggota!!");
             redirect('C_User');
-        } else {
-            redirect('C_User/all');
-        }
     }
 
     function laporan()

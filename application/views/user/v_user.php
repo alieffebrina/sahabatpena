@@ -35,8 +35,8 @@
             </div>
             <!-- /.box-header -->
 
-            <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+            <div class="box-body table-responsive">
+              <table id="example1" class="table table-bordered table-striped table-hover">
                 <thead>
                 <tr>
                   <th>No Anggota</th>
@@ -44,7 +44,6 @@
                   <th>Nama</th>
                   <th>Alamat</th>
                   <th>Status Anggota</th>
-                  <th>Domisili Anggota</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -53,15 +52,14 @@
                   $no=1;
                   foreach ($user as $user) { ?>
                 <tr>
-                  <td><?php echo $user->id_anggota; ?></td>
+                  <td><?php echo $user->noanggota; ?></td>
                   <td><?php echo $user->nik; ?></td>
                   <td><?php echo $user->nama; ?></td>
                   <td><?php echo $user->alamat.', '.$user->name_kota.', '.$user->name_prov; ?></td>
                   <td><?php echo $user->statusanggota; ?></td>
-                  <td><?php echo $user->domisilianggota; ?></td>
                   <td> 
                     <div class="btn-group">
-                    <?php if($header == 'Calon Anggota'){ ?>
+                    <?php if($user->statusanggota == 'menunggu konfirmasi'){ ?>
                       <a href="<?php echo site_url('C_User/konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a>
                     <?php } ?>
                       <a href="<?php echo site_url('C_User/view/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>

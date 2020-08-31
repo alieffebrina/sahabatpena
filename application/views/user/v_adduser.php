@@ -146,9 +146,9 @@
                   </div>
                 </div>   -->
 
-                <div class="form-group">
+                <!-- <div class="form-group">
                         <div id="addtkt"></div>
-                      </div>
+                      </div> -->
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Registrasi</label>
                   <div class="col-sm-9">

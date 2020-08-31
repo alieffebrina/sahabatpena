@@ -29,6 +29,12 @@
               <div class="box-body">
                 <?php foreach ($user as $key) { ?>
                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">No Anggota</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="noanggota" name="noanggota" value="<?php echo $key->noanggota ?>" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">NIK</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" value="<?php echo $key->nik ?>" onkeypress="return Angkasaja(event)" readonly>
@@ -46,6 +52,12 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Username</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="username" name="username" value="<?php echo $key->username ?>" maxlength='16' readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="password" name="password" value="<?php echo $key->password ?>" readonly>
                   </div>
                 </div>
                 <div class="form-group">
@@ -89,59 +101,52 @@
                     <input type="email" class="form-control" id="email" name="email" value="<?php echo $key->email; ?>" readonly>
                   </div>
                 </div>
-                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Upline</label>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Instagram</label>
                   <div class="col-sm-9">
-                    <input type="hidden" class="form-control" id="upline" name="upline" value="<?php echo $key->id_upline; ?>" readonly> 
-                    <input type="text" class="form-control" value="<?php echo $key->namaupline; ?>" readonly>               
+                    <input type="text" class="form-control" id="instagram" name="instagram" value="<?php echo $key->instagram; ?>" readonly>
+                  </div>
+                </div>       
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Facebook</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="facebook" name="facebook" value="<?php echo $key->facebook; ?>" readonly>
+                  </div>
+                </div>       
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Twitter</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="twitter" name="twitter" value="<?php echo $key->twitter; ?>" readonly>
+                  </div>
+                </div>       
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Youtube Channel</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="youtube" name="youtube" value="<?php echo $key->youtube; ?>" readonly>
+                  </div>
+                </div>     
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Institusi</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="institusi" name="institusi" value="<?php echo $key->institusi; ?>" readonly>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Jumlah HU</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Latar Belakang</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jumlahhu" name="jumlahhu" value="<?php echo $key->jumlahhu; ?>" v>
+                    <input type="text" class="form-control" id="latarbelakang" name="latarbelakang" value="<?php echo $key->latarbelakang; ?>"readonly >
+                  </div>
+                </div>    
+               <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Registrasi</label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" id="tglregistrasi" name="tglregistrasi" value="<?php echo $key->tglregistrasi; ?>"readonly>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Bank</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="bank" name="bank" value="<?php echo $key->bank; ?>" readonly>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">No Rekening</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="norek" name="norek" value="<?php echo $key->norek; ?>" readonly>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Pemilik</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="pemilik" name="pemilik" value="<?php echo $key->pemilik; ?>" readonly>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Sponsor</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="namasponsor" name="namasponsor" value="<?php echo $key->namasponsor; ?>" readonly>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Status Pembayaran</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" value="<?php echo $key->statusbayar ?>" readonly>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Status Anggota</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" value="<?php echo $key->statusanggota ?>"readonly>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Foto Bukti Transfer</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Foto </label>
                     <div class="col-sm-6">
-                      <img class="img-responsive" src="<?php echo base_url() ?>images/<?php echo $key->buktitransfer ?>" alt="Photo" width="350px" height="197px">
+                      <img class="img-responsive" src="<?php echo base_url() ?>images/<?php echo $key->foto ?>" alt="Photo" width="350px" height="197px">
                     </div>
                 </div>
               </div>
