@@ -57,7 +57,7 @@
         
                                         <div class="form-group">
                                             <label for="username">Masukkan Username</label>
-                                            <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan username">
+                                            <input type="text" class="form-control" id="username" name="username" value="<?php echo $username; ?>">
                                         </div>
                 
                                         <div class="form-group">

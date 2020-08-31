@@ -48,9 +48,10 @@ class C_Login extends CI_Controller {
     redirect('C_Login'); // Redirect ke halaman login
 	}
 
-	function login()
+	function login($id)
 	{
-		$this->load->view('v_login');
+		$data['username'] = $id;
+		$this->load->view('v_login', $data);
 		
 	}
 }

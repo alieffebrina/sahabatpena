@@ -44,6 +44,28 @@ class C_User extends CI_Controller{
         $this->load->view('template/footer');
     }
 
+    public function get_listuser(){
+            $id = $this->input->post('cek');
+            $kec = $this->M_User->get_listuser($id);
+            $lists = "<div class='form-group'> </div>";                                   
+            foreach($kec as $data){
+              $lists .= "<li><div class='media'>
+                            <div class='align-self-center mr-3'>
+                                <img src='".base_url()."/images/".$data->foto."' class='rounded-circle avatar-xs' alt=''>
+                            </div>
+                            
+                            <div class='media-body overflow-hidden'>
+                                <h5 class='text-truncate font-size-14 mb-1'>".$data->noanggota."</h5>
+                                <p class='text-truncate mb-0'>".$data->nama."</p>
+                            </div>
+                            <div class='font-size-11'><a href=".site_url('C_Login/login/'.$data->username).">Login</a></div>
+                        </div></li><br>"; // Tambahkan tag option ke variabel $lists
+            }
+            
+            $callback = array('list_user'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+            echo json_encode($callback); // konversi varibael $callback menjadi JSON
+    }
+
     function karyatulis($noanggota)
     {
         $this->load->view('template/header');
@@ -110,7 +132,6 @@ class C_User extends CI_Controller{
         }
          
     }
-
 
     function cek_anggota(){
         $tabel = 'tb_anggota';

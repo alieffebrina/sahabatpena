@@ -12,6 +12,18 @@ class M_User extends CI_Model {
     	return $query->result();
     }
 
+    function get_listuser($id){
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        // $anggota = array('downline', 'upline', 'administrator', 'admin');
+        $this->db->where_not_in('statusanggota', 'menunggu konfirmasi');
+        $this->db->like('nama', $id);
+        $this->db->or_like('noanggota', $id);
+        $query = $this->db->get('tb_anggota');
+        return $query->result();
+    }
+
     function getall(){
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');

@@ -58,15 +58,19 @@
                                 <div class="p-2">
                                     <div class="form-group">
                                         <label for="userpassword"></label>
-                                        <input type="text" class="form-control" id="cek" name="cek" placeholder="Nama, No Anggota">
+                                        <input type="text" class="form-control" id="cekawal" name="cekawal" placeholder="Nama, No Anggota">
                                     </div>
                                     <div class="form-group row mb-0">
                                         <div class="col-12 text-right">
                                             <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Scan QR</button>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div id="hasilcek"></div>
+                                    <div class="tab-content py-4">
+                                        <div class="tab-pane show active" id="chat">
+                                            <ul>
+                                                <div id="hasilcek"></div>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
             
@@ -92,6 +96,33 @@
         <!-- App js -->
         <script src="<?php echo base_url() ?>assets/login/assets/js/app.js"></script>
 
+<script>
+  $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
+    // Kita sembunyikan dulu untuk loadingnya
+    $("#cekawal").keypress(function(){ // Ketika user mengganti atau memilih data provinsi
+    
+      $.ajax({
+        type: "POST", // Method pengiriman data bisa dengan GET atau POST
+        url: "<?php echo base_url("index.php/C_User/get_listuser"); ?>", // Isi dengan url/path file php yang dituju
+        data: {cek : $("#cekawal").val()}, // data yang akan dikirim ke file yang dituju
+        dataType: "json",
+        beforeSend: function(e) {
+          if(e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response){ // Ketika proses pengiriman berhasil
+          // set isi dari combobox kota
+          // lalu munculkan kembali combobox kotanya
+          $("#hasilcek").html(response.list_user).show();
+        },
+        error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+        }
+      });
+    });
+  });
+  </script>
     </body>
 
 <!-- Mirrored from themesbrand.com/skote/layouts/vertical/auth-lock-screen.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 Aug 2020 23:54:51 GMT -->
