@@ -70,7 +70,6 @@ class M_User extends CI_Model {
             'id_kecamatan' => $this->input->post('kecamatan'),
             'email' => $this->input->post('email'),
             'tlp' => $this->input->post('tlp'),
-            'id_anggota' => $this->input->post('noanggota'),
             'tempatlahir' => $this->input->post('tempatlahir'),
             'tgllahir' => $this->input->post('tgllahir'),
             'facebook' => $this->input->post('facebook'),
@@ -78,13 +77,10 @@ class M_User extends CI_Model {
             'twitter' => $this->input->post('twitter'),
             'youtube' => $this->input->post('youtube'),
             'foto' => $upload['file']['file_name'],
-            'statusanggota' => 'anggota',
-            'id_user' => $this->session->userdata('id_user'),
             'tglupdate' => date('Y-m-d h:i:s'),
             'tglregistrasi' => $this->input->post('tglregistrasi'),
             'latarbelakang' => $this->input->post('latarbelakang'),
-            'institusi' => $this->input->post('institusi'),
-            'domisilianggota' => $this->input->post('domisili'),
+            'institusi' => $this->input->post('institusi')
         );
         
         $this->db->insert('tb_anggota', $user);

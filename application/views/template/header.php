@@ -43,7 +43,12 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-purple-light fixed sidebar-mini">
+
+          <?php if( $this->session->userdata('id_user') == NULL) { ?>
+<body class="layout-top-nav skin-purple fixed sidebar-mini">
+<?php } else { ?>
+<body class="hold-transition skin-purple fixed sidebar-mini">  
+<?php } ?>
 <div class="wrapper">
 
   <header class="main-header">
@@ -67,15 +72,18 @@
           
         
           <!-- User Account: style can be found in dropdown.less -->
+          <?php if( $this->session->userdata('id_user') != NULL) { ?>
           <li class="dropdown user user-menu">
             <a href="<?php echo site_url('C_Login/logout'); ?>">
               <img src="<?php echo base_url() ?>assets/images/icon2.jpg" class="user-image" alt="User Image">
               <span class="hidden-xs">Logout</span>
             </a>
           </li>
+        <?php } ?>
           <!-- Control Sidebar Toggle Button -->
         </ul>
       </div>
     </nav>
   </header>
+
   <!-- Left side column. contains the logo and sidebar -->

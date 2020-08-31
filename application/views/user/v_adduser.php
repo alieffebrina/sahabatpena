@@ -28,13 +28,6 @@
             <?php echo form_open("C_User/tambah", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">No Anggota</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="noanggota" name="noanggota" maxlength="20" placeholder="No Anggota" onkeyup="cek_anggota()" required>
-                  <span id="pesananggota"></span>
-                  </div>
-                </div>
-                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">NIK</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="nik" name="nik" required maxlength="16" minlength="16" placeholder="NIK" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()">
@@ -137,26 +130,32 @@
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="latarbelakang" name="latarbelakang" placeholder="Latar Belakang" required>
                   </div>
-                </div>  
-                <!-- <div class="form-group">
+                </div>     
+                 <!-- <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Karya Tulis</label>
                   <div class="col-sm-9">
-                    <div class="input-group input-group-sm">
-                      <span class="input-group-btn">
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modaladdgudang">
-                          Karya Tulis
-                        </button>
-                      </span>
-                    </div>
+                  <div class="input-group input-group-sm">
+
+                    <input type="text" class="form-control" name="karyatulis[]" placeholder="Karya Tulis">
+                        <span class="input-group-btn">
+                          <button type="button" class="btn btn-default" id="btn" name="btn" onclick="tkt();">
+                            Tambah
+                          </button>
+                        </span>
                   </div>
-                </div>  -->      
+                  </div>
+                </div>   -->
+
+                <div class="form-group">
+                        <div id="addtkt"></div>
+                      </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Registrasi</label>
                   <div class="col-sm-9">
                     <input type="date" class="form-control" id="tglregistrasi" name="tglregistrasi" value="<?php echo date('Y-m-d'); ?>">
                   </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Domisili Anggota</label>
                   <div class="col-sm-9">
                     <input type="radio" id="Pusat" name="domisili" value="SPK Pusat">
@@ -164,7 +163,7 @@
                     <input type="radio" id="Daerah" name="domisili" value="SPK Daerah">
                     SPK Daerah
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Foto</label>
                   <div class="col-sm-9">

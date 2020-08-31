@@ -337,5 +337,39 @@ function ValidateSize(file) {
 }
 
 </script>
+<script>
+  $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
+    // Kita sembunyikan dulu untuk loadingnya
+    $("#cek").change(function(){ // Ketika user mengganti atau memilih data provinsi
+    
+      $.ajax({
+        type: "POST", // Method pengiriman data bisa dengan GET atau POST
+        url: "<?php echo base_url("index.php/C_User/get_listuser"); ?>", // Isi dengan url/path file php yang dituju
+        data: {cek : $("#cek").val()}, // data yang akan dikirim ke file yang dituju
+        dataType: "json",
+        beforeSend: function(e) {
+          if(e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response){ // Ketika proses pengiriman berhasil
+          // set isi dari combobox kota
+          // lalu munculkan kembali combobox kotanya
+          $("#hasilcek").html(response.list_user).show();
+        },
+        error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+        }
+      });
+    });
+  });
+  </script>
+  <script type="text/javascript">
+function tkt(){
+$("#addtkt").append('<label for="inputPassword3" class="col-sm-2 control-label"></label><div class="col-sm-9">\n\
+                        <input type="text" class="form-control" name="karyatulis[]" placeholder="Karya Tulis"><br/>\n\
+                  </div>');
+}
+  </script>
 </body>
 </html>

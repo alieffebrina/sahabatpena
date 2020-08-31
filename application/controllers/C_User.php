@@ -7,9 +7,6 @@ class C_User extends CI_Controller{
         $this->load->library('session');
         $this->load->model('M_User');
         $this->load->model('M_Setting');
-        if(!$this->session->userdata('id_user')){
-            redirect('C_Login');
-        }
     }
 
     function index()
@@ -32,7 +29,7 @@ class C_User extends CI_Controller{
 
         $hapus = array(
             'tipeuser' => $id,
-            'hapus' => '1',
+            'delete' => '1',
             'id_menu' => '1'
         );
         $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
@@ -82,13 +79,20 @@ class C_User extends CI_Controller{
         redirect('C_User/karyatulis/'.$noanggota);
     }
 
+     function registrasi()
+    { 
+        $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $this->load->view('user/v_registrasi', $data);
+    }
 
     function add()
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
+        if ($id != NULL){
         $this->load->view('template/sidebar.php', $data);
+        }
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $this->load->view('user/v_adduser', $data); 
         $this->load->view('template/footer');
@@ -123,12 +127,30 @@ class C_User extends CI_Controller{
     
     public function tambah()
     {   
-        $noanggota = $this->input->post('noanggota');
+        // echo "tes"; 
         $upload = $this->M_User->upload();
         if ($upload['result'] == "success"){
-            $this->M_User->tambahdata($upload);
-            $this->session->set_flashdata('Sukses', "Record Added Successfully!!");
-            redirect('C_User/karyatulis/'.$noanggota);  
+            $this->load->library('mailer');
+            $email_penerima = 'alief.febrina@gmail.com';
+            $subjek = $this->input->post('subjek');
+            $pesan = 'php mail sukses'; // $this->input->post('pesan');
+            // $attachment = $_FILES['attachment']; 
+            $content = 'data berhasil dikirim'; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
+            $sendmail = array(
+              'email_penerima'=>$email_penerima,
+              'subjek'=>$subjek,
+              'content'=>$content,
+              //'attachment'=>$attachment//
+            );
+            if(empty($attachment['name'])){ // Jika tanpa attachment
+              $send = $this->mailer->send($sendmail); // Panggil fungsi send yang ada di librari Mailer
+            }else{ // Jika dengan attachment
+              $send = $this->mailer->send_with_attachment($sendmail); // Panggil fungsi send_with_attachment yang ada di librari Mailer
+            }
+            
+            redirect('C_Login');    
+        } else {
+            'upload gagal';
         }
     }
 
