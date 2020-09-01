@@ -55,8 +55,8 @@ class M_Setting extends CI_Model {
 
     function editv($iduser,$submenu,$view){
             $where = array(
-                'id_user' =>  $iduser,
-                'id_submenu' => $view
+                'tipeuser' =>  $iduser,
+                'id_menu' => $view
             );
 
             $view = array(
@@ -69,8 +69,8 @@ class M_Setting extends CI_Model {
 
     function edita($iduser,$submenu,$add){
         $where = array(
-            'id_user' =>  $iduser,
-            'id_submenu' => $add
+            'tipeuser' =>  $iduser,
+            'id_menu' => $add
         );
 
         $add = array(
@@ -83,8 +83,8 @@ class M_Setting extends CI_Model {
 
     function edite($iduser,$submenu,$edit){
         $where = array(
-            'id_user' =>  $iduser,
-            'id_submenu' => $edit
+            'tipeuser' =>  $iduser,
+            'id_menu' => $edit
         );
 
         $edit = array(
@@ -98,8 +98,8 @@ class M_Setting extends CI_Model {
 
     function editd($iduser,$submenu,$delete){
         $where = array(
-            'id_user' =>  $iduser,
-            'id_submenu' => $delete
+            'tipeuser' =>  $iduser,
+            'id_menu' => $delete
         );
 
         $delete = array(
@@ -119,7 +119,7 @@ class M_Setting extends CI_Model {
         );
 
         $where = array(
-            'id_user' =>  $iduser
+            'tipeuser' =>  $iduser
         );
 
         $this->db->where($where);                                                            
@@ -155,5 +155,17 @@ class M_Setting extends CI_Model {
         );
         $query = $this->db->get_where('tb_kode', $where);
         return $query->result();
+    }
+
+     function getakses($ida){
+        $this->db->select('*');
+        $this->db->join('tb_menu', 'tb_menu.id_menu = tb_akses.id_menu');
+        $where = array(
+            'tipeuser' => $ida
+        );
+        $query = $this->db->get_where('tb_akses', $where);
+        return $query->result();
+
+        // return $this->db->get('tb_menu')->result();
     }
  }

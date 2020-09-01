@@ -223,6 +223,8 @@ function toggle(source) {
         var c = g;
       }
       document.getElementById('final').value = a+d+b+d+c;
+
+      document.getElementById('kodekorwil').value = a+d+b+d+c;
     // var embuhhuba = document.getElementById('penghubung').value;
   // document.getElementById('final').value= a+b;
   }
@@ -370,6 +372,16 @@ $("#addtkt").append('<label for="inputPassword3" class="col-sm-2 control-label">
                         <input type="text" class="form-control" name="karyatulis[]" placeholder="Karya Tulis"><br/>\n\
                   </div>');
 }
+
   </script>
+
+<script>
+  $(document).ready(function(){
+  
+  $('#btnsimpankodekorwil').click(function(){
+    $('.close').click(); // Close / Tutup Modal Dialog
+  });
+});
+</script>
 </body>
 </html>

@@ -56,12 +56,13 @@
                                     <form class="form-horizontal" action="<?php echo site_url('C_Login/cek_login'); ?>" method="post">
         
                                         <div class="form-group">
-                                            <label for="username">Masukkan Username</label>
-                                            <input type="text" class="form-control" id="username" name="username" value="<?php echo $username; ?>">
+                                            <label for="username">Username</label>
+                                            <input type="text" class="form-control" id="username" name="username" <?php if($username == '0') { 
+                                                echo 'placeholder = "Masukkan Username"'; } else { echo 'value= '.$username; } ?>>
                                         </div>
                 
                                         <div class="form-group">
-                                            <label for="userpassword">Masukkan Password</label>
+                                            <label for="userpassword">Password</label>
                                             <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password">
                                         </div>
                 

@@ -38,7 +38,7 @@ class C_User extends CI_Controller{
         }
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
-        $data['user'] = $this->M_User->getuser();   
+        $data['user'] = $this->M_User->getall();   
         $data['header'] = 'Anggota';
         $this->load->view('user/v_user',$data); 
         $this->load->view('template/footer');
