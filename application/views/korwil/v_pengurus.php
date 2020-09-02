@@ -4,7 +4,7 @@
     <section class="content-header">
       <h1>
         <?php foreach ($korwil as $korwil) {
-          echo 'Data Pengurus Korwil '.$korwil->namakorwil;
+          echo 'Data Korwil '.$korwil->namakorwil;
           $kor = $korwil->id_korwil;
         } ?>
         <small></small>
@@ -42,7 +42,7 @@
                     <label for="inputEmail3" class="col-sm-2 control-label">Jabatan</label>
                       <div class="col-sm-9">
                         <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan" >
-                        <input type="hidden" class="form-control" id="korwil" name="korwil" value="<?php echo $kor ?>" >
+                        <input type="hidden" class="form-control" id="korwil" name="korwil" value="<?php echo $korwil->id_korwil ?>" >
                       </div>
                   </div>
                 </div>

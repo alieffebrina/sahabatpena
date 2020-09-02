@@ -50,5 +50,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'C_Login';
+$route['user-add'] = 'C_User/add';
+$route['user'] = 'C_User';
+$route['user-edit/(:any)'] = 'C_User/edit/$1';
+$route['user-view/(:any)'] = 'C_User/view/$1';
+$route['user-konfirm/(:any)'] = 'C_User/konfirm/$1';
+$route['Korwil'] = 'C_Korwil';
+$route['korwil-add'] = 'C_Korwil/add';
+$route['korwil-view/(:any)'] = 'C_Korwil/view/$1';
+$route['korwil-edit/(:any)'] = 'C_Korwil/edit/$1';
+$route['korwil-p/(:any)'] = 'C_Korwil/pengurus/$ida';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

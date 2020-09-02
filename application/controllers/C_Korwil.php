@@ -74,11 +74,26 @@ class C_Korwil extends CI_Controller{
         $this->load->view('template/footer');
     }
 
+    function view($ida)
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['korwil'] = $this->M_Korwil->getkorwilspek($ida); 
+        $data['pengurus'] = $this->M_Korwil->getpenguruskorwil($ida); 
+        $data['user'] = $this->M_User->getuser(); 
+        $this->load->view('korwil/v_vkorwil', $data); 
+        $this->load->view('user/v_modal'); 
+        $this->load->view('template/footer');
+    }
+
     public function tambah()
     {   
         $this->M_Korwil->tambah();
         $this->session->set_flashdata('Sukses', "Data Korwil Berhasil Ditambah!!");
-        redirect('C_Korwil');  
+        redirect('C_Korwil/tambahpengurus');  
     }
 
     public function tambahpengurus()

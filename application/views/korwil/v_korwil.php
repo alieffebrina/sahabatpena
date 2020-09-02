@@ -59,13 +59,13 @@
                   <td><?php echo $korwil->kodekorwil; ?></td>
                   <td> 
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_Korwil/pengurus/'.$korwil->id_korwil); ?>"><button type="button" class="btn btn-primary"><i class="fa fa-fw fa-users"></i></button></a>
-                      <a href="<?php echo site_url('C_Korwil/view/'.$korwil->id_korwil); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('korwil-p/'.$korwil->id_korwil); ?>"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Pengurus!"><i class="fa fa-fw fa-users"></i></button></a>
+                      <a href="<?php echo site_url('korwil-view/'.$korwil->id_korwil); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="View Korwil!"><i class="fa fa-fw fa-search"></i></button></a>
                       <?php if($aksesedit == 'aktif'){?>
-                      <a href="<?php echo site_url('C_Korwil/edit/'.$korwil->id_korwil); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('korwil-edit/'.$korwil->id_korwil); ?>"><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="View Edit!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       <?php } ?>
                       <?php if($akseshapus == 'aktif'){?>
-                      <a href="<?php echo site_url('C_Korwil/hapus/'.$korwil->id_korwil); ?>" onclick="return confirm('Yakin Dihapus ?') "><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
+                      <a href="<?php echo site_url('C_Korwil/hapus/'.$korwil->id_korwil); ?>" onclick="return confirm('Yakin Dihapus ?') "><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus!"><i class="fa fa-fw fa-trash-o"></i></button></a>
                       <?php } ?>
                     </div>
                   </td>

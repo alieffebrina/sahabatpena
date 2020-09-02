@@ -31,7 +31,7 @@
             </div>
 
             <div class="box-header">
-              <a href="<?php echo site_url('C_User/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
+              <a href="<?php echo site_url('user-add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
             </div>
             <!-- /.box-header -->
 
@@ -60,14 +60,14 @@
                   <td> 
                     <div class="btn-group">
                     <?php if($user->statusanggota == 'menunggu konfirmasi'){ ?>
-                      <a href="<?php echo site_url('C_User/konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning"><i class="fa fa-fw fa-check"></i></button></a>
+                      <a href="<?php echo site_url('user-konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="konfirmasi!"><i class="fa fa-fw fa-check"></i></button></a>
                     <?php } ?>
-                      <a href="<?php echo site_url('C_User/view/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('user-view/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Lihat User!"><i class="fa fa-fw fa-search"></i></button></a>
                       <?php if($aksesedit == 'aktif'){?>
-                      <a href="<?php echo site_url('C_User/edit/'.$user->id_anggota); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('user-edit/'.$user->id_anggota); ?>"><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit User!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       <?php } ?>
                       <?php if($akseshapus == 'aktif'){?>
-                      <a href="<?php echo site_url('C_User/hapus/'.$user->id_anggota); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
+                      <a href="<?php echo site_url('C_User/hapus/'.$user->id_anggota); ?>"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus User!"><i class="fa fa-fw fa-trash-o"></i></button></a>
                       <?php } ?>
                     </div>
                   </td>
