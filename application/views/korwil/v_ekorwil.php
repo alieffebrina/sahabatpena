@@ -36,19 +36,22 @@
             <!-- /.box-header -->
 
             <div class="box-body">
-              <div class="form-horizontal">
+            <?php echo form_open("C_Korwil/editkorwil", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
+
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama Korwil</label>
                     <div class="col-sm-9">
-                       <input type="text" class="form-control" id="namakorwil" name="namakorwil" value="<?php echo $korwil->namakorwil; ?>" readonly>
+                       <input type="text" class="form-control" id="namakorwil" name="namakorwil" value="<?php echo $korwil->namakorwil; ?>" >
+
+                       <input type="text" class="form-control" id="id" name="id" value="<?php echo $korwil->id_korwil; ?>" >
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Berdiri</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="tglberdiri" name="tglberdiri" value="<?php echo $korwil->tglberdiri; ?>" readonly>
+                    <input type="date" class="form-control" id="tglberdiri" name="tglberdiri" value="<?php echo $korwil->tglberdiri; ?>" >
                   </div>
                 </div>                
                 <div class="form-group">
@@ -61,19 +64,28 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="kodekorwil" id="kodekorwil" value="<?php echo $korwil->name_prov ?>" readonly>
+                    <select class="form-control select2" id="prov" name="prov" style="width: 100%;">
+                      <option value="">--Pilih--</option>
+                      <?php foreach ($provinsi as $provinsi) { ?>
+                      <option value="<?php echo $provinsi->id_provinsi ?>" <?php if($provinsi->id_provinsi == $korwil->id_provinsi){echo "selected";} ?>><?php echo $provinsi->name_prov ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kota</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Kota/Kabupaten</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="kodekorwil" id="kodekorwil" value="<?php echo $korwil->name_kota ?>" readonly>
+                  <select class="form-control select2" id="kota" name="kota" style="width: 100%;">
+                    <option value="<?php echo $korwil->id_kota ?>"><?php echo $korwil->name_kota ?></option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" name="kodekorwil" id="kodekorwil" value="<?php echo $korwil->kecamatan ?>" readonly>
+                  <select class="form-control select2" id="kecamatan" name="kecamatan" style="width: 100%;">
+                    <option value="<?php echo $korwil->id_kecamatan ?>"><?php echo $korwil->kecamatan ?></option>
+                    </select>
                   </div>
                 </div>
                 <div class="form-group">
@@ -89,10 +101,12 @@
                 <div class="box-footer">
                     <div class="col-sm-10">
                       <a href="<?php echo site_url('Korwil'); ?>" class="btn btn-default">Batal</a>
+                    <button type="submit" class="btn btn-info">Tambah Data</button>
                     </div>
                 </div>
               </div>
-            </div>
+            
+               <?php echo form_close();?>
             </div>
           </div>
         </div>

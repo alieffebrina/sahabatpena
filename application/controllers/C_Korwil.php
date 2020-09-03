@@ -61,6 +61,7 @@ class C_Korwil extends CI_Controller{
 
     function pengurus($ida)
     {
+        // echo $ida;
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -70,6 +71,22 @@ class C_Korwil extends CI_Controller{
         $data['pengurus'] = $this->M_Korwil->getpenguruskorwil($ida); 
         $data['user'] = $this->M_User->getuser(); 
         $this->load->view('korwil/v_pengurus', $data); 
+        $this->load->view('user/v_modal'); 
+        $this->load->view('template/footer');
+    }
+
+    function penguruse($ida)
+    {
+        // echo $ida;
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['korwil'] = $this->M_Korwil->getkorwilspek($ida); 
+        $data['pengurus'] = $this->M_Korwil->getpenguruskorwile($ida); 
+        $data['user'] = $this->M_User->getuser(); 
+        $this->load->view('korwil/v_epengurus', $data); 
         $this->load->view('user/v_modal'); 
         $this->load->view('template/footer');
     }
@@ -89,6 +106,21 @@ class C_Korwil extends CI_Controller{
         $this->load->view('template/footer');
     }
 
+     function edit($ida)
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['korwil'] = $this->M_Korwil->getkorwilspek($ida); 
+        $data['pengurus'] = $this->M_Korwil->getpenguruskorwil($ida); 
+        $data['user'] = $this->M_User->getuser(); 
+        $this->load->view('korwil/v_ekorwil', $data); 
+        $this->load->view('user/v_modal'); 
+        $this->load->view('template/footer');
+    }
+
     public function tambah()
     {   
         $this->M_Korwil->tambah();
@@ -102,6 +134,45 @@ class C_Korwil extends CI_Controller{
         $this->M_Korwil->editstatususer();
         $this->M_Korwil->tambahpengurus();
         $this->session->set_flashdata('Sukses', "Data Pengurus Berhasil Ditambah!!");
-        redirect('C_Korwil/pengurus'.$ida);  
+        redirect('C_Korwil/pengurus/'.$ida);  
     }
+
+    function editpengurus()
+    {   
+        // echo $this->input->post('pengurus');
+        // echo $this->input->post('sk');
+        // echo $this->input->post('jabatan');
+        // echo $this->input->post('tglaktif');
+        // echo $this->session->userdata('id_user');
+        $id = $this->input->post('pengurus');
+        $this->M_Korwil->editp();
+        $this->session->set_flashdata('Sukses', "Data Berhasil Dirubah!!");
+        redirect('korwil-p/'.$id);
+    } 
+
+    function editkorwil()
+    {   
+        $this->M_Korwil->editkorwil();
+        $this->session->set_flashdata('Sukses', "Data Berhasil Dirubah!!");
+        redirect('Korwil');
+    }
+
+    function pengurush($id, $anggota){
+        $this->M_Korwil->hapusstatususer($id, $anggota);
+        // // $this->M_Korwil->tglakhir($id);
+        $this->session->set_flashdata('Sukses', "Pengurus berhasil di non aktifkan.");
+        redirect('korwil-p/'.$id);  
+    }
+
+    function cek_jabatan(){
+        $korwil = $this->input->post('korwil');
+        $hasil_kode = $this->M_Korwil->cek_jabatan($korwil);
+        if(count($hasil_kode)!=0){ 
+            echo '1';
+        }else{
+            echo '2';
+        }
+         
+    }
+
 }

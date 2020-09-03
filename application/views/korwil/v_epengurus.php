@@ -31,19 +31,19 @@
         <div class='col-lg-12'>
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Tambah Data Pengurus Korwil</h3>
+              <h3 class="box-title">Edit Data Pengurus Korwil</h3>
             </div>
             <!-- /.box-header -->
 
             <div class="box-body">
-              <form action='<?= site_url("C_Korwil/tambahpengurus")?>' method='POST'>
+              <form action='<?= site_url("C_Korwil/editpengurus")?>' method='POST'>
+                <?php foreach ($pengurus as $key) { ?>
                 <div class='row'>
                   <div class="col-lg-12">
                     <label for="inputEmail3" class="col-sm-2 control-label">Jabatan</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan" onkeyup="cek_jabatan()">
-                        <input type="hidden" class="form-control" id="korwil" name="korwil" value="<?php echo $kor ?>" >
-                        <span id="pesanjabatan"></span>
+                        <input type="text" class="form-control" id="jabatana" name="jabatan" value="<?php echo $key->jabatan ?>" >
+                        <input type="text" class="form-control" id="pengurus" name="pengurus" value="<?php echo $key->id_pengurus ?>" >
                       </div>
                   </div>
                 </div>
@@ -52,7 +52,7 @@
                   <div class="col-lg-12">
                     <label for="inputEmail3" class="col-sm-2 control-label">NO SK Kepengurusan</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="sk" name="sk" placeholder="Sk" >
+                        <input type="text" class="form-control" id="sk" name="sk" value="<?php echo $key->nosk ?>" >
                       </div>
                   </div>
                 </div> <br>
@@ -60,11 +60,11 @@
                   <div class="col-lg-12">
                     <label for="inputEmail3" class="col-sm-2 control-label">Nama</label>
                       <div class="col-sm-9">  
-                      <select class="form-control select2" id="nama" name="nama" style="width: 100%;" required>
-                        <option value="">--Pilih--</option>
-                        <?php foreach ($user as $user) { ?>
+                      <select class="form-control select2" id="nama" name="nama" style="width: 100%;" readonly>
+                        <option value="<?php echo $key->id_anggota ?>"><?php echo $key->nama ?></option>
+                        <!-- <?php foreach ($user as $user) { ?>
                         <option value="<?php echo $user->id_anggota ?>"><?php echo $user->nama ?></option>
-                        <?php } ?>
+                        <?php } ?> -->
                       </select>
                       </div>
                   </div>
@@ -73,7 +73,7 @@
                   <div class="col-lg-12">
                     <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Kepengurusan</label>
                       <div class="col-sm-9">
-                        <input type="date" class="form-control" id="tglaktif" name="tglaktif" placeholder="Tanggal Kepengurusan" >
+                        <input type="date" class="form-control" id="tglaktif" name="tglaktif" value="<?php echo $key->tglaktif ?>" >
                       </div>
                   </div>
                 </div> <br>
@@ -85,6 +85,7 @@
                     </div>
                   </div>
                 </div>
+              <?php } ?>
               </form>
             </div>
           </div>

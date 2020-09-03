@@ -291,6 +291,38 @@ function toggle(source) {
 </script>
 <script type='text/javascript'>
     var error = 1; // nilai default untuk error 1
+    function cek_jabatan(){
+        $("#pesanjabatan").hide();
+        var jabatan = $("#jabatan").val();        
+        var korwil = $("#korwil").val();
+        if(nik != ""){
+            $.ajax({
+                url: "<?php echo site_url() . '/C_Korwil/cek_jabatan'; ?>", //arahkan pada proses_tambah di controller member
+                data: {'jabatan=':jabatan,'korwil':korwil}, 
+                type: "POST",
+                success: function(msg){
+                    if(msg==1){
+                        $("#pesanjabatan").css("color","#fc5d32");
+                        $("#jabatan").css("border-color","#fc5d32");
+                        $("#pesanjabatan").html("jabatan sudah digunakan !");
+ 
+                        error = 1;
+                    }else{
+                        $("#pesanjabatan").css("color","#59c113");
+                        $("#jabatan").css("border-color","#59c113");
+                        $("#pesanjabatan").html("");
+                        error = 0;
+                    }
+ 
+                    $("#pesanjabatan").fadeIn(1000);
+                }
+            });
+        }                
+    }
+     
+</script>
+<script type='text/javascript'>
+    var error = 1; // nilai default untuk error 1
     function cek_anggota(){
         $("#pesananggota").hide();
         var noanggota = $("#noanggota").val();

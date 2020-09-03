@@ -22,9 +22,26 @@ class M_Korwil extends CI_Model {
     function getpenguruskorwil($ida){
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_pengurus.id_anggota');
         $this->db->where('id_korwil', $ida);
+        $this->db->where('tglakhir', NULL);
         $query = $this->db->get('tb_pengurus');
         return $query->result();
     }
+
+    function cek_jabatan($korwil){
+        $this->db->where('id_korwil', $korwil);
+        $this->db->where('jabatan', $this->input->post('jabatan'));
+        $this->db->where('tglakhir', NULL);
+        $query = $this->db->get('tb_pengurus');
+        return $query->result();
+    }
+
+    function getpenguruskorwile($ida){
+        $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_pengurus.id_anggota');
+        $this->db->where('id_pengurus', $ida);
+        $query = $this->db->get('tb_pengurus');
+        return $query->result();
+    }
+
 
     function tambah(){
         $user = array(
@@ -68,6 +85,66 @@ class M_Korwil extends CI_Model {
 
         $this->db->where($where);
         $this->db->update('tb_anggota',$view);         
+    }
+
+     function editp(){
+        $where = array(
+            'id_pengurus' => $this->input->post('pengurus'),
+        );
+
+        $view = array(
+            'nosk' =>  $this->input->post('sk'),
+            'jabatan' => $this->input->post('jabatan'),
+            'tgl_update' => date('Y-m-d'),
+            'id_user' => $this->session->userdata('id_user'),
+            'tglaktif' => $this->input->post('tglaktif')
+        );
+
+        $this->db->where($where);
+        $this->db->update('tb_pengurus',$view);         
+    }
+
+    function editkorwil(){
+        $where = array(
+            'id_korwil' => $this->input->post('id'),
+        );
+
+        $view = array(
+            'namakorwil' =>  $this->input->post('namakorwil'),
+            'tglberdiri' => $this->input->post('tglberdiri'),
+            'tgl_update' => date('Y-m-d'),
+            'id_user' => $this->session->userdata('id_user'),
+            'alamat' => $this->input->post('alamat'),
+            'id_provinsi' => $this->input->post('prov'),
+            'id_kota' => $this->input->post('kota'),
+            'id_kecamatan' => $this->input->post('kecamatan'),
+        );
+
+        $this->db->where($where);
+        $this->db->update('tb_korwil',$view);         
+    }
+
+     function hapusstatususer($id, $anggota){
+        $where = array(
+            'id_anggota' =>  $anggota
+        );
+
+        $view = array(
+            'statusanggota' =>  'anggota'
+        );
+
+        $this->db->where($where);
+        $this->db->update('tb_anggota',$view); 
+
+        $a = array(
+            'id_pengurus' =>  $id
+        );
+
+        $b = array(
+            'tglakhir' => date('Y-m-d')
+        );
+        $this->db->where($a);
+        $this->db->update('tb_pengurus',$b);        
     }
 
 }
