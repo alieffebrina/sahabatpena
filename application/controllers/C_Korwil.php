@@ -29,6 +29,8 @@ class C_Korwil extends CI_Controller{
         $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
         if(count($hasiledit)!=0){ 
             $tomboledit = 'aktif';
+        } else {
+            $tomboledit = 'tidak';
         }
 
         $hapus = array(
@@ -39,6 +41,8 @@ class C_Korwil extends CI_Controller{
         $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
         if(count($hasilhapus)!=0){ 
             $tombolhapus = 'aktif';
+        } else {
+            $tombolhapus = 'tidak';
         }
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
@@ -131,7 +135,7 @@ class C_Korwil extends CI_Controller{
     public function tambahpengurus()
     {   
         $ida = $this->input->post('korwil');
-        $this->M_Korwil->editstatususer();
+        $this->M_Korwil->editstatususer($ida);
         $this->M_Korwil->tambahpengurus();
         $this->session->set_flashdata('Sukses', "Data Pengurus Berhasil Ditambah!!");
         redirect('C_Korwil/pengurus/'.$ida);  
@@ -173,6 +177,22 @@ class C_Korwil extends CI_Controller{
             echo '2';
         }
          
+    }
+
+     function hapus($id){
+        $user = $this->M_Korwil->getuserkorwil($id);
+        foreach ($user as $key) {
+            $a = $key->id_anggota;
+            $this->M_Korwil->hapuskode($a);
+        }
+
+        $where = array(
+            'id_korwil' => $id,
+        );
+
+        $this->M_Setting->delete($where, 'tb_korwil');
+        $this->session->set_flashdata('Sukses', "Korwil berhasil di hapus.");
+        redirect('Korwil');  
     }
 
 }

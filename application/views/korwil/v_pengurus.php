@@ -93,11 +93,11 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Tipe User</h3>
+              <h3 class="box-title">Data Pengurus Korwil</h3>
             </div>
             <!-- /.box-header -->
 
-            <div class="box-body">
+            <div class="box-body table-responsive">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -106,6 +106,7 @@
                   <th>Sk</th>
                   <th>Nama</th>
                   <th>Tgl Kepengurusan</th>
+                  <th>Tgl Akhir</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -119,6 +120,7 @@
                   <td><?php echo $pengurus->nosk; ?></td>
                   <td><?php echo $pengurus->nama; ?></td>
                   <td><?php echo $pengurus->tglaktif; ?></td>
+                  <td><?php if($pengurus->tglaktif == '0000-00-00'){ echo 'sampai saat ini'; } else { echo $pengurus->tglaktif; } ?></td>
                   <td>
                     <div class="btn-group">
                       <a href="<?php echo site_url('korwil-pe/'.$pengurus->id_pengurus); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>

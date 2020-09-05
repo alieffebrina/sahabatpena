@@ -20,21 +20,25 @@ class C_User extends CI_Controller{
         $edit = array(
             'tipeuser' => $id,
             'edit' => '1',
-            'id_menu' => '1'
+            'id_menu' => '2'
         );
         $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
         if(count($hasiledit)!=0){ 
             $tomboledit = 'aktif';
+        } else {
+            $tomboledit = 'tidak';
         }
 
         $hapus = array(
             'tipeuser' => $id,
             'delete' => '1',
-            'id_menu' => '1'
+            'id_menu' => '2'
         );
         $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
         if(count($hasilhapus)!=0){ 
             $tombolhapus = 'aktif';
+        } else {
+            $tomboledit = 'tidak';
         }
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;

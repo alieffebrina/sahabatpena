@@ -12,7 +12,7 @@ class C_Setting extends CI_Controller{
         }
     }
     
-    public function get_kota(){
+    function get_kota(){
             // Ambil data ID Provinsi yang dikirim via ajax post
             $id = $this->input->post('id_provinsi');
             
@@ -29,6 +29,25 @@ class C_Setting extends CI_Controller{
             $callback = array('list_kota'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
             echo json_encode($callback); // konversi varibael $callback menjadi JSON
     }
+
+    function get_kotaregis(){
+            // Ambil data ID Provinsi yang dikirim via ajax post
+            $id = $this->input->post('id_provinsi');
+            
+            $kota = $this->M_Setting->getkota($id);
+            
+            // Buat variabel untuk menampung tag-tag option nya
+            // Set defaultnya dengan tag option Pilih
+            $lists = "<option value=''>Pilih</option>";
+            
+            foreach($kota as $data){
+              $lists .= "<option value='".$data->id_kota."'>".$data->name_kota."</option>"; // Tambahkan tag option ke variabel $lists
+            }
+            
+            $callback = array('list_kota'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+            echo json_encode($callback); // konversi varibael $callback menjadi JSON
+    }
+
 
     public function get_kecamatan(){
             // Ambil data ID Provinsi yang dikirim via ajax post

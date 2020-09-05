@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="username">Provinsi</label>
-                                            <select class="form-control select2" id="prov" name="prov" style="width: 100%;" required>
+                                            <select class="form-control select2" id="provregis" name="prov" style="width: 100%;" required>
                                               <option value="">--Pilih--</option>
                                               <?php foreach ($provinsi as $provinsi) { ?>
                                               <option value="<?php echo $provinsi->id_provinsi ?>"><?php echo $provinsi->name_prov ?></option>
@@ -82,7 +82,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="username">Kota/Kabupaten</label>
-                                            <select class="form-control select2" id="kota" name="kota" style="width: 100%;" required>
+                                            <select class="form-control select2" id="kotaregis" name="kota" style="width: 100%;" required>
                                             </select>
                                         </div>
                                         <div class="form-group">
@@ -156,8 +156,8 @@
         </div>
 
         <!-- JAVASCRIPT -->
-        <script src="<?php echo base_url() ?>assets/login/assets/libs/jquery/jquery.min.js"></script>
-        <script src="<?php echo base_url() ?>assets/login/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?php echo base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="<?php echo base_url() ?>assets/login/assets/libs/metismenu/metisMenu.min.js"></script>
         <script src="<?php echo base_url() ?>assets/login/assets/libs/simplebar/simplebar.min.js"></script>
         <script src="<?php echo base_url() ?>assets/login/assets/libs/node-waves/waves.min.js"></script>
@@ -204,32 +204,26 @@
     return true;
   }
 </script>
+
 <script>
   $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
     // Kita sembunyikan dulu untuk loadingnya
-    $("#prov").change(function(){ // Ketika user mengganti atau memilih data provinsi
-    
-      $.ajax({
-        type: "POST", // Method pengiriman data bisa dengan GET atau POST
-        url: "<?php echo base_url("index.php/C_Setting/get_kota"); ?>", // Isi dengan url/path file php yang dituju
-        data: {id_provinsi : $("#prov").val()}, // data yang akan dikirim ke file yang dituju
-        dataType: "json",
-        beforeSend: function(e) {
-          if(e && e.overrideMimeType) {
-            e.overrideMimeType("application/json;charset=UTF-8");
-          }
-        },
-        success: function(response){ // Ketika proses pengiriman berhasil
-          // set isi dari combobox kota
-          // lalu munculkan kembali combobox kotanya
-          $("#kota").html(response.list_kota).show();
-        },
-        error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
-          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
-        }
-      });
-    });
-  });
+    $('#provregis').on('change', function(){
+            var load = $('#provregis').val();
+            
+            $.ajax({
+                method  : "POST",
+                url     : "<?php echo site_url() . 'C_Setting/get_kota'; ?>",
+                data    : {id_provinsi : load},
+                success: function (data){
+                    $('#kotaregis').html(data.list_kota);
+                },
+                error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+                  alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+                }
+            });
+        });
+});
   </script>
 <script>
   $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)

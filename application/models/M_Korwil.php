@@ -21,8 +21,8 @@ class M_Korwil extends CI_Model {
 
     function getpenguruskorwil($ida){
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_pengurus.id_anggota');
-        $this->db->where('id_korwil', $ida);
-        $this->db->where('tglakhir', NULL);
+        $this->db->where('tb_pengurus.id_korwil', $ida);
+        // $this->db->where('tglakhir', NULL);
         $query = $this->db->get('tb_pengurus');
         return $query->result();
     }
@@ -39,6 +39,12 @@ class M_Korwil extends CI_Model {
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_pengurus.id_anggota');
         $this->db->where('id_pengurus', $ida);
         $query = $this->db->get('tb_pengurus');
+        return $query->result();
+    }
+
+     function getuserkorwil($ida){
+        $this->db->where('id_korwil', $ida);
+        $query = $this->db->get('tb_anggota');
         return $query->result();
     }
 
@@ -74,13 +80,29 @@ class M_Korwil extends CI_Model {
         $this->db->insert('tb_pengurus', $user);
     }
 
-    function editstatususer(){
+    function editstatususer($ida){
         $where = array(
             'id_anggota' =>  $this->input->post('nama')
         );
 
         $view = array(
-            'statusanggota' =>  'korwil'
+            'statusanggota' =>  'korwil',
+            'id_kowil' =>  $ida
+        );
+
+        $this->db->where($where);
+        $this->db->update('tb_anggota',$view);         
+    }
+
+    function hapuskode($a){
+        $where = array(
+            'id_anggota' =>  $a
+        );
+
+        $view = array(
+            'id_korwil' =>  '',
+            'noanggota' =>  '',
+            'statusanggota' => 'anggota'
         );
 
         $this->db->where($where);
