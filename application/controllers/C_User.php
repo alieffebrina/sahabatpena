@@ -105,10 +105,16 @@ class C_User extends CI_Controller{
         redirect('C_User/karyatulis/'.$noanggota);
     }
 
+    //  function registrasi()
+    // { 
+    //     $data['provinsi'] = $this->M_Setting->getprovinsi();
+    //     $this->load->view('user/v_registrasi', $data);
+    // }
+
      function registrasi()
     { 
         $data['provinsi'] = $this->M_Setting->getprovinsi();
-        $this->load->view('user/v_registrasi', $data);
+        $this->load->view('registrasi/registrasi', $data);
     }
 
     function add()

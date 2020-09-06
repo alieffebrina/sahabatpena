@@ -30,6 +30,20 @@ class C_Setting extends CI_Controller{
             echo json_encode($callback); // konversi varibael $callback menjadi JSON
     }
 
+     function getkabupaten(){
+            $id = json_decode($this->input->post('id_provinsi'));
+            
+            $kota = $this->M_Setting->getkota($id);
+            $lists = "asdasd";
+            
+            // foreach($kota as $data){
+            //   $lists .= "<option value='".$data->id_kota."'>".$data->name_kota."</option>"; // Tambahkan tag option ke variabel $lists
+            // }
+            
+            $a = array('list_kota'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+            echo json_encode($a); // konversi varibael $callback menjadi JSON
+    }
+
     function get_kotaregis(){
             // Ambil data ID Provinsi yang dikirim via ajax post
             $id = $this->input->post('id_provinsi');
