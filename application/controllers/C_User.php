@@ -6,6 +6,7 @@ class C_User extends CI_Controller{
         $this->load->helper(array('form','url'));
         $this->load->library('session');
         $this->load->model('M_User');
+        $this->load->model('M_Korwil');
         $this->load->model('M_Setting');
     }
 
@@ -43,7 +44,7 @@ class C_User extends CI_Controller{
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
         $data['user'] = $this->M_User->getall();   
-        $data['header'] = 'Anggota';
+        $data['header'] = 'Anggota';        
         $this->load->view('user/v_user',$data); 
         $this->load->view('template/footer');
     }
@@ -161,6 +162,7 @@ class C_User extends CI_Controller{
         // echo "tes"; 
         $upload = $this->M_User->upload();
         if ($upload['result'] == "success"){
+            $this->M_User->tambahdata($upload);
             $this->load->library('mailer');
             $email_penerima = 'alief.febrina@gmail.com';
             $subjek = $this->input->post('subjek');
@@ -179,7 +181,7 @@ class C_User extends CI_Controller{
               $send = $this->mailer->send_with_attachment($sendmail); // Panggil fungsi send_with_attachment yang ada di librari Mailer
             }
             
-            redirect('C_Login');    
+            redirect('user');    
         } else {
             'upload gagal';
         }
@@ -237,6 +239,35 @@ class C_User extends CI_Controller{
         $this->M_User->konfirm($iduser,$id);
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Anggota!!");
             redirect('C_User');
+    }
+
+    function konfirmkorwil()
+    {   
+        $korwil = $this->input->post('korwil');
+
+        $kode = $this->M_Korwil->cekkode($korwil);
+        foreach ($kode as $modul) {
+            $a = $modul->kodekorwil;
+            date_default_timezone_set('Asia/Jakarta');
+            $tgl = date('dmY');
+            $a = str_replace("tanggal", $tgl, $a);
+            $data = $this->M_User->getjumlahwilayah($korwil);
+            $id = count($data)+1;
+            $a = str_replace("no", $id, $a);
+        }
+        $kode = $a;
+        // echo $kode;
+        $id = $this->session->userdata('statusanggota');
+        $this->M_User->konfirm($id, $kode);
+        $this->session->set_flashdata('Sukses', "Data Berhasil Di Anggota!!");
+            redirect('user');
+    }
+
+     function konfirmasi($ida)
+    {
+        $data['idanggota'] = $ida;
+        $data['korwil'] = $this->M_Korwil->getkorwil(); 
+        $this->load->view('user/v_pilihkorwil',$data); 
     }
 
     function laporan()

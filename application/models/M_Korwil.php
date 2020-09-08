@@ -169,4 +169,13 @@ class M_Korwil extends CI_Model {
         $this->db->update('tb_pengurus',$b);        
     }
 
+    function cekkode($modul){        
+        $this->db->select('kodekorwil');
+        $where = array(
+            'id_korwil' => $modul
+        );
+        $query = $this->db->get_where('tb_korwil', $where);
+        return $query->result();
+    }
+
 }

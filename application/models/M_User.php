@@ -11,6 +11,15 @@ class M_User extends CI_Model {
     	return $query->result();
     }
 
+    function getjumlahwilayah($id){
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $this->db->where('id_korwil', $id);
+        $query = $this->db->get('tb_anggota');
+        return $query->result();
+    }
+
     function get_listuser($id){
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
@@ -177,16 +186,18 @@ class M_User extends CI_Model {
         $this->db->update('tb_anggota',$user);
     }
 
-    function konfirm($iduser,$id){
+    function konfirm($id, $a){
         
         $user = array(
+            'noanggota' => $a,
             'statusanggota' => 'anggota',
+            'id_korwil' => $this->input->post('korwil'),
             'id_user' => $id,
             'tglupdate' => date('Y-m-d h:i:s'),
         );
 
         $where = array(
-            'id_anggota' =>  $iduser,
+            'id_anggota' =>  $this->input->post('idanggota'),
         );
         
         $this->db->where($where);

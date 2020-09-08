@@ -29,7 +29,8 @@
         </div>
         <div class="main_part">
 
-            <form id="registrasi" action="#" class="flp">
+            <?php // echo form_open("C_User/tambah", array('enctype'=>'multipart/form-data', 'class'=>'flp', 'id'=>'registrasi') ); ?>
+            <form id="registrasi" action="<?= site_url("C_User/tambah")?>" class="flp">
                 <h2>Daftar Anggota Baru</h2>
                 <div>
                     <h5>Step 1</h5>
@@ -37,7 +38,7 @@
                         <div class="container">
                             <div class="columns">
                                 <div class="column is-6 inp_group">
-                                    <input type="text" name="nik" id="" class="required" value="">
+                                    <input type="text" name="nika" id="nika" class="required" value="" maxlength="16" minlength="16" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()">
                                     <label for="nik">NIK</label>
                                 </div>
                                 <div class="column is-6 inp_group">
@@ -63,9 +64,9 @@
                             </div>
                             <div class="columns">                                
                                 <div class="column is-4">
-                                    <select name="provinsi" id="provinsi" class="required">
+                                    <select name="provinsia" id="provinsia" class="required">
                                         <optgroup>
-                                            <option value="" selected disabled></option>
+                                            <option value=""></option>
                                             <?php foreach ($provinsi as $provinsi) { ?>
                                                 <option value="<?php echo $provinsi->id_provinsi ?>"><?php echo $provinsi->name_prov ?></option>
                                             <?php } ?>
@@ -74,35 +75,15 @@
                                     <label for="provinsi">Provinsi</label>
                                 </div>
                                 <div class="column is-4">
-                                    <input type="hidden" name="divkota" id="divkota">
-                                    <select name="kota" id="kota" class="required">
+                                    <select name="kaba" id="kaba" class="required">
                                         <optgroup>
-                                            <option value="" selected disabled></option>
-                                     <?php 
-                                        $cari = $this->input->get('divkota');
-
-                                     if(isset($cari) != NULL){
-                                        echo "<b>Hasil pencarian : ".$cari."</b>";
-                                    } else {
-                                        echo "error";
-                                    }
-                                     $a = $this->input->get('divkota');
-                                     $submenus = $this->db->query("select * from tb_kota"); 
-                                      foreach ($submenus->result() as $submenu) { ?>
-                                      <option value="<?php echo $submenu->id_kota ?>">  <?php echo $submenu->name_kota ?></option>  
-                                      <?php } ?>
-                                  </optgroup>
+                                        </optgroup>
                                     </select>
                                     <label for="kabupaten">Kabupaten/Kota</label>
                                 </div>
                                 <div class="column is-4">
-                                    <select name="kecamatan" id="kecamatan" class="required">
+                                    <select name="keca" id="keca" class="required">
                                         <optgroup>
-                                            <option value="" selected disabled></option>
-                                            <?php $keca = $this->db->query("select * from tb_kecamatan"); 
-                                      foreach ($keca->result() as $kec) { ?>
-                                      <option value="<?php echo $kec->id_kecamatan ?>">  <?php echo $kec->kecamatan ?></option>  
-                                      <?php } ?>
                                         </optgroup>
                                     </select>
                                     <label for="kecamatan">Kecamatan</label>
@@ -120,7 +101,7 @@
                                     <label for="email">Email</label>
                                 </div>
                                 <div class="column is-6">
-                                    <input type="text" name="telepon" id="" class="required">
+                                    <input type="text" name="telepon" id="" class="required" maxlength="12" onkeypress="return Angkasaja(event)">
                                     <label for="telepon">No. Telepon</label>
                                 </div>
                             </div>
@@ -165,12 +146,19 @@
                                 </div>
                             </div>
                             <div class="columns">
+                                <div class="column is-12 inp_group">
+                                    <input type="file" name="foto" id="foto" class="required" onchange="ValidateSize(this)">
+                                    <label for="foto">Foto</label>
+                                </div>
+                            </div>
+                    <!-- <input type="file" id="foto" class="demoInputBox" name="foto" onchange="ValidateSize(this)"> -->
+                            <!-- <div class="columns">
                                 <div class="column is-6">
                                     <input type="text" name="karyaTulis" id="">
                                     <label for="karyaTulis">Karya Tulis</label>
                                 </div>
                                 <div class="column is-6">
-                                    <input type="text" name="tanggalRegistrasi" id="datepicker_2" class="required form-control docs-date" autocomplete="off" value=" ">
+                                    <input type="text" name="tanggalRegistrasi" id="datepicker_2" class="required form-control docs-date" autocomplete="off" value="<?php echo date('Y-m-d'); ?>">
                                     <label for="tanggalRegistrasi">Tanggal Registrasi</label>
                                 </div>
                             </div>
@@ -195,7 +183,7 @@
                                     </select>
                                     <label for="domisili">Domisili Anggota</label>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </section>
                     <h5>Step 4</h5>
@@ -208,20 +196,22 @@
                                     </figure>
                                     <p>Anda telah melengkapi formulir. <br>Klik <strong>DAFTAR</strong> untuk melanjutkan pendaftaran <br>atau klik KEMBALI untuk memeriksa data anda</p>
                                 </div>
+
+                    <button type="submit" class="btn btn-info">Tambah Data</button>
                             </div>
                         </div>
                     </section>
                 </div>
 
 
-            </form>
+           <?php echo form_close();?>
             
             <p class="copyright">&copy; webhoster @ 2020 | All rights reserved</p>
 
         </div>
     </div>
 
-    <script src="<?php echo base_url() ?>assets/registrasi/jquery.min.js"></script>
+<script src="<?php echo base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="<?php echo base_url() ?>assets/registrasi/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="<?php echo base_url() ?>assets/registrasi/asset/js/jquery-1.11.0.min.js"></script>
@@ -338,31 +328,114 @@
             })
         });
 </script>
-<script type="text/javascript">
-        $(document).ready(function(){
+<script>
+    $(function(){
+        $( "#provinsia" ).change(function(event)
+        {
+            event.preventDefault();
+            var email= $("#provinsia").val();
 
-            $("#bb").change(function(){ // Ketika user mengganti atau memilih data provinsi
-            var id_provinsi = $("#provinsi").val();
-            // document.getElementById('aa').value = id_provinsi;
-                $.ajax({
-                  url: '<?php echo base_url("index.php/C_Setting/getkabupaten"); ?>',
-                  type: 'POST',
-                  data: id_provinsi,
+            $.ajax(
+                {
+                    type:"post",
+                    url: "<?php echo base_url(); ?>index.php/C_Registrasi/getkabupaten",
+                    data:{ id_provinsi:email},
                     beforeSend: function(e) {
                       if(e && e.overrideMimeType) {
                         e.overrideMimeType("application/json;charset=UTF-8");
                       }
                     },
-                    success: function(response){ 
-                      $("#kotaa").html(response.list_kota).show();
+                    success:function(response)
+                    {
+
+                     // $("#kab").html(response.list_kab).show();
+                        // console.log(response);
+                        // $("#kab").html(response);
+                        // $('#kab').show();
+                        var hasil = document.getElementById("kaba");
+                        hasil.innerHTML = response.list_kab;
                     },
+                    error: function() 
+                    {
+                        alert("Invalide!");
+                    }
+                }
+            );
+        });
+    });
+</script>
+<script>
+    $(function(){
+        $( "#kaba" ).change(function(a)
+        {
+            a.preventDefault();
+            var kab= $("#kaba").val();
+
+            $.ajax(
+                {
+                    type:"post",
+                    url: "<?php echo base_url(); ?>index.php/C_Registrasi/getkec",
+                    data:{ kabupaten:kab},
+                    beforeSend: function(e) {
+                      if(e && e.overrideMimeType) {
+                        e.overrideMimeType("application/json;charset=UTF-8");
+                      }
+                    },
+                    success:function(response)
+                    {
+
+                        // console.log(response);
+                        var k = document.getElementById("keca");
+                        k.innerHTML = response.list_kec;
+                    },
+                    
                     error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
                       alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
                     }
-                });
-            })
+                }
+            );
         });
-    </script>
+    });
+</script>
+  <script type="text/javascript">
+  function Angkasaja(evt) {
+    var charCode = (evt.which) ? evt.which : event.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57))
+    return false;
+    return true;
+  }
+</script>
 
+<script type='text/javascript'>
+    var error = 1; // nilai default untuk error 1
+    function cek_nik(){
+        $("#pesannik").hide();
+        var nik = $("#nika").val();
+        if(nik != ""){
+            $.ajax({
+                url: "<?php echo site_url() . '/C_User/cek_nik'; ?>", //arahkan pada proses_tambah di controller member
+                data: 'nik='+nik,
+                type: "POST",
+                success: function(msg){
+                    if(msg==1){
+                        $("#pesannik").css("color","#fc5d32");
+                        $("#nika").css("border-color","#fc5d32");
+                        alert("NIK sudah digunakan !");
+ 
+                        error = 1;
+                    }else{
+                        $("#pesannik").css("color","#59c113");
+                        $("#nika").css("border-color","#59c113");
+                        $("#pesannik").html("");
+                        error = 0;
+                    }
+ 
+                    $("#pesannik").fadeIn(1000);
+                }
+            });
+        }                
+    }
+     
+</script>
 </body>
 </html>
