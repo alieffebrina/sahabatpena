@@ -277,12 +277,7 @@ class C_User extends CI_Controller{
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        if ($id == 'upline' || $id == 'downline'){
-            $data['user'] = $this->M_User->getallspek($iduser);
-        } else {
-            $data['user'] = $this->M_User->getall();            
-        }
-        $data['header'] = 'Anggota';
+        $data['user'] = $this->M_User->getall();        
         $this->load->view('user/v_laporanuser',$data); 
         $this->load->view('template/footer');
     }

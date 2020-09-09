@@ -196,8 +196,6 @@
                                     </figure>
                                     <p>Anda telah melengkapi formulir. <br>Klik <strong>DAFTAR</strong> untuk melanjutkan pendaftaran <br>atau klik KEMBALI untuk memeriksa data anda</p>
                                 </div>
-
-                    <button type="submit" class="btn btn-info">Tambah Data</button>
                             </div>
                         </div>
                     </section>

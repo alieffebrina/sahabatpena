@@ -66,5 +66,6 @@ $route['pengurus'] = 'C_Pengurus';
 $route['pengurus-add'] = 'C_Pengurus/add';
 $route['pengurus-view/(:any)'] = 'C_Pengurus/view/$1';
 $route['pengurus-edit/(:any)'] = 'C_Pengurus/edit/$1';
+$route['laporan-anggota'] = 'C_User/laporan';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
