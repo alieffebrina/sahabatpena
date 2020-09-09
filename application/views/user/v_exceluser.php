@@ -12,46 +12,44 @@ header("Expires: 0");
 	<th colspan="13"> Data Laporan Pembelian</th>
 </tr>
 <tr>
-  <th>No</th>
+  <th>No Anggota</th>
   <th>NIK</th>
   <th>Nama</th>
-  <th>Username</th>
-  <th>Password</th>
   <th>Alamat</th>
   <th>Provinsi</th>
   <th>Kota</th>
   <th>Kecamatan</th>
-  <th>Upline</th>
-  <th>Jumlah HU</th>
-  <th>Bank</th>
-  <th>No Rek</th>
-  <th>Pemilik</th>
-  <th>Nama Sponsor</th>
-  <th>Pembayaran</th>
-  <th>Status</th>
+  <th>Email</th>
+  <th>Tlp</th>
+  <th>Status Anggota</th>
+  <th>Tempat Lahir</th>
+  <th>Tanggal Lahir</th>
+  <th>Facebook</th>
+  <th>Instagram</th>
+  <th>Twitter</th>
+  <th>Youtube</th>
  </tr>
 </thead>
 <tbody>
 <?php $i=1; foreach($excel as $user) { 
 	?>
 <tr>
- 	<td><?php echo $i++; ?></td>
+ 	<td><?php echo $user->noanggota; ?></td>
   <td>&nbsp;<?php echo $user->nik; ?></td>
   <td><?php echo $user->nama; ?></td>
-  <td>&nbsp;<?php echo $user->username; ?></td>
-  <td><?php echo $user->password; ?></td>
   <td><?php echo $user->alamat; ?></td>
   <td><?php echo $user->name_prov; ?></td>
   <td><?php echo $user->name_kota; ?></td>
   <td><?php echo $user->kecamatan; ?></td>
-  <td><?php echo $user->namaupline; ?></td>
-  <td>&nbsp;<?php echo $user->jumlahhu; ?></td>
-  <td><?php echo $user->bank; ?></td>
-  <td>&nbsp;<?php echo $user->norek; ?></td>
-  <td><?php echo $user->pemilik; ?></td>
-  <td><?php echo $user->namasponsor; ?></td>
-  <td><?php echo $user->statusbayar; ?></td>
+  <td><?php echo $user->email; ?></td>
+  <td><?php echo $user->tlp; ?></td>
   <td><?php echo $user->statusanggota; ?></td>
+  <td><?php echo $user->tempatlahir; ?></td>
+  <td><?php echo $user->tgllahir; ?></td>
+  <td><?php echo $user->facebook; ?></td>
+  <td><?php echo $user->instagram; ?></td>
+  <td><?php echo $user->twitter; ?></td>
+  <td><?php echo $user->youtube; ?></td>
  </tr>
 <?php } ?>
 </tbody>

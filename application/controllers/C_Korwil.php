@@ -195,4 +195,29 @@ class C_Korwil extends CI_Controller{
         redirect('Korwil');  
     }
 
+
+    public function excel()
+    {   
+        $id = $this->session->userdata('statusanggota');
+            $user = $this->M_Korwil->getkorwil();       
+        $data = array('title' => 'Laporan Korwil',
+                'excel' => $user);
+        $this->load->view('korwil/v_excelkorwil', $data);
+    }
+
+
+
+    function laporan()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['korwil'] = $this->M_Korwil->getkorwil();           
+        $this->load->view('korwil/v_laporankorwil',$data); 
+        $this->load->view('template/footer');
+    }
+
+
 }

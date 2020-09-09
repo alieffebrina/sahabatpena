@@ -54,6 +54,14 @@
                 </div> <br>
                 <div class='row'>
                   <div class="col-lg-12">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Publish</label>
+                      <div class="col-sm-9">
+                        <input type="date" class="form-control" id="tgl" name="tgl" >
+                      </div>
+                  </div>
+                </div> <br>
+                <div class='row'>
+                  <div class="col-lg-12">
                     <label for="inputEmail3" class="col-sm-2 control-label">Karya Tulis</label>
                       <div class="col-sm-9">
                         <textarea class="form-control" rows="3" id="karyatulis" name="karyatulis" required></textarea>
@@ -87,6 +95,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>Tanggal Publish</th>
                   <th>Karya Tulis</th>
                   <th>Action</th>
                 </tr>
@@ -97,6 +106,7 @@
                   foreach ($karyatulis as $karyatulis) { ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
+                  <td><?php echo date('d-m-Y', strtotime($karyatulis->tglpublish)); ?></td>
                   <td><?php echo $karyatulis->karyatulis; ?></td>
                   <td>
                     <div class="btn-group">

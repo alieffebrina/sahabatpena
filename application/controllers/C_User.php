@@ -192,7 +192,7 @@ class C_User extends CI_Controller{
         $noanggota = $this->input->post('noanggota');
         $this->M_User->tambahkaryatulis();
         $this->session->set_flashdata('Sukses', "Record Added Successfully!!");
-        redirect('C_User/karyatulis/'.$noanggota);  
+        redirect('user-karyatulis/'.$noanggota);  
     }
 
 
@@ -282,19 +282,68 @@ class C_User extends CI_Controller{
         $this->load->view('template/footer');
     }
 
+
+    function setting()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['user'] = $this->M_User->getall();        
+        $this->load->view('setting/v_setting',$data); 
+        $this->load->view('template/footer');
+    }
+
+    function user_kt()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['user'] = $this->M_User->getaktif();        
+        $this->load->view('user/v_userkaryatulis',$data); 
+        $this->load->view('template/footer');
+    }
+
+
+    function nonaktif($id)
+    {
+        $this->M_User->nonaktif($id);
+        $this->session->set_flashdata('Sukses', "Data Berhasil Dirubah!!");
+        redirect('user-setting');
+    }
+
+
+    function resign($ida)
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['userspek'] = $this->M_User->getspek($ida); 
+        $data['user'] = $this->M_User->getall();        
+        $this->load->view('setting/v_settingresign',$data); 
+        $this->load->view('template/footer');
+    }
+
     public function excel()
     {   
         $id = $this->session->userdata('statusanggota');
-        if ($id == 'upline' || $id == 'downline'){
-            $user = $this->M_User->getallspek($iduser);
-        } else {
-            $user = $this->M_User->getall();            
-        }
+            $user = $this->M_User->getall();       
         $data = array('title' => 'Laporan Anggota',
                 'excel' => $user);
         $this->load->view('user/v_exceluser', $data);
     }
 
+    function mengundurkandiri()
+    {   
+        $this->M_User->mengundurkandiri();
+        $this->session->set_flashdata('Sukses', "Data Berhasil Dirubah!!");
+        redirect('user-setting');
+    }
 
     function hapuskt($noanggota,$idkt){
         $where = array('id_karyatulis' => $idkt);

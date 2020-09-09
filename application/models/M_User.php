@@ -37,9 +37,22 @@ class M_User extends CI_Model {
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        // $this->db->join('tb_korwil', 'tb_korwil.id_korwil = tb_anggota.id_korwil');
         $query = $this->db->get('tb_anggota');
         return $query->result();
     }
+
+    function getaktif(){
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $this->db->where("statusanggota != 'menunggu konfirmasi'");
+        $this->db->where("statusanggota != 'tidak aktif'");
+        $query = $this->db->get('tb_anggota');
+        return $query->result();
+    }
+
+
 
     function getnama($ida){
         $where = array(
@@ -109,6 +122,7 @@ class M_User extends CI_Model {
         $user = array(
             'id_anggota' => $this->input->post('noanggota'),
             'karyatulis' => $this->input->post('karyatulis'),
+            'tglpublish' => $this->input->post('tgl'),
         );
         
         $this->db->insert('tb_karyatulis', $user);
@@ -117,6 +131,8 @@ class M_User extends CI_Model {
     function editkt(){
         $user = array(
             'karyatulis' => $this->input->post('karyatulis'),
+            'tglpublish' => $this->input->post('tgl'),
+
         );
         $where = array(
             'id_anggota' =>  $this->input->post('noanggota'),
@@ -126,6 +142,32 @@ class M_User extends CI_Model {
         $this->db->update('tb_karyatulis',$user);
     }
 
+     function mengundurkandiri(){
+        $user = array(
+            'alasan' => $this->input->post('resign'),
+            'statusanggota' => 'tidak aktif',
+            'tglnonaktif' => date('Y-m-d'),
+        );
+        $where = array(
+            'id_anggota' =>  $this->input->post('noanggota'),
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_anggota',$user);
+    }
+
+    function nonaktif($id){
+        $user = array(
+            'statusanggota' => 'tidak aktif',
+            'tglnonaktif' => date('Y-m-d'),
+        );
+        $where = array(
+            'id_anggota' =>  $id,
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_anggota',$user);
+    }
 
     function getspek($iduser){
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');

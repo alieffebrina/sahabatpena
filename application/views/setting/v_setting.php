@@ -1,15 +1,14 @@
-<!-- Content Wrapper. Contains page content -->
+n<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <?php echo $header; ?>
+        Data Setting Anggota
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_User'); ?>">Data Anggota</a></li>
-        <li class="active"><?php echo $header; ?></li>
+        <li><a href="<?php echo site_url('C_User'); ?>">Data Setting Anggota</a></li>
       </ol>
     </section>
     <div class="box-body">
@@ -24,14 +23,11 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
+        
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data <?php echo $header; ?></h3>
-            </div>
-
-            <div class="box-header">
-              <a href="<?php echo site_url('user-add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
+              <h3 class="box-title">Data Setting Anggota</h3>
             </div>
             <!-- /.box-header -->
 
@@ -57,26 +53,19 @@
                   <td><?php echo $user->nik; ?></td>
                   <td><?php echo $user->nama; ?></td>
                   <td><?php echo $user->alamat.', '.$user->name_kota.', '.$user->name_prov; ?></td>
-                  <td><?php echo $user->statusanggota; ?></td>
+                  <td><?php if($user->statusanggota!='tidak aktif') { echo $user->statusanggota; } else { if ($user->alasan!=NULL) { echo 'mengundurkan diri '; } else { echo 'tidak aktif'; }}; ?></td>
                   <td><?php if($user->id_korwil != NULL){
                     $submenus = $this->db->query("select * from tb_korwil where id_korwil = '$user->id_korwil'"); 
                       foreach ($submenus->result() as $submenu) {
                       echo $submenu->namakorwil;
-                      }  
+                      } 
                     } else { echo '-'; } ?></td>
-                  <td> 
+                  <td><?php if($user->statusanggota!='tidak aktif') { ?>
                     <div class="btn-group">
-                    <?php if($user->statusanggota == 'menunggu konfirmasi'){ ?>
-                      <a href="<?php echo site_url('user-konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="konfirmasi!"><i class="fa fa-fw fa-check"></i></button></a>
-                    <?php } ?>
-                      <a href="<?php echo site_url('user-view/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Lihat User!"><i class="fa fa-fw fa-search"></i></button></a>
-                      <?php if($aksesedit == 'aktif'){?>
-                      <a href="<?php echo site_url('user-edit/'.$user->id_anggota); ?>"><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit User!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
-                      <?php } ?>
-                      <?php if($akseshapus == 'aktif'){?>
-                      <a href="<?php echo site_url('C_User/hapus/'.$user->id_anggota); ?>"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus User!"><i class="fa fa-fw fa-trash-o"></i></button></a>
-                      <?php } ?>
+                      <a href="<?php echo site_url('user-resign/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Mengundurkan Diri !"><i class="fa fa-fw fa-user"></i></button></a>
+                      <a href="<?php echo site_url('user-nonaktif/'.$user->id_anggota); ?>"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Non Aktif User!"><i class="fa fa-fw fa-close"></i></button></a>
                     </div>
+                  <?php } ?>
                   </td>
                 </tr>
                   <?php } ?>

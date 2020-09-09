@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2020 at 05:26 PM
+-- Generation Time: Sep 09, 2020 at 06:08 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -48,9 +48,27 @@ INSERT INTO `tb_akses` (`id_akses`, `id_menu`, `tipeuser`, `view`, `add`, `edit`
 (4, 4, 'administrator', '1', '1', '1', '1'),
 (5, 5, 'administrator', '1', '1', '1', '1'),
 (6, 6, 'administrator', '1', '1', '1', '1'),
-(7, 1, 'admin', '1', '1', '1', '1'),
-(8, 2, 'downline', '1', '1', '1', '1'),
-(19, 1, 'downline', '1', '1', '1', '1');
+(7, 7, 'administrator', '1', '1', '1', '1'),
+(8, 8, 'administrator', '1', '1', '1', '1'),
+(9, 9, 'administrator', '1', '1', '1', '1'),
+(10, 2, 'korwil', '1', '1', '1', '1'),
+(11, 3, 'korwil', '1', '1', '1', '1'),
+(12, 4, 'korwil', '1', '1', '1', '1'),
+(13, 5, 'korwil', '1', '1', '1', '1'),
+(14, 6, 'korwil', '1', '1', '1', '1'),
+(15, 7, 'korwil', '1', '1', '1', '1'),
+(16, 8, 'korwil', '1', '1', '1', '1'),
+(17, 9, 'korwil', '1', '1', '1', '1'),
+(18, 1, 'anggota', '1', '1', '1', '1'),
+(19, 1, 'korwil', '1', '1', '1', '1'),
+(20, 2, 'anggota', '1', '1', '1', '1'),
+(21, 3, 'anggota', '1', '1', '1', '1'),
+(22, 4, 'anggota', '1', '1', '1', '1'),
+(23, 5, 'anggota', '1', '1', '1', '1'),
+(24, 6, 'anggota', '1', '1', '1', '1'),
+(25, 7, 'anggota', '1', '1', '1', '1'),
+(26, 8, 'anggota', '1', '1', '1', '1'),
+(27, 9, 'anggota', '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
@@ -59,7 +77,7 @@ INSERT INTO `tb_akses` (`id_akses`, `id_menu`, `tipeuser`, `view`, `add`, `edit`
 --
 
 CREATE TABLE `tb_anggota` (
-  `id_anggota` char(20) NOT NULL,
+  `id_anggota` int(11) NOT NULL,
   `nik` char(16) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `alamat` varchar(200) NOT NULL,
@@ -71,7 +89,7 @@ CREATE TABLE `tb_anggota` (
   `id_user` int(11) NOT NULL,
   `tglupdate` datetime NOT NULL,
   `foto` varchar(250) DEFAULT NULL,
-  `statusanggota` enum('administrator','korwil','pengurus','anggota','menunggu konfirmasi','tidak aktif') NOT NULL DEFAULT 'anggota',
+  `statusanggota` enum('administrator','korwil','anggota','menunggu konfirmasi','tidak aktif') NOT NULL DEFAULT 'menunggu konfirmasi',
   `tempatlahir` varchar(100) NOT NULL,
   `tgllahir` date NOT NULL,
   `facebook` varchar(100) DEFAULT NULL,
@@ -81,18 +99,24 @@ CREATE TABLE `tb_anggota` (
   `institusi` varchar(100) NOT NULL,
   `latarbelakang` varchar(250) NOT NULL,
   `tglregistrasi` date NOT NULL,
-  `domisilianggota` enum('SPK Pusat','SPK Daerah') NOT NULL,
+  `domisilianggota` enum('SPK Pusat','SPK Cabang') NOT NULL DEFAULT 'SPK Cabang',
   `username` varchar(50) DEFAULT NULL,
-  `password` varchar(10) DEFAULT NULL
+  `password` varchar(10) DEFAULT NULL,
+  `noanggota` varchar(50) DEFAULT NULL,
+  `id_korwil` int(11) DEFAULT NULL,
+  `tglnonaktif` date NOT NULL,
+  `alasan` varchar(250) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_anggota`
 --
 
-INSERT INTO `tb_anggota` (`id_anggota`, `nik`, `nama`, `alamat`, `id_provinsi`, `id_kota`, `id_kecamatan`, `email`, `tlp`, `id_user`, `tglupdate`, `foto`, `statusanggota`, `tempatlahir`, `tgllahir`, `facebook`, `instagram`, `twitter`, `youtube`, `institusi`, `latarbelakang`, `tglregistrasi`, `domisilianggota`, `username`, `password`) VALUES
-('1', '', 'administrator', '', '', '', '', '', '', 1, '2020-08-24 21:57:03', NULL, 'anggota', '', '0000-00-00', NULL, NULL, NULL, NULL, '', '', '2020-08-24', '', 'admin', 'admin'),
-('a1', '1111111111111111', 'RIZKY FEBRIANTO', 'asd', '12', '1202', '1202054', 'ad@ads', '131123', 1, '2020-08-24 04:59:39', 'happy_ied_mubarak_alief.jpg', 'anggota', 'ad', '2020-07-29', '', '', '', '', 'asd', 'sadasd', '2020-08-24', 'SPK Pusat', NULL, NULL);
+INSERT INTO `tb_anggota` (`id_anggota`, `nik`, `nama`, `alamat`, `id_provinsi`, `id_kota`, `id_kecamatan`, `email`, `tlp`, `id_user`, `tglupdate`, `foto`, `statusanggota`, `tempatlahir`, `tgllahir`, `facebook`, `instagram`, `twitter`, `youtube`, `institusi`, `latarbelakang`, `tglregistrasi`, `domisilianggota`, `username`, `password`, `noanggota`, `id_korwil`, `tglnonaktif`, `alasan`) VALUES
+(1, '', 'administrator', '', '', '', '', '', '', 1, '2020-08-24 21:57:03', NULL, 'administrator', '', '0000-00-00', NULL, NULL, NULL, NULL, '', '', '2020-08-24', '', 'admin', 'admin', '', NULL, '0000-00-00', ''),
+(2, '1111111111111111', 'RIZKY FEBRIANTO', 'asd', '12', '1202', '1202054', 'ad@ads', '131123', 1, '2020-08-24 04:59:39', 'happy_ied_mubarak_alief.jpg', 'tidak aktif', 'ad', '2020-07-29', '', '', '', '', 'asd', 'sadasd', '2020-08-24', 'SPK Pusat', 'riski', '1', 'k001', NULL, '2020-09-09', ''),
+(5, '1111111111111114', 'asdm', 'asd', '14', '1403', '1403123', 'ad@ads', '131', 0, '2020-09-08 11:44:50', 'lebaran_via2.jpg', 'tidak aktif', 'asd', '2020-08-12', 'asd', 'asd', 'asd', '', 'asd', 'sadasd', '2020-08-30', 'SPK Cabang', NULL, NULL, 'gr-08092020-1', 2, '2020-09-09', 'asdasdasd'),
+(7, '1111111111111112', 'RIZasda', 'sad', '12', '1202', '1202055', 'sad@asd', '2131212313', 0, '2020-09-08 11:44:43', 'WhatsApp_Image_2020-09-07_at_18_08_52.jpeg', 'anggota', 'ad', '2020-09-01', 'd', 'sa', 'asd', 'asd', 'asd', 'asd', '2020-09-08', 'SPK Cabang', NULL, NULL, 'ST-08092020-1', 1, '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -103,15 +127,19 @@ INSERT INTO `tb_anggota` (`id_anggota`, `nik`, `nama`, `alamat`, `id_provinsi`, 
 CREATE TABLE `tb_karyatulis` (
   `id_karyatulis` int(11) NOT NULL,
   `id_anggota` varchar(20) NOT NULL,
-  `karyatulis` varchar(200) NOT NULL
+  `karyatulis` varchar(200) NOT NULL,
+  `tglpublish` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tb_karyatulis`
 --
 
-INSERT INTO `tb_karyatulis` (`id_karyatulis`, `id_anggota`, `karyatulis`) VALUES
-(2, 'a1', 'sdadadasdasd');
+INSERT INTO `tb_karyatulis` (`id_karyatulis`, `id_anggota`, `karyatulis`, `tglpublish`) VALUES
+(2, 'a1', 'sdadadasdasd', '0000-00-00'),
+(3, 'D001', 'yhhhhh', '0000-00-00'),
+(4, 'D001', 'jjjjjjjjjjjjjjjj', '0000-00-00'),
+(6, '7', 'asdassad', '2020-09-01');
 
 -- --------------------------------------------------------
 
@@ -7231,6 +7259,33 @@ INSERT INTO `tb_kecamatan` (`id_kecamatan`, `id_kota`, `kecamatan`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tb_korwil`
+--
+
+CREATE TABLE `tb_korwil` (
+  `id_korwil` int(11) NOT NULL,
+  `tglberdiri` date NOT NULL,
+  `namakorwil` varchar(200) NOT NULL,
+  `alamat` varchar(250) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `kodekorwil` varchar(50) NOT NULL,
+  `id_kecamatan` char(7) NOT NULL,
+  `id_kota` char(4) NOT NULL,
+  `id_provinsi` char(2) NOT NULL,
+  `tgl_update` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_korwil`
+--
+
+INSERT INTO `tb_korwil` (`id_korwil`, `tglberdiri`, `namakorwil`, `alamat`, `id_user`, `kodekorwil`, `id_kecamatan`, `id_kota`, `id_provinsi`, `tgl_update`) VALUES
+(1, '2020-09-01', 'MALANG', 'alamat malang', 1, 'ST-tanggal-no', '1203091', '1203', '12', '2020-09-01 05:53:16'),
+(2, '2020-09-02', 'gresika', 'asd', 1, 'gr-tanggal-no', '1402022', '1402', '14', '2020-09-03 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tb_kota`
 --
 
@@ -7780,12 +7835,44 @@ CREATE TABLE `tb_menu` (
 --
 
 INSERT INTO `tb_menu` (`id_menu`, `urutan`, `icon`, `link`, `menu`, `status`) VALUES
-(1, 2, 'fa fa-unlock-alt', 'C_User/all', 'Data Pengurus', 'aktif'),
-(2, 1, 'fa fa-users', 'C_User', 'Data Anggota', 'aktif'),
-(3, 3, 'fa fa-suitcase', 'C_Muatan', 'Data Korwil', 'aktif'),
-(4, 4, 'fa fa-dollar', 'C_Harga', 'Data Kode', 'tidak'),
-(5, 5, 'fa fa-files-o', 'C_Transaksi', 'Transaksi', 'tidak'),
-(6, 6, 'fa fa-table', 'C_User/laporan', 'Laporan', 'aktif');
+(1, 2, 'fa fa-unlock-alt', 'Korwil', 'Data Korwil', 'aktif'),
+(2, 1, 'fa fa-users', 'user', 'Data Anggota', 'aktif'),
+(3, 3, 'fa fa-suitcase', 'C_Setting', 'Hak Akses', 'aktif'),
+(4, 4, 'fa fa-dollar', 'pengurus', 'Data Pengurus Pusat', 'aktif'),
+(5, 5, 'fa fa-files-o', 'laporan-anggota', 'Laporan Anggota', 'aktif'),
+(6, 6, 'fa fa-table', 'laporan-korwil', 'Laporan Data Korwil', 'aktif'),
+(7, 7, 'fa fa-briefcase', 'user-setting', 'Setting Anggota', 'aktif'),
+(8, 8, 'fa fa-envelope', 'Informasi', 'Informasi', 'aktif'),
+(9, 9, 'fa fa-file', 'karyatulis', 'Input Karya Tulis', 'aktif');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_pengurus`
+--
+
+CREATE TABLE `tb_pengurus` (
+  `id_pengurus` int(11) NOT NULL,
+  `id_korwil` int(11) DEFAULT NULL,
+  `jenispengurus` enum('pusat','korwil') NOT NULL,
+  `id_anggota` int(11) NOT NULL,
+  `tglaktif` date NOT NULL,
+  `tglakhir` date NOT NULL,
+  `nosk` varchar(100) NOT NULL,
+  `jabatan` varchar(100) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `tgl_update` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_pengurus`
+--
+
+INSERT INTO `tb_pengurus` (`id_pengurus`, `id_korwil`, `jenispengurus`, `id_anggota`, `tglaktif`, `tglakhir`, `nosk`, `jabatan`, `id_user`, `tgl_update`) VALUES
+(1, 1, 'korwil', 2, '2020-09-01', '2020-09-03', 'a', 'ketua', 1, '2020-09-03'),
+(2, 1, 'korwil', 2, '2020-09-16', '2020-09-03', '1', 'ketuaa', 1, '2020-09-03'),
+(3, 2, 'korwil', 2, '2020-09-03', '0000-00-00', 'asdas', 'ketua', 1, '2020-09-03'),
+(4, NULL, 'pusat', 5, '2020-09-05', '2020-09-05', 'asdas', 'ketua', 1, '2020-09-05');
 
 -- --------------------------------------------------------
 
@@ -7867,6 +7954,12 @@ ALTER TABLE `tb_kecamatan`
   ADD PRIMARY KEY (`id_kecamatan`) USING BTREE;
 
 --
+-- Indexes for table `tb_korwil`
+--
+ALTER TABLE `tb_korwil`
+  ADD PRIMARY KEY (`id_korwil`);
+
+--
 -- Indexes for table `tb_kota`
 --
 ALTER TABLE `tb_kota`
@@ -7877,6 +7970,12 @@ ALTER TABLE `tb_kota`
 --
 ALTER TABLE `tb_menu`
   ADD PRIMARY KEY (`id_menu`);
+
+--
+-- Indexes for table `tb_pengurus`
+--
+ALTER TABLE `tb_pengurus`
+  ADD PRIMARY KEY (`id_pengurus`);
 
 --
 -- Indexes for table `tb_provinsi`
@@ -7892,19 +7991,37 @@ ALTER TABLE `tb_provinsi`
 -- AUTO_INCREMENT for table `tb_akses`
 --
 ALTER TABLE `tb_akses`
-  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_akses` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `tb_anggota`
+--
+ALTER TABLE `tb_anggota`
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tb_karyatulis`
 --
 ALTER TABLE `tb_karyatulis`
-  MODIFY `id_karyatulis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_karyatulis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `tb_korwil`
+--
+ALTER TABLE `tb_korwil`
+  MODIFY `id_korwil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tb_menu`
 --
 ALTER TABLE `tb_menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `tb_pengurus`
+--
+ALTER TABLE `tb_pengurus`
+  MODIFY `id_pengurus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

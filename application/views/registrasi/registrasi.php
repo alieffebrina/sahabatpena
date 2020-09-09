@@ -129,12 +129,22 @@
                                     <span for="yt" class="icon_label yt"><i class="fab fa-youtube"></i></span>
                                     <input type="text" name="yt" id="">
                                 </div>
-                            </div>
+                            </div>                        
                         </div>
                     </section>
                     <h5>Step 3</h5>
                     <section>
                         <div class="container">
+                            <div class="columns is-centered">
+                                <div class="column is-3">
+                                    <div class="img_uploader">
+                                        <input type="file" name="" id="file-input">
+                                        <div id='img_contain'>
+                                            <img id="image-preview" src="https://static1.squarespace.com/static/57b711122e69cf5fea1cf5a6/5d2f2f11e13e6e000137d32c/5d2f2f433fa39b0001ee5078/1563374039597/Screen+Shot+2019-07-17+at+10.29.00+AM.png?format=1500w" alt="your image" title=''/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="columns">
                                 <div class="column is-6">
                                     <input type="text" name="institusi" id="">
@@ -145,12 +155,12 @@
                                     <label for="latarBelakangPendidikan">Latar Belakang Pendidikan</label>
                                 </div>
                             </div>
-                            <div class="columns">
+                            <!-- <div class="columns">
                                 <div class="column is-12 inp_group">
                                     <input type="file" name="foto" id="foto" class="required" onchange="ValidateSize(this)">
                                     <label for="foto">Foto</label>
                                 </div>
-                            </div>
+                            </div> -->
                     <!-- <input type="file" id="foto" class="demoInputBox" name="foto" onchange="ValidateSize(this)"> -->
                             <!-- <div class="columns">
                                 <div class="column is-6">
@@ -217,12 +227,12 @@
     <script src="<?php echo base_url() ?>assets/registrasi/asset/js/validate.js"></script>
     <script src="<?php echo base_url() ?>assets/registrasi/asset/js/step.js"></script>
     <script src="<?php echo base_url() ?>assets/registrasi/asset/js/easing.js"></script>
-    <script>
+      <script>
         $(document).ready(function(){
 
             $( function() {
                 $( "#datepicker" ).datepicker({
-                    dateFormat: "dd-mm-yy",	
+                    dateFormat: "dd-mm-yy", 
                     duration: "fast",
                     changeMonth: true,
                     changeYear: true
@@ -230,7 +240,7 @@
             } );
             $( function() {
                 $( "#datepicker_2" ).datepicker({
-                    dateFormat: "dd-mm-yy",	
+                    dateFormat: "dd-mm-yy", 
                     duration: "fast"
                 });
             } );
@@ -261,6 +271,21 @@
                 onFinished: function (event, currentIndex)
                 {
                     alert("Submitted!");
+                    event.preventDefault();
+                    var id_= $("#provinsia").val();
+                  // memulai kirim ajax
+                      $.ajax({
+                        url: "<?php echo base_url(); ?>index.php/C_Registrasi/tambah",
+                        data:{ id_provinsi:email},
+                        method: method,
+                        beforeSend: function() {
+                          // lakukan sesuatu sebelum data dikirim
+                          // misalkan memulai loading
+                        },
+                        success: function(data) {
+                          // lakukan sesuatu jika data sudah terkirim
+                        }
+                      });
                 }
             });
 
@@ -320,24 +345,41 @@
                     })
                 }
             })
-            $("#provinsi").change(function(){
-                var id_provinsi = $("#provinsi").val();
-                document.getElementById('divkota').value = id_provinsi;
-            })
+
+            //image upload
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                    $('#image-preview').attr('src', e.target.result);
+                    //$('#image-preview').hide();
+                    $('#image-preview').fadeIn(650);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#file-input").change(function() {
+                readURL(this);
+            });
+
+
+
         });
-</script>
+    </script>
+
 <script>
     $(function(){
         $( "#provinsia" ).change(function(event)
         {
             event.preventDefault();
-            var email= $("#provinsia").val();
+            var nik= $("#nika").val();
 
             $.ajax(
                 {
                     type:"post",
                     url: "<?php echo base_url(); ?>index.php/C_Registrasi/getkabupaten",
-                    data:{ id_provinsi:email},
+                    data:{ nik:nik, },
                     beforeSend: function(e) {
                       if(e && e.overrideMimeType) {
                         e.overrideMimeType("application/json;charset=UTF-8");
