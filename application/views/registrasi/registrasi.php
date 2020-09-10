@@ -42,13 +42,13 @@
                                     <label for="nik">NIK</label>
                                 </div>
                                 <div class="column is-6 inp_group">
-                                    <input type="text" name="nama" id="" class="required">
+                                    <input type="text" name="nama" id="nama" class="required">
                                     <label for="nama">Nama</label>
                                 </div>
                             </div>
                             <div class="columns">
                                 <div class="column is-6 inp_group">
-                                    <input type="text" name="tempatLahir" id="" class="required">
+                                    <input type="text" name="tempatLahir" id="tempatLahir" class="required">
                                     <label for="tempatLahir">Tempat Lahir</label>
                                 </div>
                                 <div class="column is-6 inp_group">
@@ -58,7 +58,7 @@
                             </div>
                             <div class="columns">
                                 <div class="column is-12 inp_group">
-                                    <input type="text" name="alamat" id="" class="required">
+                                    <input type="text" name="alamat" id="alamat" class="required">
                                     <label for="alamat">Alamat</label>
                                 </div>
                             </div>
@@ -97,11 +97,11 @@
                         <div class="container">
                             <div class="columns">
                                 <div class="column is-6">
-                                    <input type="email" name="email" id="" class="required">
+                                    <input type="email" name="email" id="email" class="required">
                                     <label for="email">Email</label>
                                 </div>
                                 <div class="column is-6">
-                                    <input type="text" name="telepon" id="" class="required" maxlength="12" onkeypress="return Angkasaja(event)">
+                                    <input type="text" name="telepon" id="telepon" class="required" maxlength="12" onkeypress="return Angkasaja(event)">
                                     <label for="telepon">No. Telepon</label>
                                 </div>
                             </div>
@@ -113,21 +113,21 @@
                             <div class="columns">
                                 <div class="column is-6">
                                     <span class="icon_label fb"><i class="fab fa-facebook-f"></i></span>
-                                    <input type="text" name="fb" id="">
+                                    <input type="text" name="fb" id="fb">
                                 </div>
                                 <div class="column is-6">
                                     <span class="icon_label ig"><i class="fab fa-instagram"></i></span>
-                                    <input type="text" name="ig" id="">
+                                    <input type="text" name="ig" id="ig">
                                 </div>
                             </div>
                             <div class="columns">
                                 <div class="column is-6">
                                     <span class="icon_label tw"><i class="fab fa-twitter"></i></span>
-                                    <input type="text" name="tw" id="">
+                                    <input type="text" name="tw" id="tw">
                                 </div>
                                 <div class="column is-6">
                                     <span for="yt" class="icon_label yt"><i class="fab fa-youtube"></i></span>
-                                    <input type="text" name="yt" id="">
+                                    <input type="text" name="yt" id="yt">
                                 </div>
                             </div>                        
                         </div>
@@ -147,11 +147,11 @@
                             </div>
                             <div class="columns">
                                 <div class="column is-6">
-                                    <input type="text" name="institusi" id="">
+                                    <input type="text" name="institusi" id="institusi">
                                     <label for="institusi">Institusi</label>
                                 </div>
                                 <div class="column is-6">
-                                    <input type="text" name="latarBelakangPendidikan" id="">
+                                    <input type="text" name="latarBelakangPendidikan" id="latarBelakangPendidikan">
                                     <label for="latarBelakangPendidikan">Latar Belakang Pendidikan</label>
                                 </div>
                             </div>
@@ -270,21 +270,40 @@
                 },
                 onFinished: function (event, currentIndex)
                 {
-                    alert("Submitted!");
+                    // alert("Submitted!");
                     event.preventDefault();
-                    var id_= $("#provinsia").val();
+                    var nik = $("#nika").val();
+                    var nama = $("#nama").val();
+                    var tempatLahir= $("#tempatLahir").val();
+                    var tgllahir= $("#datepicker").val();
+                    var alamat= $("#alamat").val();
+                    var provinsia= $("#provinsia").val();
+                    var kaba= $("#kaba").val();
+                    var kaca= $("#kaca").val();
+                    var email= $("#email").val();
+                    var telepon= $("#telepon").val();
+                    var fb= $("#fb").val();
+                    var ig= $("#ig").val();
+                    var tw= $("#tw").val();
+                    var yt= $("#yt").val();
+                    var file= $("#file-input").val();
+                    var institusi= $("#institusi").val();
+                    var latarBelakangPendidikan= $("#latarBelakangPendidikan").val();
                   // memulai kirim ajax
                       $.ajax({
-                        url: "<?php echo base_url(); ?>index.php/C_Registrasi/tambah",
-                        data:{ id_provinsi:email},
-                        method: method,
-                        beforeSend: function() {
-                          // lakukan sesuatu sebelum data dikirim
-                          // misalkan memulai loading
-                        },
-                        success: function(data) {
-                          // lakukan sesuatu jika data sudah terkirim
-                        }
+                     url:'<?php echo base_url();?>index.php/C_Registrasi/tambah',
+                     type:"post",
+                     data:{ nik:nik, nama:nama, tempatlahir:tempatLahir, tgllahir:tgllahir,  alamat:alamat, prov:provinsia, kota:kaba, kecamatan:kaca, email:email, tlp:telepon, facebook:fb, instagram:ig, twitter:tw, youtube:yt, foto:file, institusi:institusi, latarbelakang:latarBelakangPendidikan},
+                     processData:false,
+                     contentType:false,
+                     cache:false,
+                     async:false,
+                      success: function(data){
+                          // alert("Upload Image Berhasil.");
+                          console.log(data);
+                   },error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+                      alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+                    }
                       });
                 }
             });
@@ -373,13 +392,13 @@
         $( "#provinsia" ).change(function(event)
         {
             event.preventDefault();
-            var nik= $("#nika").val();
+            var provinsia= $("#provinsia").val();
 
             $.ajax(
                 {
                     type:"post",
                     url: "<?php echo base_url(); ?>index.php/C_Registrasi/getkabupaten",
-                    data:{ nik:nik, },
+                    data:{ id_provinsi:provinsia, },
                     beforeSend: function(e) {
                       if(e && e.overrideMimeType) {
                         e.overrideMimeType("application/json;charset=UTF-8");

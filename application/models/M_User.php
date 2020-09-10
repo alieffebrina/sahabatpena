@@ -110,12 +110,12 @@ class M_User extends CI_Model {
             'youtube' => $this->input->post('youtube'),
             'foto' => $upload['file']['file_name'],
             'tglupdate' => date('Y-m-d h:i:s'),
-            'tglregistrasi' => $this->input->post('tglregistrasi'),
+            'tglregistrasi' => date('Y-m-d'),
             'latarbelakang' => $this->input->post('latarbelakang'),
             'institusi' => $this->input->post('institusi')
         );
         
-        $this->db->insert('tb_anggota', $user);
+        return $this->db->insert('tb_anggota', $user);
     }
 
     function tambahkaryatulis(){
