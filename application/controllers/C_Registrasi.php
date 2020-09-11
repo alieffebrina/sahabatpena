@@ -41,15 +41,15 @@ class C_Registrasi extends CI_Controller{
             echo json_encode($callback); // konversi varibael $callback menjadi JSON
     }
 
-    function tambah()
+    function tambahregis()
     {   
         // echo "tes"; 
         // $upload = $this->M_User->upload();
         // if ($upload['result'] == "success"){
-        //     $callback = $this->M_User->tambahdata($upload);
+        //     $this->M_User->tambahdata($upload);
         //     $this->load->library('mailer');
         //     $email_penerima = 'alief.febrina@gmail.com';
-        //     $subjek = $this->input->post('subjek');
+        //     $subjek = 'asa';
         //     $pesan = 'php mail sukses'; // $this->input->post('pesan');
         //     // $attachment = $_FILES['attachment']; 
         //     $content = 'data berhasil dikirim'; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
@@ -64,14 +64,21 @@ class C_Registrasi extends CI_Controller{
         //     }else{ // Jika dengan attachment
         //       $send = $this->mailer->send_with_attachment($sendmail); // Panggil fungsi send_with_attachment yang ada di librari Mailer
         //     }
-            $callback = $this->input->post('nik');
-            // $callback = array('ok'=>'ok'); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
-            echo json_encode($callback); // konversi varibael $callback menjadi JSON
-
-            // redirect('C_Login');    
+        //     // $callback = $this->input->post('nik');
+        //     // $callback = array('ok'=>'ok'); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+        //     //echo json_encode($callback); // konversi varibael $callback menjadi JSON
         // } else {
-        //     'upload gagal';
+
+            $asd = $this->M_User->tambahtanpafoto();
+        //     // redirect('C_Login');    
         // }
+        // // } else {
+        // //     'upload gagal';
+        // // }
+        
+            $saa = $this->input->post('nik');
+            $regis = array('ok'=> $saa); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+            echo json_encode($regis); // konversi varibael $callback menjadi JSON
     }
 
 

@@ -272,12 +272,12 @@
                 {
                     // alert("Submitted!");
                     event.preventDefault();
-                    var nik = $("#nika").val();
+                    var nikregis = $("#nika").val();
                     var nama = $("#nama").val();
                     var tempatLahir= $("#tempatLahir").val();
                     var tgllahir= $("#datepicker").val();
                     var alamat= $("#alamat").val();
-                    var provinsia= $("#provinsia").val();
+                    var prov= $("#provinsia").val();
                     var kaba= $("#kaba").val();
                     var kaca= $("#kaca").val();
                     var email= $("#email").val();
@@ -290,21 +290,19 @@
                     var institusi= $("#institusi").val();
                     var latarBelakangPendidikan= $("#latarBelakangPendidikan").val();
                   // memulai kirim ajax
-                      $.ajax({
-                     url:'<?php echo base_url();?>index.php/C_Registrasi/tambah',
-                     type:"post",
-                     data:{ nik:nik, nama:nama, tempatlahir:tempatLahir, tgllahir:tgllahir,  alamat:alamat, prov:provinsia, kota:kaba, kecamatan:kaca, email:email, tlp:telepon, facebook:fb, instagram:ig, twitter:tw, youtube:yt, foto:file, institusi:institusi, latarbelakang:latarBelakangPendidikan},
-                     processData:false,
-                     contentType:false,
-                     cache:false,
-                     async:false,
-                      success: function(data){
+
+                    $.ajax({
+                    url: "<?php echo base_url(); ?>index.php/C_Registrasi/tambahregis", //arahkan pada proses_tambah di controller member
+                      data:{ nik:nikregis, nama:nama, tempatlahir:tempatLahir, tgllahir:tgllahir,  alamat:alamat, prov:prov, kota:kaba, kecamatan:kaca, email:email, tlp:telepon, facebook:fb, instagram:ig, twitter:tw, youtube:yt, foto:file, institusi:institusi, latarbelakang:latarBelakangPendidikan },
+                    type: "POST",
+                      success: function(response){
                           // alert("Upload Image Berhasil.");
-                          console.log(data);
-                   },error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
-                      alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
-                    }
-                      });
+                          console.log(response);
+                       },
+                       error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+                          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+                        }
+                    });
                 }
             });
 
@@ -397,8 +395,8 @@
             $.ajax(
                 {
                     type:"post",
-                    url: "<?php echo base_url(); ?>index.php/C_Registrasi/getkabupaten",
-                    data:{ id_provinsi:provinsia, },
+                    url: "<?php echo base_url(); ?>C_Registrasi/getkabupaten",
+                    data: 'id_provinsi='+provinsia,
                     beforeSend: function(e) {
                       if(e && e.overrideMimeType) {
                         e.overrideMimeType("application/json;charset=UTF-8");

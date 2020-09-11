@@ -92,6 +92,8 @@ class M_User extends CI_Model {
     
     }
 
+    // nama: nama, alamat:alamat, kota:kota, prov
+
     function tambahdata($upload){
         $user = array(
             'nik' => $this->input->post('nik'),
@@ -109,6 +111,32 @@ class M_User extends CI_Model {
             'twitter' => $this->input->post('twitter'),
             'youtube' => $this->input->post('youtube'),
             'foto' => $upload['file']['file_name'],
+            'tglupdate' => date('Y-m-d h:i:s'),
+            'tglregistrasi' => date('Y-m-d'),
+            'latarbelakang' => $this->input->post('latarbelakang'),
+            'institusi' => $this->input->post('institusi')
+        );
+        
+        return $this->db->insert('tb_anggota', $user);
+    }
+
+
+    function tambahtanpafoto(){
+        $user = array(
+            'nik' => $this->input->post('nik'),
+            'nama' => $this->input->post('nama'),
+            'alamat' => $this->input->post('alamat'),
+            'id_kota' => $this->input->post('kota'),
+            'id_provinsi' => $this->input->post('prov'),
+            'id_kecamatan' => $this->input->post('kecamatan'),
+            'email' => $this->input->post('email'),
+            'tlp' => $this->input->post('tlp'),
+            'tempatlahir' => $this->input->post('tempatlahir'),
+            'tgllahir' => $this->input->post('tgllahir'),
+            'facebook' => $this->input->post('facebook'),
+            'instagram' => $this->input->post('instagram'),
+            'twitter' => $this->input->post('twitter'),
+            'youtube' => $this->input->post('youtube'),
             'tglupdate' => date('Y-m-d h:i:s'),
             'tglregistrasi' => date('Y-m-d'),
             'latarbelakang' => $this->input->post('latarbelakang'),
@@ -244,5 +272,28 @@ class M_User extends CI_Model {
         
         $this->db->where($where);
         $this->db->update('tb_anggota',$user);
-    }    
+    }   
+
+    function dataanggota(){
+        $query = $this->db->get('tb_anggota');
+        return $query->num_rows();
+    } 
+
+    function dataaktif(){
+        $where = array(
+            'statusanggota' => 'anggota',
+            'statusanggota' => 'korwil',
+        );
+        $query = $this->db->get_where('tb_anggota', $where);
+        return $query->num_rows();
+    } 
+
+    function datanonaktif(){
+        $where = array(
+            'statusanggota' => 'menunggu konfirmasi',
+            'statusanggota' => 'tidak aktif',
+        );
+        $query = $this->db->get_where('tb_anggota', $where);
+        return $query->num_rows();
+    } 
 }

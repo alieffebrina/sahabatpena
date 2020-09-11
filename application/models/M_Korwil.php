@@ -178,4 +178,9 @@ class M_Korwil extends CI_Model {
         return $query->result();
     }
 
+    function datakorwil(){
+        $query = $this->db->get('tb_korwil');
+        return $query->num_rows();
+    } 
+
 }
