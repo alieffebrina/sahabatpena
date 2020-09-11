@@ -30,7 +30,7 @@
         <div class="main_part">
 
             <?php // echo form_open("C_User/tambah", array('enctype'=>'multipart/form-data', 'class'=>'flp', 'id'=>'registrasi') ); ?>
-            <form id="registrasi" action="<?= site_url("C_User/tambah")?>" class="flp">
+            <form id="registrasi" class="flp">
                 <h2>Daftar Anggota Baru</h2>
                 <div>
                     <h5>Step 1</h5>
@@ -293,7 +293,7 @@
 
                     $.ajax({
                     url: "<?php echo base_url(); ?>index.php/C_Registrasi/tambahregis", //arahkan pada proses_tambah di controller member
-                      data:{ nik:nikregis, nama:nama, tempatlahir:tempatLahir, tgllahir:tgllahir,  alamat:alamat, prov:prov, kota:kaba, kecamatan:kaca, email:email, tlp:telepon, facebook:fb, instagram:ig, twitter:tw, youtube:yt, foto:file, institusi:institusi, latarbelakang:latarBelakangPendidikan },
+                      data:{ nik:nikregis, nama:nama, tempatlahir:tempatLahir, tgllahir:tgllahir,  alamat:alamat, prov:prov, kota:kaba, kecamatan:kaca, email:email, tlp:telepon, facebook:fb, instagram:ig, twitter:tw, youtube:yt,institusi:institusi, latarbelakang:latarBelakangPendidikan },
                     type: "POST",
                       success: function(response){
                           // alert("Upload Image Berhasil.");
