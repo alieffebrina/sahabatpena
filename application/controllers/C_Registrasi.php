@@ -69,31 +69,35 @@ class C_Registrasi extends CI_Controller{
         //     //echo json_encode($callback); // konversi varibael $callback menjadi JSON
         // } else {
 
-            $nik = $this->input->post('nik');
-                       $nama = $this->input->post('nama');
-           $alamat = $this->input->post('alamat');
-           $kota = $this->input->post('kota');
-           $prov = $this->input->post('prov');
-           $kecamatan = $this->input->post('kecamatan');
-           $email = $this->input->post('email');
-           $tlp = $this->input->post('tlp');
-           $tempatlahir = $this->input->post('tempatlahir');
-           $tgllahir = $this->input->post('tgllahir');
-           $facebook = $this->input->post('facebook');
-           $instagram = $this->input->post('instagram');
-           $twitter = $this->input->post('twitter');
-           $youtube = $this->input->post('youtube');
-           $latarbelakang = $this->input->post('latarbelakang');
-           $institusi = $this->input->post('institusi');
-            $asd = $this->M_User->tambahtanpafoto($nik, $nama,$alamat,$kota,$prov,$kecamatan,$email,$tlp, $tempatlahir, $tgllahir, $facebook, $instagram, $twitter, $youtube, $latarbelakang, $institusi);
+            // $nik = $this->input->post('nik');
+           
+
+              // $this->M_User->tambahtanpafoto();
+          // $nama = $this->input->post('nama');
+           // $alamat = $this->input->post('alamat');
+           // $kota = $this->input->post('kota');
+           // $prov = $this->input->post('prov');
+           // $kecamatan = $this->input->post('kecamatan');
+           // $email = $this->input->post('email');
+           // $tlp = $this->input->post('tlp');
+          // $tempatlahir = $this->input->post('tempatlahir');
+           // $tgllahir = $this->input->post('tgllahir');
+           // $facebook = $this->input->post('facebook');
+           // $instagram = $this->input->post('instagram');
+           // $twitter = $this->input->post('twitter');
+           // $youtube = $this->input->post('youtube');
+           // $latarbelakang = $this->input->post('latarbelakang');
+           // $institusi = $this->input->post('institusi');
+            // $asd = $this->M_User->tambahtanpafoto($nik, $nama,$alamat,$kota,$prov,$kecamatan,$email,$tlp, $tempatlahir, $tgllahir, $facebook, $instagram, $twitter, $youtube, $latarbelakang, $institusi);
+            //$asd = $this->M_User->tambahtanpafoto($nik, $nama, $tempatlahir);
         //     // redirect('C_Login');    
         // }
         // // } else {
         // //     'upload gagal';
         // // }
-        
-            $regis = array('ok'=> $nik); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
-            echo json_encode($regis); // konversi varibael $callback menjadi JSON
+            $this->M_User->tambahtanpafoto();
+            // $regis = array('ok'=>'ok'); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
+            // echo json_encode($regis); // konversi varibael $callback menjadi JSON
     }
 
 

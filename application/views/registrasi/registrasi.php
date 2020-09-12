@@ -138,7 +138,7 @@
                             <div class="columns is-centered">
                                 <div class="column is-3">
                                     <div class="img_uploader">
-                                        <input type="file" name="" id="file-input">
+                                        <input type="file" name="file" id="file-input">
                                         <div id='img_contain'>
                                             <img id="image-preview" src="https://static1.squarespace.com/static/57b711122e69cf5fea1cf5a6/5d2f2f11e13e6e000137d32c/5d2f2f433fa39b0001ee5078/1563374039597/Screen+Shot+2019-07-17+at+10.29.00+AM.png?format=1500w" alt="your image" title=''/>
                                         </div>
@@ -272,28 +272,28 @@
                 {
                     // alert("Submitted!");
                     event.preventDefault();
-                    var nikregis = $("#nika").val();
-                    var nama = $("#nama").val();
-                    var tempatLahir= $("#tempatLahir").val();
-                    var tgllahir= $("#datepicker").val();
-                    var alamat= $("#alamat").val();
-                    var prov= $("#provinsia").val();
-                    var kaba= $("#kaba").val();
-                    var kaca= $("#kaca").val();
-                    var email= $("#email").val();
-                    var telepon= $("#telepon").val();
-                    var fb= $("#fb").val();
-                    var ig= $("#ig").val();
-                    var tw= $("#tw").val();
-                    var yt= $("#yt").val();
-                    var file= $("#file-input").val();
-                    var institusi= $("#institusi").val();
-                    var latarBelakangPendidikan= $("#latarBelakangPendidikan").val();
+                    // var nikregis = 'submit';
+                    // var nama = document.getElementsByName("nama");
+                    // var tempatLahir= document.getElementsByName("tempatLahir");
+                    // var tgllahir=document.getElementsByName("tanggalLahir");
+                    // var alamat= document.getElementsByName("alamat");
+                    // var prov= document.getElementsByName("provinsia");
+                    // var kaba= document.getElementsByName("kaba");
+                    // var kaca= document.getElementsByName("kaca");
+                    // var email=document.getElementsByName("email");
+                    // var telepon= document.getElementsByName("telepon");
+                    // var fb= document.getElementsByName("fb");
+                    // var ig= document.getElementsByName("ig");
+                    // var tw= document.getElementsByName("tw");
+                    // var yt= document.getElementsByName("yt");
+                    // var file= document.getElementsByName("file");
+                    // var institusi= document.getElementsByName("institusi");
+                    // var latarBelakangPendidikan= document.getElementsByName("latarBelakangPendidikan");
                   // memulai kirim ajax
 
                     $.ajax({
                     url: "<?php echo base_url(); ?>index.php/C_Registrasi/tambahregis", //arahkan pada proses_tambah di controller member
-                      data:{ nik:nikregis, nama:nama, tempatlahir:tempatLahir, tgllahir:tgllahir,  alamat:alamat, prov:prov, kota:kaba, kecamatan:kaca, email:email, tlp:telepon, facebook:fb, instagram:ig, twitter:tw, youtube:yt,institusi:institusi, latarbelakang:latarBelakangPendidikan },
+                      data: $(this).serialize(),
                     type: "POST",
                       success: function(response){
                           // alert("Upload Image Berhasil.");

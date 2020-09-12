@@ -121,27 +121,27 @@ class M_User extends CI_Model {
     }
 
 
-    function tambahtanpafoto($nik, $nama,$alamat,$kota,$prov,$kecamatan,$email,$tlp, $tempatlahir, $tgllahir, $facebook, $instagram, $twitter, $youtube, $latarbelakang, $institusi){
+    function tambahtanpafoto(){
     // function tambahtanpafoto($nik){
         $user = array(
-            'nik' => $nik,
-            'nama' => $nama,
-            'alamat' => $alamat,
-            'id_kota' => $kota,
-            'id_provinsi' => $prov,
-            'id_kecamatan' => $kecamatan,
-            'email' => $email,
-            'tlp' => $tlp,
-            'tempatlahir' => $tempatlahir,
-            'tgllahir' => $tgllahir,
-            'facebook' => $facebook,
-            'instagram' => $instagram,
-            'twitter' => $twitter,
-            'youtube' => $youtube,
+            'nik' => $this->input->post('nik'),
+            'nama' => $this->input->post('nama'),
+            'alamat' => $this->input->post('alamat'),
+            'id_kota' => $this->input->post('kota'),
+            'id_provinsi' => $this->input->post('prov'),
+            'id_kecamatan' => $this->input->post('kecamatan'),
+            'email' => $this->input->post('email'),
+            'tlp' => $this->input->post('tlp'),
+            'tempatlahir' => $this->input->post('tempatlahir'),
+            'tgllahir' => $this->input->post('tgllahir'),
+            'facebook' => $this->input->post('facebook'),
+            'instagram' => $this->input->post('instagram'),
+            'twitter' => $this->input->post('twitter'),
+            'youtube' => $this->input->post('youtube'),
             'tglupdate' => date('Y-m-d h:i:s'),
             'tglregistrasi' => date('Y-m-d'),
-            'latarbelakang' => $latarbelakang,
-            'institusi' => $institusi,
+            'latarbelakang' => $this->input->post('latarbelakang'),
+            'institusi' => $this->input->post('institusi')
         );
         
         $this->db->insert('tb_anggota', $user);
