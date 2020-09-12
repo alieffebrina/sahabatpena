@@ -44,7 +44,7 @@
                     <div class="col-sm-9">
                        <input type="text" class="form-control" id="namakorwil" name="namakorwil" value="<?php echo $korwil->namakorwil; ?>" >
 
-                       <input type="text" class="form-control" id="id" name="id" value="<?php echo $korwil->id_korwil; ?>" >
+                       <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $korwil->id_korwil; ?>" >
                   </div>
                 </div>
 
@@ -57,7 +57,7 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Alamat</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" rows="3" id="alamat" name="alamat" readonly><?php echo $korwil->alamat ?></textarea>
+                    <textarea class="form-control" rows="3" id="alamat" name="alamat"><?php echo $korwil->alamat ?></textarea>
                   </div>
             
                 </div>
