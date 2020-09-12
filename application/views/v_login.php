@@ -65,28 +65,21 @@
                                             <label for="userpassword">Password</label>
                                             <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan password">
                                         </div>
-                
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customControlInline">
-                                            <label class="custom-control-label" for="customControlInline">Ingatkan Saya </label>
-                                        </div>
                                         
                                         <div class="mt-3">
                                             <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Login Sekarang</button>
                                         </div>
-                                        <div class="mt-4 text-center">
+                                        <!-- <div class="mt-4 text-center">
                                             <a href="#" class="text-muted"><i class="mdi mdi-lock mr-1"></i> Lupa Password?</a>
-                                        </div>
+                                        </div> -->
                                     </form>
                                 </div>
             
                             </div>
                         </div>
                         <div class="mt-5 text-center">
-                            
-                            <div>
-                                <p>© 2020 Development by HOSTERWEB INDONESIA</p>
-                            </div>
+                            <p>Belum menjadi anggota ?<a href="<?php echo site_url('registrasi'); ?>" class="font-weight-medium text-primary"> Registrasi </a> </p>
+                            <p>Development By &copy; 2020 <a href="https://hosterweb.co.id">HOSTERWEB INDONESIA</a></p>
                         </div>
 
                     </div>

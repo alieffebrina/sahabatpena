@@ -77,8 +77,8 @@
                             </div>
                         </div>
                         <div class="mt-5 text-center">
-                            <p><a href="<?php echo site_url('C_Login/login/0'); ?>" class="font-weight-medium text-primary"> Login </a> </p>
-                            <p>Belum menjadi anggota ?<a href="<?php echo site_url('C_User/registrasi'); ?>" class="font-weight-medium text-primary"> Registrasi </a> </p>
+                            <p><a href="<?php echo site_url('login-1'); ?>" class="font-weight-medium text-primary"> Login </a> </p>
+                            <p>Belum menjadi anggota ?<a href="<?php echo site_url('registrasi'); ?>" class="font-weight-medium text-primary"> Registrasi </a> </p>
                             <p>Development By &copy; 2020 <a href="https://hosterweb.co.id">HOSTERWEB INDONESIA</a></p>
                         </div>
 

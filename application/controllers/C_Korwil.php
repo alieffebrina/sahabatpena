@@ -9,7 +9,7 @@ class C_Korwil extends CI_Controller{
         $this->load->model('M_Setting');
         $this->load->model('M_User');
         if(!$this->session->userdata('id_user')){
-            redirect('C_Login');
+            redirect('login');
         }
     }
 
@@ -103,7 +103,7 @@ class C_Korwil extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['korwil'] = $this->M_Korwil->getkorwilspek($ida); 
-        $data['pengurus'] = $this->M_Korwil->getpenguruskorwil($ida); 
+        $data['pengurus'] = $this->M_Korwil->getpenguruskorwil($ida);  
         $data['user'] = $this->M_User->getuser(); 
         $this->load->view('korwil/v_vkorwil', $data); 
         $this->load->view('user/v_modal'); 
@@ -133,7 +133,7 @@ class C_Korwil extends CI_Controller{
             $a = $key->id_korwil;
             // echo $a;
             $this->session->set_flashdata('Sukses', "Data Korwil Berhasil Ditambah!!");
-            redirect('C_Korwil/pengurus/'.$a); 
+            redirect('korwil-p/'.$a); 
         }
         // echo $result['id_korwil'];
         // $this->session->set_flashdata('Sukses', "Data Korwil Berhasil Ditambah!!");
@@ -146,7 +146,7 @@ class C_Korwil extends CI_Controller{
         $this->M_Korwil->editstatususer($ida);
         $this->M_Korwil->tambahpengurus();
         $this->session->set_flashdata('Sukses', "Data Pengurus Berhasil Ditambah!!");
-        redirect('C_Korwil/pengurus/'.$ida);  
+        redirect('korwil-p/'.$ida);  
     }
 
     function editpengurus()

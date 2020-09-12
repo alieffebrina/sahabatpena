@@ -121,8 +121,7 @@ class M_User extends CI_Model {
     }
 
 
-    function tambahtanpafoto(){
-    // function tambahtanpafoto($nik){
+    function tambahregis($upload){
         $user = array(
             'nik' => $this->input->post('nik'),
             'nama' => $this->input->post('nama'),
@@ -134,17 +133,18 @@ class M_User extends CI_Model {
             'tlp' => $this->input->post('tlp'),
             'tempatlahir' => $this->input->post('tempatlahir'),
             'tgllahir' => $this->input->post('tgllahir'),
-            'facebook' => $this->input->post('facebook'),
-            'instagram' => $this->input->post('instagram'),
-            'twitter' => $this->input->post('twitter'),
-            'youtube' => $this->input->post('youtube'),
+            'facebook' => $this->input->post('fb'),
+            'instagram' => $this->input->post('ig'),
+            'twitter' => $this->input->post('tw'),
+            'youtube' => $this->input->post('yt'),
+            'foto' => $upload['file']['file_name'],
             'tglupdate' => date('Y-m-d h:i:s'),
             'tglregistrasi' => date('Y-m-d'),
             'latarbelakang' => $this->input->post('latarbelakang'),
             'institusi' => $this->input->post('institusi')
         );
         
-        $this->db->insert('tb_anggota', $user);
+        return $this->db->insert('tb_anggota', $user);
     }
 
     function tambahkaryatulis(){

@@ -137,7 +137,7 @@ class C_Setting extends CI_Controller{
                 
             }
             $this->session->set_flashdata('SUCCESS', "Record Added Successfully!!");
-            redirect('C_Setting');
+            redirect('setting');
         }
     }
 

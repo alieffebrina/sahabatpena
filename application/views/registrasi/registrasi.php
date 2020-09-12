@@ -29,8 +29,8 @@
         </div>
         <div class="main_part">
 
-            <?php // echo form_open("C_User/tambah", array('enctype'=>'multipart/form-data', 'class'=>'flp', 'id'=>'registrasi') ); ?>
-            <form id="registrasi" class="flp">
+            <?php echo form_open("C_Registrasi/tambah", array('enctype'=>'multipart/form-data', 'class'=>'flp', 'id'=>'registrasi') ); ?>
+            <!-- <form id="registrasi" class="flp"> -->
                 <h2>Daftar Anggota Baru</h2>
                 <div>
                     <h5>Step 1</h5>
@@ -38,7 +38,7 @@
                         <div class="container">
                             <div class="columns">
                                 <div class="column is-6 inp_group">
-                                    <input type="text" name="nika" id="nika" class="required" value="" maxlength="16" minlength="16" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()">
+                                    <input type="text" name="nik" id="nika" class="required" value="" maxlength="16" minlength="16" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()">
                                     <label for="nik">NIK</label>
                                 </div>
                                 <div class="column is-6 inp_group">
@@ -48,11 +48,11 @@
                             </div>
                             <div class="columns">
                                 <div class="column is-6 inp_group">
-                                    <input type="text" name="tempatLahir" id="tempatLahir" class="required">
+                                    <input type="text" name="tempatlahir" id="tempatLahir" class="required">
                                     <label for="tempatLahir">Tempat Lahir</label>
                                 </div>
                                 <div class="column is-6 inp_group">
-                                    <input type="text" name="tanggalLahir" id="datepicker" class="required form-control docs-date" autocomplete="off" value=" ">
+                                    <input type="text" name="tgllahir" id="datepicker" class="required form-control docs-date" autocomplete="off" value=" ">
                                     <label for="tanggalLahir">Tanggal Lahir</label>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="columns">                                
                                 <div class="column is-4">
-                                    <select name="provinsia" id="provinsia" class="required">
+                                    <select name="prov" id="provinsia" class="required">
                                         <optgroup>
                                             <option value=""></option>
                                             <?php foreach ($provinsi as $provinsi) { ?>
@@ -75,14 +75,14 @@
                                     <label for="provinsi">Provinsi</label>
                                 </div>
                                 <div class="column is-4">
-                                    <select name="kaba" id="kaba" class="required">
+                                    <select name="kota" id="kaba" class="required">
                                         <optgroup>
                                         </optgroup>
                                     </select>
                                     <label for="kabupaten">Kabupaten/Kota</label>
                                 </div>
                                 <div class="column is-4">
-                                    <select name="keca" id="keca" class="required">
+                                    <select name="kecamatan" id="keca" class="required">
                                         <optgroup>
                                         </optgroup>
                                     </select>
@@ -101,7 +101,7 @@
                                     <label for="email">Email</label>
                                 </div>
                                 <div class="column is-6">
-                                    <input type="text" name="telepon" id="telepon" class="required" maxlength="12" onkeypress="return Angkasaja(event)">
+                                    <input type="text" name="tlp" id="telepon" class="required" maxlength="12" onkeypress="return Angkasaja(event)">
                                     <label for="telepon">No. Telepon</label>
                                 </div>
                             </div>
@@ -138,11 +138,16 @@
                             <div class="columns is-centered">
                                 <div class="column is-3">
                                     <div class="img_uploader">
-                                        <input type="file" name="file" id="file-input">
+                                        <input type="file" name="foto" id="file-input" onchange="ValidateSize(this)" required>
                                         <div id='img_contain'>
                                             <img id="image-preview" src="https://static1.squarespace.com/static/57b711122e69cf5fea1cf5a6/5d2f2f11e13e6e000137d32c/5d2f2f433fa39b0001ee5078/1563374039597/Screen+Shot+2019-07-17+at+10.29.00+AM.png?format=1500w" alt="your image" title=''/>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column is-12">
+                                    <p class="has-text-centered">Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png dan maksimal 2Mb</p>
                                 </div>
                             </div>
                             <div class="columns">
@@ -151,7 +156,7 @@
                                     <label for="institusi">Institusi</label>
                                 </div>
                                 <div class="column is-6">
-                                    <input type="text" name="latarBelakangPendidikan" id="latarBelakangPendidikan">
+                                    <input type="text" name="latarbelakang" id="latarBelakangPendidikan">
                                     <label for="latarBelakangPendidikan">Latar Belakang Pendidikan</label>
                                 </div>
                             </div>
@@ -270,8 +275,9 @@
                 },
                 onFinished: function (event, currentIndex)
                 {
+                    document.getElementById("registrasi").submit();
                     // alert("Submitted!");
-                    event.preventDefault();
+                    // event.preventDefault();
                     // var nikregis = 'submit';
                     // var nama = document.getElementsByName("nama");
                     // var tempatLahir= document.getElementsByName("tempatLahir");
@@ -291,18 +297,18 @@
                     // var latarBelakangPendidikan= document.getElementsByName("latarBelakangPendidikan");
                   // memulai kirim ajax
 
-                    $.ajax({
-                    url: "<?php echo base_url(); ?>index.php/C_Registrasi/tambahregis", //arahkan pada proses_tambah di controller member
-                      data: $(this).serialize(),
-                    type: "POST",
-                      success: function(response){
-                          // alert("Upload Image Berhasil.");
-                          console.log(response);
-                       },
-                       error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
-                          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
-                        }
-                    });
+                    // $.ajax({
+                    // url: "<?php echo base_url(); ?>index.php/C_Registrasi/tambahregis", //arahkan pada proses_tambah di controller member
+                    //   data: $(this).serialize(),
+                    // type: "POST",
+                    //   success: function(response){
+                    //       // alert("Upload Image Berhasil.");
+                    //       console.log(response);
+                    //    },
+                    //    error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+                    //       alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+                    //     }
+                    // });
                 }
             });
 
@@ -493,6 +499,26 @@
         }                
     }
      
+</script>
+
+<script type="text/javascript">
+function ValidateSize(file) {
+    var FileSize = file.files[0].size / 1024 / 1024; // in MB
+    if (FileSize > 2) {
+        alert('Maaf File anda terlalu besar');
+       $(file).val(''); //for clearing with Jquery
+    } else {
+      var inputFile = document.getElementById('file-input');
+      var pathFile = inputFile.value;
+      var ekstensiOk = /(\.jpg|\.jpeg|\.png)$/i;
+      if(!ekstensiOk.exec(pathFile)){
+          alert('Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png');
+          inputFile.value = '';
+          return false;
+      }
+    }
+}
+
 </script>
 </body>
 </html>
