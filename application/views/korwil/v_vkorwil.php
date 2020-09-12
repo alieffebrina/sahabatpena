@@ -36,63 +36,53 @@
             <!-- /.box-header -->
 
             <div class="box-body">
-              <div class="form-horizontal">
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Korwil</label>
-                    <div class="col-sm-9">
-                       <input type="text" class="form-control" id="namakorwil" name="namakorwil" value="<?php echo $korwil->namakorwil; ?>" readonly>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Berdiri</label>
-                  <div class="col-sm-9">
-                    <input type="date" class="form-control" id="tglberdiri" name="tglberdiri" value="<?php echo $korwil->tglberdiri; ?>" readonly>
-                  </div>
-                </div>                
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Alamat</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" rows="3" id="alamat" name="alamat" readonly><?php echo $korwil->alamat ?></textarea>
-                  </div>
-            
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="kodekorwil" id="kodekorwil" value="<?php echo $korwil->name_prov ?>" readonly>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kota</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="kodekorwil" id="kodekorwil" value="<?php echo $korwil->name_kota ?>" readonly>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" name="kodekorwil" id="kodekorwil" value="<?php echo $korwil->kecamatan ?>" readonly>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kode Korwil</label>
-                  <div class="col-sm-9">
-                  <div class="input-group input-group-sm">
-
-                    <input type="text" class="form-control" name="kodekorwil" id="kodekorwil" value="<?php echo $korwil->kodekorwil ?>" readonly>
-                  </div>
-                  </div>
-                </div>  
+              <table id="example1" class="table table-bordered" style="width: 600px">
+                <tbody>
+                <tr>
+                  <th style="text-align: right; width: 150px" >Nama Korwil</th>
+                  <td width="10px">:</td>
+                  <td style="text-align: left;"><?php echo $korwil->namakorwil; ?></td>
+                </tr>
+                <tr>
+                  <th style="text-align: right; width: 150px" >Tanggal Berdiri</th>
+                  <td>:</td>
+                  <td><?php echo $korwil->tglberdiri; ?></td>
+                </tr>
+                <tr>
+                  <th style="text-align: right; width: 150px" >Alamat</th>
+                  <td>:</td>
+                  <td><?php echo $korwil->alamat; ?></td>
+                </tr>
+                <tr>
+                  <th style="text-align: right; width: 150px" >Provinsi</th>
+                  <td>:</td>
+                  <td><?php echo $korwil->name_prov; ?></td>
+                </tr>
+                <tr>
+                  <th style="text-align: right; width: 150px" >Kota</th>
+                  <td>:</td>
+                  <td><?php echo $korwil->name_kota; ?></td>
+                </tr>
+                <tr>
+                  <th style="text-align: right; width: 150px" >Kecamatan</th>
+                  <td>:</td>
+                  <td><?php echo $korwil->kecamatan; ?></td>
+                </tr>
+                <tr>
+                  <th style="text-align: right; width: 150px" >Kode Korwil</th>
+                  <td>:</td>
+                  <td><?php echo $korwil->kodekorwil; ?></td>
+                </tr>
+                </tbody>
+              </table>
 
                 <div class="box-footer">
                     <div class="col-sm-10">
                       <a href="<?php echo site_url('Korwil'); ?>" class="btn btn-default">Batal</a>
                     </div>
                 </div>
-              </div>
-            </div>
+              <!-- </div> -->
+            <!-- </div> -->
             </div>
           </div>
         </div>

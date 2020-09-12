@@ -128,8 +128,16 @@ class C_Korwil extends CI_Controller{
     public function tambah()
     {   
         $this->M_Korwil->tambah();
-        $this->session->set_flashdata('Sukses', "Data Korwil Berhasil Ditambah!!");
-        redirect('C_Korwil/tambahpengurus');  
+        $result = $this->M_Korwil->selectmax();
+        foreach ($result as $key) {
+            $a = $key->id_korwil;
+            // echo $a;
+            $this->session->set_flashdata('Sukses', "Data Korwil Berhasil Ditambah!!");
+            redirect('C_Korwil/pengurus/'.$a); 
+        }
+        // echo $result['id_korwil'];
+        // $this->session->set_flashdata('Sukses', "Data Korwil Berhasil Ditambah!!");
+        // redirect('C_Korwil/pengurus');  
     }
 
     public function tambahpengurus()
@@ -148,7 +156,7 @@ class C_Korwil extends CI_Controller{
         // echo $this->input->post('jabatan');
         // echo $this->input->post('tglaktif');
         // echo $this->session->userdata('id_user');
-        $id = $this->input->post('pengurus');
+        $id = $this->input->post('korwil');
         $this->M_Korwil->editp();
         $this->session->set_flashdata('Sukses', "Data Berhasil Dirubah!!");
         redirect('korwil-p/'.$id);
@@ -164,7 +172,7 @@ class C_Korwil extends CI_Controller{
     function pengurush($id, $anggota){
         $this->M_Korwil->hapusstatususer($id, $anggota);
         // // $this->M_Korwil->tglakhir($id);
-        $this->session->set_flashdata('Sukses', "Pengurus berhasil di non aktifkan.");
+        $this->session->set_flashdata('Sukses', "Pengurus berhasil di hapus");
         redirect('korwil-p/'.$id);  
     }
 

@@ -77,7 +77,7 @@
                   <div class="col-sm-9">
                   <div class="input-group input-group-sm">
 
-                    <input type="text" class="form-control" name="kodekorwil" id="kodekorwil" placeholder="Kode Korwil" readonly>
+                    <input type="text" class="form-control" name="kodekorwil" id="kodekorwil" placeholder="Kode Korwil" readonly required>
                         <span class="input-group-btn">
                           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalkorwil">
                             Tambah

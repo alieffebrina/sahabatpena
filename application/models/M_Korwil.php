@@ -21,9 +21,10 @@ class M_Korwil extends CI_Model {
 
     function getpenguruskorwil($ida){
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_pengurus.id_anggota');
-        $this->db->where('tb_pengurus.id_korwil', $ida);
-        // $this->db->where('tglakhir', NULL);
-        $query = $this->db->get('tb_pengurus');
+        $where = array('tb_pengurus.id_korwil' => $ida, 
+            'tglakhir' => '0000-00-00'
+        );
+        $query = $this->db->get_where('tb_pengurus', $where);
         return $query->result();
     }
 
@@ -65,6 +66,12 @@ class M_Korwil extends CI_Model {
         $this->db->insert('tb_korwil', $user);
     }
 
+    function selectmax(){
+        $this->db->select_max('id_korwil');
+        $result = $this->db->get('tb_korwil');
+        return $result->result();
+    }
+
     function tambahpengurus(){
         $user = array(
             'id_user' => $this->session->userdata('id_user'),
@@ -87,7 +94,7 @@ class M_Korwil extends CI_Model {
 
         $view = array(
             'statusanggota' =>  'korwil',
-            'id_kowil' =>  $ida
+            'id_korwil' =>  $ida
         );
 
         $this->db->where($where);

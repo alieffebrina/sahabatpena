@@ -43,7 +43,7 @@
                     <label for="inputEmail3" class="col-sm-2 control-label">Jabatan</label>
                       <div class="col-sm-9">
                         <input type="text" class="form-control" id="jabatana" name="jabatan" value="<?php echo $key->jabatan ?>" >
-                        <input type="text" class="form-control" id="pengurus" name="pengurus" value="<?php echo $key->id_pengurus ?>" >
+                        <input type="hidden" class="form-control" id="pengurus" name="pengurus" value="<?php echo $key->id_pengurus ?>" ><input type="hidden" class="form-control" id="korwil" name="korwil" value="<?php echo $key->id_korwil ?>" >
                       </div>
                   </div>
                 </div>
@@ -82,6 +82,7 @@
                     <label for="inputEmail3" class="col-sm-2 control-label"></label>
                     <div class="col-sm-3">
                       <button type="submit" class="btn btn-primary">Simpan</button>
+                      <a href="<?php echo site_url('Korwil'); ?>" class="btn btn-default">Batal</a>
                     </div>
                   </div>
                 </div>
