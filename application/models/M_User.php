@@ -185,13 +185,13 @@ class M_User extends CI_Model {
         $this->db->update('tb_anggota',$user);
     }
 
-    function nonaktif($id){
+    function nonaktif(){
         $user = array(
             'statusanggota' => 'tidak aktif',
             'tglnonaktif' => date('Y-m-d'),
         );
         $where = array(
-            'id_anggota' =>  $id,
+            'id_anggota' =>  $this->input->post('noanggota'),
         );
         
         $this->db->where($where);

@@ -415,5 +415,26 @@ $("#addtkt").append('<label for="inputPassword3" class="col-sm-2 control-label">
   });
 });
 </script>
+<script>
+  $(document).ready(function(){
+    $res = document.getElementById('reason').value;
+    if($res == '' ){
+       document.getElementById('idresign').style.visibility='hidden';
+    } else {
+    document.getElementById('idresign').style.visibility='visible';
+
+    }
+  $('#aktivasi').change(function(){
+    var status = document.getElementById('aktivasi').value;
+    if(status=='resign'){
+    document.getElementById('idresign').style.visibility='visible';
+    // document.getElementById('texthuruf1').value = embuha;
+    } else {
+    document.getElementById('idresign').style.visibility='hidden';
+
+    }
+  });
+});
+</script>
 </body>
 </html>

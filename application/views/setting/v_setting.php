@@ -53,19 +53,15 @@ n<!-- Content Wrapper. Contains page content -->
                   <td><?php echo $user->nik; ?></td>
                   <td><?php echo $user->nama; ?></td>
                   <td><?php echo $user->alamat.', '.$user->name_kota.', '.$user->name_prov; ?></td>
-                  <td><?php if($user->statusanggota!='tidak aktif') { echo $user->statusanggota; } else { if ($user->alasan!=NULL) { echo 'mengundurkan diri '; } else { echo 'tidak aktif'; }}; ?></td>
+                  <td><?php if($user->statusanggota!='tidak aktif') { echo $user->statusanggota; } else { if ($user->alasan!=NULL) { echo 'mengundurkan diri '; } else { echo 'tidak aktif'; }} ?></td>
                   <td><?php if($user->id_korwil != NULL){
                     $submenus = $this->db->query("select * from tb_korwil where id_korwil = '$user->id_korwil'"); 
                       foreach ($submenus->result() as $submenu) {
                       echo $submenu->namakorwil;
                       } 
                     } else { echo '-'; } ?></td>
-                  <td><?php if($user->statusanggota!='tidak aktif') { ?>
-                    <div class="btn-group">
-                      <a href="<?php echo site_url('user-resign/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Mengundurkan Diri !"><i class="fa fa-fw fa-user"></i></button></a>
-                      <a href="<?php echo site_url('user-nonaktif/'.$user->id_anggota); ?>"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Non Aktif User!"><i class="fa fa-fw fa-close"></i></button></a>
-                    </div>
-                  <?php } ?>
+                  <td>
+                      <a href="<?php echo site_url('user-edit/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Update !"><i class="fa fa-fw fa-edit"></i></button></a>
                   </td>
                 </tr>
                   <?php } ?>

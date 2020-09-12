@@ -222,15 +222,21 @@ class C_User extends CI_Controller{
     function edituser()
     {   
         $this->M_User->edit();
+        $status = $this->input->post('aktivasi');
+        if ($status == 'tidak') {
+            $this->M_User->nonaktif();
+        } else if($status == 'resign') {
+            $this->M_User->mengundurkandiri();
+        }
         $this->session->set_flashdata('Sukses', "Data Berhasil Dirubah!!");
-        redirect('C_User');
+        redirect('user');
     }
 
     function hapus($id){
         $where = array('id_anggota' => $id);
         $this->M_Setting->delete($where,'tb_anggota');
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Hapus!!");
-        redirect('C_User');
+        redirect('user');
     }
 
     function konfirm($iduser)
@@ -238,7 +244,7 @@ class C_User extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
         $this->M_User->konfirm($iduser,$id);
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Anggota!!");
-            redirect('C_User');
+            redirect('user');
     }
 
     function konfirmkorwil()
