@@ -52,7 +52,8 @@
                                     <label for="tempatLahir">Tempat Lahir</label>
                                 </div>
                                 <div class="column is-6 inp_group">
-                                    <input type="text" name="tgllahir" id="datepicker" class="required form-control docs-date" autocomplete="off" value=" ">
+                                   <!-- <input type="date" placeholder="MY PLACEHOLDER" onchange="this.className=(this.value!=''?'has-value':'')"> -->
+                                    <input type="date" name="tgllahir" id="datepicker" class="required form-control docs-date" autocomplete="off"  placeholder="Date">
                                     <label for="tanggalLahir">Tanggal Lahir</label>
                                 </div>
                             </div>
@@ -276,39 +277,6 @@
                 onFinished: function (event, currentIndex)
                 {
                     document.getElementById("registrasi").submit();
-                    // alert("Submitted!");
-                    // event.preventDefault();
-                    // var nikregis = 'submit';
-                    // var nama = document.getElementsByName("nama");
-                    // var tempatLahir= document.getElementsByName("tempatLahir");
-                    // var tgllahir=document.getElementsByName("tanggalLahir");
-                    // var alamat= document.getElementsByName("alamat");
-                    // var prov= document.getElementsByName("provinsia");
-                    // var kaba= document.getElementsByName("kaba");
-                    // var kaca= document.getElementsByName("kaca");
-                    // var email=document.getElementsByName("email");
-                    // var telepon= document.getElementsByName("telepon");
-                    // var fb= document.getElementsByName("fb");
-                    // var ig= document.getElementsByName("ig");
-                    // var tw= document.getElementsByName("tw");
-                    // var yt= document.getElementsByName("yt");
-                    // var file= document.getElementsByName("file");
-                    // var institusi= document.getElementsByName("institusi");
-                    // var latarBelakangPendidikan= document.getElementsByName("latarBelakangPendidikan");
-                  // memulai kirim ajax
-
-                    // $.ajax({
-                    // url: "<?php echo base_url(); ?>index.php/C_Registrasi/tambahregis", //arahkan pada proses_tambah di controller member
-                    //   data: $(this).serialize(),
-                    // type: "POST",
-                    //   success: function(response){
-                    //       // alert("Upload Image Berhasil.");
-                    //       console.log(response);
-                    //    },
-                    //    error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
-                    //       alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
-                    //     }
-                    // });
                 }
             });
 

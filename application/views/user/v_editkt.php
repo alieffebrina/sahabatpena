@@ -39,7 +39,10 @@
                   <div class="col-lg-12">
                     <label for="inputEmail3" class="col-sm-2 control-label">No Anggota</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="noanggota" name="noanggota" readonly value="<?php echo $kt->id_anggota ?>">
+                        <input type="text" class="form-control" id="" name="" readonly value="<?php echo $kt->noanggota ?>">
+                        <input type="hidden" class="form-control" id="noanggota" name="noanggota" readonly value="<?php echo $kt->id_anggota ?>">
+
+                        <input type="hidden" class="form-control" id="idkt" name="idkt" readonly value="<?php echo $kt->id_karyatulis ?>">
                       </div>
                   </div>
                 </div>

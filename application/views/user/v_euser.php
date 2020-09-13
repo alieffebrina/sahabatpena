@@ -187,7 +187,22 @@
                   <div class="col-sm-9">
                     <input type="date" class="form-control" id="tglregistrasi" name="tglregistrasi" value="<?php echo $key->tglregistrasi; ?>"readonly>
                   </div>
-                </div>    
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Korwil</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="korwil" name="korwil" value="<?php 
+                    if($key->id_korwil != NULL){
+                      $submenus = $this->db->query("select * from tb_korwil where id_korwil = '$key->id_korwil'"); 
+                      foreach ($submenus->result() as $submenu) {
+                        echo $submenu->namakorwil;
+                      } 
+                    } else {
+                      echo '-';
+                    }
+                     ?>" readonly>
+                  </div>
+                </div>  
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Kategori Anggota</label>
                   <div class="col-sm-9">
@@ -198,7 +213,7 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Status Anggota</label>
                   <div class="col-sm-9">
                     <select class="form-control select2" id="aktivasi" name="aktivasi" style="width: 100%;">
-                      <option value="aktif" <?php if($key->statusanggota != 'tidak aktif'){ echo "selected"; } ?>>Aktif</option>
+                      <option value="anggota" <?php if($key->statusanggota != 'tidak aktif'){ echo "selected"; } ?>>Aktif</option>
                       <option value="tidak" <?php if($key->statusanggota == 'tidak aktif' && $key->alasan == NULL ){ echo "selected"; } ?> >Tidak Aktif</option>
                       <option value="resign" <?php if($key->statusanggota == 'tidak aktif' && $key->alasan != NULL ){ echo "selected"; } ?>  >Mengundurkan Diri </option>
                     </select>
@@ -212,14 +227,8 @@
                   </div>
                 </div>
                 </div>
-
+                <br>
               </div>
-              <div class="box-footer">
-                  <div class="col-sm-10">
-                    <a href="<?php echo site_url('C_User/index'); ?>" class="btn btn-default">Batal</a>
-                    <button type="submit" class="btn btn-info">Simpan Data</button>
-                  </div>
-                </div> 
               <!-- /.form group -->
 
             </div>
@@ -231,8 +240,50 @@
             <?php } ?>
         
               <!-- /.box-footer -->
-           <?php echo form_close();?>
+           <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- Horizontal Form -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Data Karya Tulis</h3>
+            </div>
+              <!-- Date dd/mm/yyyy -->
+               <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Tanggal Publish</th>
+                  <th>Karya Tulis</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                  $no=1;
+                  foreach ($karyatulis as $karyatulis) { ?>
+                <tr>
+                  <td><?php echo $no++; ?></td>
+                  <td><?php echo date('d-m-Y', strtotime($karyatulis->tglpublish)); ?></td>
+                  <td><?php echo $karyatulis->karyatulis; ?></td>
+                </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
+            </div>
+              <div class="box-footer">
+                  <div class="col-sm-10">
+                    <a href="<?php echo site_url('C_User/index'); ?>" class="btn btn-default">Batal</a>
+                    <button type="submit" class="btn btn-info">Simpan Data</button>
+                  </div>
+                </div> 
+              <!-- /.form group -->
 
+           <?php echo form_close();?>
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
           <!-- /.box -->
         </div>
       <!-- /.row -->

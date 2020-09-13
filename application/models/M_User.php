@@ -165,6 +165,7 @@ class M_User extends CI_Model {
         );
         $where = array(
             'id_anggota' =>  $this->input->post('noanggota'),
+            'id_karyatulis' =>  $this->input->post('idkt'),
         );
         
         $this->db->where($where);
@@ -189,6 +190,20 @@ class M_User extends CI_Model {
         $user = array(
             'statusanggota' => 'tidak aktif',
             'tglnonaktif' => date('Y-m-d'),
+        );
+        $where = array(
+            'id_anggota' =>  $this->input->post('noanggota'),
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_anggota',$user);
+    }
+
+    function aktif(){
+        $user = array(
+            'statusanggota' => 'anggota',
+            'tglnonaktif' => '',
+            'alasan' => '',
         );
         $where = array(
             'id_anggota' =>  $this->input->post('noanggota'),
@@ -245,6 +260,8 @@ class M_User extends CI_Model {
             'youtube' => $this->input->post('youtube'),
             'latarbelakang' => $this->input->post('latarbelakang'),
             'institusi' => $this->input->post('institusi'),
+            'statusanggota' => $this->input->post('aktivasi'),
+            'alasan' => $this->input->post('reason'),
             'id_user' => $this->session->userdata('id_user'),
             'tglupdate' => date('Y-m-d h:i:s'),
         );

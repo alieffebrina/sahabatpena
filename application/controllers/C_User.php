@@ -71,15 +71,15 @@ class C_User extends CI_Controller{
             echo json_encode($callback); // konversi varibael $callback menjadi JSON
     }
 
-    function karyatulis($noanggota)
+    function karyatulis()
     {
         $this->load->view('template/header');
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['user'] = $this->M_User->getspek($noanggota);
-        $data['karyatulis'] = $this->M_User->getkaryatulis($noanggota);      
+        $data['user'] = $this->M_User->getspek($iduser);
+        $data['karyatulis'] = $this->M_User->getkaryatulis($iduser);      
         $this->load->view('user/v_karyatulis',$data); 
         $this->load->view('template/footer');
     }
@@ -103,7 +103,7 @@ class C_User extends CI_Controller{
         $noanggota = $this->input->post('noanggota');
         $this->M_User->editkt();
         $this->session->set_flashdata('Sukses', "Karya tulis telah diperbaharui!!");
-        redirect('C_User/karyatulis/'.$noanggota);
+        redirect('user-karyatulis');
     }
 
     //  function registrasi()
@@ -192,7 +192,7 @@ class C_User extends CI_Controller{
         $noanggota = $this->input->post('noanggota');
         $this->M_User->tambahkaryatulis();
         $this->session->set_flashdata('Sukses', "Record Added Successfully!!");
-        redirect('user-karyatulis/'.$noanggota);  
+        redirect('user-karyatulis');  
     }
 
 
@@ -203,6 +203,7 @@ class C_User extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['user'] = $this->M_User->getspek($ida);
+        $data['karyatulis'] = $this->M_User->getkaryatulis($ida);
         $this->load->view('user/v_vuser',$data); 
         $this->load->view('template/footer');
     }
@@ -215,6 +216,8 @@ class C_User extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['user'] = $this->M_User->getspek($iduser);
+        $data['korwil'] = $this->M_Korwil->getkorwil();
+        $data['karyatulis'] = $this->M_User->getkaryatulis($iduser);
         $this->load->view('user/v_euser',$data); 
         $this->load->view('template/footer');
     }
@@ -227,6 +230,8 @@ class C_User extends CI_Controller{
             $this->M_User->nonaktif();
         } else if($status == 'resign') {
             $this->M_User->mengundurkandiri();
+        } else {
+            $this->M_User->aktif();   
         }
         $this->session->set_flashdata('Sukses', "Data Berhasil Dirubah!!");
         redirect('user');
@@ -271,9 +276,15 @@ class C_User extends CI_Controller{
 
      function konfirmasi($ida)
     {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
         $data['idanggota'] = $ida;
         $data['korwil'] = $this->M_Korwil->getkorwil(); 
         $this->load->view('user/v_pilihkorwil',$data); 
+        $this->load->view('template/footer');
+
     }
 
     function laporan()
@@ -355,7 +366,7 @@ class C_User extends CI_Controller{
         $where = array('id_karyatulis' => $idkt);
         $this->M_Setting->delete($where,'tb_karyatulis');
         $this->session->set_flashdata('Sukses', "Data Berhasil Dihapus.");
-        redirect('C_User/karyatulis/'.$noanggota);  
+        redirect('user-karyatulis');  
     }
 
 }
