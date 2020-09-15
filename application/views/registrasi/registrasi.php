@@ -36,31 +36,43 @@
                     <h5>Step 1</h5>
                     <section>
                         <div class="container">
+<!-- 
+                            <div class="columns">
+                                <div class="column is-12 inp_group">
+                                  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                  
+                                </div>
+                            </div> -->
+                            <div class="columns">
+                                <div class="column is-12 inp_group">
+                                    <input type="text" name="nik" id="nika" class="required" value="" maxlength="16" minlength="16" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()">
+                                    <label for="nik">NIK (*)</label>
+                                </div>
+                            </div>
                             <div class="columns">
                                 <div class="column is-6 inp_group">
-                                    <input type="text" name="nik" id="nika" class="required" value="" maxlength="16" minlength="16" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()">
-                                    <label for="nik">NIK</label>
+                                    <input type="text" name="nama" id="nama" class="required">
+                                    <label for="nama" >Nama Lengkap(*)</label>
                                 </div>
                                 <div class="column is-6 inp_group">
-                                    <input type="text" name="nama" id="nama" class="required">
-                                    <label for="nama">Nama</label>
+                                    <input type="text" name="namapanggilan" id="namapanggilan" class="required">
+                                    <label for="namapanggilan" >Nama Panggilan(*)</label>
                                 </div>
                             </div>
                             <div class="columns">
                                 <div class="column is-6 inp_group">
                                     <input type="text" name="tempatlahir" id="tempatLahir" class="required">
-                                    <label for="tempatLahir">Tempat Lahir</label>
+                                    <label for="tempatLahir" >Tempat Lahir(*)</label>
                                 </div>
                                 <div class="column is-6 inp_group">
-                                   <!-- <input type="date" placeholder="MY PLACEHOLDER" onchange="this.className=(this.value!=''?'has-value':'')"> -->
-                                    <input type="date" name="tgllahir" id="datepicker" class="required form-control docs-date" autocomplete="off"  placeholder="Date">
-                                    <label for="tanggalLahir">Tanggal Lahir</label>
+                                    <input type="text" name="tgllahir" id="datepicker" class="required form-control docs-date" autocomplete="off" value=" ">
+                                    <label for="tanggalLahir">Tanggal Lahir(*)</label>
                                 </div>
                             </div>
                             <div class="columns">
                                 <div class="column is-12 inp_group">
                                     <input type="text" name="alamat" id="alamat" class="required">
-                                    <label for="alamat">Alamat</label>
+                                    <label for="alamat" >Alamat(*)</label>
                                 </div>
                             </div>
                             <div class="columns">                                
@@ -73,21 +85,21 @@
                                             <?php } ?>
                                         </optgroup>
                                     </select>
-                                    <label for="provinsi">Provinsi</label>
+                                    <label for="provinsi" >Provinsi(*)</label>
                                 </div>
                                 <div class="column is-4">
                                     <select name="kota" id="kaba" class="required">
                                         <optgroup>
                                         </optgroup>
                                     </select>
-                                    <label for="kabupaten">Kabupaten/Kota</label>
+                                    <label for="kabupaten" >Kabupaten/Kota (*)</label>
                                 </div>
                                 <div class="column is-4">
                                     <select name="kecamatan" id="keca" class="required">
                                         <optgroup>
                                         </optgroup>
                                     </select>
-                                    <label for="kecamatan">Kecamatan</label>
+                                    <label for="kecamatan" >Kecamatan (*)</label>
                                 </div>
                                 
                             </div>
@@ -99,11 +111,11 @@
                             <div class="columns">
                                 <div class="column is-6">
                                     <input type="email" name="email" id="email" class="required">
-                                    <label for="email">Email</label>
+                                    <label for="email" >Email (*)</label>
                                 </div>
                                 <div class="column is-6">
                                     <input type="text" name="tlp" id="telepon" class="required" maxlength="12" onkeypress="return Angkasaja(event)">
-                                    <label for="telepon">No. Telepon</label>
+                                    <label for="telepon" >No. Telepon (*)</label>
                                 </div>
                             </div>
                             <div class="columns">
@@ -136,70 +148,42 @@
                     <h5>Step 3</h5>
                     <section>
                         <div class="container">
-                            <div class="columns is-centered">
-                                <div class="column is-3">
-                                    <div class="img_uploader">
-                                        <input type="file" name="foto" id="file-input" onchange="ValidateSize(this)" required>
-                                        <div id='img_contain'>
-                                            <img id="image-preview" src="https://static1.squarespace.com/static/57b711122e69cf5fea1cf5a6/5d2f2f11e13e6e000137d32c/5d2f2f433fa39b0001ee5078/1563374039597/Screen+Shot+2019-07-17+at+10.29.00+AM.png?format=1500w" alt="your image" title=''/>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="columns">
-                                <div class="column is-12">
-                                    <p class="has-text-centered">Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png dan maksimal 2Mb</p>
-                                </div>
-                            </div>
+
                             <div class="columns">
                                 <div class="column is-6">
-                                    <input type="text" name="institusi" id="institusi">
-                                    <label for="institusi">Institusi</label>
+                                    &nbsp;<input type="text" name="institusi" id="institusi">
+                                    <label for="institusi">Institusi / Profesi</label>
                                 </div>
                                 <div class="column is-6">
-                                    <input type="text" name="latarbelakang" id="latarBelakangPendidikan">
-                                    <label for="latarBelakangPendidikan">Latar Belakang Pendidikan</label>
+                                    &nbsp;<input type="file" name="foto" id="uploadFile" required accept="image/*" onchange="ValidateSize(this)" />
+                                    <label for="uploadFile">Foto (*)</label>
                                 </div>
                             </div>
-                            <!-- <div class="columns">
-                                <div class="column is-12 inp_group">
-                                    <input type="file" name="foto" id="foto" class="required" onchange="ValidateSize(this)">
-                                    <label for="foto">Foto</label>
+                            <div class="columns">                                
+                                <div class="column is-4">
+                                    <input type="text" name="latarbelakang1" id="latarBelakangPendidikan1">
+                                    <label for="latarBelakangPendidikan1">Latar Belakang Pendidikan</label>
                                 </div>
-                            </div> -->
-                    <!-- <input type="file" id="foto" class="demoInputBox" name="foto" onchange="ValidateSize(this)"> -->
-                            <!-- <div class="columns">
-                                <div class="column is-6">
-                                    <input type="text" name="karyaTulis" id="">
-                                    <label for="karyaTulis">Karya Tulis</label>
+                                <div class="column is-4">
+                                    <input type="text" name="latarbelakang2" id="latarBelakangPendidikan2">
+                                    <label for="latarBelakangPendidikan2">Latar Belakang Pendidikan</label>
                                 </div>
-                                <div class="column is-6">
-                                    <input type="text" name="tanggalRegistrasi" id="datepicker_2" class="required form-control docs-date" autocomplete="off" value="<?php echo date('Y-m-d'); ?>">
-                                    <label for="tanggalRegistrasi">Tanggal Registrasi</label>
+                                <div class="column is-4">
+                                    <input type="text" name="latarbelakang3" id="latarBelakangPendidikan3">
+                                    <label for="latarBelakangPendidikan3">Latar Belakang Pendidikan</label>
                                 </div>
+                                
                             </div>
                             <div class="columns">
                                 <div class="column is-6">
-                                    <select name="statusPendidikan" id="" class="required">
-                                        <optgroup>
-                                            <option value="" selected disabled></option>
-                                            <option value="Aktif">Aktif</option>
-                                            <option value="Tidak Aktif">Tidak Aktif</option>
-                                        </optgroup>
-                                    </select>
-                                    <label for="statusPendidikan">Status Pendidikan</label>
+                                    &nbsp;<input type="text" name="karyatulis" id="karyaTulis">
+                                    <label for="karyaTulis">Judul Karya Tulis</label>
                                 </div>
                                 <div class="column is-6">
-                                    <select name="domisili" id="" class="required">
-                                        <optgroup>
-                                            <option value="" selected disabled></option>
-                                            <option value="SPK Pusat">SPK Pusat</option>
-                                            <option value="SPK Daerah">SPK Daerah</option>
-                                        </optgroup>
-                                    </select>
-                                    <label for="domisili">Domisili Anggota</label>
+                                     &nbsp;<input type="file" name="filekt" id="filekt"  onchange="Validatefile(this)">
+                                    <label for="filekt">File Karya Tulis</label>
                                 </div>
-                            </div> -->
+                            </div>
                         </div>
                     </section>
                     <h5>Step 4</h5>
@@ -210,9 +194,15 @@
                                     <figure>
                                         <img src="<?php echo base_url() ?>assets/registrasi/asset/images/success.jpg" alt="">
                                     </figure>
-                                    <p>Anda telah melengkapi formulir. <br>Klik <strong>DAFTAR</strong> untuk melanjutkan pendaftaran <br>atau klik KEMBALI untuk memeriksa data anda</p>
+                                    <p>Anda telah melengkapi formulir. <br>Klik <strong>Daftar</strong> untuk melanjutkan pendaftaran <br>atau klik KEMBALI untuk memeriksa data anda</p>
                                 </div>
                             </div>
+                            <!-- <div class="columns">
+                                <div class="column is-12 inp_group">
+                                    <input type="checkbox" name="syarat" id="syarat">
+                                    <label for="syarat">Syarat Dan Ketentuan</label>
+                                </div>
+                            </div> -->
                         </div>
                     </section>
                 </div>
@@ -241,13 +231,15 @@
                     dateFormat: "dd-mm-yy", 
                     duration: "fast",
                     changeMonth: true,
-                    changeYear: true
+                    changeYear: true,
+                    yearRange: '1800:2020'
                 });
             } );
             $( function() {
                 $( "#datepicker_2" ).datepicker({
                     dateFormat: "dd-mm-yy", 
-                    duration: "fast"
+                    duration: "fast",
+                    yearRange: '1800:2020'
                 });
             } );
 
@@ -339,11 +331,12 @@
 
             //image upload
             function readURL(input) {
+
+                    // $('#image-preview').hide();
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
                     reader.onload = function(e) {
                     $('#image-preview').attr('src', e.target.result);
-                    //$('#image-preview').hide();
                     $('#image-preview').fadeIn(650);
                     }
                     reader.readAsDataURL(input.files[0]);
@@ -352,6 +345,10 @@
 
             $("#file-input").change(function() {
                 readURL(this);
+            });
+
+             $(".buttonfoto").click(function() {
+                $("'#image-preview").click();
             });
 
 
@@ -481,6 +478,25 @@ function ValidateSize(file) {
       var ekstensiOk = /(\.jpg|\.jpeg|\.png)$/i;
       if(!ekstensiOk.exec(pathFile)){
           alert('Silakan upload file yang memiliki ekstensi .jpeg/.jpg/.png');
+          inputFile.value = '';
+          return false;
+      }
+    }
+}
+
+</script>
+<script type="text/javascript">
+function Validatefile(file) {
+    var FileSize = file.files[0].size / 1024 / 1024; // in MB
+    if (FileSize > 10) {
+        alert('Maaf File anda terlalu besar');
+       $(file).val(''); //for clearing with Jquery
+    } else {
+      var inputFile = document.getElementById('filekt');
+      var pathFile = inputFile.value;
+      var ekstensiOk = /(\.pdf|\.docx|\.doc)$/i;
+      if(!ekstensiOk.exec(pathFile)){
+          alert('Silakan upload file yang memiliki ekstensi .pdf/.docx/.doc');
           inputFile.value = '';
           return false;
       }

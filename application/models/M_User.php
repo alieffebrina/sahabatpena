@@ -92,36 +92,33 @@ class M_User extends CI_Model {
     
     }
 
-    // nama: nama, alamat:alamat, kota:kota, prov
-
-    function tambahdata($upload){
-        $user = array(
-            'nik' => $this->input->post('nik'),
-            'nama' => $this->input->post('nama'),
-            'alamat' => $this->input->post('alamat'),
-            'id_kota' => $this->input->post('kota'),
-            'id_provinsi' => $this->input->post('prov'),
-            'id_kecamatan' => $this->input->post('kecamatan'),
-            'email' => $this->input->post('email'),
-            'tlp' => $this->input->post('tlp'),
-            'tempatlahir' => $this->input->post('tempatlahir'),
-            'tgllahir' => $this->input->post('tgllahir'),
-            'facebook' => $this->input->post('facebook'),
-            'instagram' => $this->input->post('instagram'),
-            'twitter' => $this->input->post('twitter'),
-            'youtube' => $this->input->post('youtube'),
-            'foto' => $upload['file']['file_name'],
-            'tglupdate' => date('Y-m-d h:i:s'),
-            'tglregistrasi' => date('Y-m-d'),
-            'latarbelakang' => $this->input->post('latarbelakang'),
-            'institusi' => $this->input->post('institusi')
-        );
-        
-        return $this->db->insert('tb_anggota', $user);
+    public function uploadfile(){
+        $file_name = $this->input->post('filekt');
+        $path= FCPATH.'karyatulis';
+        //echo $path;
+        $config['upload_path'] = $path;
+        $config['allowed_types'] = 'pdf|docs|doc';
+        $config['max_size'] = '10240';
+        $config['remove_space'] = TRUE;
+        $this->load->library('upload', $config); // Load konfigurasi uploadnya
+        $this->upload->initialize($config);
+        if($this->upload->do_upload('filekt')){ // Lakukan upload dan Cek jika proses upload berhasil
+           $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
+            return $return;
+        } else{
+            $return = array('result' => 'failed', 'error' => $this->upload->display_errors());
+            return $return; 
+        }
+    
+    }
+    
+    function selectmax(){
+        $this->db->select_max('id_anggota');
+        $result = $this->db->get('tb_anggota');
+        return $result->result();
     }
 
-
-    function tambahregis($upload){
+    function tambahdata($upload, $uploadfile){
         $user = array(
             'nik' => $this->input->post('nik'),
             'nama' => $this->input->post('nama'),
@@ -142,6 +139,71 @@ class M_User extends CI_Model {
             'tglregistrasi' => date('Y-m-d'),
             'latarbelakang' => $this->input->post('latarbelakang'),
             'institusi' => $this->input->post('institusi')
+        );
+        
+        return $this->db->insert('tb_anggota', $user);
+
+        $this->db->select_max('id_anggota');
+        $res1 = $this->db->get('tb_anggota');
+        if($res1->num_rows()>0){
+            $res2 = $res1->result_array();
+            $result = $res2[0]['id_anggota'];
+
+            $user = array(
+            'id_anggota' => $a,
+            'karyatulis' => $this->input->post('karyatulis'),
+            'tglpublish' => date('Y-m-d'),
+            'file' =>$uploadfile['file']['file_name']
+            );
+            
+            $this->db->insert('tb_karyatulis', $user);
+        } else {
+            $user = array(
+            'id_anggota' => '1',
+            'karyatulis' => $this->input->post('karyatulis'),
+            'tglpublish' => date('Y-m-d'),
+            'file' =>$uploadfile['file']['file_name']
+        );
+        
+        $this->db->insert('tb_karyatulis', $user);
+        }
+    }
+
+    function karyatulisregistrasi($uploadfile, $a){
+        $user = array(
+            'id_anggota' => $a,
+            'karyatulis' => $this->input->post('karyatulis'),
+            'tglpublish' => date('Y-m-d'),
+            'file' =>$uploadfile['file']['file_name']
+        );
+        
+        $this->db->insert('tb_karyatulis', $user);
+    }
+
+    function tambahregis($upload){
+        $user = array(
+            'nik' => $this->input->post('nik'),
+            'nama' => $this->input->post('nama'),
+            'alamat' => $this->input->post('alamat'),
+            'id_kota' => $this->input->post('kota'),
+            'id_provinsi' => $this->input->post('prov'),
+            'id_kecamatan' => $this->input->post('kecamatan'),
+            'email' => $this->input->post('email'),
+            'tlp' => $this->input->post('tlp'),
+            'tempatlahir' => $this->input->post('tempatlahir'),
+            'tgllahir' => date('Y-m-d', strtotime($this->input->post('tgllahir'))),
+            'facebook' => $this->input->post('fb'),
+            'instagram' => $this->input->post('ig'),
+            'twitter' => $this->input->post('tw'),
+            'youtube' => $this->input->post('yt'),
+            'foto' => $upload['file']['file_name'],
+            'tglupdate' => date('Y-m-d h:i:s'),
+            'tglregistrasi' => date('Y-m-d'),
+            'latarbelakang' => $this->input->post('latarbelakang1').'/'.$this->input->post('latarbelakang2').'/'.$this->input->post('latarbelakang3'),
+            'institusi' => $this->input->post('institusi'),
+            'namapanggilan' =>$this->input->post('namapanggilan'),
+            'username' => $this->input->post('namapanggilan'),
+            'password' =>$this->input->post('namapanggilan').date('Y', strtotime($this->input->post('tgllahir'))),
         );
         
         return $this->db->insert('tb_anggota', $user);
