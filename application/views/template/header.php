@@ -45,9 +45,9 @@
 </head>
 
           <?php if( $this->session->userdata('id_user') == NULL) { ?>
-<body class="layout-top-nav skin-purple fixed sidebar-mini">
+<body class="layout-top-nav skin-blue fixed sidebar-mini">
 <?php } else { ?>
-<body class="hold-transition skin-purple fixed sidebar-mini">  
+<body class="hold-transition skin-blue fixed sidebar-mini">  
 <?php } ?>
 <div class="wrapper">
 

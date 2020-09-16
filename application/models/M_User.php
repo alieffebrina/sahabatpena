@@ -203,6 +203,7 @@ class M_User extends CI_Model {
             'institusi' => $this->input->post('institusi'),
             'namapanggilan' =>$this->input->post('namapanggilan'),
             'username' => $this->input->post('namapanggilan'),
+            'statusanggota' => 'anggota',
             'password' =>$this->input->post('namapanggilan').date('Y', strtotime($this->input->post('tgllahir'))),
         );
         

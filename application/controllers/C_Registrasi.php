@@ -54,41 +54,41 @@ class C_Registrasi extends CI_Controller{
                $this->M_User->karyatulisregistrasi($uploadfile, $a);
             }
 
-            $this->load->library('mailer');
-            $email_penerima = $this->input->post('email');
-            $subjek = 'Terima kasih telah mendaftar';
-            $pesan = 'pendaftaran sukses mohon tunggu konfirmasi via email'; // $this->input->post('pesan');
-            // $attachment = $_FILES['attachment']; 
-            $content = $pesan; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
-            $sendmail = array(
-              'email_penerima'=>$email_penerima,
-              'subjek'=>$subjek,
-              'content'=>$content,
-              //'attachment'=>$attachment//
-            );
-            if(empty($attachment['name'])){ // Jika tanpa attachment
-              $send = $this->mailer->send($sendmail); // Panggil fungsi send yang ada di librari Mailer
-            }else{ // Jika dengan attachment
-              $send = $this->mailer->send_with_attachment($sendmail); // Panggil fungsi send_with_attachment yang ada di librari Mailer
-            }
-
             // $this->load->library('mailer');
-            $emailadmin = 'rizkyfebry09@gmail.com';
-            $subjekadmin = 'Pendaftar Baru';
-            $pesanadmin = 'pendaftaran baru atas nama : '.$this->input->post('nama').'silahkan kunjungi link dibawah ini'; // $this->input->post('pesan');
-            // $attachment = $_FILES['attachment']; 
-            $contentadmin = $pesanadmin; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
-            $sendmailadmin = array(
-              'email_penerima'=>$emailadmin,
-              'subjek'=>$subjekadmin,
-              'content'=>$contentadmin,
-              //'attachment'=>$attachment//
-            );
-            if(empty($attachment['name'])){ // Jika tanpa attachment
-              $send = $this->mailer->send($sendmailadmin); // Panggil fungsi send yang ada di librari Mailer
-            }else{ // Jika dengan attachment
-              $send = $this->mailer->send_with_attachment($sendmailadmin); // Panggil fungsi send_with_attachment yang ada di librari Mailer
-            }
+            // $email_penerima = $this->input->post('email');
+            // $subjek = 'Terima kasih telah mendaftar';
+            // $pesan = 'pendaftaran sukses mohon tunggu konfirmasi via email'; // $this->input->post('pesan');
+            // // $attachment = $_FILES['attachment']; 
+            // $content = $pesan; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
+            // $sendmail = array(
+            //   'email_penerima'=>$email_penerima,
+            //   'subjek'=>$subjek,
+            //   'content'=>$content,
+            //   //'attachment'=>$attachment//
+            // );
+            // if(empty($attachment['name'])){ // Jika tanpa attachment
+            //   $send = $this->mailer->send($sendmail); // Panggil fungsi send yang ada di librari Mailer
+            // }else{ // Jika dengan attachment
+            //   $send = $this->mailer->send_with_attachment($sendmail); // Panggil fungsi send_with_attachment yang ada di librari Mailer
+            // }
+
+            // // $this->load->library('mailer');
+            // $emailadmin = 'rizkyfebry09@gmail.com';
+            // $subjekadmin = 'Pendaftar Baru';
+            // $pesanadmin = 'pendaftaran baru atas nama : '.$this->input->post('nama').'silahkan kunjungi link dibawah ini'; // $this->input->post('pesan');
+            // // $attachment = $_FILES['attachment']; 
+            // $contentadmin = $pesanadmin; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
+            // $sendmailadmin = array(
+            //   'email_penerima'=>$emailadmin,
+            //   'subjek'=>$subjekadmin,
+            //   'content'=>$contentadmin,
+            //   //'attachment'=>$attachment//
+            // );
+            // if(empty($attachment['name'])){ // Jika tanpa attachment
+            //   $send = $this->mailer->send($sendmailadmin); // Panggil fungsi send yang ada di librari Mailer
+            // }else{ // Jika dengan attachment
+            //   $send = $this->mailer->send_with_attachment($sendmailadmin); // Panggil fungsi send_with_attachment yang ada di librari Mailer
+            // }
 
             header("location: https://www.sahabatpenakita.id");
             // redirect('login');
