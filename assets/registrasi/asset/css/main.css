@@ -1,5 +1,10 @@
 *{font-family: 'Poppins', sans-serif;}
-.master{width: 100%; float: left; position: relative; min-height: 100vh; background: rgb(52,175,245); background: linear-gradient(300deg, rgba(52,175,245,1) 0%, rgba(38,78,181,1) 100%);}
+.master{width: 100%; 
+    float: left; 
+    position: relative; 
+    min-height: 100%; 
+    background: rgb(52,175,245); 
+    background: linear-gradient(300deg, rgba(52,175,245,1) 0%, rgba(38,78,181,1) 100%);}
 p{font-size: 14px;}
 .left_part{width: 33.3333%; float: left; height: 100vh; position: relative;}
 .left_part .text{width: 100%; padding: 60px; position: absolute; left: 0; top: 50%; transform: translateY(-50%); -moz-transform: translateY(-50%); -webkit-transform: translateY(-50%);}

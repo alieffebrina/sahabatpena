@@ -101,6 +101,29 @@
   })
 </script>
 <script>
+   $(document).ready(function() {
+  
+     $("#tktdu").click(function() {
+       var judul = $("#judul").val();
+       var jenis = $("#jenis").val();
+       var penerbit = $("#penerbit").val();
+       var thnterbit = $("#thnterbit").val();
+       var baris_baru = "<tr><td><input type=text name='thnterbit[]' value='"+thnterbit+"'>"+thnterbit+"</td>\n\
+        <td><input type=text name='judul[]' value='"+judul+"'>"+judul+"</td>\n\
+        <td><input type=text name='jenis[]' value='"+jenis+"'>"+jenis+"</td>\n\
+        <td><input type=text name='penerbit[]' value='"+penerbit+"'>"+penerbit+"</td>\n\
+        </tr>";
+       $("#karyatulisdu").append(baris_baru);
+
+       document.getElementById('judul').value = '';
+       document.getElementById('jenis').value = '';
+       document.getElementById('penerbit').value = '';
+       document.getElementById('thnterbit').value = '';
+     })
+  
+   });
+   </script>
+<script>
   $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
     // Kita sembunyikan dulu untuk loadingnya
     $("#prov").change(function(){ // Ketika user mengganti atau memilih data provinsi

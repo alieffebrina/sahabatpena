@@ -12,6 +12,12 @@ class C_Login extends CI_Controller {
 
 	function index()
 	{
+		$this->load->view('v_login');
+		
+	}
+
+	function cekanggota()
+	{
 		$this->load->view('template/cek');
 		
 	}

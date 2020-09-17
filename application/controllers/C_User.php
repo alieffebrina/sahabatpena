@@ -63,8 +63,8 @@ class C_User extends CI_Controller{
                                 <h5 class='text-truncate font-size-14 mb-1'>".$data->noanggota."</h5>
                                 <p class='text-truncate mb-0'>".$data->nama."</p>
                             </div>
-                            <div class='font-size-11'><a href=".site_url('C_Login/login/'.$data->username).">Login</a></div>
                         </div></li><br>"; // Tambahkan tag option ke variabel $lists
+                            // <div class='font-size-11'><a href=".site_url('C_Login/login/'.$data->username).">Login</a></div>
             }
             
             $callback = array('list_user'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
@@ -128,6 +128,14 @@ class C_User extends CI_Controller{
         }
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $this->load->view('user/v_adduser', $data); 
+        $this->load->view('template/footer');
+    }
+
+    function daftarulang()
+    {
+        $data['korwil'] = $this->M_Korwil->getkorwil();
+        $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $this->load->view('user/v_daftarulang', $data); 
         $this->load->view('template/footer');
     }
 

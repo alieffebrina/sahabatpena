@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/registrasi/asset/css/main.css">
     <link href="<?php echo base_url() ?>assets/registrasi/bootstrap/css/bootstrap.min.css">
 </head>
-<body>
+<body style="min-height: 100px">
     
     <div class="master">
         <div class="left_part has-text-centered">
@@ -161,16 +161,16 @@
                             </div>
                             <div class="columns">                                
                                 <div class="column is-4">
-                                    <input type="text" name="latarbelakang1" id="latarBelakangPendidikan1">
-                                    <label for="latarBelakangPendidikan1">Latar Belakang Pendidikan</label>
+                                    <input type="text" name="latarbelakang1" id="Pendidikans1">
+                                    <label for="Pendidikans1">Latar Belakang Pendidikan S1</label>
                                 </div>
                                 <div class="column is-4">
-                                    <input type="text" name="latarbelakang2" id="latarBelakangPendidikan2">
-                                    <label for="latarBelakangPendidikan2">Latar Belakang Pendidikan</label>
+                                    <input type="text" name="latarbelakang2" id="Pendidikans2">
+                                    <label for="Pendidikans2">Latar Belakang Pendidikan S2</label>
                                 </div>
                                 <div class="column is-4">
-                                    <input type="text" name="latarbelakang3" id="latarBelakangPendidikan3">
-                                    <label for="latarBelakangPendidikan3">Latar Belakang Pendidikan</label>
+                                    <input type="text" name="latarbelakang3" id="Pendidikans3">
+                                    <label for="Pendidikans3">Latar Belakang Pendidikan S3</label>
                                 </div>
                                 
                             </div>

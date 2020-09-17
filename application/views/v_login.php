@@ -57,8 +57,7 @@
         
                                         <div class="form-group">
                                             <label for="username">Username</label>
-                                            <input type="text" class="form-control" id="username" name="username" <?php if($username == '0') { 
-                                                echo 'placeholder = "Masukkan Username"'; } else { echo 'value= '.$username; } ?>>
+                                            <input type="text" class="form-control" id="username" name="username" placeholder = "Masukkan Username">
                                         </div>
                 
                                         <div class="form-group">
