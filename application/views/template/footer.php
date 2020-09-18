@@ -108,17 +108,23 @@
        var jenis = $("#jenis").val();
        var penerbit = $("#penerbit").val();
        var thnterbit = $("#thnterbit").val();
-       var baris_baru = "<tr><td><input type=text name='thnterbit[]' value='"+thnterbit+"'>"+thnterbit+"</td>\n\
-        <td><input type=text name='judul[]' value='"+judul+"'>"+judul+"</td>\n\
-        <td><input type=text name='jenis[]' value='"+jenis+"'>"+jenis+"</td>\n\
-        <td><input type=text name='penerbit[]' value='"+penerbit+"'>"+penerbit+"</td>\n\
+       var kar = $("#kar").val();
+       var baris_baru = "<tr>\n\
+       <td><input type=text name='thterbitkt[]' value='"+thnterbit+"'>"+thnterbit+"</td>\n\
+        <td><input type=text name='judulkt[]' value='"+judul+"'>"+judul+"</td>\n\
+        <td><input type=text name='jeniskt[]' value='"+jenis+"'>"+jenis+"</td>\n\
+        <td><input type=text name='penerbitkt[]' value='"+penerbit+"'>"+penerbit+"</td>\n\
         </tr>";
        $("#karyatulisdu").append(baris_baru);
-
        document.getElementById('judul').value = '';
        document.getElementById('jenis').value = '';
        document.getElementById('penerbit').value = '';
        document.getElementById('thnterbit').value = '';
+       if(kar == ''){
+          document.getElementById('kar').value = thnterbit+'_'+jenis+'_'+judul+'_'+penerbit;
+       } else {
+         document.getElementById('kar').value = kar+'/'+thnterbit+'_'+jenis+'_'+judul+'_'+penerbit;
+        }
      })
   
    });
@@ -130,7 +136,7 @@
     
       $.ajax({
         type: "POST", // Method pengiriman data bisa dengan GET atau POST
-        url: "<?php echo base_url("index.php/C_Setting/get_kota"); ?>", // Isi dengan url/path file php yang dituju
+        url: "<?php echo base_url("index.php/C_Registrasi/getkabupaten"); ?>", // Isi dengan url/path file php yang dituju
         data: {id_provinsi : $("#prov").val()}, // data yang akan dikirim ke file yang dituju
         dataType: "json",
         beforeSend: function(e) {
@@ -141,7 +147,7 @@
         success: function(response){ // Ketika proses pengiriman berhasil
           // set isi dari combobox kota
           // lalu munculkan kembali combobox kotanya
-          $("#kota").html(response.list_kota).show();
+          $("#kota").html(response.list_kab).show();
         },
         error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
           alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
@@ -157,8 +163,8 @@
     
       $.ajax({
         type: "POST", // Method pengiriman data bisa dengan GET atau POST
-        url: "<?php echo base_url("index.php/C_Setting/get_kecamatan"); ?>", // Isi dengan url/path file php yang dituju
-        data: {id_kota : $("#kota").val()}, // data yang akan dikirim ke file yang dituju
+        url: "<?php echo base_url("index.php/C_Registrasi/getkec"); ?>", // Isi dengan url/path file php yang dituju
+        data: {kabupaten : $("#kota").val()}, // data yang akan dikirim ke file yang dituju
         dataType: "json",
         beforeSend: function(e) {
           if(e && e.overrideMimeType) {
@@ -440,13 +446,6 @@ $("#addtkt").append('<label for="inputPassword3" class="col-sm-2 control-label">
 </script>
 <script>
   $(document).ready(function(){
-    $res = document.getElementById('reason').value;
-    if($res == '' ){
-       document.getElementById('idresign').style.visibility='hidden';
-    } else {
-    document.getElementById('idresign').style.visibility='visible';
-
-    }
   $('#aktivasi').change(function(){
     var status = document.getElementById('aktivasi').value;
     if(status=='resign'){

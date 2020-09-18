@@ -100,7 +100,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <?php echo form_open("C_User/edituser", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
+            <?php echo form_open("C_User/adddu", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">NIK</label>
@@ -153,7 +153,19 @@
                   <div class="col-sm-9">
                     <textarea class="form-control" rows="3" id="alamat" name="alamat" ></textarea>
                   </div>
-                </div>
+                </div>  
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tempat Lahir</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="tempatlahir" name="tempatlahir"  >
+                  </div>
+                </div>    
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Lahir</label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" id="tgllahir" name="tgllahir"  >
+                  </div>
+                </div>  
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">No HP</label>
                   <div class="col-sm-9">
@@ -165,13 +177,7 @@
                   <div class="col-sm-9"> 
                     <input type="email" class="form-control" id="email" name="email" >
                   </div>
-                </div>    
-                <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Institusi</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="institusi" name="institusi"  >
-                  </div>
-                </div>  
+                </div>   
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Foto </label>
                     <div class="col-sm-9">
@@ -193,23 +199,29 @@
               <h3 class="box-title">Pendidikan</h3>
             </div>
               <!-- Date dd/mm/yyyy -->
-              <div class="form-horizontal">
+              <div class="form-horizontal"> 
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Institusi / Profesi</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="institusi" name="institusi"  >
+                  </div>
+                </div>  
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S1</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="latarbelakangs1" name="latarbelakangs2"  >
+                    <input type="text" class="form-control" id="latarbelakang1" name="latarbelakang1"  >
                   </div>
                 </div>    
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S2</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="latarbelakangs2" name="latarbelakangs2"  >
+                    <input type="text" class="form-control" id="latarbelakang2" name="latarbelakang2"  >
                   </div>
                 </div> 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S1</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="latarbelakangs3" name="latarbelakangs3"  >
+                    <input type="text" class="form-control" id="latarbelakang3" name="latarbelakang3"  >
                   </div>
                 </div> 
                 <br>
@@ -233,25 +245,25 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Instagram</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="instagram" name="instagram"  >
+                    <input type="text" class="form-control" id="ig" name="ig"  >
                   </div>
                 </div>       
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Facebook</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="facebook" name="facebook">
+                    <input type="text" class="form-control" id="fb" name="fb">
                   </div>
                 </div>       
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Twitter</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="twitter" name="twitter" >
+                    <input type="text" class="form-control" id="tw" name="tw" >
                   </div>
                 </div>       
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Youtube Channel</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="youtube" name="youtube" >
+                    <input type="text" class="form-control" id="yt" name="yt" >
                   </div>
                 </div>
                 <br>
@@ -311,25 +323,26 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Judul</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="judul" name="judul" placeholder="Judul" >
+                    <input type="text" class="form-control" id="judul" placeholder="Judul" >
                   </div>
                 </div>  
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Jenis</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jenis" name="jenis" placeholder="Jenis">
+                    <input type="text" class="form-control" id="jenis"  placeholder="Jenis">
                   </div>
                 </div> 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Penerbit / Publisher</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="penerbit" name="penerbit" placeholder="Penerbit / Publisher" >
+                    <input type="text" class="form-control" id="penerbit" placeholder="Penerbit / Publisher" >
+                    <input type="text" class="form-control" id="kar" name="kar" >
                   </div>
                 </div> 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Publish</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="thnterbit" name="thnterbit" placeholder="Tanggal Publish"  >
+                    <input type="date" class="form-control" id="thnterbit" placeholder="Tanggal Publish"  >
                   </div>
                 </div>   
               </div>
