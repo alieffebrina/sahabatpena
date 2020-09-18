@@ -41,6 +41,7 @@ class Welcome extends CI_Controller {
 		$data['korwil'] = $this->M_Korwil->datakorwil();
 		$data['dataaktif'] = $this->M_User->dataaktif();
 		$data['datanonaktif'] = $this->M_User->datanonaktif();
+		$data['datawaiting'] = $this->M_User->datawaiting();
 		$this->load->view('template/index.php', $data);
 		$this->load->view('template/footer.php');
 	}

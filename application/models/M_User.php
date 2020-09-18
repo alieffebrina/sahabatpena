@@ -445,8 +445,8 @@ class M_User extends CI_Model {
 
     function dataaktif(){
         $where = array(
-            'statusanggota' => 'anggota',
-            'statusanggota' => 'korwil',
+            'statusanggota !=' => 'menunggu konfirmasi',
+            'statusanggota != ' => 'tidak aktif',
         );
         $query = $this->db->get_where('tb_anggota', $where);
         return $query->num_rows();
@@ -454,10 +454,17 @@ class M_User extends CI_Model {
 
     function datanonaktif(){
         $where = array(
-            'statusanggota' => 'menunggu konfirmasi',
             'statusanggota' => 'tidak aktif',
         );
         $query = $this->db->get_where('tb_anggota', $where);
         return $query->num_rows();
+    } 
+
+    function datawaiting(){
+        $where = array(
+            'statusanggota' => 'menunggu konfirmasi',
+        );
+        $query = $this->db->get_where('tb_anggota', $where);
+        return $query->result();
     } 
 }

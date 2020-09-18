@@ -103,28 +103,28 @@
             <?php echo form_open("C_User/adddu", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">NIK</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">NIK (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()" >
+                    <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()" required >
                   <span id="pesannik"></span>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Nama</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Nama (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama" >
+                    <input type="text" class="form-control" id="nama" name="nama" required >
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Nama Panggilan</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Nama Panggilan (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="namapanggilan" name="namapanggilan" >
+                    <input type="text" class="form-control" id="namapanggilan" name="namapanggilan" required>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Provinsi (*)</label>
                   <div class="col-sm-9">
-                    <select class="form-control select2" id="prov" name="prov" style="width: 100%;">
+                    <select class="form-control select2" id="prov" name="prov" style="width: 100%;" required>
                       <option value="">--Pilih--</option>
                       <?php foreach ($provinsi as $provinsi) { ?>
                       <option value="<?php echo $provinsi->id_provinsi ?>"><?php echo $provinsi->name_prov ?></option>
@@ -133,55 +133,55 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kota/Kabupaten</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Kota/Kabupaten (*)</label>
                   <div class="col-sm-9">
-                  <select class="form-control select2" id="kota" name="kota" style="width: 100%;">
+                  <select class="form-control select2" id="kota" required name="kota" style="width: 100%;">
                     
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan (*)</label>
                   <div class="col-sm-9">
-                  <select class="form-control select2" id="kecamatan" name="kecamatan" style="width: 100%;">
+                  <select class="form-control select2" id="kecamatan" required name="kecamatan" style="width: 100%;">
                    
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Alamat</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Alamat (*)</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" rows="3" id="alamat" name="alamat" ></textarea>
+                    <textarea class="form-control" rows="3" id="alamat" name="alamat" required ></textarea>
                   </div>
                 </div>  
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Tempat Lahir</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tempat Lahir(*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tempatlahir" name="tempatlahir"  >
+                    <input type="text" class="form-control" id="tempatlahir" required name="tempatlahir"  >
                   </div>
                 </div>    
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Lahir</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Lahir (*)</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="tgllahir" name="tgllahir"  >
+                    <input type="date" class="form-control" id="tgllahir" required name="tgllahir"  >
                   </div>
                 </div>  
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">No HP</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">No HP (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tlp" name="tlp"  maxlength="12" minlength="6" onkeypress="return Angkasaja(event)" >
+                    <input type="text" class="form-control" id="tlp" name="tlp" required maxlength="12" minlength="6" onkeypress="return Angkasaja(event)" >
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">E-Mail</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">E-Mail (*)</label>
                   <div class="col-sm-9"> 
-                    <input type="email" class="form-control" id="email" name="email" >
+                    <input type="email" class="form-control" id="email" name="email"required  >
                   </div>
                 </div>   
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Foto </label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Foto (*)</label>
                     <div class="col-sm-9">
-                    <input type="file" id="foto" class="demoInputBox" name="foto" onchange="ValidateSize(this)">
+                    <input type="file" id="foto" required class="demoInputBox" name="foto" onchange="ValidateSize(this)">
                   <p><span class="text-danger">Maksimal 2Mb </span></p>
                   </div>
                 </div>
@@ -201,9 +201,9 @@
               <!-- Date dd/mm/yyyy -->
               <div class="form-horizontal"> 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Institusi / Profesi</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Institusi / Profesi (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="institusi" name="institusi"  >
+                    <input type="text" class="form-control" id="institusi" required name="institusi"  >
                   </div>
                 </div>  
                 <div class="form-group">
@@ -287,9 +287,9 @@
               <div class="form-horizontal">
                 
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Korwil</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Korwil (*)</label>
                   <div class="col-sm-9">
-                    <select class="form-control select2" id="korwil" name="korwil" style="width: 100%;">
+                    <select class="form-control select2" id="korwil" name="korwil" required style="width: 100%;">
                       <option value="">--Pilih--</option>
                       <?php foreach ($korwil as $korwil) { ?>
                       <option value="<?php echo $korwil->id_korwil ?>"><?php echo $korwil->namakorwil ?></option>
@@ -321,28 +321,28 @@
                <div class="form-horizontal">
                 
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Judul</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Judul (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="judul" placeholder="Judul" >
+                    <input type="text" class="form-control" id="judul" required placeholder="Judul" >
                   </div>
                 </div>  
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Jenis</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Jenis (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jenis"  placeholder="Jenis">
+                    <input type="text" class="form-control" id="jenis" required placeholder="Jenis">
                   </div>
                 </div> 
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Penerbit / Publisher</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Penerbit / Publisher (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="penerbit" placeholder="Penerbit / Publisher" >
-                    <input type="text" class="form-control" id="kar" name="kar" >
+                    <input type="text" class="form-control" required id="penerbit" placeholder="Penerbit / Publisher" >
+                    <input type="hidden" class="form-control" id="kar" name="kar" >
                   </div>
                 </div> 
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Publish</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Publish (*)</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="thnterbit" placeholder="Tanggal Publish"  >
+                    <input type="date" class="form-control" required id="thnterbit" placeholder="Tanggal Publish"  >
                   </div>
                 </div>   
               </div>
