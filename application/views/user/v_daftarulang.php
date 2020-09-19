@@ -323,26 +323,26 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Judul (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="judul" required placeholder="Judul" >
+                    <input type="text" class="form-control" id="judul"  placeholder="Judul" >
                   </div>
                 </div>  
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Jenis (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jenis" required placeholder="Jenis">
+                    <input type="text" class="form-control" id="jenis" placeholder="Jenis">
                   </div>
                 </div> 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Penerbit / Publisher (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" required id="penerbit" placeholder="Penerbit / Publisher" >
+                    <input type="text" class="form-control" id="penerbit" placeholder="Penerbit / Publisher" >
                     <input type="hidden" class="form-control" id="kar" name="kar" >
                   </div>
                 </div> 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Publish (*)</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" required id="thnterbit" placeholder="Tanggal Publish"  >
+                    <input type="date" class="form-control" id="thnterbit" placeholder="Tanggal Publish"  >
                   </div>
                 </div>   
               </div>

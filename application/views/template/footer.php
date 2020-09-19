@@ -110,10 +110,10 @@
        var thnterbit = $("#thnterbit").val();
        var kar = $("#kar").val();
        var baris_baru = "<tr>\n\
-       <td><input type=text name='thterbitkt[]' value='"+thnterbit+"'>"+thnterbit+"</td>\n\
-        <td><input type=text name='judulkt[]' value='"+judul+"'>"+judul+"</td>\n\
-        <td><input type=text name='jeniskt[]' value='"+jenis+"'>"+jenis+"</td>\n\
-        <td><input type=text name='penerbitkt[]' value='"+penerbit+"'>"+penerbit+"</td>\n\
+       <td>"+thnterbit+"</td>\n\
+        <td>"+judul+"</td>\n\
+        <td>"+jenis+"</td>\n\
+        <td>"+penerbit+"</td>\n\
         </tr>";
        $("#karyatulisdu").append(baris_baru);
        document.getElementById('judul').value = '';
