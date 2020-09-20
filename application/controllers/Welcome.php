@@ -40,8 +40,21 @@ class Welcome extends CI_Controller {
 		$data['anggota'] = $this->M_User->dataanggota();
 		$data['korwil'] = $this->M_Korwil->datakorwil();
 		$data['dataaktif'] = $this->M_User->dataaktif();
-		$data['datanonaktif'] = $this->M_User->datanonaktif();
-		$data['datawaiting'] = $this->M_User->datawaiting();
+		// $data['datanonaktif'] = $this->M_User->datanonaktif();
+		$data['karyatulis'] = $this->M_User->datakaryatulis();
+		if($id == 'administrator'){
+			$data['datawaiting'] = $this->M_User->datawaiting();
+			$data['userlog'] = $this->M_Setting->datauserlog();
+		} else {
+			$iduser = $this->session->userdata('id_user');
+			$korwil = $this->M_User->getspek($iduser);
+			foreach ($korwil as $korwil) {
+				$a = $korwil->id_korwil;
+				//echo $a;
+				$data['listanggota'] = $a;
+				$data['listkaryatulis'] = $this->M_User->listkaryatulis();				
+			}
+		}
 		$this->load->view('template/index.php', $data);
 		$this->load->view('template/footer.php');
 	}

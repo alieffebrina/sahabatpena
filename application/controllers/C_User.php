@@ -71,6 +71,17 @@ class C_User extends CI_Controller{
             echo json_encode($callback); // konversi varibael $callback menjadi JSON
     }
 
+    function getkorwilmutasi(){
+            $id = $this->input->post('anggotamutasi');
+            $kec = $this->M_User->getkorwilmutasi($id);                           
+            foreach($kec as $data){
+              $lists = "<input type='hidden' name='korwilawal' value='".$data->id_korwil."'>".$data->namakorwil;
+            }
+            
+            $callback = array('idkorwil'=>$lists);
+            echo json_encode($callback);
+    }
+
     function karyatulis()
     {
         $this->load->view('template/header');
@@ -105,12 +116,6 @@ class C_User extends CI_Controller{
         $this->session->set_flashdata('Sukses', "Karya tulis telah diperbaharui!!");
         redirect('user-karyatulis');
     }
-
-    //  function registrasi()
-    // { 
-    //     $data['provinsi'] = $this->M_Setting->getprovinsi();
-    //     $this->load->view('user/v_registrasi', $data);
-    // }
 
      function registrasi()
     { 

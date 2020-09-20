@@ -460,6 +460,16 @@ class M_User extends CI_Model {
         return $query->num_rows();
     } 
 
+    function datakaryatulis(){
+        $query = $this->db->get('tb_karyatulis');
+        return $query->num_rows();
+    } 
+
+    function listkaryatulis(){
+        $this->db->order_by('tglpublish', 'DESC');
+        return $this->db->get('tb_karyatulis', 10)->result();
+    } 
+
     function datawaiting(){
         $where = array(
             'statusanggota' => 'menunggu konfirmasi',
@@ -467,4 +477,27 @@ class M_User extends CI_Model {
         $query = $this->db->get_where('tb_anggota', $where);
         return $query->result();
     } 
+
+     function listanggota($a){
+        $where = array(
+            'id_korwil' => $a,
+        );
+        $query = $this->db->get_where('tb_anggota', $where);
+        return $query->result();
+        
+    }
+
+     function getkorwilmutasi($iduser){
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $this->db->join('tb_korwil', 'tb_korwil.id_korwil = tb_anggota.id_korwil');
+        $where = array(
+            'tb_anggota.id_anggota' => $iduser
+        );
+        $query = $this->db->get_where('tb_anggota', $where);
+        return $query->result();
+    }
+
+
 }

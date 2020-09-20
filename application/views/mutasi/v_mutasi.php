@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Cabang / Wilayah
+        Data Mutasi
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('korwil'); ?>">Data Cabang / Wilayah</a></li>
-        <li class="active">Data Cabang / Wilayah</li>
+        <li><a href="<?php echo site_url('mutasi'); ?>">Data Mutasi</a></li>
+        <li class="active">Data Mutasi</li>
       </ol>
     </section>
     <div class="box-body">
@@ -27,17 +27,11 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Cabang / Wilayah</h3>
+              <h3 class="box-title">Data Mutasi</h3>
             </div>
 
-            <div class="box-body">
-                <div class='row'>
-                  <div class='col-lg-12'>
-                    <div class="col-sm-3">
-                      <a href="<?php echo site_url('C_Korwil/excel'); ?>"><button type="button" class="btn btn-success">Excel</button></a>
-                    </div>
-                  </div>
-                </div>
+            <div class="box-header">
+              <a href="<?php echo site_url('mutasi-add'); ?>"><button type="button" class="btn btn-warning" >Mutasi</button></a>
             </div>
             <!-- /.box-header -->
 
@@ -46,24 +40,22 @@
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Tanggal Berdiri</th>
-                  <th>Nama Cabang / Wilayah</th>
-                  <th>Nama Ketua</th>
-                  <th>Alamat Kesekretariatan</th>
-                  <th>Kode Cabang / Wilayah</th>
+                  <th>Nama</th>
+                  <th>Cabang / Wilayah Awal</th>
+                  <th>Tanggal Mutasi</th>
+                  <th>Cabang / Wilayah Sekarang</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php 
                   $no=1;
-                  foreach ($korwil as $korwil) { ?>
+                  foreach ($mutasi as $mutasi) { ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
-                  <td><?php echo $korwil->tglberdiri; ?></td>
-                  <td><?php echo $korwil->namakorwil; ?></td>
-                  <td><?php echo $korwil->nama; ?></td>
-                  <td><?php echo $korwil->alamat.', '.$korwil->name_kota.', '.$korwil->name_prov; ?></td>
-                  <td><?php echo $korwil->kodekorwil; ?></td>
+                  <td><?php echo $mutasi->nama; ?></td>
+                  <td><?php echo $mutasi->korwilawal; ?></td>
+                  <td><?php echo $mutasi->tglupdate; ?></td>
+                  <td><?php echo $mutasi->korwilmutasi ?></td>
                 </tr>
                   <?php } ?>
                 </tbody>

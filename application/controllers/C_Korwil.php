@@ -58,6 +58,7 @@ class C_Korwil extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['idkorwil'] = $this->M_Korwil->selectmax();
         $this->load->view('korwil/v_addkorwil', $data); 
         $this->load->view('user/v_modal'); 
         $this->load->view('template/footer');
@@ -142,9 +143,14 @@ class C_Korwil extends CI_Controller{
 
     public function tambahpengurus()
     {   
+
+        
+
+        $file_name = $this->input->post('skfile');
+        $uploadfile = $this->M_Korwil->uploadfile();
         $ida = $this->input->post('korwil');
         $this->M_Korwil->editstatususer($ida);
-        $this->M_Korwil->tambahpengurus();
+        $this->M_Korwil->tambahpengurus($uploadfile);
         $this->session->set_flashdata('Sukses', "Data Pengurus Berhasil Ditambah!!");
         redirect('korwil-p/'.$ida);  
     }

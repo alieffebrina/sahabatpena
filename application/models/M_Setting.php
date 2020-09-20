@@ -168,4 +168,16 @@ class M_Setting extends CI_Model {
 
         // return $this->db->get('tb_menu')->result();
     }
+
+    function datauserlog(){
+        // $date = now();
+        $this->db->select('*');
+        $this->db->join('tb_anggota', 'tb_anggota.id_user = tb_userlog.id_user');
+        $this->db->join('tb_menu', 'tb_menu.id_menu = tb_userlog.id_menu');
+        $where = array(
+            'waktu' => date('Y-m-d')
+        );
+        $query = $this->db->get_where('tb_userlog');
+        return $query->result();
+    }
  }

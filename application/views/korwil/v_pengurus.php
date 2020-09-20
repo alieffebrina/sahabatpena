@@ -36,12 +36,14 @@
             <!-- /.box-header -->
 
             <div class="box-body">
-              <form action='<?= site_url("C_Korwil/tambahpengurus")?>' method='POST'>
+
+            <?php echo form_open("C_Korwil/tambahpengurus", array('enctype'=>'multipart/form-data') ); ?>
+              <!-- <form action='<?= site_url("C_Korwil/tambahpengurus")?>' method='POST'> -->
                 <div class='row'>
                   <div class="col-lg-12">
                     <label for="inputEmail3" class="col-sm-2 control-label">Jabatan</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="jabatan" name="jabatan" placeholder="Jabatan" onkeyup="cek_jabatan()">
+                        <input type="text" class="form-control" id="jabatan" name="jabatan" value="Ketua" readonly>
                         <input type="hidden" class="form-control" id="korwil" name="korwil" value="<?php echo $kor ?>" >
                         <span id="pesanjabatan"></span>
                       </div>
@@ -52,7 +54,15 @@
                   <div class="col-lg-12">
                     <label for="inputEmail3" class="col-sm-2 control-label">NO SK Kepengurusan</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="sk" name="sk" placeholder="Sk" >
+                        <input type="text" class="form-control" id="nosk" name="nosk" placeholder="NO SK Kepengurusan" >
+                      </div>
+                  </div>
+                </div> <br>
+                <div class='row'>
+                  <div class="col-lg-12">
+                    <label for="inputEmail3" class="col-sm-2 control-label">SK Kepengurusan</label>
+                      <div class="col-sm-9">
+                        <input type="file" class="form-control" id="skfile" name="skfile" onchange="Validatefile(this)">
                       </div>
                   </div>
                 </div> <br>
@@ -71,10 +81,14 @@
                 </div> <br>
                 <div class='row'>
                   <div class="col-lg-12">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Kepengurusan</label>
-                      <div class="col-sm-9">
-                        <input type="date" class="form-control" id="tglaktif" name="tglaktif" placeholder="Tanggal Kepengurusan" >
-                      </div>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Masa Aktif Jabatan</label>
+                      <div class="col-sm-9">  
+                      <div class="input-group">
+                        <div class="input-group-addon">
+                          <i class="fa fa-clock-o"></i>
+                        </div>
+                            <input type="text" class="tanggalan form-control" id="tgl" name="tgl" value="<?php echo date('d-m-Y')?>">
+                      </div></div>
                   </div>
                 </div> <br>
                 <div class='row'>
@@ -106,8 +120,8 @@
                   <th>Jabatan</th>
                   <th>Sk</th>
                   <th>Nama</th>
-                  <th>Tgl Kepengurusan</th>
-                  <th>Tgl Akhir</th>
+                  <th>Masa Aktif Jabatan</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -120,8 +134,8 @@
                   <td><?php echo $pengurus->jabatan; ?></td>
                   <td><?php echo $pengurus->nosk; ?></td>
                   <td><?php echo $pengurus->nama; ?></td>
-                  <td><?php echo $pengurus->tglaktif; ?></td>
-                  <td><?php if($pengurus->tglaktif == '0000-00-00'){ echo 'sampai saat ini'; } else { echo $pengurus->tglaktif; } ?></td>
+                  <td><?php echo $pengurus->tglaktif.' s/d '.$pengurus->tglakhir; ?></td>
+                  <td><?php echo $pengurus->status ?></td>
                   <td>
                     <div class="btn-group">
                       <a href="<?php echo site_url('korwil-pe/'.$pengurus->id_pengurus); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>

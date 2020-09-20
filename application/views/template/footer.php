@@ -74,6 +74,19 @@
 <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
 <script src="<?php echo base_url() ?>assets/bower_components/Flot/jquery.flot.categories.js"></script>
 <!-- Page script -->
+<!-- CK Editor -->
+<script src="<?php echo base_url() ?>assets/bower_components/ckeditor/ckeditor.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="<?php echo base_url() ?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1')
+    //bootstrap WYSIHTML5 - text editor
+    $('.textarea').wysihtml5()
+  })
+</script>
 <script>
   $(document).ready(function(){ 
     $('#example1').DataTable();
@@ -458,5 +471,52 @@ $("#addtkt").append('<label for="inputPassword3" class="col-sm-2 control-label">
   });
 });
 </script>
+
+<script type="text/javascript">
+function Validatefile(file) {
+    var FileSize = file.files[0].size / 1024 / 1024; // in MB
+    if (FileSize > 10) {
+        alert('Maaf File anda terlalu besar');
+       $(file).val(''); //for clearing with Jquery
+    } else {
+      var inputFile = document.getElementById('skfile');
+      var pathFile = inputFile.value;
+      var ekstensiOk = /(\.pdf|\.docx|\.doc)$/i;
+      if(!ekstensiOk.exec(pathFile)){
+          alert('Silakan upload file yang memiliki ekstensi .pdf/.docx/.doc');
+          inputFile.value = '';
+          return false;
+      }
+    }
+}
+
+</script>
+
+<script>
+  $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
+    // Kita sembunyikan dulu untuk loadingnya
+    $("#anggotamutasi").change(function(){ // Ketika user mengganti atau memilih data provinsi
+    
+      $.ajax({
+        type: "POST", // Method pengiriman data bisa dengan GET atau POST
+        url: "<?php echo base_url("index.php/C_User/getkorwilmutasi"); ?>", // Isi dengan url/path file php yang dituju
+        data: {anggotamutasi : $("#anggotamutasi").val()}, // data yang akan dikirim ke file yang dituju
+        dataType: "json",
+        beforeSend: function(e) {
+          if(e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response){ 
+          
+          $("#korwilawalmutasi").html(response.idkorwil).show();
+        },
+        error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+        }
+      });
+    });
+  });
+  </script>
 </body>
 </html>
