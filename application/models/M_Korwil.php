@@ -12,6 +12,15 @@ class M_Korwil extends CI_Model {
         $query = $this->db->get('tb_korwil');
     	return $query->result();
     }
+	
+	function getkorwilview(){
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_korwil.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_korwil.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_korwil.id_kecamatan');
+        
+        $query = $this->db->get('tb_korwil');
+    	return $query->result();
+    }
 
     function getkorwilspek($ida){
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_korwil.id_provinsi');
