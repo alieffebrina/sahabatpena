@@ -6,20 +6,22 @@ class M_Korwil extends CI_Model {
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_korwil.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_korwil.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_korwil.id_kecamatan');
-        $this->db->join('tb_pengurus', 'tb_pengurus.id_korwil = tb_pengurus.id_korwil');
-        $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_pengurus.id_anggota');
-        $this->db->where('tb_pengurus.status', 'aktif');
+        
         $query = $this->db->get('tb_korwil');
     	return $query->result();
     }
 	
 	function getkorwilview(){
+		
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_korwil.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_korwil.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_korwil.id_kecamatan');
-        
+        $this->db->join('tb_pengurus', 'tb_pengurus.id_korwil = tb_pengurus.id_korwil');
+        $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_pengurus.id_anggota');
+        $this->db->where('tb_pengurus.status', 'aktif');
         $query = $this->db->get('tb_korwil');
     	return $query->result();
+		
     }
 
     function getkorwilspek($ida){
