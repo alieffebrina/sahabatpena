@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Korwil
+        Data Cabang / Wilayah
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_User'); ?>">Data Korwil</a></li>
-        <li class="active">Data Korwil</li>
+        <li><a href="<?php echo site_url('C_User'); ?>">Data Cabang / Wilayah</a></li>
+        <li class="active">Data Cabang / Wilayah</li>
       </ol>
     </section>
     <div class="box-body">
@@ -41,9 +41,9 @@
                 <tr>
                   <th>No</th>
                   <th>Tanggal Berdiri</th>
-                  <th>Nama Korwil</th>
+                  <th>Nama Cabang / Wilayah</th>
                   <th>Alamat Kesekretariatan</th>
-                  <th>Kode Korwil</th>
+                  <th>Kode Cabang / Wilayah</th>
                   <th>Action</th>
                 </tr>
                 </thead>
