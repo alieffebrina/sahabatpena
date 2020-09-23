@@ -46,7 +46,7 @@ class C_Korwil extends CI_Controller{
         }
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
-        $data['korwil'] = $this->M_Korwil->getkorwil();  
+        $data['korwil'] = $this->M_Korwil->getkorwilview();  
         $this->load->view('korwil/v_korwil',$data); 
         $this->load->view('template/footer');
     }
