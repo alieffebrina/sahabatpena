@@ -287,7 +287,7 @@
               <div class="form-horizontal">
                 
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Korwil (*)</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang / Wilayah (*)</label>
                   <div class="col-sm-9">
                     <select class="form-control select2" id="korwil" name="korwil" required style="width: 100%;">
                       <option value="">--Pilih--</option>
