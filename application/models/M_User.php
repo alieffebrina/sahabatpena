@@ -474,7 +474,7 @@ class M_User extends CI_Model {
         $kar = $this->input->post('kar');
         $karya = explode('/', $kar);
         foreach ($karya as $key) {
-            if ($key != "0"){
+            if ($key != "0" && $key != NULL){
             $barangb = explode("_", $key);
             $data = array('karyatulis'=>$barangb[2],
             'id_anggota' => $a,

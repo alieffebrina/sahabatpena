@@ -336,7 +336,7 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Penerbit / Publisher (*)</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="penerbit" placeholder="Penerbit / Publisher" >
-                    <input type="text" class="form-control" id="kar" name="kar" >
+                    <input type="hidden" class="form-control" id="kar" name="kar" >
                   </div>
                 </div> 
                 <div class="form-group">

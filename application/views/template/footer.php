@@ -127,7 +127,10 @@
         <td>"+judul+"<input type='hidden' name='juduldu[]' value='"+judul+"'></td>\n\
         <td>"+jenis+"<input type='hidden' name='jenisdu[]' value='"+jenis+"'></td>\n\
         <td>"+penerbit+"<input type='hidden' name='penerbitdu[]' value='"+penerbit+"'></td>\n\
-                  </tr>";
+        <td width='100px'><a href='javascript:void(0);' class='remCF' data-id='"+judul+"' ><input type='hidden' id=karid value='"+thnterbit+'_'+jenis+'_'+judul+'_'+penerbit+"'>\n\
+          <button type='button' class='btn btn-info btn-sm'>\n\
+            <i class='fa fa-times'></i></button></a></td>\n\
+        </tr>";
        $("#karyatulisdu").append(baris_baru);
        document.getElementById('judul').value = '';
        document.getElementById('jenis').value = '';
@@ -141,7 +144,9 @@
      });
      $("#karyatulisdu").on('click', '.remCF', function() {
       $(this).parent().parent().remove();
-      // var suba= $(this).parent().find('#suba').val();
+      var karo = document.getElementById('kar').value;
+      var karid = $(this).parent().find('#karid').val();
+      document.getElementById('kar').value = karo.replace(karid, '');
     });
   
    });

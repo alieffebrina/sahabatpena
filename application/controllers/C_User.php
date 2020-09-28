@@ -275,6 +275,8 @@ class C_User extends CI_Controller{
 
     function savedu(){
         $this->M_User->savedu();
+            $this->session->set_flashdata('Sukses', "Data Berhasil Silakan Login!!");
+            redirect('login'); 
     }
 
 
