@@ -123,10 +123,10 @@
        var thnterbit = $("#thnterbit").val();
        var kar = $("#kar").val();
        var baris_baru = "<tr>\n\
-       <td>"+thnterbit+"<input type='text' name='thnterbitdu[]' value='"+thnterbit+"'></td>\n\
-        <td>"+judul+"<input type='text' name='juduldu[]' value='"+judul+"'></td>\n\
-        <td>"+jenis+"<input type='text' name='jenisdu[]' value='"+jenis+"'></td>\n\
-        <td>"+penerbit+"<input type='text' name='penerbitdu[]' value='"+penerbit+"'></td>\n\
+       <td>"+thnterbit+"<input type='hidden' name='thnterbitdu[]' value='"+thnterbit+"'></td>\n\
+        <td>"+judul+"<input type='hidden' name='juduldu[]' value='"+judul+"'></td>\n\
+        <td>"+jenis+"<input type='hidden' name='jenisdu[]' value='"+jenis+"'></td>\n\
+        <td>"+penerbit+"<input type='hidden' name='penerbitdu[]' value='"+penerbit+"'></td>\n\
                   </tr>";
        $("#karyatulisdu").append(baris_baru);
        document.getElementById('judul').value = '';
