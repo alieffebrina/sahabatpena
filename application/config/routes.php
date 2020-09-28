@@ -77,6 +77,7 @@ $route['login'] = 'C_Login';
 $route['login-1'] = 'C_Login/login/0';
 $route['registrasi'] = 'C_User/registrasi';
 $route['daftarulang'] = 'C_User/daftarulang';
+$route['daftarulang-cek/(:any)'] = 'C_User/daftarulangcek/$1';
 $route['cekanggota'] = 'C_Login/cekanggota';
 $route['setting'] = 'C_Setting';
 $route['mutasi'] = 'C_Mutasi';

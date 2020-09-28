@@ -123,11 +123,11 @@
        var thnterbit = $("#thnterbit").val();
        var kar = $("#kar").val();
        var baris_baru = "<tr>\n\
-       <td>"+thnterbit+"</td>\n\
-        <td>"+judul+"</td>\n\
-        <td>"+jenis+"</td>\n\
-        <td>"+penerbit+"</td>\n\
-        </tr>";
+       <td>"+thnterbit+"<input type='text' name='thnterbitdu[]' value='"+thnterbit+"'></td>\n\
+        <td>"+judul+"<input type='text' name='juduldu[]' value='"+judul+"'></td>\n\
+        <td>"+jenis+"<input type='text' name='jenisdu[]' value='"+jenis+"'></td>\n\
+        <td>"+penerbit+"<input type='text' name='penerbitdu[]' value='"+penerbit+"'></td>\n\
+                  </tr>";
        $("#karyatulisdu").append(baris_baru);
        document.getElementById('judul').value = '';
        document.getElementById('jenis').value = '';
@@ -138,7 +138,11 @@
        } else {
          document.getElementById('kar').value = kar+'/'+thnterbit+'_'+jenis+'_'+judul+'_'+penerbit;
         }
-     })
+     });
+     $("#karyatulisdu").on('click', '.remCF', function() {
+      $(this).parent().parent().remove();
+      // var suba= $(this).parent().find('#suba').val();
+    });
   
    });
    </script>

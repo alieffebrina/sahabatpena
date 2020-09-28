@@ -388,6 +388,40 @@ class M_User extends CI_Model {
         $this->db->update('tb_anggota',$user);
     }
 
+    function savedu(){
+        $user = array(
+            'nik' => $this->input->post('nik'),
+            'nama' => $this->input->post('nama'),
+            'alamat' => $this->input->post('alamat'),
+            'id_kota' => $this->input->post('kota'),
+            'id_provinsi' => $this->input->post('prov'),
+            'id_kecamatan' => $this->input->post('kecamatan'),
+            'email' => $this->input->post('email'),
+            'tlp' => $this->input->post('tlp'),
+            'tempatlahir' => $this->input->post('tempatlahir'),
+            'tgllahir' => date('Y-m-d', strtotime($this->input->post('tgllahir'))),
+            'facebook' => $this->input->post('fb'),
+            'instagram' => $this->input->post('ig'),
+            'twitter' => $this->input->post('tw'),
+            'youtube' => $this->input->post('yt'),
+            // 'foto' => $upload['file']['file_name'],
+            'tglupdate' => date('Y-m-d h:i:s'),
+            'tglregistrasi' => date('Y-m-d'),
+            'latarbelakang' => $this->input->post('latarbelakang1').'/'.$this->input->post('latarbelakang2').'/'.$this->input->post('latarbelakang3'),
+            'institusi' => $this->input->post('institusi'),
+            'namapanggilan' =>$this->input->post('namapanggilan'),
+            'username' => $this->input->post('namapanggilan'),
+            'statusanggota' => 'anggota',
+            'password' =>$this->input->post('namapanggilan').date('Y', strtotime($this->input->post('tgllahir'))),
+        );
+        $where = array(
+            'id_anggota' =>  $this->input->post('id'),
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_anggota',$user);
+    }
+
     function konfirm($id, $a){
         
         $user = array(
@@ -422,6 +456,21 @@ class M_User extends CI_Model {
     }   
 
     public function save($a){
+        // $karyatulis = $this->input->post('juduldu');
+        // $thnterbit=$this->input->post('thnterbitdu');
+        // $jenis=$this->input->post('jenisdu');
+        // $penerbit=$this->input->post('penerbitdu');
+        //     $index = 0;
+        //     foreach ((array)$karyatulis as $key) {
+        //         $data = array('id_anggota' => $a,
+        //             'karyatulis' => $value,
+        //             'tglpublish' => $thnterbit[$key],
+        //             'jenis' => $jenis[$key],
+        //             'penerbit' => $penerbit[$key]);
+
+        //         $this->db->insert('tb_karyatulis', $data);
+        //     }
+
         $kar = $this->input->post('kar');
         $karya = explode('/', $kar);
         foreach ($karya as $key) {

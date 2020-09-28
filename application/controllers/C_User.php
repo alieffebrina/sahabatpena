@@ -144,6 +144,17 @@ class C_User extends CI_Controller{
         $this->load->view('template/footer');
     }
 
+    function daftarulangcek($a)
+    {
+
+        $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['korwil'] = $this->M_Korwil->getkorwil();
+        $data['user'] = $this->M_User->getspek($a);
+        $data['karyatulis'] = $this->M_User->getkaryatulis($a);
+        $this->load->view('user/v_daftarulangcek', $data); 
+        $this->load->view('template/footer');
+    }
+
      function cek_nik(){
         $tabel = 'tb_anggota';
         $cek = 'nik';
@@ -202,17 +213,34 @@ class C_User extends CI_Controller{
 
      public function adddu()
     {   
+        // $karyatulis = $this->input->post('juduldu');
+        // $thnterbit=$this->input->post('thnterbitdu');
+        // $jenis=$this->input->post('jenisdu');
+        // $penerbit=$this->input->post('penerbitdu');
+        // // print_r($karyatulis);
+        // echo $karyatulis;
+        //     $index = 0;
+        //     foreach ((array)$karyatulis as $key) {
+        //         $data = array('id_anggota' => $a,
+        //             'karyatulis' => $key,
+        //             'tglpublish' => $thnterbit[$index],
+        //             'jenis' => $jenis[$index],
+        //             'penerbit' => $penerbit[$index]);
+
+        //         $this->db->insert('tb_karyatulis', $data);
+        //     }
+
         // echo "tes"; 
         $upload = $this->M_User->upload();
         if ($upload['result'] == "success"){
             $this->M_User->tambahregis($upload);
             
-        // $thnterbit = $this->input->post('kar'); 
-        // echo $thnterbit;
+        $thnterbit = $this->input->post('kar'); 
+        echo $thnterbit;
             $selectmax = $this->M_User->selectmax();
             foreach ($selectmax as $key) {
-                $a = $key->id_anggota;
-                $this->M_User->save($a);
+                $idanggota = $key->id_anggota;
+                $this->M_User->save($idanggota);
             }
             $korwil = $this->input->post('korwil');
 
@@ -228,26 +256,9 @@ class C_User extends CI_Controller{
             }
             $kode = $a;
             $this->M_User->noanggota($kode);
-            // $this->load->library('mailer');
-            // $email_penerima = 'alief.febrina@gmail.com';
-            // $subjek = $this->input->post('subjek');
-            // $pesan = 'php mail sukses'; // $this->input->post('pesan');
-            // // $attachment = $_FILES['attachment']; 
-            // $content = 'data berhasil dikirim'; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
-            // $sendmail = array(
-            //   'email_penerima'=>$email_penerima,
-            //   'subjek'=>$subjek,
-            //   'content'=>$content,
-            //   //'attachment'=>$attachment//
-            // );
-            // if(empty($attachment['name'])){ // Jika tanpa attachment
-            //   $send = $this->mailer->send($sendmail); // Panggil fungsi send yang ada di librari Mailer
-            // }else{ // Jika dengan attachment
-            //   $send = $this->mailer->send_with_attachment($sendmail); // Panggil fungsi send_with_attachment yang ada di librari Mailer
-            // }
             
             $this->session->set_flashdata('Sukses', "Data Berhasil Silakan Login!!");
-            redirect('login'); 
+            redirect('daftarulang-cek/'.$idanggota); 
         } else {
             'upload gagal';
         }
@@ -260,6 +271,10 @@ class C_User extends CI_Controller{
         $this->M_User->tambahkaryatulis();
         $this->session->set_flashdata('Sukses', "Record Added Successfully!!");
         redirect('user-karyatulis');  
+    }
+
+    function savedu(){
+        $this->M_User->savedu();
     }
 
 
@@ -282,8 +297,8 @@ class C_User extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
-        $data['user'] = $this->M_User->getspek($iduser);
         $data['korwil'] = $this->M_Korwil->getkorwil();
+        $data['user'] = $this->M_User->getspek($iduser);
         $data['karyatulis'] = $this->M_User->getkaryatulis($iduser);
         $this->load->view('user/v_euser',$data); 
         $this->load->view('template/footer');

@@ -100,25 +100,28 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <?php echo form_open("C_User/adddu", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
+            <?php echo form_open("C_User/savedu", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
               <div class="box-body">
+                <?php foreach ($user as $user) { ?>
+
+                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $user->id_anggota ?>">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">NIK (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()" required >
+                    <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()" required value="<?php echo $user->nik ?>">
                   <span id="pesannik"></span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Nama (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="nama" name="nama" required >
+                    <input type="text" class="form-control" id="nama" name="nama" required value="<?php echo $user->nama ?>" >
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Nama Panggilan (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="namapanggilan" name="namapanggilan" required>
+                    <input type="text" class="form-control" id="namapanggilan" name="namapanggilan" required value="<?php echo $user->namapanggilan ?>">
                   </div>
                 </div>
                 <div class="form-group">
@@ -127,7 +130,7 @@
                     <select class="form-control select2" id="prov" name="prov" style="width: 100%;" required>
                       <option value="">--Pilih--</option>
                       <?php foreach ($provinsi as $provinsi) { ?>
-                      <option value="<?php echo $provinsi->id_provinsi ?>"><?php echo $provinsi->name_prov ?></option>
+                     <option value="<?php echo $provinsi->id_provinsi ?>" <?php if($provinsi->id_provinsi == $user->id_provinsi){echo "selected";} ?>><?php echo $provinsi->name_prov ?></option>
                       <?php } ?>
                     </select>
                   </div>
@@ -136,7 +139,7 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Kota/Kabupaten (*)</label>
                   <div class="col-sm-9">
                   <select class="form-control select2" id="kota" required name="kota" style="width: 100%;">
-                    
+                     <option value="<?php echo $user->id_kota ?>"><?php echo $user->name_kota ?></option>
                     </select>
                   </div>
                 </div>
@@ -144,45 +147,46 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan (*)</label>
                   <div class="col-sm-9">
                   <select class="form-control select2" id="kecamatan" required name="kecamatan" style="width: 100%;">
-                   
+                     <option value="<?php echo $user->id_kecamatan ?>"><?php echo $user->kecamatan ?></option>
                     </select>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Alamat (*)</label>
                   <div class="col-sm-9">
-                    <textarea class="form-control" rows="3" id="alamat" name="alamat" required ></textarea>
+                    <textarea class="form-control" rows="3" id="alamat" name="alamat" required ><?php echo $user->alamat; ?></textarea>
                   </div>
                 </div>  
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Tempat Lahir(*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tempatlahir" required name="tempatlahir"  >
+                    <input type="text" class="form-control" id="tempatlahir" required name="tempatlahir" value="<?php echo $user->tempatlahir ?>" >
                   </div>
                 </div>    
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Lahir (*)</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="tgllahir" required name="tgllahir"  >
+                    <input type="date" class="form-control" id="tgllahir" required name="tgllahir" value="<?php echo $user->tgllahir ?>" >
                   </div>
                 </div>  
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">No HP (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tlp" name="tlp" required maxlength="12" minlength="6" onkeypress="return Angkasaja(event)" >
+                    <input type="text" class="form-control" id="tlp" name="tlp" required maxlength="12" minlength="6" value="<?php echo $user->tlp ?>" onkeypress="return Angkasaja(event)" >
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">E-Mail (*)</label>
                   <div class="col-sm-9"> 
-                    <input type="email" class="form-control" id="email" name="email"required  >
+                    <input type="email" class="form-control" id="email" name="email"required value="<?php echo $user->email; ?>" >
                   </div>
                 </div>   
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Foto (*)</label>
                     <div class="col-sm-9">
-                    <input type="file" id="foto" required class="demoInputBox" name="foto" onchange="ValidateSize(this)">
-                  <p><span class="text-danger">Maksimal 2Mb </span></p>
+                      <img class="img-responsive" src="<?php echo base_url() ?>images/<?php echo $user->foto ?>" alt="Photo" width="197px" height="350px">
+                    <!-- <input type="file" id="foto" required class="demoInputBox" name="foto" onchange="ValidateSize(this)">
+                  <p><span class="text-danger">Maksimal 2Mb </span></p> -->
                   </div>
                 </div>
               </div>
@@ -203,25 +207,26 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Institusi / Profesi (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="institusi" required name="institusi"  >
+                    <input type="text" class="form-control" id="institusi" required name="institusi" value="<?php echo $user->institusi ?>" >
                   </div>
                 </div>  
+                <?php $lt = explode('/', $user->latarbelakang); ?>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S1</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="latarbelakang1" name="latarbelakang1"  >
+                    <input type="text" class="form-control" id="latarbelakang1" name="latarbelakang1" value="<?php echo $lt[0] ?>"  >
                   </div>
                 </div>    
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S2</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="latarbelakang2" name="latarbelakang2"  >
+                    <input type="text" class="form-control" id="latarbelakang2" name="latarbelakang2" value="<?php echo $lt[1] ?>"  >
                   </div>
                 </div> 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S1</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="latarbelakang3" name="latarbelakang3"  >
+                    <input type="text" class="form-control" id="latarbelakang3" name="latarbelakang3" value="<?php echo $lt[2] ?>" >
                   </div>
                 </div> 
                 <br>
@@ -245,25 +250,25 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Instagram</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="ig" name="ig"  >
+                    <input type="text" class="form-control" id="ig" name="ig" value="<?php echo $user->instagram ?>"  >
                   </div>
                 </div>       
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Facebook</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="fb" name="fb">
+                    <input type="text" class="form-control" id="fb" name="fb" value="<?php echo $user->facebook ?>">
                   </div>
                 </div>       
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Twitter</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tw" name="tw" >
+                    <input type="text" class="form-control" id="tw" name="tw"value="<?php echo $user->twitter ?>">
                   </div>
                 </div>       
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Youtube Channel</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="yt" name="yt" >
+                    <input type="text" class="form-control" id="yt" name="yt" value="<?php echo $user->youtube ?>">
                   </div>
                 </div>
                 <br>
@@ -287,12 +292,12 @@
               <div class="form-horizontal">
                 
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang / Wilayah (*)</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Korwil (*)</label>
                   <div class="col-sm-9">
                     <select class="form-control select2" id="korwil" name="korwil" required style="width: 100%;">
                       <option value="">--Pilih--</option>
                       <?php foreach ($korwil as $korwil) { ?>
-                      <option value="<?php echo $korwil->id_korwil ?>"><?php echo $korwil->namakorwil ?></option>
+                      <option value="<?php echo $korwil->id_korwil ?>" <?php if($korwil->id_korwil == $user->id_korwil ){echo "selected";} ?>><?php echo $korwil->namakorwil ?></option>
                       <?php } ?>
                     </select>
                   </div>
@@ -307,7 +312,7 @@
         </div>
           <!-- /.box -->
           <!-- /.box -->
-        
+        <?php } ?>
               <!-- /.box-footer -->
         <div class="row">
         <!-- left column -->
@@ -318,41 +323,7 @@
               <h3 class="box-title">Data Karya Tulis / Karya Ilmiah</h3>
             </div>
               <!-- Date dd/mm/yyyy -->
-               <div class="form-horizontal">
-                
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Judul (*)</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="judul"  placeholder="Judul" >
-                  </div>
-                </div>  
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Jenis (*)</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="jenis" placeholder="Jenis">
-                  </div>
-                </div> 
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Penerbit / Publisher (*)</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="penerbit" placeholder="Penerbit / Publisher" >
-                    <input type="text" class="form-control" id="kar" name="kar" >
-                  </div>
-                </div> 
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Publish (*)</label>
-                  <div class="col-sm-9">
-                    <input type="date" class="form-control" id="thnterbit" placeholder="Tanggal Publish"  >
-                  </div>
-                </div>   
-              </div>
-
-              <div class="box-footer">
-                  <div class="col-sm-10">
-                    <button type="button" class="btn btn-info" id='tktdu'>Tambah Karya</button>
-                  </div>
-                </div> 
-                 <div class="box-body">
+              <div class="box-body">
               <table id="karyatulisdu" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -363,6 +334,14 @@
                 </tr>
                 </thead>
                 <tbody>
+                  <?php foreach ($karyatulis as $key) { ?>
+                    <tr>
+                      <td><?php echo $key->tglpublish ?></td>
+                      <td><?php echo $key->karyatulis ?></td>
+                      <td><?php echo $key->jenis ?></td>
+                      <td><?php echo $key->penerbit ?></td>
+                    </tr>
+                  <?php } ?>
                 </tbody>
               </table>
             </div>
