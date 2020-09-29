@@ -370,9 +370,6 @@
                   <div class="col-sm-10">
                     <a href="<?php echo site_url('Welcome'); ?>" class="btn btn-default">Batal</a>
                     <button type="submit" class="btn btn-info">Simpan Data</button>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#tes">
-                            priview
-                          </button>
                   </div>
                 </div> 
               <!-- /.form group -->
