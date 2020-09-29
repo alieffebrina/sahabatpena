@@ -141,7 +141,7 @@ class C_User extends CI_Controller{
         $data['korwil'] = $this->M_Korwil->getkorwil();
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $this->load->view('user/v_daftarulang', $data); 
-        $this->load->view('user/v_tes', $data); 
+        // $this->load->view('user/v_tes', $data); 
         $this->load->view('template/footer');
     }
 

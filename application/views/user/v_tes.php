@@ -279,9 +279,6 @@
 	// $('#myModal').on('shown.bs.modal', function () {
 	//   $('#myInput').focus()
 	// })
-	$('#myModal').on('hidden.bs.modal', function () {
-	  document.location.reload();
-	})
 	$('#myModal').modal('show')
 </script>
 </body>
