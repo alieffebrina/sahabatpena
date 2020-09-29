@@ -4,15 +4,15 @@
     <section class="content-header">
       <h1>
         <?php foreach ($korwil as $korwil) {
-          echo 'Data Korwil '.$korwil->namakorwil;
+          echo 'Data Cabang / Wilayah '.$korwil->namakorwil;
           $kor = $korwil->id_korwil;
         } ?>
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_Korwil'); ?>">Data Korwil</a></li>
-        <li class="active">Lihat Korwil</li>
+        <li><a href="<?php echo site_url('C_Korwil'); ?>">Data  Cabang / Wilayah</a></li>
+        <li class="active">Lihat  Cabang / Wilayah</li>
       </ol>
     </section>
     <div class="box-body">
@@ -31,7 +31,7 @@
         <div class='col-lg-12'>
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Lihat Data Korwil</h3>
+              <h3 class="box-title">Lihat Data Cabang / Wilayah</h3>
             </div>
             <!-- /.box-header -->
 
@@ -39,7 +39,7 @@
                <table id="example5" class="table table-bordered table-striped">
                 <tbody>
                 <tr>
-                  <th style="text-align: right; width: 150px" >Nama Korwil</th>
+                  <th style="text-align: right; width: 150px" >Nama  Cabang / Wilayah</th>
                   <td width="10px">:</td>
                   <td style="text-align: left;"><?php echo $korwil->namakorwil; ?></td>
                 </tr>
@@ -69,7 +69,7 @@
                   <td><?php echo $korwil->kecamatan; ?></td>
                 </tr>
                 <tr>
-                  <th style="text-align: right; width: 150px" >Kode Korwil</th>
+                  <th style="text-align: right; width: 150px" >Kode  Cabang / Wilayah</th>
                   <td>:</td>
                   <td><?php echo $korwil->kodekorwil; ?></td>
                 </tr>
@@ -87,7 +87,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Pengurus Korwil</h3>
+              <h3 class="box-title">Data Pengurus  Cabang / Wilayah</h3>
             </div>
             <!-- /.box-header -->
 

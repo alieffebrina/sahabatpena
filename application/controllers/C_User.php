@@ -141,6 +141,7 @@ class C_User extends CI_Controller{
         $data['korwil'] = $this->M_Korwil->getkorwil();
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $this->load->view('user/v_daftarulang', $data); 
+        $this->load->view('user/v_tes', $data); 
         $this->load->view('template/footer');
     }
 
@@ -151,7 +152,10 @@ class C_User extends CI_Controller{
         $data['korwil'] = $this->M_Korwil->getkorwil();
         $data['user'] = $this->M_User->getspek($a);
         $data['karyatulis'] = $this->M_User->getkaryatulis($a);
-        $this->load->view('user/v_daftarulangcek', $data); 
+
+        $this->load->view('user/v_tes', $data);
+        // $this->load->view('user/v_daftarulangcek', $data); 
+        // $this->load->view('template/show');
         $this->load->view('template/footer');
     }
 
@@ -231,37 +235,49 @@ class C_User extends CI_Controller{
         //     }
 
         // echo "tes"; 
-        $upload = $this->M_User->upload();
-        if ($upload['result'] == "success"){
-            $this->M_User->tambahregis($upload);
+        // $upload = $this->M_User->upload();
+        // if ($upload['result'] == "success"){
+        //     $this->M_User->tambahregis($upload);
             
-        $thnterbit = $this->input->post('kar'); 
-        echo $thnterbit;
+        // $thnterbit = $this->input->post('kar'); 
+        // // echo $thnterbit;
             $selectmax = $this->M_User->selectmax();
             foreach ($selectmax as $key) {
                 $idanggota = $key->id_anggota;
-                $this->M_User->save($idanggota);
+                // $this->M_User->save($idanggota);
             }
-            $korwil = $this->input->post('korwil');
+        //     $korwil = $this->input->post('korwil');
 
-            $kode = $this->M_Korwil->cekkode($korwil);
-            foreach ($kode as $modul) {
-                $a = $modul->kodekorwil;
-                date_default_timezone_set('Asia/Jakarta');
-                $tgl = date('dmY');
-                $a = str_replace("tanggal", $tgl, $a);
-                $data = $this->M_User->getjumlahwilayah($korwil);
-                $id = count($data)+1;
-                $a = str_replace("no", $id, $a);
-            }
-            $kode = $a;
-            $this->M_User->noanggota($kode);
+        //     $kode = $this->M_Korwil->cekkode($korwil);
+        //     foreach ($kode as $modul) {
+        //         $a = $modul->kodekorwil;
+        //         date_default_timezone_set('Asia/Jakarta');
+        //         $tgl = date('dmY');
+        //         $a = str_replace("tanggal", $tgl, $a);
+        //         $data = $this->M_User->getjumlahwilayah($korwil);
+        //         $id = count($data)+1;
+        //         $a = str_replace("no", $id, $a);
+        //     }
+        //     $kode = $a;
+        //     $this->M_User->noanggota($kode);
             
-            $this->session->set_flashdata('Sukses', "Data Berhasil Silakan Login!!");
+        //     $this->session->set_flashdata('Sukses', "Data Berhasil Silakan Login!!");
             redirect('daftarulang-cek/'.$idanggota); 
-        } else {
-            'upload gagal';
-        }
+
+        // $this->load->view('user/v_tes', $idanggota); 
+        // $this->load->view('template/footer');
+            // echo "<script type='text/javascript' language='javascript'>
+            //         window.open('base_url('C_User/cek/'".$idanggota."'), 'Kursus Web di Bekasi', 'width=800, height=600, status=1,scrollbar=yes')</script>";
+        // } else {
+        //     'upload gagal';
+        // }
+    }
+
+    function cek($ida)
+    {
+        
+        $this->session->set_flashdata('Sukses', "Data Berhasil Dihapus.");
+        $this->load->view('user/v_tes');
     }
 
 

@@ -4,14 +4,14 @@
     <section class="content-header">
       <h1>
         <?php foreach ($korwil as $korwil) {
-          echo 'Data Korwil '.$korwil->namakorwil;
+          echo 'Data  Cabang / Wilayah '.$korwil->namakorwil;
           $kor = $korwil->id_korwil;
         } ?>
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_Korwil'); ?>">Data Korwil</a></li>
+        <li><a href="<?php echo site_url('C_Korwil'); ?>">Data  Cabang / Wilayah</a></li>
         <li class="active">Lihat Pengurus</li>
       </ol>
     </section>
@@ -31,7 +31,7 @@
         <div class='col-lg-12'>
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Tambah Data Pengurus Korwil</h3>
+              <h3 class="box-title">Tambah Data Pengurus  Cabang / Wilayah</h3>
             </div>
             <!-- /.box-header -->
 
@@ -108,7 +108,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Pengurus Korwil</h3>
+              <h3 class="box-title">Data Pengurus  Cabang / Wilayah</h3>
             </div>
             <!-- /.box-header -->
 

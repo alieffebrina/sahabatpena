@@ -89,235 +89,148 @@
       </section>
 
       <!-- Main content -->
-     <section class="content">
-      <div class="row">
-        <!-- left column -->
-        <div class="col-md-12">
-          <!-- Horizontal Form -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Data Pribadi</h3>
+ 
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>            
+			<div class="box-header with-border">
+              <h3 class="box-title">Quick Example</h3>
             </div>
-            <!-- /.box-header -->
-            <!-- form start -->
-            <?php echo form_open("C_User/savedu", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
+   		</div>
+
+      <div class="modal-body">
+      <div class="box box-primary">
+        <?php echo form_open("C_User/savedu", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
               <div class="box-body">
                 <?php foreach ($user as $user) { ?>
 
-                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $user->id_anggota ?>">
+                 <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $user->id_anggota ?>">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">NIK (*)</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">NIK (*)</label>
                     <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()" required value="<?php echo $user->nik ?>">
                   <span id="pesannik"></span>
-                  </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Nama (*)</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Nama (*)</label>
                     <input type="text" class="form-control" id="nama" name="nama" required value="<?php echo $user->nama ?>" >
                   </div>
-                </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Nama Panggilan (*)</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="namapanggilan" name="namapanggilan" required value="<?php echo $user->namapanggilan ?>">
-                  </div>
-                </div>
+                  <label for="exampleInputPassword1">Nama Panggilan (*)</label>
+                    <input type="text" class="form-control" id="namapanggilan" name="namapanggilan" required value="<?php echo $user->namapanggilan ?>"></div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Provinsi (*)</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Provinsi (*)</label>
                     <select class="form-control select2" id="prov" name="prov" style="width: 100%;" required>
                       <option value="">--Pilih--</option>
                       <?php foreach ($provinsi as $provinsi) { ?>
                      <option value="<?php echo $provinsi->id_provinsi ?>" <?php if($provinsi->id_provinsi == $user->id_provinsi){echo "selected";} ?>><?php echo $provinsi->name_prov ?></option>
                       <?php } ?>
-                    </select>
-                  </div>
-                </div>
+                    </select></div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kota/Kabupaten (*)</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Kota/Kabupaten (*)</label>
                   <select class="form-control select2" id="kota" required name="kota" style="width: 100%;">
                      <option value="<?php echo $user->id_kota ?>"><?php echo $user->name_kota ?></option>
-                    </select>
-                  </div>
-                </div>
+                    </select></div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kecamatan (*)</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Kecamatan (*)</label>
                   <select class="form-control select2" id="kecamatan" required name="kecamatan" style="width: 100%;">
                      <option value="<?php echo $user->id_kecamatan ?>"><?php echo $user->kecamatan ?></option>
-                    </select>
-                  </div>
-                </div>
+                    </select></div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Alamat (*)</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Alamat (*)</label>
                     <textarea class="form-control" rows="3" id="alamat" name="alamat" required ><?php echo $user->alamat; ?></textarea>
-                  </div>
-                </div>  
+                  </div> 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Tempat Lahir(*)</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Tempat Lahir(*)</label>
                     <input type="text" class="form-control" id="tempatlahir" required name="tempatlahir" value="<?php echo $user->tempatlahir ?>" >
-                  </div>
-                </div>    
+                  </div>    
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Lahir (*)</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Tanggal Lahir (*)</label>
                     <input type="date" class="form-control" id="tgllahir" required name="tgllahir" value="<?php echo $user->tgllahir ?>" >
                   </div>
-                </div>  
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">No HP (*)</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="tlp" name="tlp" required maxlength="12" minlength="6" value="<?php echo $user->tlp ?>" onkeypress="return Angkasaja(event)" >
-                  </div>
-                </div>
+                  <label for="exampleInputPassword1">No HP (*)</label>
+                    <input type="text" class="form-control" id="tlp" name="tlp" required maxlength="12" minlength="6" value="<?php echo $user->tlp ?>" onkeypress="return Angkasaja(event)" ></div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">E-Mail (*)</label>
-                  <div class="col-sm-9"> 
+                  <label for="exampleInputPassword1">E-Mail (*)</label> 
                     <input type="email" class="form-control" id="email" name="email"required value="<?php echo $user->email; ?>" >
-                  </div>
-                </div>   
+                  </div> 
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Foto (*)</label>
-                    <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Foto (*)</label>
                       <img class="img-responsive" src="<?php echo base_url() ?>images/<?php echo $user->foto ?>" alt="Photo" width="197px" height="350px">
                     <!-- <input type="file" id="foto" required class="demoInputBox" name="foto" onchange="ValidateSize(this)">
                   <p><span class="text-danger">Maksimal 2Mb </span></p> -->
                   </div>
-                </div>
               </div>
           </div>
-        </div>
-      </div>   
-           <!-- left column -->
-      <div class="row">
-        <!-- left column -->
-        <div class="col-md-12">
-          <!-- Horizontal Form -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Pendidikan</h3>
+      <div class="box box-primary">
+      	<div class="box-header with-border">
+              <h3 class="box-title">Quick Example</h3>
             </div>
               <!-- Date dd/mm/yyyy -->
-              <div class="form-horizontal"> 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Institusi / Profesi (*)</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Institusi / Profesi (*)</label>
                     <input type="text" class="form-control" id="institusi" required name="institusi" value="<?php echo $user->institusi ?>" >
-                  </div>
-                </div>  
+                </div>
                 <?php $lt = explode('/', $user->latarbelakang); ?>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S1</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Pendidikan S1</label>
                     <input type="text" class="form-control" id="latarbelakang1" name="latarbelakang1" value="<?php echo $lt[0] ?>"  >
-                  </div>
-                </div>    
+                 </div>    
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S2</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Pendidikan S2</label>
                     <input type="text" class="form-control" id="latarbelakang2" name="latarbelakang2" value="<?php echo $lt[1] ?>"  >
-                  </div>
-                </div> 
+                 </div> 
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S1</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Pendidikan S3</label>
                     <input type="text" class="form-control" id="latarbelakang3" name="latarbelakang3" value="<?php echo $lt[2] ?>" >
-                  </div>
                 </div> 
-                <br>
-              </div>
+      	</div>
               <!-- /.form group -->
-
-            </div>
-            <!-- /.box-body -->
-          </div>
-        </div>  
-      <div class="row">
-        <!-- left column -->
-        <div class="col-md-12">
-          <!-- Horizontal Form -->
-          <div class="box box-primary">
+		<div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Data Sosial Media</h3>
             </div>
-              <!-- Date dd/mm/yyyy -->
-              <div class="form-horizontal">
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Instagram</label>
-                  <div class="col-sm-9">
+              <div class="form-group">
+                  <label for="exampleInputPassword1">Instagram</label>
                     <input type="text" class="form-control" id="ig" name="ig" value="<?php echo $user->instagram ?>"  >
-                  </div>
                 </div>       
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Facebook</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Facebook</label>
                     <input type="text" class="form-control" id="fb" name="fb" value="<?php echo $user->facebook ?>">
                   </div>
-                </div>       
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Twitter</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Twitter</label>
                     <input type="text" class="form-control" id="tw" name="tw"value="<?php echo $user->twitter ?>">
-                  </div>
                 </div>       
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Youtube Channel</label>
-                  <div class="col-sm-9">
+                  <label for="exampleInputPassword1">Youtube Channel</label>
                     <input type="text" class="form-control" id="yt" name="yt" value="<?php echo $user->youtube ?>">
-                  </div>
                 </div>
-                <br>
-              </div>
-              <!-- /.form group -->
-
-            </div>
-            <!-- /.box-body -->
-          </div>
         </div>
-        
-      <div class="row">
-        <!-- left column -->
-        <div class="col-md-12">
-          <!-- Horizontal Form -->
-          <div class="box box-primary">
+              <!-- /.form group -->
+		<div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Data Status Keanggotaan</h3>
             </div>
               <!-- Date dd/mm/yyyy -->
-              <div class="form-horizontal">
-                
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Korwil (*)</label>
-                  <div class="col-sm-9">
-                    <select class="form-control select2" id="korwil" name="korwil" required style="width: 100%;">
+                  <label for="exampleInputPassword1">Cabang / Wilayah (*)</label>
+                    <select class="form-control select2" id="korwil" name="Cabang / Wilayah" required style="width: 100%;">
                       <option value="">--Pilih--</option>
                       <?php foreach ($korwil as $korwil) { ?>
                       <option value="<?php echo $korwil->id_korwil ?>" <?php if($korwil->id_korwil == $user->id_korwil ){echo "selected";} ?>><?php echo $korwil->namakorwil ?></option>
                       <?php } ?>
                     </select>
                   </div>
-                </div>      
-                <br>
-              </div>
-              <!-- /.form group -->
-
-            </div>
-            <!-- /.box-body -->
-          </div>
+           
         </div>
           <!-- /.box -->
           <!-- /.box -->
         <?php } ?>
               <!-- /.box-footer -->
-        <div class="row">
-        <!-- left column -->
-        <div class="col-md-12">
-          <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Data Karya Tulis / Karya Ilmiah</h3>
@@ -347,24 +260,29 @@
             </div>
               <div class="box-footer">
                   <div class="col-sm-10">
-                    <a href="<?php echo site_url('Welcome'); ?>" class="btn btn-default">Batal</a>
-                    <button type="submit" class="btn btn-info">Simpan Data</button>
-                     <button type="button" class="btn btn-default" id="priview" data-toggle="modal" data-target="#tes">
-                            priview
-                          </button>
+                    <a href="<?php echo site_url('Welcome'); ?>" class="btn btn-default">Kembali</a>
+                    <button type="submit" class="btn btn-info">Konfirmasi</button>
                   </div>
                 </div> 
               <!-- /.form group -->
 
            <?php echo form_close();?>
-              <!-- /.form group -->
-            </div>
-            <!-- /.box-body -->
-          </div>
-        </div>
-          <!-- /.box -->
-        </div>
-      <!-- /.row -->
-    </section>
-    <!-- /.content -->
+      </div>
+    </div>
   </div>
+</div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+	// $('#myModal').on('shown.bs.modal', function () {
+	//   $('#myInput').focus()
+	// })
+	$('#myModal').on('hidden.bs.modal', function () {
+	  document.location.reload();
+	})
+	$('#myModal').modal('show')
+</script>
+</body>
+</html>

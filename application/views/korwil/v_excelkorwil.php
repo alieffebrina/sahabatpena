@@ -9,16 +9,16 @@ header("Expires: 0");
 <table border="1" width="100%">
 <thead>
 <tr>
-	<th colspan="7"> Data Laporan Pembelian</th>
+	<th colspan="7"> Data Laporan  Cabang / Wilayah</th>
 </tr>
 <tr>
   <th>No</th>
-  <th>Korwil</th>
+  <th> Cabang / Wilayah</th>
   <th>Alamat</th>
   <th>Provinsi</th>
   <th>Kota</th>
   <th>Kecamatan</th>
-  <th>Kode Korwil</th>
+  <th>Kode  Cabang / Wilayah</th>
  </tr>
 </thead>
 <tbody>

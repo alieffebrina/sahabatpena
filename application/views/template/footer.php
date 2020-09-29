@@ -204,8 +204,8 @@
       });
     });
   });
-  </script>
 
+  </script>
   <script type="text/javascript">
   function Angkasaja(evt) {
     var charCode = (evt.which) ? evt.which : event.keyCode
@@ -214,7 +214,6 @@
     return true;
   }
 </script>
-
 <script type="text/javascript">
 function toggle(source) {
     var checkboxes = document.querySelectorAll('input[type="checkbox"]');

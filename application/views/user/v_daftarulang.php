@@ -321,6 +321,12 @@
                <div class="form-horizontal">
                 
                 <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Publish (*)</label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" id="thnterbit" placeholder="Tanggal Publish"  >
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Judul (*)</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="judul"  placeholder="Judul" >
@@ -338,13 +344,7 @@
                     <input type="text" class="form-control" id="penerbit" placeholder="Penerbit / Publisher" >
                     <input type="hidden" class="form-control" id="kar" name="kar" >
                   </div>
-                </div> 
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Publish (*)</label>
-                  <div class="col-sm-9">
-                    <input type="date" class="form-control" id="thnterbit" placeholder="Tanggal Publish"  >
-                  </div>
-                </div>   
+                </div>    
               </div>
 
               <div class="box-footer">
@@ -370,6 +370,9 @@
                   <div class="col-sm-10">
                     <a href="<?php echo site_url('Welcome'); ?>" class="btn btn-default">Batal</a>
                     <button type="submit" class="btn btn-info">Simpan Data</button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#tes">
+                            priview
+                          </button>
                   </div>
                 </div> 
               <!-- /.form group -->

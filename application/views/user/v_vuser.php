@@ -252,7 +252,9 @@
                 <tr>
                   <th>No</th>
                   <th>Tanggal Publish</th>
-                  <th>Karya Tulis</th>
+                  <th>Judul Karya Tulis</th>
+                  <th>Jenis Karya Tulis</th>
+                  <th>Penerbit / Publiser</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -263,6 +265,8 @@
                   <td><?php echo $no++; ?></td>
                   <td><?php echo date('d-m-Y', strtotime($karyatulis->tglpublish)); ?></td>
                   <td><?php echo $karyatulis->karyatulis; ?></td>
+                  <td><?php echo $karyatulis->jenis; ?></td>
+                  <td><?php echo $karyatulis->penerbit; ?></td>
                 </tr>
                   <?php } ?>
                 </tbody>

@@ -28,9 +28,9 @@
             <?php echo form_open("C_Korwil/tambah", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
               <div class="box-body">
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Nama Korwil</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Nama  Cabang / Wilayah</label>
                     <div class="col-sm-9">
-                       <input type="text" class="form-control" id="namakorwil" name="namakorwil" placeholder="Nama Korwil" required>
+                       <input type="text" class="form-control" id="namakorwil" name="namakorwil" placeholder="Nama  Cabang / Wilayah" required>
                   </div>
                 </div>
 
@@ -73,11 +73,11 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kode Korwil</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Kode  Cabang / Wilayah</label>
                   <div class="col-sm-9">
                   <div class="input-group input-group-sm">
 
-                    <input type="text" class="form-control" name="kodekorwil" id="kodekorwil" placeholder="Kode Korwil" readonly required>
+                    <input type="text" class="form-control" name="kodekorwil" id="kodekorwil" placeholder="Kode  Cabang / Wilayah" readonly required>
                         <span class="input-group-btn">
                           <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalkorwil">
                             Tambah
