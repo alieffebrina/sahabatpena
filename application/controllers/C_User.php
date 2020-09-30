@@ -217,60 +217,56 @@ class C_User extends CI_Controller{
 
      public function adddu()
     {   
-        // $karyatulis = $this->input->post('juduldu');
-        // $thnterbit=$this->input->post('thnterbitdu');
-        // $jenis=$this->input->post('jenisdu');
-        // $penerbit=$this->input->post('penerbitdu');
-        // // print_r($karyatulis);
-        // echo $karyatulis;
-        //     $index = 0;
-        //     foreach ((array)$karyatulis as $key) {
-        //         $data = array('id_anggota' => $a,
-        //             'karyatulis' => $key,
-        //             'tglpublish' => $thnterbit[$index],
-        //             'jenis' => $jenis[$index],
-        //             'penerbit' => $penerbit[$index]);
+        $karyatulis = $this->input->post('juduldu');
+        $thnterbit=$this->input->post('thnterbitdu');
+        $jenis=$this->input->post('jenisdu');
+        $penerbit=$this->input->post('penerbitdu');
+        // print_r($karyatulis);
+        echo $karyatulis;
+            $index = 0;
+            foreach ((array)$karyatulis as $key) {
+                $data = array('id_anggota' => $a,
+                    'karyatulis' => $key,
+                    'tglpublish' => $thnterbit[$index],
+                    'jenis' => $jenis[$index],
+                    'penerbit' => $penerbit[$index]);
 
-        //         $this->db->insert('tb_karyatulis', $data);
-        //     }
+                $this->db->insert('tb_karyatulis', $data);
+            }
 
-        // echo "tes"; 
-        // $upload = $this->M_User->upload();
-        // if ($upload['result'] == "success"){
-        //     $this->M_User->tambahregis($upload);
+        echo "tes"; 
+        $upload = $this->M_User->upload();
+        if ($upload['result'] == "success"){
+            $this->M_User->tambahregis($upload);
             
-        // $thnterbit = $this->input->post('kar'); 
-        // // echo $thnterbit;
+        $thnterbit = $this->input->post('kar'); 
+        // echo $thnterbit;
             $selectmax = $this->M_User->selectmax();
             foreach ($selectmax as $key) {
                 $idanggota = $key->id_anggota;
-                // $this->M_User->save($idanggota);
+                $this->M_User->save($idanggota);
             }
-        //     $korwil = $this->input->post('korwil');
+            $korwil = $this->input->post('korwil');
 
-        //     $kode = $this->M_Korwil->cekkode($korwil);
-        //     foreach ($kode as $modul) {
-        //         $a = $modul->kodekorwil;
-        //         date_default_timezone_set('Asia/Jakarta');
-        //         $tgl = date('dmY');
-        //         $a = str_replace("tanggal", $tgl, $a);
-        //         $data = $this->M_User->getjumlahwilayah($korwil);
-        //         $id = count($data)+1;
-        //         $a = str_replace("no", $id, $a);
-        //     }
-        //     $kode = $a;
-        //     $this->M_User->noanggota($kode);
+            $kode = $this->M_Korwil->cekkode($korwil);
+            foreach ($kode as $modul) {
+                $a = $modul->kodekorwil;
+                date_default_timezone_set('Asia/Jakarta');
+                $tgl = date('dmY');
+                $a = str_replace("tanggal", $tgl, $a);
+                $data = $this->M_User->getjumlahwilayah($korwil);
+                $id = count($data)+1;
+                $a = str_replace("no", $id, $a);
+            }
+            $kode = $a;
+            $this->M_User->noanggota($kode);
             
         //     $this->session->set_flashdata('Sukses', "Data Berhasil Silakan Login!!");
             redirect('daftarulang-cek/'.$idanggota); 
 
-        // $this->load->view('user/v_tes', $idanggota); 
-        // $this->load->view('template/footer');
-            // echo "<script type='text/javascript' language='javascript'>
-            //         window.open('base_url('C_User/cek/'".$idanggota."'), 'Kursus Web di Bekasi', 'width=800, height=600, status=1,scrollbar=yes')</script>";
-        // } else {
-        //     'upload gagal';
-        // }
+        } else {
+            'upload gagal';
+        }
     }
 
     function cek($ida)
