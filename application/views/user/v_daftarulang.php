@@ -219,7 +219,7 @@
                   </div>
                 </div> 
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S1</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S3</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="latarbelakang3" name="latarbelakang3"  >
                   </div>
