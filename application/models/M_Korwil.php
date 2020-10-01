@@ -3,6 +3,7 @@
 class M_Korwil extends CI_Model {
 
 	function getkorwil(){
+        $this->db->order_by('namakorwil', 'ASC');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_korwil.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_korwil.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_korwil.id_kecamatan');
