@@ -1,0 +1,53 @@
+UPDATE DPOS
+
+27/11/2018
+fix bug pindah meja cetak item tidak update status=1
+fix bug batal pesan data item terhapus di meja yang sama status=1
+
+
+6/10/2018
+migrasi DPOS-PHP Framework
+tambah dapur
+barcode kasir
+
+8/10/2018
+update kasir
+
+20/4/2018
+pilih ikuran kertas print struk 58 | 80
+edit penjualan
+
+9/4/2018
+bug mysql/sqlite escape string : fix
+
+2/4/2018
+update hak akses
+
+17/3/2018
+bug kode barang sama : fix
+bug total kas tidak update -fix
+
+versi 1.4.5
+13/3/2018
+hapus return pada cashflow : laporan > kas : fix
+
+
+versi 1.4.4
+10/3/3018
+printer dialog hilang di chrome : kasir > print : fix
+hapus database di mysql : pengaturan : hapus databse : fix
+perbaikan cetak produk expired : laporan > cetak : fix
+ajax loader pada upload database, gambar background : pengaturan : fix
+ajax loader pada upload gambar produk : master > barang -fix
+
+
+
+
+
+
+
+
+
+
+
+
