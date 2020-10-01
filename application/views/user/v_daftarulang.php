@@ -195,7 +195,7 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Pendidikan</h3>
+              <h3 class="box-title">Lata Belakang & Riwayat Pendidikan Terakhir</h3>
             </div>
               <!-- Date dd/mm/yyyy -->
               <div class="form-horizontal"> 
@@ -237,7 +237,7 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Data Sosial Media</h3>
+              <h3 class="box-title">Akun Sosial Media</h3>
             </div>
               <!-- Date dd/mm/yyyy -->
               <div class="form-horizontal">
@@ -280,7 +280,7 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Data Status Keanggotaan</h3>
+              <h3 class="box-title">Pilih Cabang / Wilayah Status Keanggotaan</h3>
             </div>
               <!-- Date dd/mm/yyyy -->
               <div class="form-horizontal">
