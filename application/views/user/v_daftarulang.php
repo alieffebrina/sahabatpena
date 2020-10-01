@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Sahabat Pena Kita</title>
+  <title>Sahabat Pena Kita | Form Pendataan Anggota</title>
   <link rel="icon" type="image/png" href="<?php echo base_url() ?>favicon/favicon.ico"/>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -56,14 +56,14 @@
           </button>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+        <!-- <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Daftar Ulang <span class="sr-only">(current)</span></a></li>
             <li><a href="#">Registrasi</a></li>
             <li><a href="#">Login</a></li>
             <li><a href="#">Cek Anggota</a></li>
           </ul>
-        </div>
+        </div> -->
         <!-- /.navbar-collapse -->
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
@@ -78,14 +78,13 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Daftar Ulang
-          <small>Anggota Sahabat Pena Kita</small>
+          Form Pendataan Anggota Sahabat Pena Kita
         </h1>
-        <ol class="breadcrumb">
+        <!-- <ol class="breadcrumb">
           <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
           <li><a href="#">Daftar Ulang</a></li>
           <!-- <li class="active">Top Navigation</li> -->
-        </ol>
+        </ol> 
       </section>
 
       <!-- Main content -->
