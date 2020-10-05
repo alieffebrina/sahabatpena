@@ -190,7 +190,7 @@
                   </div>
                 </div> 
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Korwil</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Cabang / Wilayah</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="korwil" name="korwil" value="<?php 
                     if($key->id_korwil != NULL){

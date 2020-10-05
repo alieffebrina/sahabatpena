@@ -45,7 +45,7 @@
                   <th>Nama</th>
                   <th>Alamat</th>
                   <th>Status Anggota</th>
-                  <th>Korwil</th>
+                  <th>Cabang / Wilayah</th>
                   <th>Action</th>
                 </tr>
                 </thead>
