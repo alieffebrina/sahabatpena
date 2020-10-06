@@ -83,7 +83,7 @@
         <!-- <ol class="breadcrumb">
           <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
           <li><a href="#">Daftar Ulang</a></li>
-          <!-- <li class="active">Top Navigation</li> -->
+         <li class="active">Top Navigation</li> -->
         </ol> 
       </section>
 

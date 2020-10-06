@@ -109,13 +109,26 @@
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="institusi" name="institusi" value="<?php echo $key->institusi; ?>" >
                   </div>
-                </div>
+                </div>  
+                <?php $lt = explode("/", $key->latarbelakang)?>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Latar Belakang</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S1</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="latarbelakang" name="latarbelakang" value="<?php echo $key->latarbelakang; ?>" >
+                    <input type="text" class="form-control" id="latarbelakang1" name="latarbelakang1" value="<?php echo $lt[0]; ?>" >
                   </div>
                 </div>    
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S2</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="latarbelakang2" name="latarbelakang2" value="<?php echo $lt[1]; ?>" >
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S3</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="latarbelakang3" name="latarbelakang3" value="<?php echo $lt[2]; ?>"  >
+                  </div>
+                </div> 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Foto </label>
                     <div class="col-sm-6">

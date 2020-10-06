@@ -137,7 +137,7 @@ class M_User extends CI_Model {
             'foto' => $upload['file']['file_name'],
             'tglupdate' => date('Y-m-d h:i:s'),
             'tglregistrasi' => date('Y-m-d'),
-            'latarbelakang' => $this->input->post('latarbelakang'),
+            'latarbelakang' => $this->input->post('latarbelakang1').'/'.$this->input->post('latarbelakang2').'/'.$this->input->post('latarbelakang3'),
             'institusi' => $this->input->post('institusi')
         );
         
@@ -188,7 +188,7 @@ class M_User extends CI_Model {
             'foto' => $upload['file']['file_name'],
             'tglupdate' => date('Y-m-d h:i:s'),
             'tglregistrasi' => date('Y-m-d'),
-            'latarbelakang' => $this->input->post('latarbelakang'),
+            'latarbelakang' => $this->input->post('latarbelakang1').'/'.$this->input->post('latarbelakang2').'/'.$this->input->post('latarbelakang3'),
             'institusi' => $this->input->post('institusi')
         );
         
@@ -372,7 +372,7 @@ class M_User extends CI_Model {
             'instagram' => $this->input->post('instagram'),
             'twitter' => $this->input->post('twitter'),
             'youtube' => $this->input->post('youtube'),
-            'latarbelakang' => $this->input->post('latarbelakang'),
+            'latarbelakang' => $this->input->post('latarbelakang1').'/'.$this->input->post('latarbelakang2').'/'.$this->input->post('latarbelakang3'),
             'institusi' => $this->input->post('institusi'),
             'statusanggota' => $this->input->post('aktivasi'),
             'alasan' => $this->input->post('reason'),

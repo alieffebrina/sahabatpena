@@ -209,6 +209,7 @@ class C_User extends CI_Controller{
               $send = $this->mailer->send_with_attachment($sendmail); // Panggil fungsi send_with_attachment yang ada di librari Mailer
             }
             
+            $this->session->set_flashdata('Sukses', "Data Telah Disimpan!!");
             redirect('user');    
         } else {
             'upload gagal';

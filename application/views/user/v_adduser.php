@@ -126,25 +126,23 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Latar Belakang</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S1</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="latarbelakang" name="latarbelakang" placeholder="Latar Belakang" required>
+                    <input type="text" class="form-control" id="latarbelakang1" name="latarbelakang1" >
                   </div>
-                </div>     
-                 <!-- <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Karya Tulis</label>
+                </div>    
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S2</label>
                   <div class="col-sm-9">
-                  <div class="input-group input-group-sm">
-
-                    <input type="text" class="form-control" name="karyatulis[]" placeholder="Karya Tulis">
-                        <span class="input-group-btn">
-                          <button type="button" class="btn btn-default" id="btn" name="btn" onclick="tkt();">
-                            Tambah
-                          </button>
-                        </span>
+                    <input type="text" class="form-control" id="latarbelakang2" name="latarbelakang2" >
                   </div>
+                </div> 
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Pendidikan S3</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="latarbelakang3" name="latarbelakang3"  >
                   </div>
-                </div>   -->
+                </div>
 
                 <!-- <div class="form-group">
                         <div id="addtkt"></div>

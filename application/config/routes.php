@@ -60,6 +60,8 @@ $route['user-nonaktif/(:any)'] = 'C_User/nonaktif/$1';
 $route['user-resign/(:any)'] = 'C_User/resign/$1';
 $route['karyatulis'] = 'C_User/user_kt';
 $route['user-karyatulis'] = 'C_User/karyatulis';
+
+
 $route['Korwil'] = 'C_Korwil';
 $route['korwil-add'] = 'C_Korwil/add';
 $route['korwil-view/(:any)'] = 'C_Korwil/view/$1';
@@ -67,24 +69,38 @@ $route['korwil-edit/(:any)'] = 'C_Korwil/edit/$1';
 $route['korwil-p/(:any)'] = 'C_Korwil/pengurus/$1';
 $route['korwil-pe/(:any)'] = 'C_Korwil/penguruse/$1';
 $route['korwil-ph/(:any)/(:any)'] = 'C_Korwil/pengurush/$1/$2';
+
+
 $route['pengurus'] = 'C_Pengurus';
 $route['pengurus-add'] = 'C_Pengurus/add';
 $route['pengurus-view/(:any)'] = 'C_Pengurus/view/$1';
 $route['pengurus-edit/(:any)'] = 'C_Pengurus/edit/$1';
+
+
 $route['laporan-anggota'] = 'C_User/laporan';
 $route['laporan-korwil'] = 'C_Korwil/laporan';
+
+
 $route['login'] = 'C_Login';
 $route['login-1'] = 'C_Login/login/0';
+
+
 $route['registrasi'] = 'C_User/registrasi';
 $route['daftarulang'] = 'C_User/daftarulang';
 $route['daftarulang-cek/(:any)'] = 'C_User/daftarulangcek/$1';
+
+
 $route['cekanggota'] = 'C_Login/cekanggota';
 $route['setting'] = 'C_Setting';
 $route['mutasi'] = 'C_Mutasi';
+
+
 $route['informasi'] = 'C_Informasi';
 $route['informasi-add'] = 'C_Informasi/add';
 $route['informasi-edit/(:any)'] = 'C_Informasi/edit/$1';
 $route['informasi-view/(:any)'] = 'C_Informasi/view/$1';
+
 $route['mutasi-add'] = 'C_Mutasi/add';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
