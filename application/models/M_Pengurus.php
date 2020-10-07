@@ -3,9 +3,10 @@
 class M_Pengurus extends CI_Model {
 
 	function getpengurus(){
+        $this->db->join('tb_pengurus', 'tb_pengurus.id_korwil = tb_korwil.id_korwil');
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_pengurus.id_anggota');
-        $this->db->where('jenispengurus', 'pusat');
-        $query = $this->db->get('tb_pengurus');
+        $this->db->where('status', 'aktif');
+        $query = $this->db->get('tb_korwil');
     	return $query->result();
     }
 

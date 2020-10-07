@@ -252,6 +252,7 @@
     });
   });
   </script>
+  
 <script type="text/javascript">
 function ValidateSize(file) {
     var FileSize = file.files[0].size / 1024 / 1024; // in MB

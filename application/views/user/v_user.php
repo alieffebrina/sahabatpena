@@ -32,6 +32,14 @@
             </div>
 
             <div class="box-header">
+
+                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="korwiluser">Cabang / Wilayah 
+                    <span class="fa fa-caret-down"></span></button>
+                    <ul class="dropdown-menu">
+                      <?php foreach ($korwil as $korwil) { ?>
+                      <li><a href="<?php echo site_url('user-sort/'.$korwil->id_korwil); ?>"><?php echo $korwil->namakorwil ?></a></li>
+                      <?php } ?>
+                    </ul>
               <a href="<?php echo site_url('user-add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
             </div>
             <!-- /.box-header -->
@@ -41,9 +49,9 @@
                 <thead>
                 <tr>
                   <th>No Anggota</th>
-                  <th>NIK</th>
+                  <th>Username</th>
+                  <th>Password</th>
                   <th>Nama</th>
-                  <th>Alamat</th>
                   <th>Status Anggota</th>
                   <th>Cabang / Wilayah</th>
                   <th>Action</th>
@@ -55,9 +63,9 @@
                   foreach ($user as $user) { ?>
                 <tr>
                   <td><?php echo $user->noanggota; ?></td>
-                  <td><?php echo $user->nik; ?></td>
+                  <td><?php echo $user->username; ?></td>
+                  <td><?php echo $user->password; ?></td>
                   <td><?php echo $user->nama; ?></td>
-                  <td><?php echo $user->alamat.', '.$user->name_kota.', '.$user->name_prov; ?></td>
                   <td><?php echo $user->statusanggota; ?></td>
                   <td><?php if($user->id_korwil != NULL){
                     $submenus = $this->db->query("select * from tb_korwil where id_korwil = '$user->id_korwil'"); 

@@ -37,7 +37,8 @@ class C_Login extends CI_Controller {
 		          'username'=>$user->username,  // Buat session nip
 		          'nama'=>$user->nama,
 		          'id_user'=>$user->id_anggota, // Buat session authenticated
-		          'statusanggota' => $user->statusanggota
+		          'statusanggota' => $user->statusanggota,
+		          'foto' => $user->foto
 		        );
 		       	// echo "ok";
 		        $this->session->set_userdata($session); // Buat session sesuai $session

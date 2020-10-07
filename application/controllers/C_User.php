@@ -21,7 +21,7 @@ class C_User extends CI_Controller{
         $edit = array(
             'tipeuser' => $id,
             'edit' => '1',
-            'id_menu' => '2'
+            'id_menu' => '9'
         );
         $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
         if(count($hasiledit)!=0){ 
@@ -33,7 +33,7 @@ class C_User extends CI_Controller{
         $hapus = array(
             'tipeuser' => $id,
             'delete' => '1',
-            'id_menu' => '2'
+            'id_menu' => '9'
         );
         $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
         if(count($hasilhapus)!=0){ 
@@ -45,6 +45,47 @@ class C_User extends CI_Controller{
         $data['aksesedit'] = $tomboledit;
         $data['user'] = $this->M_User->getall();   
         $data['header'] = 'Anggota';        
+        $data['korwil'] = $this->M_Korwil->getkorwil();   
+        $this->load->view('user/v_user',$data); 
+        $this->load->view('template/footer');
+    }
+
+    function sort($korwil)
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $tabel = 'tb_akses';
+        $edit = array(
+            'tipeuser' => $id,
+            'edit' => '1',
+            'id_menu' => '9'
+        );
+        $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
+        if(count($hasiledit)!=0){ 
+            $tomboledit = 'aktif';
+        } else {
+            $tomboledit = 'tidak';
+        }
+
+        $hapus = array(
+            'tipeuser' => $id,
+            'delete' => '1',
+            'id_menu' => '9'
+        );
+        $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
+        if(count($hasilhapus)!=0){ 
+            $tombolhapus = 'aktif';
+        } else {
+            $tomboledit = 'tidak';
+        }
+        $data['akseshapus'] = $tombolhapus;
+        $data['aksesedit'] = $tomboledit;
+        $data['user'] = $this->M_User->getjumlahwilayah($korwil);   
+        $data['header'] = 'Anggota';        
+        $data['korwil'] = $this->M_Korwil->getkorwil();   
         $this->load->view('user/v_user',$data); 
         $this->load->view('template/footer');
     }
@@ -92,6 +133,60 @@ class C_User extends CI_Controller{
         $data['user'] = $this->M_User->getspek($iduser);
         $data['karyatulis'] = $this->M_User->getkaryatulis($iduser);      
         $this->load->view('user/v_karyatulis',$data); 
+        $this->load->view('template/footer');
+    }
+
+    function vkaryatulis()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+
+        $tabel = 'tb_akses';
+         $add = array(
+            'tipeuser' => $id,
+            'add' => '1',
+            'id_menu' => '9'
+        );
+        $hasiladd = $this->M_Setting->cekakses($tabel, $add);
+        if(count($hasiladd)!=0){ 
+            $tomboladd = 'aktif';
+        } else {
+            $tomboladd = 'tidak';
+        }
+
+
+        $edit = array(
+            'tipeuser' => $id,
+            'edit' => '1',
+            'id_menu' => '9'
+        );
+        $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
+        if(count($hasiledit)!=0){ 
+            $tomboledit = 'aktif';
+        } else {
+            $tomboledit = 'tidak';
+        }
+
+        $hapus = array(
+            'tipeuser' => $id,
+            'delete' => '1',
+            'id_menu' => '9'
+        );
+        $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
+        if(count($hasilhapus)!=0){ 
+            $tombolhapus = 'aktif';
+        } else {
+            $tomboledit = 'tidak';
+        }
+        $data['akseshapus'] = $tombolhapus;
+        $data['aksesedit'] = $tomboledit;
+        $data['aksesadd'] = $tomboladd;
+
+        $data['karyatulis'] = $this->M_User->getvkaryatulis();      
+        $this->load->view('karyatulis/v_karyatulis',$data); 
         $this->load->view('template/footer');
     }
 

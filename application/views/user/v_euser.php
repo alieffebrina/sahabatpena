@@ -198,30 +198,19 @@
                <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Registrasi</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="tglregistrasi" name="tglregistrasi" value="<?php echo $key->tglregistrasi; ?>"readonly>
+                    <input type="date" class="form-control" id="tglregistrasi" name="tglregistrasi" value="<?php echo $key->tglregistrasi; ?>">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Cabang / Wilayah</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="korwil" name="korwil" value="<?php 
-                    if($key->id_korwil != NULL){
-                      $submenus = $this->db->query("select * from tb_korwil where id_korwil = '$key->id_korwil'"); 
-                      foreach ($submenus->result() as $submenu) {
-                        echo $submenu->namakorwil;
-                      } 
-                    } else {
-                      echo '-';
-                    }
-                     ?>" readonly>
+                    <select class="form-control select2" id="korwil" name="korwil" style="width: 100%;">
+                      <?php foreach ($korwil as $korwil) { ?>
+                        <option value="<?php echo $korwil->id_korwil ?>" <?php if($key->id_korwil == $korwil->id_korwil){ echo "selected"; } ?> ><?php echo $korwil->namakorwil ?></option>
+                      <?php } ?>
+                    </select>
                   </div>
-                </div>  
-                <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Kategori Anggota</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="kat" name="kat" value="<?php if($key->statusanggota == 'tidak aktif') { echo '-'; } else { echo $key->statusanggota; } ?>" readonly>
-                  </div>
-                </div>       
+                </div>         
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Status Anggota</label>
                   <div class="col-sm-9">
@@ -236,7 +225,7 @@
                   <div id = 'idresign'>
                   <label for="inputPassword3" class="col-sm-2 control-label">Alasan Mengundurkan Diri</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="reason" name="reason" value="<?php echo $key->alasan; ?>" >
+                    <input type="text" class="form-control" id="idresign" name="reason"  value="<?php if( $key->alasan == NULL){ echo '-'; } else { echo $key->alasan; } ?>" >
                   </div>
                 </div>
                 </div>

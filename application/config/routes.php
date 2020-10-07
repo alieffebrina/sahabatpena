@@ -60,6 +60,9 @@ $route['user-nonaktif/(:any)'] = 'C_User/nonaktif/$1';
 $route['user-resign/(:any)'] = 'C_User/resign/$1';
 $route['karyatulis'] = 'C_User/user_kt';
 $route['user-karyatulis'] = 'C_User/karyatulis';
+$route['user-sort/(:any)'] = 'C_User/sort/$1';
+
+$route['karyatulis'] = 'C_User/vkaryatulis';
 
 
 $route['Korwil'] = 'C_Korwil';

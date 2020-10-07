@@ -50,7 +50,7 @@ n<!-- Content Wrapper. Contains page content -->
                   <th>Nama</th>
                   <th>Alamat</th>
                   <th>Status Anggota</th>
-                  <th>Korwil</th>
+                  <th>Cabang / Wilayah</th>
                 </tr>
                 </thead>
                 <tbody>

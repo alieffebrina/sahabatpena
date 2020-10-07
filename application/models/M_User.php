@@ -346,6 +346,12 @@ class M_User extends CI_Model {
         return $query->result();
     }
 
+    function getvkaryatulis(){
+        $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_karyatulis.id_anggota');
+        $query = $this->db->get('tb_karyatulis');
+        return $query->result();
+    }
+
     function geteditkt($iduser){
 
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_karyatulis.id_anggota');
@@ -492,8 +498,24 @@ class M_User extends CI_Model {
         return $query->num_rows();
     } 
 
+     function dataanggotakorwil($id_korwil){
+        $this->db->where('id_korwil', $id_korwil);
+        $query = $this->db->get('tb_anggota');
+        return $query->num_rows();
+    } 
+
     function dataaktif(){
         $where = array(
+            'statusanggota !=' => 'menunggu konfirmasi',
+            'statusanggota != ' => 'tidak aktif',
+        );
+        $query = $this->db->get_where('tb_anggota', $where);
+        return $query->num_rows();
+    } 
+
+    function dataaktifkorwil($id_korwil){
+        $where = array(
+            'id_korwil' => $id_korwil,
             'statusanggota !=' => 'menunggu konfirmasi',
             'statusanggota != ' => 'tidak aktif',
         );

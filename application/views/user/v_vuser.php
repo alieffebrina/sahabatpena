@@ -239,6 +239,7 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Alasan Mengundurkan Diri</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="reason" name="reason" value="<?php echo $key->alasan; ?>" readonly>
+                <br>
                   </div>
                 </div>
                 </div>

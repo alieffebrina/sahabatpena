@@ -115,6 +115,7 @@
 </script>
 <script>
    $(document).ready(function() {
+            document.getElementById("simpandaftarulang").disabled = true; 
   
      $("#tktdu").click(function() {
        var judul = $("#judul").val();
@@ -141,12 +142,19 @@
        } else {
          document.getElementById('kar').value = kar+'/'+thnterbit+'_'+jenis+'_'+judul+'_'+penerbit;
         }
+
+            document.getElementById("simpandaftarulang").disabled = false;
      });
      $("#karyatulisdu").on('click', '.remCF', function() {
       $(this).parent().parent().remove();
       var karo = document.getElementById('kar').value;
       var karid = $(this).parent().find('#karid').val();
       document.getElementById('kar').value = karo.replace(karid, '');
+      if(document.getElementById('kar').value == ''){
+            document.getElementById("simpandaftarulang").disabled = true; 
+       } else {
+            document.getElementById("simpandaftarulang").disabled = false;
+        }
     });
   
    });
@@ -467,14 +475,17 @@ $("#addtkt").append('<label for="inputPassword3" class="col-sm-2 control-label">
 </script>
 <script>
   $(document).ready(function(){
-  $('#aktivasi').change(function(){
     var status = document.getElementById('aktivasi').value;
-    if(status=='resign'){
-    document.getElementById('idresign').style.visibility='visible';
-    // document.getElementById('texthuruf1').value = embuha;
+     if(status=='resign'){
+            document.getElementById("idresign").disabled = false; 
     } else {
-    document.getElementById('idresign').style.visibility='hidden';
-
+            document.getElementById("idresign").disabled = true; 
+    }
+  $('#aktivasi').change(function(){
+    if(status=='resign'){
+            document.getElementById("idresign").disabled = false; 
+    } else {
+            document.getElementById("idresign").disabled = true; 
     }
   });
 });

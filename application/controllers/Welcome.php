@@ -26,6 +26,7 @@ class Welcome extends CI_Controller {
         $this->load->model('M_Setting');
         $this->load->model('M_User');
         $this->load->model('M_Korwil');
+        $this->load->model('M_Informasispk');
         if(!$this->session->userdata('id_user')){
             redirect('C_Login');
         }
@@ -37,24 +38,25 @@ class Welcome extends CI_Controller {
 		$id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
 		$this->load->view('template/sidebar.php', $data);
-		$data['anggota'] = $this->M_User->dataanggota();
 		$data['korwil'] = $this->M_Korwil->datakorwil();
-		$data['dataaktif'] = $this->M_User->dataaktif();
 		// $data['datanonaktif'] = $this->M_User->datanonaktif();
 		$data['karyatulis'] = $this->M_User->datakaryatulis();
 		if($id == 'administrator'){
+			$data['anggota'] = $this->M_User->dataanggota();
+			$data['dataaktif'] = $this->M_User->dataaktif();
 			$data['datawaiting'] = $this->M_User->datawaiting();
 			$data['userlog'] = $this->M_Setting->datauserlog();
 		} else {
-			$iduser = $this->session->userdata('id_user');
-			$korwil = $this->M_User->getspek($iduser);
-			foreach ($korwil as $korwil) {
-				$a = $korwil->id_korwil;
-				//echo $a;
-				$data['listanggota'] = $a;
-				$data['listkaryatulis'] = $this->M_User->listkaryatulis();				
+			$user = $this->session->userdata('id_user');
+			$detail = $this->M_User->getspek($user);
+			foreach ($detail as $key) {
+				$id_korwil = $key->id_korwil;
 			}
+			$data['anggota'] = $this->M_User->dataanggotakorwil($id_korwil);
+			$data['dataaktif'] = $this->M_User->dataaktifkorwil($id_korwil);
+			
 		}
+		$data['informasi'] = $this->M_Informasispk->getall();
 		$this->load->view('template/index.php', $data);
 		$this->load->view('template/footer.php');
 	}

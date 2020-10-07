@@ -289,7 +289,7 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Cabang / Wilayah (*)</label>
                   <div class="col-sm-9">
                     <select class="form-control select2" id="korwil" name="korwil" required style="width: 100%;">
-                      <option value="">--Pilih--</option>
+                      <option>--Pilih--</option>
                       <?php foreach ($korwil as $korwil) { ?>
                       <option value="<?php echo $korwil->id_korwil ?>"><?php echo $korwil->namakorwil ?></option>
                       <?php } ?>
@@ -341,7 +341,7 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Penerbit / Publisher (*)</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="penerbit" placeholder="Penerbit / Publisher" >
-                    <input type="hidden" class="form-control" id="kar" name="kar" >
+                    <input type="text" class="form-control" id="kar" name="kar">
                   </div>
                 </div>    
               </div>
@@ -368,7 +368,7 @@
               <div class="box-footer">
                   <div class="col-sm-10">
                     <a href="<?php echo site_url('Welcome'); ?>" class="btn btn-default">Batal</a>
-                    <button type="submit" class="btn btn-info">Simpan Data</button>
+                    <button type="submit" class="btn btn-info" id="simpandaftarulang">Simpan Data</button>
                   </div>
                 </div> 
               <!-- /.form group -->

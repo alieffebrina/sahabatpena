@@ -5,7 +5,7 @@
 
       <div class="user-panel">
         <div class="pull-left image">&nbsp;
-          <img src="<?php echo base_url() ?>assets/images/administrator.jpg" class="img-circle" alt="User Image">
+          <img src="<?php echo base_url() ?>images/<?php echo $this->session->userdata('foto') ?>" class="img-circle" alt="User Image">
         </div>
         <p>
         <div class="pull-left info">

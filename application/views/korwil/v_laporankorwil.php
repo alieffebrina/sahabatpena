@@ -61,8 +61,17 @@
                   <td><?php echo $no++; ?></td>
                   <td><?php echo $korwil->tglberdiri; ?></td>
                   <td><?php echo $korwil->namakorwil; ?></td>
-                  <td><?php echo $korwil->nama; ?></td>
-                  <td><?php echo $korwil->alamat.', '.$korwil->name_kota.', '.$korwil->name_prov; ?></td>
+                    <?php $pengurus = $this->db->query("select * from tb_pengurus JOIN tb_anggota on tb_anggota.id_anggota = tb_pengurus.id_anggota  where tb_pengurus.id_korwil = $korwil->id_korwil and status = 'aktif'")->result(); 
+                    if($pengurus != NULL ){
+
+                      foreach ($pengurus as $key) { ?>
+                      <td><?php echo $key->nama; ?></td>
+                      <td><?php echo $key->alamat.', '.$key->name_kota.', '.$keys->name_prov; ?></td>
+
+                     <?php } } else { ?>
+                      <td> - </td>
+                      <td> - </td>
+                     <?php } ?>
                   <td><?php echo $korwil->kodekorwil; ?></td>
                 </tr>
                   <?php } ?>
