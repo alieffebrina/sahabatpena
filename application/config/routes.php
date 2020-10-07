@@ -88,7 +88,7 @@ $route['login'] = 'C_Login';
 $route['login-1'] = 'C_Login/login/0';
 
 
-$route['registrasi'] = 'C_User/registrasi';
+// $route['registrasi'] = 'C_User/registrasi';
 $route['daftarulang'] = 'C_User/daftarulang';
 $route['daftarulang-cek/(:any)'] = 'C_User/daftarulangcek/$1';
 
