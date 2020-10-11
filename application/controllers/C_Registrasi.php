@@ -89,7 +89,7 @@ class C_Registrasi extends CI_Controller{
             // }else{ // Jika dengan attachment
             //   $send = $this->mailer->send_with_attachment($sendmailadmin); // Panggil fungsi send_with_attachment yang ada di librari Mailer
             // }
-
+            
             header("location: https://www.sahabatpenakita.id");
             // redirect('login');
         } else {

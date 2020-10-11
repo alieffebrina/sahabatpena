@@ -34,7 +34,7 @@
               <a href="<?php echo site_url('user-karyatulis'); ?>"><button type="button" class="btn btn-warning" >Lihat Karya Tulis Pribadi</button></a>
             </div>
           <?php } ?>
-            <div class="box-body">
+            <div class="box-body table-responsive">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>

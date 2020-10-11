@@ -21,7 +21,7 @@ class C_Informasi extends CI_Controller{
         $edit = array(
             'tipeuser' => $id,
             'edit' => '1',
-            'id_menu' => '2'
+            'id_menu' => '8'
         );
         $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
         if(count($hasiledit)!=0){ 
@@ -33,13 +33,13 @@ class C_Informasi extends CI_Controller{
         $hapus = array(
             'tipeuser' => $id,
             'delete' => '1',
-            'id_menu' => '2'
+            'id_menu' => '8'
         );
         $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
         if(count($hasilhapus)!=0){ 
             $tombolhapus = 'aktif';
         } else {
-            $tomboledit = 'tidak';
+            $tombolhapus = 'tidak';
         }
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
