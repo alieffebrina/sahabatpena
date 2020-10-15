@@ -143,9 +143,6 @@ class C_Korwil extends CI_Controller{
 
     public function tambahpengurus()
     {   
-
-        
-
         $file_name = $this->input->post('skfile');
         $uploadfile = $this->M_Korwil->uploadfile();
         $ida = $this->input->post('korwil');

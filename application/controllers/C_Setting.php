@@ -69,7 +69,30 @@ class C_Setting extends CI_Controller{
             echo json_encode($callback); // konversi varibael $callback menjadi JSON
     }
 
+     function setting()
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['user'] = $this->M_User->getuser();
+        $this->load->view('setting/v_setting',$data); 
+        $this->load->view('template/footer');
+    }
 
+    function statusanggota($ida)
+    {
+        $this->load->view('template/header');
+        $id = $this->session->userdata('statusanggota');
+        $iduser = $this->session->userdata('id_user');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['userspek'] = $this->M_User->getnama($ida);
+        $data['user'] = $this->M_User->getuser();
+        $this->load->view('setting/v_settingresign',$data); 
+        $this->load->view('template/footer');
+    }
 
     function index()
     {

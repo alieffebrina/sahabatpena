@@ -132,7 +132,7 @@
                   <td><?php echo $karyatulis->penerbit; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_User/editkt/'.$karyatulis->id_anggota.'/'.$karyatulis->id_karyatulis); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('edit-karyatulis/'.$karyatulis->id_anggota.'/'.$karyatulis->id_karyatulis); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       <a href="<?php echo site_url('C_User/hapuskt/'.$karyatulis->id_anggota.'/'.$karyatulis->id_karyatulis); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>

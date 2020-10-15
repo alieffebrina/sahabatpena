@@ -66,9 +66,10 @@
 
                       foreach ($pengurus as $key) { ?>
                       <td><?php echo $key->nama; ?></td>
-                      <td><?php echo $key->alamat.', '.$key->name_kota.', '.$keys->name_prov; ?></td>
+                    <?php } ?>
+                      <td><?php echo $korwil->alamat.', '.$korwil->name_kota.', '.$korwil->name_prov; ?></td>
 
-                     <?php } } else { ?>
+                     <?php } else { ?>
                       <td> - </td>
                       <td> - </td>
                      <?php } ?>

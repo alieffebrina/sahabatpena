@@ -122,7 +122,6 @@
                   <th>Nama</th>
                   <th>Masa Aktif Jabatan</th>
                   <th>Status</th>
-                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -136,12 +135,6 @@
                   <td><?php echo $pengurus->nama; ?></td>
                   <td><?php echo $pengurus->tglaktif.' s/d '.$pengurus->tglakhir; ?></td>
                   <td><?php echo $pengurus->status ?></td>
-                  <td>
-                    <div class="btn-group">
-                      <a href="<?php echo site_url('korwil-pe/'.$pengurus->id_pengurus); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
-                      <a href="<?php echo site_url('korwil-ph/'.$pengurus->id_pengurus.'/'.$pengurus->id_anggota); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
-                    </div>
-                  </td>
                 </tr>
                   <?php  } ?>
                 </tbody>

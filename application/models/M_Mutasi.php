@@ -5,7 +5,7 @@ class M_Mutasi extends CI_Model {
 	function getmutasi(){
         $this->db->select('b.namakorwil korwilawal, a.namakorwil korwilmutasi, tb_mutasi.tglupdate, tb_anggota.nama');
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_mutasi.id_anggota');
-        $this->db->join('tb_korwil b', 'b.id_korwil = tb_anggota.id_korwil');
+        $this->db->join('tb_korwil b', 'b.id_korwil = tb_mutasi.korwilawal');
         $this->db->join('tb_korwil a', 'a.id_korwil = tb_mutasi.korwilmutasi');
         $this->db->order_by('tb_mutasi.tglupdate', 'DESC');
         $query = $this->db->get('tb_mutasi');

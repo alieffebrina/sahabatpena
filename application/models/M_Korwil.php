@@ -45,7 +45,6 @@ class M_Korwil extends CI_Model {
     function getpenguruskorwil($ida){
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_pengurus.id_anggota');
         $where = array('tb_pengurus.id_korwil' => $ida, 
-            'tb_pengurus.status' =>'aktif'
         );
         $query = $this->db->get_where('tb_pengurus', $where);
         return $query->result();
@@ -127,6 +126,8 @@ class M_Korwil extends CI_Model {
 
         $view = array(
             'status' =>  'tidak',
+            'tglakhir' =>  date('Y-m-d h:i:s'),
+            'id_user' =>  $this->session->userdata('id_user'),
         );
 
         $this->db->where($where);

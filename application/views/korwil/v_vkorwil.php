@@ -99,9 +99,8 @@
                   <th>Jabatan</th>
                   <th>Sk</th>
                   <th>Nama</th>
-                  <th>Tgl Kepengurusan</th>
-                  <th>Tgl Akhir</th>
-                  <th>Action</th>
+                  <th>Masa Aktif Jabatan</th>
+                  <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -113,14 +112,8 @@
                   <td><?php echo $pengurus->jabatan; ?></td>
                   <td><?php echo $pengurus->nosk; ?></td>
                   <td><?php echo $pengurus->nama; ?></td>
-                  <td><?php echo $pengurus->tglaktif; ?></td>
-                  <td><?php if($pengurus->tglaktif == '0000-00-00'){ echo 'sampai saat ini'; } else { echo $pengurus->tglaktif; } ?></td>
-                  <td>
-                    <div class="btn-group">
-                      <a href="<?php echo site_url('korwil-pe/'.$pengurus->id_pengurus); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
-                      <a href="<?php echo site_url('korwil-ph/'.$pengurus->id_pengurus.'/'.$pengurus->id_anggota); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
-                    </div>
-                  </td>
+                  <td><?php echo $pengurus->tglaktif.' s/d '.$pengurus->tglakhir; ?></td>
+                  <td><?php echo $pengurus->status ?></td>
                 </tr>
                   <?php  } ?>
                 </tbody>

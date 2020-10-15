@@ -8,11 +8,11 @@
           <img src="<?php echo base_url() ?>images/<?php echo $this->session->userdata('foto') ?>" class="img-circle" alt="User Image">
         </div>
         <p>
-        <div class="pull-left info">
+        <div class="pull-left info"><a href="<?php echo site_url('Profil') ?>">
           <p><?php echo $this->session->userdata('nama');
           $id = $this->session->userdata('id_user');?>
           </p>
-
+        </a>
           <a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-circle text-success"></i> Online</a>
         </div></p>
       </div>

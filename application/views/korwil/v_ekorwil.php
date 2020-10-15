@@ -91,7 +91,7 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Kode  Cabang / Wilayah</label>
                   <div class="col-sm-9">
-                  <div class="input-group input-group-sm">
+                  <div class="input-group">
 
                     <input type="text" class="form-control" name="kodekorwil" id="kodekorwil" value="<?php echo $korwil->kodekorwil ?>" readonly>
                   </div>
@@ -126,7 +126,8 @@
                   <th>Jabatan</th>
                   <th>Sk</th>
                   <th>Nama</th>
-                  <th>Tgl Kepengurusan</th>
+                  <th>Masa Aktif Jabatan</th>
+                  <th>Status</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -138,7 +139,8 @@
                   <td><?php echo $pengurus->jabatan; ?></td>
                   <td><?php echo $pengurus->nosk; ?></td>
                   <td><?php echo $pengurus->nama; ?></td>
-                  <td><?php echo date('d-m-Y', strtotime($pengurus->tglaktif));?></td>
+                  <td><?php echo $pengurus->tglaktif.' s/d '.$pengurus->tglakhir; ?></td>
+                  <td><?php echo $pengurus->status ?></td>
                 </tr>
                   <?php  } ?>
                 </tbody>

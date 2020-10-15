@@ -65,9 +65,25 @@
                 </div> <br>
                 <div class='row'>
                   <div class="col-lg-12">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Karya Tulis</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Judul Karya Tulis</label>
                       <div class="col-sm-9">
-                        <textarea class="form-control" rows="3" id="karyatulis" name="karyatulis" required><?php echo $kt->karyatulis; ?></textarea>
+                        <input type="text" class="form-control" id="karyatulis" name="karyatulis" value="<?php echo $kt->karyatulis ?>">
+                      </div>
+                  </div>
+                </div> <br>
+                <div class='row'>
+                  <div class="col-lg-12">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Jenis Karya Tulis</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="jenis" name="jenis" value="<?php echo $kt->jenis ?>">
+                      </div>
+                  </div>
+                </div> <br>
+                <div class='row'>
+                  <div class="col-lg-12">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Penerbit</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" id="penerbit" name="penerbit" value="<?php echo $kt->penerbit ?>">
                       </div>
                   </div>
                 </div> <br>
@@ -99,7 +115,9 @@
                 <tr>
                   <th>No</th>
                   <th>Tanggal Publish</th>
-                  <th>Karya Tulis</th>
+                  <th>Judul Karya Tulis</th>
+                  <th>Jenis Karya Tulis</th>
+                  <th>Penerbit</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -111,9 +129,11 @@
                   <td><?php echo $no++; ?></td>
                   <td><?php echo date('d-m-Y', strtotime($karyatulis->tglpublish)); ?></td>
                   <td><?php echo $karyatulis->karyatulis; ?></td>
+                  <td><?php echo $karyatulis->jenis; ?></td>
+                  <td><?php echo $karyatulis->penerbit; ?></td>
                   <td>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_User/editkt/'.$karyatulis->id_karyatulis.'/'.$karyatulis->id_anggota); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('edit-karyatulis/'.$karyatulis->id_anggota.'/'.$karyatulis->id_karyatulis); ?>"><button type="button" class="btn btn-info"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       <a href="<?php echo site_url('C_User/hapuskt/'.$karyatulis->id_anggota.'/'.$karyatulis->id_karyatulis); ?>"><button type="button" class="btn btn-danger"><i class="fa fa-fw fa-trash-o"></i></button></a>
                     </div>
                   </td>

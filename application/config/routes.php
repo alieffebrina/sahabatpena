@@ -57,10 +57,13 @@ $route['user-edit/(:any)'] = 'C_User/edit/$1';
 $route['user-view/(:any)'] = 'C_User/view/$1';
 $route['user-konfirm/(:any)'] = 'C_User/konfirmasi/$1';
 $route['user-nonaktif/(:any)'] = 'C_User/nonaktif/$1';
+$route['user-aktif/(:any)'] = 'C_User/aktif/$1';
 $route['user-resign/(:any)'] = 'C_User/resign/$1';
 $route['user-karyatulis'] = 'C_User/karyatulis';
 $route['user-sort/(:any)'] = 'C_User/sort/$1';
+
 $route['view-karyatulis'] = 'C_User/viewkaryatulis';
+$route['edit-karyatulis/(:any)/(:any)'] = 'C_User/editkt/$1/$2';
 
 
 
@@ -93,8 +96,9 @@ $route['daftarulang-cek/(:any)'] = 'C_User/daftarulangcek/$1';
 
 
 $route['cekanggota'] = 'C_Login/cekanggota';
-$route['setting'] = 'C_Setting';
+$route['setting'] = 'C_Setting/setting';
 $route['mutasi'] = 'C_Mutasi';
+$route['setting-status/(:any)'] = 'C_Setting/statusanggota/$1';
 
 
 $route['informasi'] = 'C_Informasi';
@@ -103,6 +107,9 @@ $route['informasi-edit/(:any)'] = 'C_Informasi/edit/$1';
 $route['informasi-view/(:any)'] = 'C_Informasi/view/$1';
 
 $route['mutasi-add'] = 'C_Mutasi/add';
+
+
+$route['Profil'] = 'C_Profil';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

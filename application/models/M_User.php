@@ -52,7 +52,16 @@ class M_User extends CI_Model {
         return $query->result();
     }
 
-
+    function profiluser($ida){
+        $this->db->join('tb_korwil', 'tb_korwil.id_korwil = tb_anggota.id_korwil');
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $where = array(
+            'id_anggota' => $ida
+        );
+        return $this->db->get_where('tb_anggota',$where)->result();
+    }
 
     function getnama($ida){
         $where = array(
@@ -277,6 +286,8 @@ class M_User extends CI_Model {
     function editkt(){
         $user = array(
             'karyatulis' => $this->input->post('karyatulis'),
+            'jenis' => $this->input->post('jenis'),
+            'penerbit' => $this->input->post('penerbit'),
             'tglpublish' => $this->input->post('tgl'),
 
         );
@@ -324,6 +335,20 @@ class M_User extends CI_Model {
         );
         $where = array(
             'id_anggota' =>  $this->input->post('noanggota'),
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_anggota',$user);
+    }
+
+    function aktifsetting($id){
+        $user = array(
+            'statusanggota' => 'anggota',
+            'tglnonaktif' => '',
+            'alasan' => '',
+        );
+        $where = array(
+            'id_anggota' =>  $id,
         );
         
         $this->db->where($where);

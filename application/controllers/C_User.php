@@ -116,10 +116,10 @@ class C_User extends CI_Controller{
             $id = $this->input->post('cekanggotamutaasi');
             $kec = $this->M_User->getkorwilmutasi($id);                           
             foreach($kec as $data){
-              $lists = "<input type='hidden' name='korwilawal' value='".$data->id_korwil."'>".$data->namakorwil;
+              $listkorwil = "<input type='hidden' name='korwilawal' value='".$data->id_korwil."'>".$data->namakorwil;
             }
             
-            $callback = array('korwilawalmutasi'=> 'aaaa');
+            $callback = array('korwilawalmutasi'=> $listkorwil);
             echo json_encode($callback);
     }
 
@@ -184,11 +184,7 @@ class C_User extends CI_Controller{
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
         $data['aksesadd'] = $tomboladd;
-        if($id == 'administrator'){
-            $data['karyatulis'] = $this->M_User->getvkaryatulis();      
-        } else {
-            $data['karyatulis'] = $this->M_User->getkaryatulis($iduser);  
-        }
+            $data['karyatulis'] = $this->M_User->getvkaryatulis(); 
         $this->load->view('karyatulis/v_karyatulis',$data); 
         $this->load->view('template/footer');
     }
@@ -545,7 +541,14 @@ class C_User extends CI_Controller{
     function nonaktif($id)
     {
         $this->M_User->nonaktif($id);
-        $this->session->set_flashdata('Sukses', "Data Berhasil Dirubah!!");
+        $this->session->set_flashdata('Sukses', "Data Berhasil Di Non Aktifkan!!");
+        redirect('user-setting');
+    }
+
+     function aktif($id)
+    {
+        $this->M_User->aktifsetting($id);
+        $this->session->set_flashdata('Sukses', "Data Berhasil Di Aktifkan!!");
         redirect('user-setting');
     }
 
@@ -566,7 +569,13 @@ class C_User extends CI_Controller{
     public function excel()
     {   
         $id = $this->session->userdata('statusanggota');
-            $user = $this->M_User->getall();       
+
+        $korwil = $this->session->userdata('korwil');
+        if($korwil == NULL){
+        $user = $this->M_User->getall();   
+        } else { 
+        $user = $this->M_User->getjumlahwilayah($korwil);    
+        }
         $data = array('title' => 'Laporan Anggota',
                 'excel' => $user);
         $this->load->view('user/v_exceluser', $data);
@@ -575,7 +584,7 @@ class C_User extends CI_Controller{
     function mengundurkandiri()
     {   
         $this->M_User->mengundurkandiri();
-        $this->session->set_flashdata('Sukses', "Data Berhasil Dirubah!!");
+        $this->session->set_flashdata('Sukses', "Data Berhasil Di Non Aktifkan!!");
         redirect('user-setting');
     }
 

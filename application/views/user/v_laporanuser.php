@@ -3,13 +3,13 @@ n<!-- Content Wrapper. Contains page content -->
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Data Laporan User
+        Data Laporan Anggota
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="<?php echo site_url('laporan-anggota'); ?>">Data Laporan Anggota</a></li>
-        <li class="active">Data Laporan User</li>
+        <li class="active">Data Laporan Anggota</li>
       </ol>
     </section>
     <div class="box-body">
