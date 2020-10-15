@@ -157,6 +157,7 @@ class M_User extends CI_Model {
             );
             
             $this->db->insert('tb_karyatulis', $user);
+
         } else {
             $user = array(
             'id_anggota' => '1',
@@ -265,6 +266,8 @@ class M_User extends CI_Model {
         $user = array(
             'id_anggota' => $this->input->post('noanggota'),
             'karyatulis' => $this->input->post('karyatulis'),
+            'jenis' => $this->input->post('jenis'),
+            'penerbit' => $this->input->post('penerbit'),
             'tglpublish' => $this->input->post('tgl'),
         );
         
@@ -339,8 +342,10 @@ class M_User extends CI_Model {
     }
 
     function getkaryatulis($iduser){
+
+        $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_karyatulis.id_anggota');
         $where = array(
-            'id_anggota' => $iduser
+            'tb_karyatulis.id_anggota' => $iduser
         );
         $query = $this->db->get_where('tb_karyatulis', $where);
         return $query->result();
@@ -362,7 +367,7 @@ class M_User extends CI_Model {
         return $query->result();
     }
 
-    function edit(){
+    function edit($kode){
         $user = array(
             'nik' => $this->input->post('nik'),
             'nama' => $this->input->post('nama'),
@@ -378,6 +383,8 @@ class M_User extends CI_Model {
             'instagram' => $this->input->post('instagram'),
             'twitter' => $this->input->post('twitter'),
             'youtube' => $this->input->post('youtube'),
+            'id_korwil' => $this->input->post('korwil'),
+            'noanggota' => $kode,
             'latarbelakang' => $this->input->post('latarbelakang1').'/'.$this->input->post('latarbelakang2').'/'.$this->input->post('latarbelakang3'),
             'institusi' => $this->input->post('institusi'),
             'statusanggota' => $this->input->post('aktivasi'),

@@ -113,13 +113,13 @@ class C_User extends CI_Controller{
     }
 
     function getkorwilmutasi(){
-            $id = $this->input->post('anggotamutasi');
+            $id = $this->input->post('cekanggotamutaasi');
             $kec = $this->M_User->getkorwilmutasi($id);                           
             foreach($kec as $data){
               $lists = "<input type='hidden' name='korwilawal' value='".$data->id_korwil."'>".$data->namakorwil;
             }
             
-            $callback = array('idkorwil'=>$lists);
+            $callback = array('korwilawalmutasi'=> 'aaaa');
             echo json_encode($callback);
     }
 
@@ -184,8 +184,11 @@ class C_User extends CI_Controller{
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
         $data['aksesadd'] = $tomboladd;
-
-        $data['karyatulis'] = $this->M_User->getvkaryatulis();      
+        if($id == 'administrator'){
+            $data['karyatulis'] = $this->M_User->getvkaryatulis();      
+        } else {
+            $data['karyatulis'] = $this->M_User->getkaryatulis($iduser);  
+        }
         $this->load->view('karyatulis/v_karyatulis',$data); 
         $this->load->view('template/footer');
     }
@@ -416,7 +419,24 @@ class C_User extends CI_Controller{
 
     function edituser()
     {   
-        $this->M_User->edit();
+        $korwilawal = $this->input->post('korwilawal');
+        $korwilskrg = $this->input->post('korwil');
+        if($korwilawal == $korwilskrg){
+            $kode = $this->input->post('noanggota');
+        } else {
+            $kode = $this->M_Korwil->cekkode($korwilskrg);
+            foreach ($kode as $modul) {
+                $a = $modul->kodekorwil;
+                date_default_timezone_set('Asia/Jakarta');
+                $tgl = date('dmY');
+                $a = str_replace("tanggal", $tgl, $a);
+                $data = $this->M_User->getjumlahwilayah($korwilskrg);
+                $id = count($data)+1;
+                $a = str_replace("no", $id, $a);
+            }
+            $kode = $a;
+        }
+        $this->M_User->edit($kode);
         $status = $this->input->post('aktivasi');
         if ($status == 'tidak') {
             $this->M_User->nonaktif();

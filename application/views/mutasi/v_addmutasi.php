@@ -31,7 +31,7 @@
                   <div class="col-lg-12">
                     <label for="inputEmail3" class="col-sm-2 control-label">Nama</label>
                       <div class="col-sm-9">  
-                      <select class="form-control select2" id="anggotamutasi" name="anggotamutasi" style="width: 100%;" required>
+                      <select class="form-control select2" id="cekanggotamutaasi" name="anggotamutasi" style="width: 100%;" required>
                         <option value="">--Pilih--</option>
                         <?php foreach ($user as $user) { ?>
                         <option value="<?php echo $user->id_anggota ?>"><?php echo $user->nama ?></option>

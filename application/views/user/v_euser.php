@@ -221,6 +221,7 @@
                     </select>
                   </div>
                 </div>       
+                <input type="hidden" name="korwilawal" value="<?php echo $key->id_korwil; ?>">
                 <div class="form-group">
                   <div id = 'idresign'>
                   <label for="inputPassword3" class="col-sm-2 control-label">Alasan Mengundurkan Diri</label>

@@ -51,7 +51,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="<?php echo base_url() ?>assets/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url() ?>assets/dist/js/demo.js"></script>
+<!-- <script src="<?php echo base_url() ?>assets/dist/js/demo.js"></script> -->
 
 <script src="<?php echo base_url() ?>assets/dist/js/jquery-1.11.2.min.js"></script>
 <script src="<?php echo base_url() ?>assets/dist/js/jquery.mask.min.js"></script>
@@ -81,7 +81,7 @@
 <script>
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
+    // instance, using default configuration
     CKEDITOR.replace('editor1')
     //bootstrap WYSIHTML5 - text editor
     $('.textarea').wysihtml5()
@@ -113,52 +113,6 @@
     //Date range picker with time picker
   })
 </script>
-<script>
-   $(document).ready(function() {
-            document.getElementById("simpandaftarulang").disabled = true; 
-  
-     $("#tktdu").click(function() {
-       var judul = $("#judul").val();
-       var jenis = $("#jenis").val();
-       var penerbit = $("#penerbit").val();
-       var thnterbit = $("#thnterbit").val();
-       var kar = $("#kar").val();
-       var baris_baru = "<tr>\n\
-       <td>"+thnterbit+"<input type='hidden' name='thnterbitdu[]' value='"+thnterbit+"'></td>\n\
-        <td>"+judul+"<input type='hidden' name='juduldu[]' value='"+judul+"'></td>\n\
-        <td>"+jenis+"<input type='hidden' name='jenisdu[]' value='"+jenis+"'></td>\n\
-        <td>"+penerbit+"<input type='hidden' name='penerbitdu[]' value='"+penerbit+"'></td>\n\
-        <td width='100px'><a href='javascript:void(0);' class='remCF' data-id='"+judul+"' ><input type='hidden' id=karid value='"+thnterbit+'_'+jenis+'_'+judul+'_'+penerbit+"'>\n\
-          <button type='button' class='btn btn-info btn-sm'>\n\
-            <i class='fa fa-times'></i></button></a></td>\n\
-        </tr>";
-       $("#karyatulisdu").append(baris_baru);
-       document.getElementById('judul').value = '';
-       document.getElementById('jenis').value = '';
-       document.getElementById('penerbit').value = '';
-       document.getElementById('thnterbit').value = '';
-       if(kar == ''){
-          document.getElementById('kar').value = thnterbit+'_'+jenis+'_'+judul+'_'+penerbit;
-       } else {
-         document.getElementById('kar').value = kar+'/'+thnterbit+'_'+jenis+'_'+judul+'_'+penerbit;
-        }
-
-            document.getElementById("simpandaftarulang").disabled = false;
-     });
-     $("#karyatulisdu").on('click', '.remCF', function() {
-      $(this).parent().parent().remove();
-      var karo = document.getElementById('kar').value;
-      var karid = $(this).parent().find('#karid').val();
-      document.getElementById('kar').value = karo.replace(karid, '');
-      if(document.getElementById('kar').value == ''){
-            document.getElementById("simpandaftarulang").disabled = true; 
-       } else {
-            document.getElementById("simpandaftarulang").disabled = false;
-        }
-    });
-  
-   });
-   </script>
 <script>
   $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
     // Kita sembunyikan dulu untuk loadingnya
@@ -211,6 +165,31 @@
         }
       });
     });
+
+
+    $("#cekanggotamutaasi").change(function(){ // Ketika user mengganti atau memilih data provinsi
+    
+      $.ajax({
+        type: "POST", // Method pengiriman data bisa dengan GET atau POST
+        url: "<?php echo base_url("index.php/C_User/getkorwilmutasi"); ?>", // Isi dengan url/path file php yang dituju
+        data: {cekanggotamutaasi : $("#cekanggotamutaasi").val()}, // data yang akan dikirim ke file yang dituju
+        dataType: "json",
+        beforeSend: function(e) {
+          if(e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response){ // Ketika proses pengiriman berhasil
+          // set isi dari combobox kota
+          // lalu munculkan kembali combobox kotanya
+          $("#korwilawalmutasi").html(response.korwilawalmutasi).show();
+        },
+        error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+        }
+      });
+    });
+
   });
 
   </script>
@@ -510,32 +489,5 @@ function Validatefile(file) {
 }
 
 </script>
-
-<script>
-  $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
-    // Kita sembunyikan dulu untuk loadingnya
-    $("#anggotamutasi").change(function(){ // Ketika user mengganti atau memilih data provinsi
-    
-      $.ajax({
-        type: "POST", // Method pengiriman data bisa dengan GET atau POST
-        url: "<?php echo base_url("index.php/C_User/getkorwilmutasi"); ?>", // Isi dengan url/path file php yang dituju
-        data: {anggotamutasi : $("#anggotamutasi").val()}, // data yang akan dikirim ke file yang dituju
-        dataType: "json",
-        beforeSend: function(e) {
-          if(e && e.overrideMimeType) {
-            e.overrideMimeType("application/json;charset=UTF-8");
-          }
-        },
-        success: function(response){ 
-          
-          $("#korwilawalmutasi").html(response.idkorwil).show();
-        },
-        error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
-          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
-        }
-      });
-    });
-  });
-  </script>
 </body>
 </html>
