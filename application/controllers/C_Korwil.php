@@ -21,6 +21,18 @@ class C_Korwil extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $tabel = 'tb_akses';
+        $add = array(
+            'tipeuser' => $id,
+            'edit' => '1',
+            'id_menu' => '1'
+        );
+        $hasiladd = $this->M_Setting->cekakses($tabel, $add);
+        if(count($hasiladd)!=0){ 
+            $tomboladd = 'aktif';
+        } else {
+            $tomboladd = 'tidak';
+        }
+        
         $edit = array(
             'tipeuser' => $id,
             'edit' => '1',
@@ -44,6 +56,7 @@ class C_Korwil extends CI_Controller{
         } else {
             $tombolhapus = 'tidak';
         }
+        $data['aksestambah'] = $tomboladd;
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
         $data['korwil'] = $this->M_Korwil->getkorwil();  

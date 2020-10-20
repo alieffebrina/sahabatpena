@@ -34,9 +34,12 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('template/header.php');
+
+		$data['activeMenu'] = 'dashboard';
+		$this->load->view('template/header.php', $data);
 		$id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
+
 		$this->load->view('template/sidebar.php', $data);
 		$data['korwil'] = $this->M_Korwil->datakorwil();
 		// $data['datanonaktif'] = $this->M_User->datanonaktif();

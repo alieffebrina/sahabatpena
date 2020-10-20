@@ -29,10 +29,11 @@
             <div class="box-header">
               <h3 class="box-title">Data Cabang / Wilayah</h3>
             </div>
-
+            <?php if($aksestambah == 'aktif'){?>
             <div class="box-header">
               <a href="<?php echo site_url('C_Korwil/add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
             </div>
+            <?php } ?>
             <!-- /.box-header -->
 
             <div class="box-body table-responsive">
@@ -59,7 +60,9 @@
                   <td><?php echo $korwil->kodekorwil; ?></td>
                   <td> 
                     <div class="btn-group">
+                      <?php if($this->session->userdata('statusanggota') == 'administrator'){ ?>
                       <a href="<?php echo site_url('korwil-p/'.$korwil->id_korwil); ?>"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Pengurus!"><i class="fa fa-fw fa-users"></i></button></a>
+                      <?php } ?>
                       <a href="<?php echo site_url('korwil-view/'.$korwil->id_korwil); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="View Korwil!"><i class="fa fa-fw fa-search"></i></button></a>
                       <?php if($aksesedit == 'aktif'){?>
                       <a href="<?php echo site_url('korwil-edit/'.$korwil->id_korwil); ?>"><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="View Edit!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>

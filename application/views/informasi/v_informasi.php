@@ -29,10 +29,11 @@
             <div class="box-header">
               <h3 class="box-title">Data Informasi</h3>
             </div>
-
+            <?php if($aksestambah == 'aktif'){?>
             <div class="box-header">
               <a href="<?php echo site_url('informasi-add'); ?>"><button type="button" class="btn btn-warning" >Informasi</button></a>
             </div>
+            <?php } ?>
             <!-- /.box-header -->
 
             <div class="box-body table-responsive">

@@ -19,6 +19,7 @@ class C_Profil extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['user'] = $this->M_User->profiluser($iduser);   
         $data['korwil'] = $this->M_Korwil->getkorwil();   
+        $data['karya'] = $this->M_User->getkaryatulis($iduser); 
         $this->load->view('profil/v_profil',$data); 
         $this->load->view('template/footer');
     }

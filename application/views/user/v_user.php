@@ -48,6 +48,7 @@
               <table id="example1" class="table table-bordered table-striped table-hover">
                 <thead>
                 <tr>
+                  <th>ID</th>
                   <th>No Anggota</th>
                   <th>Username</th>
                   <th>Password</th>
@@ -62,6 +63,7 @@
                   $no=1;
                   foreach ($user as $user) { ?>
                 <tr>
+                  <td><?php echo $no++; ?></td>
                   <td><?php echo $user->noanggota; ?></td>
                   <td><?php echo $user->username; ?></td>
                   <td><?php echo $user->password; ?></td>

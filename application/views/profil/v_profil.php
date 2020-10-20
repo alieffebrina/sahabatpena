@@ -169,7 +169,87 @@
             </div>
             <!-- /.box-body -->
           </div>
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Data Status Keanggotaan</h3>
+            </div>
+            <!-- /.box-header -->
+
+            <div class="box-body table-responsive">
+              <table id="example1" class="table table-bordered table-striped table-hover">
+                <tbody>
+                  <tr>
+                  <td width="180px"> TANNGAL REGISTRASI </td>
+                  <td width="10px"> : </td>
+                  <td><?php echo date('m-d-Y', strtotime($user->institusi)) ?></td>
+                </tr>
+                <tr>
+                  <td> CABANG / WILAYAH </td>
+                  <td width="10px"> : </td>
+                  <td><?php echo $user->namakorwil ?></td>
+                </tr>
+                <tr>
+                  <td> STATUS KEANGGOTAAN </td>
+                  <td width="10px"> : </td>
+                  <td><?php echo $user->statusanggota ?></td>
+                </tr>
+                <?PHP if($user->statusanggota == 'tidak aktif') {?>
+                <tr>
+                  <td> LATAR BELAKANG S3 </td>
+                  <td width="10px"> : </td>
+                  <td><?php echo $lt[2] ?></td>
+                </tr>
+              <?php } ?>
+                </tbody>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+
         <?php } ?>
+        <div class="col-md-12">
+          <!-- Horizontal Form -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Data Karya Tulis</h3>
+            </div>
+              <!-- Date dd/mm/yyyy -->
+               <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Tanggal Publish</th>
+                  <th>Judul Karya Tulis</th>
+                  <th>Jenis Karya Tulis</th>
+                  <th>Penerbit / Publisher</th>
+                </tr>
+                </thead>
+                <tbody>
+                  <?php 
+                  $no=1;
+                  foreach ($karya as $karyatulis) { ?>
+                <tr>
+                  <td><?php echo $no++; ?></td>
+                  <td><?php echo date('d-m-Y', strtotime($karyatulis->tglpublish)); ?></td>
+                  <td><?php echo $karyatulis->karyatulis; ?></td>
+                  <td><?php echo $karyatulis->jenis; ?></td>
+                  <td><?php echo $karyatulis->penerbit; ?></td>
+                </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
+            </div>
+              <div class="box-footer">
+                  <div class="col-sm-10">
+                    <a href="<?php echo site_url('Welcome'); ?>" class="btn btn-default">Kembali</a>
+                    <a href="<?php echo site_url('user-edit/'.$user->id_anggota); ?>" class="btn btn-info">Ubah Data</a>
+                  </div>
+                </div> 
+              <!-- /.form group -->
+            </div>
+            <!-- /.box-body -->
+          </div>
           <!-- /.box -->
         </div>
         <!-- /.col -->

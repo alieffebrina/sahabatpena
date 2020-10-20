@@ -43,12 +43,16 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-
-          <?php if( $this->session->userdata('id_user') == NULL) { ?>
-<body class="layout-top-nav skin-blue fixed sidebar-mini">
-<?php } else { ?>
-<body class="hold-transition skin-blue fixed sidebar-mini">  
+<?php if($activeMenu != 'dashboard'){
+  if( $this->session->userdata('id_user') == NULL) { ?>
+  <body class="layout-top-nav skin-blue  sidebar-collapse sidebar-mini">
+  <?php } else { ?>
+  <body class="hold-transition skin-blue  sidebar-collapse sidebar-mini">  
+  <?php }
+} else { ?>
+  <body class="hold-transition skin-blue  fixed sidebar-mini">
 <?php } ?>
+          
 <div class="wrapper">
 
   <header class="main-header">

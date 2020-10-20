@@ -395,6 +395,8 @@ class C_User extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['user'] = $this->M_User->getspek($ida);
         $data['karyatulis'] = $this->M_User->getkaryatulis($ida);
+        $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['korwil'] = $this->M_Korwil->getkorwil();
         $this->load->view('user/v_vuser',$data); 
         $this->load->view('template/footer');
     }
