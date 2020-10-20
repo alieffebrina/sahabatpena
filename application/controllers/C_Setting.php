@@ -71,7 +71,8 @@ class C_Setting extends CI_Controller{
 
      function setting()
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -83,7 +84,8 @@ class C_Setting extends CI_Controller{
 
     function statusanggota($ida)
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -96,7 +98,8 @@ class C_Setting extends CI_Controller{
 
     function index()
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -108,7 +111,8 @@ class C_Setting extends CI_Controller{
 
     function view($ida)
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -166,7 +170,8 @@ class C_Setting extends CI_Controller{
 
     function vkode()
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -178,7 +183,8 @@ class C_Setting extends CI_Controller{
 
     function addkode()
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);

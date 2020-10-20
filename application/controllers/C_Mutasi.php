@@ -13,7 +13,8 @@ class C_Mutasi extends CI_Controller{
 
     function index()
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -51,7 +52,8 @@ class C_Mutasi extends CI_Controller{
 
      function add()
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);

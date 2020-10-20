@@ -12,7 +12,8 @@ class C_User extends CI_Controller{
 
     function index()
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -52,7 +53,8 @@ class C_User extends CI_Controller{
 
     function sort($korwil)
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -125,7 +127,8 @@ class C_User extends CI_Controller{
 
     function karyatulis()
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -138,7 +141,8 @@ class C_User extends CI_Controller{
 
     function viewkaryatulis()
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -191,7 +195,8 @@ class C_User extends CI_Controller{
 
     function editkt($noanggota,$idkt)
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -219,7 +224,8 @@ class C_User extends CI_Controller{
 
     function add()
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         if ($id != NULL){
@@ -389,7 +395,8 @@ class C_User extends CI_Controller{
 
     function view($ida)
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
@@ -403,7 +410,8 @@ class C_User extends CI_Controller{
 
     function edit($iduser)
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
@@ -486,7 +494,8 @@ class C_User extends CI_Controller{
 
      function konfirmasi($ida)
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
@@ -499,7 +508,8 @@ class C_User extends CI_Controller{
 
     function laporan()
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $korwil = $this->session->userdata('korwil');
@@ -517,7 +527,8 @@ class C_User extends CI_Controller{
 
     function setting()
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -529,7 +540,8 @@ class C_User extends CI_Controller{
 
     function user_kt()
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -557,7 +569,8 @@ class C_User extends CI_Controller{
 
     function resign($ida)
     {
-        $this->load->view('template/header');
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
         $data['menu'] = $this->M_Setting->getmenu1($id);
