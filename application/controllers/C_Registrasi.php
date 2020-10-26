@@ -54,20 +54,25 @@ class C_Registrasi extends CI_Controller{
                $this->M_User->karyatulisregistrasi($uploadfile, $a);
             }
 
-            // $this->load->library('mailer');
-            // $email_penerima = $this->input->post('email');
-            // $subjek = 'Terima kasih telah mendaftar';
-            // $pesan = 'pendaftaran sukses mohon tunggu konfirmasi via email'; // $this->input->post('pesan');
-            // // $attachment = $_FILES['attachment']; 
-            // $content = $pesan; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
-            // $sendmail = array(
-            //   'email_penerima'=>$email_penerima,
-            //   'subjek'=>$subjek,
-            //   'content'=>$content,
-            //   //'attachment'=>$attachment//
-            // );
+            $this->load->library('mailer');
+            $email_penerima = $this->input->post('email');
+            $subjek = 'Terima kasih telah mendaftar';
+            $pesan = 'Terima kasih Bapak/Ibu '.$this->input->post('nama').'. telah mendaftar sebagai calon anggota Sahabat Pena Kita (SPK). Seleksi penerimaan anggota baru akan dilakukan di setiap bulan Januari dan Juli oleh pengurus SPK. Pengumuman penerimaan seleksi akan dikirim melalui notifikasi email masing-masing calon anggota SPK. Tetap berkarya.
+
+Salam Literasi
+Ketua SPK (Sahabat Pena Kita)
+Dr. M. Arfan Mu’ammar, M.Pd.I
+'; // $this->input->post('pesan');
+            // $attachment = $_FILES['attachment']; 
+            $content = $pesan; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
+            $sendmail = array(
+              'email_penerima'=>$email_penerima,
+              'subjek'=>$subjek,
+              'content'=>$content,
+              //'attachment'=>$attachment//
+            );
             // if(empty($attachment['name'])){ // Jika tanpa attachment
-            //   $send = $this->mailer->send($sendmail); // Panggil fungsi send yang ada di librari Mailer
+              $send = $this->mailer->send($sendmail); // Panggil fungsi send yang ada di librari Mailer
             // }else{ // Jika dengan attachment
             //   $send = $this->mailer->send_with_attachment($sendmail); // Panggil fungsi send_with_attachment yang ada di librari Mailer
             // }

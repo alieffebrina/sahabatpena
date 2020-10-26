@@ -77,7 +77,7 @@
                     } else { echo '-'; } ?></td>
                   <td> 
                     <div class="btn-group">
-                      <a href="<?php echo site_url('user-send/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Kirim Email!"><i class="fa fa-fw fa-send"></i></button></a>
+                      <a href="<?php echo site_url('C_User/send/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Kirim Email!"><i class="fa fa-fw fa-send"></i></button></a>
                     <?php if($user->statusanggota == 'menunggu konfirmasi'){ ?>
                       <a href="<?php echo site_url('user-konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="konfirmasi!"><i class="fa fa-fw fa-check"></i></button></a>
                     <?php } ?>

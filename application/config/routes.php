@@ -61,6 +61,7 @@ $route['user-aktif/(:any)'] = 'C_User/aktif/$1';
 $route['user-resign/(:any)'] = 'C_User/resign/$1';
 $route['user-karyatulis'] = 'C_User/karyatulis';
 $route['user-sort/(:any)'] = 'C_User/sort/$1';
+$route['user-send/(:any)'] = 'C_User/send/$1';
 
 $route['view-karyatulis'] = 'C_User/viewkaryatulis';
 $route['edit-karyatulis/(:any)/(:any)'] = 'C_User/editkt/$1/$2';
@@ -90,7 +91,7 @@ $route['login'] = 'C_Login';
 $route['login-1'] = 'C_Login/login/0';
 
 
-// $route['registrasi'] = 'C_User/registrasi';
+$route['registrasi'] = 'C_User/registrasi';
 $route['daftarulang'] = 'C_User/daftarulang';
 $route['daftarulang-cek/(:any)'] = 'C_User/daftarulangcek/$1';
 

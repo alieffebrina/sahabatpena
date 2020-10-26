@@ -610,4 +610,113 @@ class C_User extends CI_Controller{
         redirect('user-karyatulis');  
     }
 
+    function send($ida){
+        //echo $ida;
+        $spek = $this->M_User->getspek($ida);
+        foreach ($spek as $spek) {
+            $nama = $spek->nama;
+            $username = $spek->username;
+            $password = $spek->password;
+            $email_penerima = $spek->email;
+        }
+
+        $this->load->library('mailer');
+        // $email_penerima = $this->input->post('email');
+        $subjek = 'Terima kasih telah mendaftar';
+
+        $pesan = 'Terima kasih Bapak/Ibu '.$nama.' telah mengisi database SPK, berikut kami sertakan username dan password Bapak/Ibu untuk login di database SPK yang tercantum dibawah ini:
+1. Username : '.$username.'
+2. Password : '.$password.'
+Link Url Login www.anggota.sahabatpenakita.id 
+Setelah login, bapak ibu bisa melakukan edit data atau update data terkini
+
+Salam
+Ketua SPK (Sahabat Pena Kita)'; // $this->input->post('pesan');
+        // $attachment = $_FILES['attachment']; 
+        $content = 'test'; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
+        $sendmail = array(
+          'email_penerima'=>'alief.febrina@gmail.com',
+          'subjek'=>$subjek,
+          'content'=>$content,
+          //'attachment'=>$attachment//
+        );
+        // if(empty($attachment['name'])){ // Jika tanpa attachment
+          $send = $this->mailer->send($sendmail); // Panggil fungsi send yang ada di librari Mailer
+        // }else{ // Jika dengan attachment
+        //   $send = $this->mailer->send_with_attachment($sendmail); // Panggil fungsi send_with_attachment yang ada di librari Mailer
+        // }
+
+        // // $this->load->library('mailer');
+        // $emailadmin = 'rizkyfebry09@gmail.com';
+        // $subjekadmin = 'Pendaftar Baru';
+        // $pesanadmin = 'pendaftaran baru atas nama : '.$this->input->post('nama').'silahkan kunjungi link dibawah ini'; // $this->input->post('pesan');
+        // // $attachment = $_FILES['attachment']; 
+        // $contentadmin = $pesanadmin; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
+        // $sendmailadmin = array(
+        //   'email_penerima'=>$emailadmin,
+        //   'subjek'=>$subjekadmin,
+        //   'content'=>$contentadmin,
+        //   //'attachment'=>$attachment//
+        // );
+        // if(empty($attachment['name'])){ // Jika tanpa attachment
+        //   $send = $this->mailer->send($sendmailadmin); // Panggil fungsi send yang ada di librari Mailer
+        // }else{ // Jika dengan attachment
+        //   $send = $this->mailer->send_with_attachment($sendmailadmin); // Panggil fungsi send_with_attachment yang ada di librari Mailer
+        // }
+
+        // $this->session->set_flashdata('Sukses', "Data Berhasil Di Kirim!!");
+        // redirect('user');  
+    }
+
+    function send2(){
+
+date_default_timezone_set('Asia/Jakarta'); // setting time zone;
+
+require_once('PHPMailerr/PHPMailerAutoload.php');
+$mail             = new PHPMailer();
+$body             = "
+<h3>Berikut adalah data invoice pendaftaran sbb: </h3>
+<table border='0' width='100%'>
+<tr><td width='25%'>Nama</td><td>:</td><td>".$u['nama_lengkap']."</td></tr>
+<tr><td width='25%'>Pengda</td><td>:</td><td>".$u['pengda']."</td></tr>
+<tr><td width='25%'>Tanggal Registrasi</td><td>:</td><td>".date('d-m-Y', strtotime($u['tgl_pendaftaran']))." ".$jam_expired." WIB</td></tr>
+<tr><td width='25%'>Biaya Pendaftaran</td><td>:</td><td>Rp. ".number_format($u['biaya'])."</td></tr>
+<tr><td width='25%'>Batas Waktu Pembayaran</td><td>:</td><td>".$tgl_expired." ".$jam_expired." WIB</td></tr></table><br>
+Selanjutnya mohon untuk transfer biaya pendaftaran ke <strong>REKENING</strong> di bawah ini:<br>
+Bank            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: BNI<br>
+Nomor Account   &nbsp;: 2225588582<br>
+Atas Nama       &nbsp;&nbsp;&nbsp;&nbsp;: PENGWIL JAWA TIMUR INI;<br>
+<br>                  
+Mohon Perhatian:<br>
+1.  Melakukan pembayaran sesuai dengan jumlah diatas dengan memperhatikan 3 digit terakhir kode pembayaran, dalam waktu terhitung 1X24 jam <br>
+2.  Upload bukti bayar, dengan cara klik tombol UPLOAD BUKTI BAYAR dibawah ini.<br>
+3.  Apabila lewat BATAS WAKTU PEMBAYARAN maka pendaftaran online akan hangus, silakan mendaftar online kembali ke www.konferwil.pengwiljatimini.com<br><br>
+Informasi Pendaftaran/Contact Person (CP):<br>
+1.   Lily Marinie                : 0812-3057-2377<br>
+2.   Hendrita Vira Yona : 0812-3106-533<br>
+<br><br>
+Terima kasih atas perhatian dan kerjasamanya.
+"; //isi dari email
+$mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+$mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                           // 1 = Error dan pesan
+                                           // 2 = Pesan saja
+$mail->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+$mail->SMTPSecure = "ssl";                 // jenis kemananan
+$mail->Host       = "smtp.gmail.com";      // masukkan GMAIL sebagai smtp server
+$mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+$mail->Username   = "sahabatpenakita1@gmail.com";  // GMAIL username
+$mail->Password   = "Pastisukses2020";            // GMAIL password
+$mail->SetFrom('pengwiljatimini@gmail.com', 'Admin Konferwil Jatim INI'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+$mail->Subject    = "INVOICE PENDAFTARAN KONFERENSI WILAYAH JAWA TIMUR IKATAN NOTARIS INDONESIA";//masukkan subject
+$mail->MsgHTML($body);//masukkan isi dari email
+
+$address = $u['email']; //masukkan penerima
+$mail->AddAddress($address, $u['nama_lengkap']); //masukkan penerima
+
+$mail->AddCC('pengwiljatimini@gmail.com', 'Pengwil INI Jatim');
+
+$mail->Send();
+    }
+
 }
