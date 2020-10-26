@@ -1,4 +1,10 @@
  <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+
 class C_Registrasi extends CI_Controller{
     
     public function __construct(){
@@ -6,6 +12,10 @@ class C_Registrasi extends CI_Controller{
         $this->load->helper(array('form','url'));    
         $this->load->model('M_Setting');
         $this->load->model('M_User');
+
+        require APPPATH.'libraries/phpmailer/src/Exception.php';
+        require APPPATH.'libraries/phpmailer/src/PHPMailer.php';
+        require APPPATH.'libraries/phpmailer/src/SMTP.php';
     }
 
     function getkabupaten(){
@@ -41,7 +51,7 @@ class C_Registrasi extends CI_Controller{
             echo json_encode($callback); // konversi varibael $callback menjadi JSON
     }
 
-    public function tambah()
+    public function tambah1()
     {   
         $upload = $this->M_User->upload();
         if ($upload['result'] == "success"){
@@ -102,6 +112,65 @@ Dr. M. Arfan Mu’ammar, M.Pd.I
         }
     }
 
+     public function tambah()
+    {   
+        $upload = $this->M_User->upload();
+        if ($upload['result'] == "success"){
+            $uploadfile = $this->M_User->uploadfile();
+            $this->M_User->tambahregis($upload, $uploadfile);
+            $selectmax = $this->M_User->selectmax();
+            foreach ($selectmax as $key) {
+                $a = $key->id_anggota;
+                echo $a;
+               $this->M_User->karyatulisregistrasi($uploadfile, $a);
+            }
+            
+            $email_penerima = $this->input->post('email');
+            $response = false;
+            $mail = new PHPMailer();       
+    
+            // SMTP configuration
+            $mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+            $mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                       // 1 = Error dan pesan
+                                                       // 2 = Pesan saja
+            $mail->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+            $mail->SMTPSecure = "ssl";                 // jenis kemananan
+            $mail->Host       = "smtp.gmail.com";      // masukkan GMAIL sebagai smtp server
+            $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+            $mail->Username   = "sahabatpenakita24318@gmail.com";  // GMAIL username
+            $mail->Password   = "Pastisukses2020";  
+    
+            $mail->SetFrom('sahabatpenakita24318@gmail.com', 'Admin Konferwil Jatim INI'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+            //$mail->addReplyTo('xxx@hostdomain.com', ''); //user email
+    
+            // Add a recipient
+            $mail->addAddress($email_penerima); //email tujuan pengiriman email
+    
+            // Email subject
+            $mail->Subject = 'pendaftaran email'; //subject email
+    
+            // Set email format to HTML
+            $mail->isHTML(true);
+    
+            // Email body content
+            $mailContent = 'Terima kasih Bapak/Ibu '.$this->input->post('nama').'. telah mendaftar sebagai calon anggota Sahabat Pena Kita (SPK). Seleksi penerimaan anggota baru akan dilakukan di setiap bulan Januari dan Juli oleh pengurus SPK. Pengumuman penerimaan seleksi akan dikirim melalui notifikasi email masing-masing calon anggota SPK. Tetap berkarya.
+
+Salam Literasi
+Ketua SPK (Sahabat Pena Kita)
+Dr. M. Arfan Mu’ammar, M.Pd.I
+';  // isi email
+            $mail->Body = $mailContent;
+    
+            // Send email
+            if(!$mail->send()){
+                echo 'Message could not be sent.';
+                echo 'Mailer Error: ' . $mail->ErrorInfo;
+            }else{
+                echo 'Message has been sent';
+            }
+        }
+    }
 
 
 }

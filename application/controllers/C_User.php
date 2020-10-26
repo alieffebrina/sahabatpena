@@ -1,6 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 class C_User extends CI_Controller{
-    
+
+
     public function __construct(){
         parent::__construct();
         $this->load->helper(array('form','url'));
@@ -8,6 +11,10 @@ class C_User extends CI_Controller{
         $this->load->model('M_User');
         $this->load->model('M_Korwil');
         $this->load->model('M_Setting');
+
+        require APPPATH.'libraries/phpmailer/src/Exception.php';
+        require APPPATH.'libraries/phpmailer/src/PHPMailer.php';
+        require APPPATH.'libraries/phpmailer/src/SMTP.php';
     }
 
     function index()
@@ -610,7 +617,7 @@ class C_User extends CI_Controller{
         redirect('user-karyatulis');  
     }
 
-    function send($ida){
+    function send2($ida){
         //echo $ida;
         $spek = $this->M_User->getspek($ida);
         foreach ($spek as $spek) {
@@ -668,55 +675,57 @@ Ketua SPK (Sahabat Pena Kita)'; // $this->input->post('pesan');
         // redirect('user');  
     }
 
-    function send2(){
+    function send($ida){
+        $spek = $this->M_User->getspek($ida);
+        foreach ($spek as $spek) {
+            $nama = $spek->nama;
+            $username = $spek->username;
+            $password = $spek->password;
+            $email_penerima = $spek->email;
+        }
+        // $email_penerima = $this->input->post('email');
+        $response = false;
+        $mail = new PHPMailer();       
 
-date_default_timezone_set('Asia/Jakarta'); // setting time zone;
+        // SMTP configuration
+        $mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mail->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mail->SMTPSecure = "ssl";                 // jenis kemananan
+        $mail->Host       = "smtp.gmail.com";      // masukkan GMAIL sebagai smtp server
+        $mail->Port       = 465;                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mail->Username   = "tes.hosterweb@gmail.com";  // GMAIL username
+        $mail->Password   = "veryaprzdoexroew";  
 
-require_once('PHPMailerr/PHPMailerAutoload.php');
-$mail             = new PHPMailer();
-$body             = "
-<h3>Berikut adalah data invoice pendaftaran sbb: </h3>
-<table border='0' width='100%'>
-<tr><td width='25%'>Nama</td><td>:</td><td>".$u['nama_lengkap']."</td></tr>
-<tr><td width='25%'>Pengda</td><td>:</td><td>".$u['pengda']."</td></tr>
-<tr><td width='25%'>Tanggal Registrasi</td><td>:</td><td>".date('d-m-Y', strtotime($u['tgl_pendaftaran']))." ".$jam_expired." WIB</td></tr>
-<tr><td width='25%'>Biaya Pendaftaran</td><td>:</td><td>Rp. ".number_format($u['biaya'])."</td></tr>
-<tr><td width='25%'>Batas Waktu Pembayaran</td><td>:</td><td>".$tgl_expired." ".$jam_expired." WIB</td></tr></table><br>
-Selanjutnya mohon untuk transfer biaya pendaftaran ke <strong>REKENING</strong> di bawah ini:<br>
-Bank            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: BNI<br>
-Nomor Account   &nbsp;: 2225588582<br>
-Atas Nama       &nbsp;&nbsp;&nbsp;&nbsp;: PENGWIL JAWA TIMUR INI;<br>
-<br>                  
-Mohon Perhatian:<br>
-1.  Melakukan pembayaran sesuai dengan jumlah diatas dengan memperhatikan 3 digit terakhir kode pembayaran, dalam waktu terhitung 1X24 jam <br>
-2.  Upload bukti bayar, dengan cara klik tombol UPLOAD BUKTI BAYAR dibawah ini.<br>
-3.  Apabila lewat BATAS WAKTU PEMBAYARAN maka pendaftaran online akan hangus, silakan mendaftar online kembali ke www.konferwil.pengwiljatimini.com<br><br>
-Informasi Pendaftaran/Contact Person (CP):<br>
-1.   Lily Marinie                : 0812-3057-2377<br>
-2.   Hendrita Vira Yona : 0812-3106-533<br>
-<br><br>
-Terima kasih atas perhatian dan kerjasamanya.
-"; //isi dari email
-$mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
-$mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
-                                           // 1 = Error dan pesan
-                                           // 2 = Pesan saja
-$mail->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
-$mail->SMTPSecure = "ssl";                 // jenis kemananan
-$mail->Host       = "smtp.gmail.com";      // masukkan GMAIL sebagai smtp server
-$mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
-$mail->Username   = "sahabatpenakita1@gmail.com";  // GMAIL username
-$mail->Password   = "Pastisukses2020";            // GMAIL password
-$mail->SetFrom('pengwiljatimini@gmail.com', 'Admin Konferwil Jatim INI'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
-$mail->Subject    = "INVOICE PENDAFTARAN KONFERENSI WILAYAH JAWA TIMUR IKATAN NOTARIS INDONESIA";//masukkan subject
-$mail->MsgHTML($body);//masukkan isi dari email
+        $mail->SetFrom('sahabatpenakita24318@gmail.com', 'Admin Konferwil Jatim INI'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        //$mail->addReplyTo('xxx@hostdomain.com', ''); //user email
 
-$address = $u['email']; //masukkan penerima
-$mail->AddAddress($address, $u['nama_lengkap']); //masukkan penerima
+        // Add a recipient
+        $mail->addAddress($email_penerima); //email tujuan pengiriman email
 
-$mail->AddCC('pengwiljatimini@gmail.com', 'Pengwil INI Jatim');
+        // Email subject
+        $mail->Subject = 'pendaftaran email'; //subject email
 
-$mail->Send();
+        // Set email format to HTML
+        $mail->isHTML(true);
+
+        // Email body content
+        $mailContent = 'Terima kasih Bapak/Ibu '.$nama.'. telah mendaftar sebagai calon anggota Sahabat Pena Kita (SPK). Seleksi penerimaan anggota baru akan dilakukan di setiap bulan Januari dan Juli oleh pengurus SPK. Pengumuman penerimaan seleksi akan dikirim melalui notifikasi email masing-masing calon anggota SPK. Tetap berkarya.
+
+Salam Literasi
+Ketua SPK (Sahabat Pena Kita)
+Dr. M. Arfan Mu’ammar, M.Pd.I
+';  // isi email
+        $mail->Body = $mailContent;
+
+        // Send email
+        if(!$mail->send()){
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        }else{
+            echo 'Message has been sent';
+        }
     }
-
 }
