@@ -395,7 +395,46 @@ class C_User extends CI_Controller{
 
     function savedu(){
         $this->M_User->savedu();
-            $this->session->set_flashdata('Sukses', "Terima kasih data berhasil disimpan!!");
+        $nama = $this->input->post('nama');
+        $username =  $this->input->post('namapanggilan');
+        $password = $this->input->post('namapanggilan').date('Y', strtotime($this->input->post('tgllahir')));
+        $email_penerima = $this->input->post('email');
+        $mail             = new PHPMailer();
+        $body             = "Terima kasih Bapak/Ibu ".$nama." telah mengisi database SPK, berikut kami sertakan username dan password Bapak/Ibu untuk login di database SPK yang tercantum dibawah ini :<br>
+
+1. Username : ".$username.".<br>
+2. Password : ".$password.".<br><br>
+
+Link Url login www.anggota.sahabatpenakita.id<br><br>
+
+Setelah login, bapak ibu bisa melakukan edit data atau update data terkini<br><br>
+
+Salam<br>
+Ketua SPK ( Sahabat Pena Kita)
+
+";//isi dari email
+        $mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mail->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mail->SMTPSecure = "ssl";                 // jenis kemananan
+        $mail->Host       = "smtp.gmail.com";      // masukkan GMAIL sebagai smtp server
+        $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username
+        $mail->Password   = "xxslesqdaashbskh";            // GMAIL password
+        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mail->Subject    = "SAHABAT PENA KITA";//masukkan subject
+        $mail->MsgHTML($body);//masukkan isi dari email
+        
+       // $address = "alief.febrina@gmail.com"; //masukkan penerima
+        $mail->AddAddress($email_penerima, $nama); //masukkan penerima
+        
+        $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
+        
+        $mail->Send();
+           echo $mail->ErrorInfo;
+            $this->session->set_flashdata('Sukses', "Username dan Password telah dikirim ke Email anda!!");
             redirect('login'); 
     }
 
@@ -490,12 +529,59 @@ class C_User extends CI_Controller{
             $data = $this->M_User->getjumlahwilayah($korwil);
             $id = count($data)+1;
             $a = str_replace("no", $id, $a);
+            $namako = $modul->kodekorwil;
         }
         $kode = $a;
         // echo $kode;
         $id = $this->session->userdata('statusanggota');
         $this->M_User->konfirm($id, $kode);
-        $this->session->set_flashdata('Sukses', "Data Berhasil Di Anggota!!");
+
+        $idanggota = $this->input->post('idanggota');
+        $spek = $this->M_User->getspek($idanggota);
+        foreach ($spek as $spek) {
+            $nama = $spek->nama;
+            $username = $spek->username;
+            $password = $spek->password;
+            $email_penerima = $spek->email;
+        }
+         date_default_timezone_set('Asia/Jakarta'); // setting time zone;
+
+        $mail             = new PHPMailer();
+        $body             = "Selamat, Bapak/Ibu ".$nama." dinyatakan diterima menjadi anggota SPK Cabang ".$namako." dengan No ID ".$kode." <br>
+Silahkan melengkapi biodata di database SPK dengan mengklik mengakses url dan akses login anda :<br>
+1. Username : ".$username."<br>
+2. Passoword : ".$password."<br>
+Link URL Login www.sahabatpenakita.id <br>
+Admin akan segera menghubungi Anda untuk dimasukkan di Grup Sahabat Pena Kita Cabang ".$namako."<br>
+
+Salam <br>
+Ketua SPK ( Sahabat Pena Kita ) <br>
+Dr. M. Arfan Mu’ammar, M.Pd.I<br>
+
+";//isi dari email
+        $mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mail->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mail->SMTPSecure = "ssl";                 // jenis kemananan
+        $mail->Host       = "smtp.gmail.com";      // masukkan GMAIL sebagai smtp server
+        $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username
+        $mail->Password   = "xxslesqdaashbskh";            // GMAIL password
+        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mail->Subject    = "SAHABAT PENA KITA";//masukkan subject
+        $mail->MsgHTML($body);//masukkan isi dari email
+        
+       // $address = "alief.febrina@gmail.com"; //masukkan penerima
+        $mail->AddAddress($email_penerima, $nama); //masukkan penerima
+        
+        $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
+        
+        $mail->Send();
+        echo $mail->ErrorInfo;   
+
+        $this->session->set_flashdata('Sukses', "Data Berhasil Di Konfirmasi dan Email Berhasil Dikirim!!");
             redirect('user');
     }
 
@@ -522,7 +608,7 @@ class C_User extends CI_Controller{
         $korwil = $this->session->userdata('korwil');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        if($korwil == NULL){
+        if($id == "administrator"){
         $data['user'] = $this->M_User->getall();   
         } else { 
         $data['user'] = $this->M_User->getjumlahwilayah($korwil);    
@@ -562,6 +648,47 @@ class C_User extends CI_Controller{
     function nonaktif($id)
     {
         $this->M_User->nonaktif($id);
+
+        $spek = $this->M_User->getspek($id);
+        foreach ($spek as $spek) {
+            $nama = $spek->nama;
+            $username = $spek->username;
+            $password = $spek->password;
+            $email_penerima = $spek->email;
+        }
+        date_default_timezone_set('Asia/Jakarta'); // setting time zone;
+
+        $mail             = new PHPMailer();
+        $body             = "Berdasarkan rapat pengurus SPK dan berbagai pertimbangan, kami belum dapat menerima Bapak/Ibu ".$nama." sebagai anggota SPK.<br>
+Semoga di lain waktu dan kesempatan, kita bisa saling bersinergi dan belajar literasi bersama.<br>
+
+Salam<br>
+Ketua SPK (Sahabat Pena Kita)<br>
+Dr. M. Arfan Mu’ammar, M.Pd.I<br>
+";//isi dari email
+        $mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mail->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mail->SMTPSecure = "ssl";                 // jenis kemananan
+        $mail->Host       = "smtp.gmail.com";      // masukkan GMAIL sebagai smtp server
+        $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username
+        $mail->Password   = "xxslesqdaashbskh";            // GMAIL password
+        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mail->Subject    = "SAHABAT PENA KITA";//masukkan subject
+        $mail->MsgHTML($body);//masukkan isi dari email
+        
+       // $address = "alief.febrina@gmail.com"; //masukkan penerima
+        $mail->AddAddress($email_penerima, $nama); //masukkan penerima
+        
+        $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
+        
+        $mail->Send();
+        echo $mail->ErrorInfo;   
+
+
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Non Aktifkan!!");
         redirect('user-setting');
     }
@@ -569,6 +696,51 @@ class C_User extends CI_Controller{
      function aktif($id)
     {
         $this->M_User->aktifsetting($id);
+
+        $spek = $this->M_User->getspek($id);
+        foreach ($spek as $spek) {
+            $nama = $spek->nama;
+            $username = $spek->username;
+            $password = $spek->password;
+            $email_penerima = $spek->email;
+        }
+        date_default_timezone_set('Asia/Jakarta'); // setting time zone;
+
+        $mail             = new PHPMailer();
+        $body             = "Selamat, Bapak/Ibu ".$nama." dinyatakan diterima menjadi anggota SPK Cabang ".$namako." dengan No ID ".$kode." <br>
+Silahkan melengkapi biodata di database SPK dengan mengklik mengakses url dan akses login anda :<br>
+1. Username : ".$username."<br>
+2. Passoword : ".$password."<br>
+Link URL Login www.sahabatpenakita.id <br>
+Admin akan segera menghubungi Anda untuk dimasukkan di Grup Sahabat Pena Kita Cabang ".$namako."<br>
+
+Salam <br>
+Ketua SPK ( Sahabat Pena Kita ) <br>
+Dr. M. Arfan Mu’ammar, M.Pd.I<br>
+
+";//isi dari email
+        $mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mail->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mail->SMTPSecure = "ssl";                 // jenis kemananan
+        $mail->Host       = "smtp.gmail.com";      // masukkan GMAIL sebagai smtp server
+        $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username
+        $mail->Password   = "xxslesqdaashbskh";            // GMAIL password
+        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mail->Subject    = "SAHABAT PENA KITA";//masukkan subject
+        $mail->MsgHTML($body);//masukkan isi dari email
+        
+       // $address = "alief.febrina@gmail.com"; //masukkan penerima
+        $mail->AddAddress($email_penerima, $nama); //masukkan penerima
+        
+        $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
+        
+        $mail->Send();
+        echo $mail->ErrorInfo;   
+
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Aktifkan!!");
         redirect('user-setting');
     }
@@ -593,7 +765,7 @@ class C_User extends CI_Controller{
         $id = $this->session->userdata('statusanggota');
 
         $korwil = $this->session->userdata('korwil');
-        if($korwil == NULL){
+        if($id == "administrator"){
         $user = $this->M_User->getall();   
         } else { 
         $user = $this->M_User->getjumlahwilayah($korwil);    
