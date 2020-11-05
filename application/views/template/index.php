@@ -76,6 +76,8 @@
         </div>
         <!-- ./col -->
       </div>
+      
+    <?php $this->load->view('template/flot.php'); ?>
       <!-- /.row -->
       <!-- Main row -->
       <div class="row">
