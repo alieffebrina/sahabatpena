@@ -348,7 +348,7 @@
 
               <div class="box-footer">
                   <div class="col-sm-10">
-                    <button type="button" class="btn btn-info" id='tktdu'>Tambah Karya</button>
+                    <button type="button" class="btn btn-info" id='tktdu'  onclick="return click(event)">Tambah Karya</button>
                   </div>
                 </div> 
                  <div class="box-body">
@@ -368,7 +368,7 @@
               <div class="box-footer">
                   <div class="col-sm-10">
                     <a href="<?php echo site_url('Welcome'); ?>" class="btn btn-default">Batal</a>
-                    <button type="submit" class="btn btn-info" id="simpandaftarulang">Simpan Data</button>
+                    <button type="submit" class="btn btn-info" id="simpandaftarulang" disabled="true">Simpan Data</button>
                   </div>
                 </div> 
               <!-- /.form group -->
@@ -385,50 +385,52 @@
     </section>
     <!-- /.content -->
   </div>
+<script type="text/javascript">
 
-<script>
-   $(document).ready(function() {
-            document.getElementById("simpandaftarulang").disabled = true; 
+function click(){
+           document.getElementById("simpandaftarulang").disabled = false; 
+           document.getElementById("judul").value = "ok"; 
   
-     $("#tktdu").click(function() {
-       var judul = $("#judul").val();
-       var jenis = $("#jenis").val();
-       var penerbit = $("#penerbit").val();
-       var thnterbit = $("#thnterbit").val();
-       var kar = $("#kar").val();
-       var baris_baru = "<tr>\n\
-       <td>"+thnterbit+"<input type='hidden' name='thnterbitdu[]' value='"+thnterbit+"'></td>\n\
-        <td>"+judul+"<input type='hidden' name='juduldu[]' value='"+judul+"'></td>\n\
-        <td>"+jenis+"<input type='hidden' name='jenisdu[]' value='"+jenis+"'></td>\n\
-        <td>"+penerbit+"<input type='hidden' name='penerbitdu[]' value='"+penerbit+"'></td>\n\
-        <td width='100px'><a href='javascript:void(0);' class='remCF' data-id='"+judul+"' ><input type='hidden' id=karid value='"+thnterbit+'_'+jenis+'_'+judul+'_'+penerbit+"'>\n\
-          <button type='button' class='btn btn-info btn-sm'>\n\
-            <i class='fa fa-times'></i></button></a></td>\n\
-        </tr>";
-       $("#karyatulisdu").append(baris_baru);
-       document.getElementById('judul').value = '';
-       document.getElementById('jenis').value = '';
-       document.getElementById('penerbit').value = '';
-       document.getElementById('thnterbit').value = '';
-       if(kar == ''){
-          document.getElementById('kar').value = thnterbit+'_'+jenis+'_'+judul+'_'+penerbit;
-       } else {
-         document.getElementById('kar').value = kar+'/'+thnterbit+'_'+jenis+'_'+judul+'_'+penerbit;
-        }
+   //   $("#tktdu").click(function() {
+   //     var judul = $("#judul").val();
+   //     var jenis = $("#jenis").val();
+   //     var penerbit = $("#penerbit").val();
+   //     var thnterbit = $("#thnterbit").val();
+   //     var kar = $("#kar").val();
+   //     var baris_baru = "<tr>\n\
+   //     <td>"+thnterbit+"<input type='hidden' name='thnterbitdu[]' value='"+thnterbit+"'></td>\n\
+   //      <td>"+judul+"<input type='hidden' name='juduldu[]' value='"+judul+"'></td>\n\
+   //      <td>"+jenis+"<input type='hidden' name='jenisdu[]' value='"+jenis+"'></td>\n\
+   //      <td>"+penerbit+"<input type='hidden' name='penerbitdu[]' value='"+penerbit+"'></td>\n\
+   //      <td width='100px'><a href='javascript:void(0);' class='remCF' data-id='"+judul+"' ><input type='hidden' id=karid value='"+thnterbit+'_'+jenis+'_'+judul+'_'+penerbit+"'>\n\
+   //        <button type='button' class='btn btn-info btn-sm'>\n\
+   //          <i class='fa fa-times'></i></button></a></td>\n\
+   //      </tr>";
+   //     $("#karyatulisdu").append(baris_baru);
+   //     document.getElementById('judul').value = '';
+   //     document.getElementById('jenis').value = '';
+   //     document.getElementById('penerbit').value = '';
+   //     document.getElementById('thnterbit').value = '';
+   //     if(kar == ''){
+   //        document.getElementById('kar').value = thnterbit+'_'+jenis+'_'+judul+'_'+penerbit;
+   //     } else {
+   //       document.getElementById('kar').value = kar+'/'+thnterbit+'_'+jenis+'_'+judul+'_'+penerbit;
+   //      }
 
-            document.getElementById("simpandaftarulang").disabled = false;
-     });
-     $("#karyatulisdu").on('click', '.remCF', function() {
-      $(this).parent().parent().remove();
-      var karo = document.getElementById('kar').value;
-      var karid = $(this).parent().find('#karid').val();
-      document.getElementById('kar').value = karo.replace(karid, '');
-      if(document.getElementById('kar').value == ''){
-            document.getElementById("simpandaftarulang").disabled = true; 
-       } else {
-            document.getElementById("simpandaftarulang").disabled = false;
-        }
-    });
+   //          document.getElementById("simpandaftarulang").disabled = false;
+   //   });
+   //   $("#karyatulisdu").on('click', '.remCF', function() {
+   //    $(this).parent().parent().remove();
+   //    var karo = document.getElementById('kar').value;
+   //    var karid = $(this).parent().find('#karid').val();
+   //    document.getElementById('kar').value = karo.replace(karid, '');
+   //    if(document.getElementById('kar').value == ''){
+   //          document.getElementById("simpandaftarulang").disabled = true; 
+   //     } else {
+   //          document.getElementById("simpandaftarulang").disabled = false;
+   //      }
+   //  });
   
-   });
+   // });
+}
    </script>
