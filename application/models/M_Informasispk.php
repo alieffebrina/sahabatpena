@@ -9,6 +9,14 @@ class M_Informasispk extends CI_Model {
     	return $query->result();
     }
 
+    function dash(){
+        $this->db->select('count(tb_anggota.id_korwil) jumlah_anggota, namakorwil');
+        $this->db->join('tb_korwil', 'tb_korwil.id_korwil = tb_anggota.id_korwil');
+        $this->db->group_by('tb_korwil.id_korwil');
+        $query = $this->db->get('tb_anggota');
+        return $query->result();
+    }
+
      function tambah(){
         $user = array(
             'id_user' => $this->session->userdata('id_user'),

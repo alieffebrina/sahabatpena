@@ -59,6 +59,7 @@ class Welcome extends CI_Controller {
 			$data['dataaktif'] = $this->M_User->dataaktifkorwil($id_korwil);
 			
 		}
+		$data['dash'] = $this->M_Informasispk->dash();
 		$data['informasi'] = $this->M_Informasispk->getall();
 		$this->load->view('template/index.php', $data);
 		$this->load->view('template/footer.php');

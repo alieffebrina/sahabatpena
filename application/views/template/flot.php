@@ -199,7 +199,7 @@
      ?>
     var donutData = [ <?php 
       $no = 0;
-      foreach ($total as $key) { 
+      foreach ($dash as $key) { 
       ?>
       { label: '<?php  echo $key->namakorwil ; ?>', data: <?php 
        $hasil = $key->jumlah_anggota/$totalang; 
