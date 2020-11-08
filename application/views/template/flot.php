@@ -62,8 +62,6 @@
 <script src="<?php echo base_url() ?>assets/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url() ?>assets/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url() ?>assets/dist/js/demo.js"></script>
 <!-- FLOT CHARTS -->
 <script src="<?php echo base_url() ?>assets/bower_components/Flot/jquery.flot.js"></script>
 <!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->

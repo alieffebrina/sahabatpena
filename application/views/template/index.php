@@ -77,9 +77,7 @@
         <!-- ./col -->
       </div>
       
-    <?php 
-    $dash = $this->M_Informasispk->dash();
-    $this->load->view('template/flot.php', $dash); ?>
+    <?php $this->load->view('template/flot.php'); ?>
       <!-- /.row -->
       <!-- Main row -->
       <div class="row">
@@ -111,48 +109,6 @@
                   <small class="label label-danger"><i class="fa fa-clock-o"></i><?php echo '&nbsp;'.$informasi->tglupdate; ?></small><br>
 
                   <span class="text">  <?php echo $informasi->informasi; ?></span>
-                  <!-- General tools such as edit or delete-->
-                </li>
-
-                <?php } ?>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix no-border">
-              <a href="<?php echo site_url('informasi'); ?>"><button type="button" class="btn btn-default pull-right"><i class="fa fa-arrow-circle-right"></i>Lihat Selengkapnya</button></a>
-            </div>
-          </div>
-          <!-- /.box -->
-
-        </section>
-
-        <section class="col-md-12 connectedSortable">
-          <!-- Custom tabs (Charts with tabs)-->
-          
-          <!-- TO DO List -->
-          <div class="box box-primary">
-            <div class="box-header">
-              <i class="ion ion-clipboard"></i>
-
-              <h3 class="box-title">dash</h3>
-            </div>
-            <div class="box-body">
-              <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-              <ul class="todo-list">
-                <?php foreach ($dash as $dash) { ?>
-                <li>
-                  <!-- drag handle -->
-                  <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <!-- checkbox -->
-                  <!-- todo text -->
-                  <span class="text">  <?php echo $dash->namakorwil; ?></span>
-                  <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i><?php echo '&nbsp;'.$dash->jumlah_anggota; ?></small><br>
-
-                  <span class="text">  <?php echo $dash->jumlah_anggota; ?></span>
                   <!-- General tools such as edit or delete-->
                 </li>
 

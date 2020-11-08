@@ -13,9 +13,9 @@ class C_Registrasi extends CI_Controller{
         $this->load->model('M_Setting');
         $this->load->model('M_User');
 
-        require APPPATH.'libraries/phpmailer/src/Exception.php';
-        require APPPATH.'libraries/phpmailer/src/PHPMailer.php';
-        require APPPATH.'libraries/phpmailer/src/SMTP.php';
+        // require APPPATH.'libraries/phpmailer/src/Exception.php';
+        // require APPPATH.'libraries/phpmailer/src/PHPMailer.php';
+        // require APPPATH.'libraries/phpmailer/src/SMTP.php';
     }
 
     function getkabupaten(){

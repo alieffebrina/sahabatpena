@@ -47,10 +47,10 @@
   if( $this->session->userdata('id_user') == NULL) { ?>
   <body class="layout-top-nav skin-blue  sidebar-collapse sidebar-mini">
   <?php } else { ?>
-  <body class="hold-transition skin-blue  sidebar-collapse sidebar-mini">  
+  <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">  
   <?php }
 } else { ?>
-  <body class="hold-transition skin-blue  fixed sidebar-mini">
+  <body class="hold-transition skin-blue fixed sidebar-mini">
 <?php } ?>
           
 <div class="wrapper">
