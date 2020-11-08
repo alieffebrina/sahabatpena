@@ -59,7 +59,20 @@
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="password" name="password" value="<?php echo $key->password ?>" readonly>
                   </div>
-                </div><div class="form-group">
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tempat Lahir</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="tlp" name="tlp" value="<?php echo $key->tempatlahir; ?>" readonly >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Lahir</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="tlp" name="tlp" value="<?php echo date('d-m-Y', strtotime($key->tgllahir)); ?>" readonly >
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Provinsi</label>
                   <div class="col-sm-9">
                     <select class="form-control select2" id="prov" name="prov" style="width: 100%;" readonly>
