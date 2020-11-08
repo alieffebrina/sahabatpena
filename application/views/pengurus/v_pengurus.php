@@ -61,13 +61,13 @@
                   <td><?php if($pengurus->tglakhir == '0000-00-00' ){ echo 'sampai saat ini'; } else { echo $pengurus->tglakhir; }?></td>
                   <td> 
                     <div class="btn-group">
-                      <a href="<?php echo site_url('pengurus-view/'.$pengurus->id_pengurus); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="View Korwil!"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('pengurus-view/'.$pengurus->id_pengurus); ?>"><button type="button" class="btn-xs btn-success" data-toggle="tooltip" data-placement="bottom" title="View Korwil!"><i class="fa fa-fw fa-search"></i></button></a>
                       <?php if($pengurus->tglakhir == '0000-00-00' ){ ?>
                       <?php if($aksesedit == 'aktif'){?>
-                      <a href="<?php echo site_url('pengurus-edit/'.$pengurus->id_pengurus); ?>"><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="View Edit!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('pengurus-edit/'.$pengurus->id_pengurus); ?>"><button type="button" class="btn-xs btn-info" data-toggle="tooltip" data-placement="bottom" title="View Edit!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       <?php } ?>
                       <?php if($akseshapus == 'aktif'){?>
-                      <a href="<?php echo site_url('C_Pengurus/hapus/'.$pengurus->id_pengurus.'/'.$pengurus->id_anggota); ?>" onclick="return confirm('Yakin Di Non Aktifkan ?') "><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Tidak Aktif!"><i class="fa fa-fw fa-close"></i></button></a>
+                      <a href="<?php echo site_url('C_Pengurus/hapus/'.$pengurus->id_pengurus.'/'.$pengurus->id_anggota); ?>" onclick="return confirm('Yakin Di Non Aktifkan ?') "><button type="button" class="btn-xs btn-danger" data-toggle="tooltip" data-placement="bottom" title="Tidak Aktif!"><i class="fa fa-fw fa-close"></i></button></a>
                       <?php } }?>
                     </div>
                   </td>

@@ -55,12 +55,12 @@
                   <td><?php echo $informasi->tglupdate; ?></td>
                   <td><?php echo $informasi->judulinformasi; ?></td>
                   <td><div class="btn-group">
-                      <a href="<?php echo site_url('informasi-view/'.$informasi->id_informasi); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="View Korwil!"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('informasi-view/'.$informasi->id_informasi); ?>"><button type="button" class="btn-xs btn-success" data-toggle="tooltip" data-placement="bottom" title="View Korwil!"><i class="fa fa-fw fa-search"></i></button></a>
                       <?php if($aksesedit == 'aktif'){?>
-                      <a href="<?php echo site_url('informasi-edit/'.$informasi->id_informasi); ?>"><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="View Edit!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('informasi-edit/'.$informasi->id_informasi); ?>"><button type="button" class="btn-xs btn-info" data-toggle="tooltip" data-placement="bottom" title="View Edit!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       <?php } ?>
                       <?php if($akseshapus == 'aktif'){?>
-                      <a href="<?php echo site_url('C_informasi/hapus/'.$informasi->id_informasi.'/'.$informasi->id_anggota); ?>" onclick="return confirm('Yakin Di Hapus ?') "><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Tidak Aktif!"><i class="fa fa-fw fa-close"></i></button></a>
+                      <a href="<?php echo site_url('C_informasi/hapus/'.$informasi->id_informasi.'/'.$informasi->id_anggota); ?>" onclick="return confirm('Yakin Di Hapus ?') "><button type="button" class="btn-xs btn-danger" data-toggle="tooltip" data-placement="bottom" title="Tidak Aktif!"><i class="fa fa-fw fa-close"></i></button></a>
                       <?php } ?>
                     </div></td>
                 </tr>

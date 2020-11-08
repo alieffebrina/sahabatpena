@@ -62,11 +62,11 @@
                     } else { echo '-'; } ?></td>
                   <td><?php if($user->statusanggota!='tidak aktif') { ?>
                     <div class="btn-group">
-                      <a href="<?php echo site_url('user-resign/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Mengundurkan Diri !"><i class="fa fa-fw fa-user"></i></button></a>
-                      <a href="<?php echo site_url('user-nonaktif/'.$user->id_anggota); ?>"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Non Aktif User!"><i class="fa fa-fw fa-close"></i></button></a>
+                      <a href="<?php echo site_url('user-resign/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-success" data-toggle="tooltip" data-placement="bottom" title="Mengundurkan Diri !"><i class="fa fa-fw fa-user"></i></button></a>
+                      <a href="<?php echo site_url('user-nonaktif/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-danger" data-toggle="tooltip" data-placement="bottom" title="Non Aktif User!"><i class="fa fa-fw fa-close"></i></button></a>
                     </div>
                   <?php } else { ?>
-                      <a href="<?php echo site_url('user-aktif/'.$user->id_anggota); ?>"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="Aktivasi!"><i class="fa fa-fw fa-check"></i></button></a>
+                      <a href="<?php echo site_url('user-aktif/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title="Aktivasi!"><i class="fa fa-fw fa-check"></i></button></a>
                   <?php } ?>
                   </td>
                 </tr>

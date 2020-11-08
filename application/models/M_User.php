@@ -128,7 +128,7 @@ class M_User extends CI_Model {
         return $result->result();
     }
 
-    function tambahdata($upload, $uploadfile){
+    function tambahdata($upload){
         $user = array(
             'nik' => $this->input->post('nik'),
             'nama' => $this->input->post('nama'),
@@ -151,33 +151,33 @@ class M_User extends CI_Model {
             'institusi' => $this->input->post('institusi')
         );
         
-        return $this->db->insert('tb_anggota', $user);
+        $this->db->insert('tb_anggota', $user);
 
-        $this->db->select_max('id_anggota');
-        $res1 = $this->db->get('tb_anggota');
-        if($res1->num_rows()>0){
-            $res2 = $res1->result_array();
-            $result = $res2[0]['id_anggota'];
+        // $this->db->select_max('id_anggota');
+        // $res1 = $this->db->get('tb_anggota');
+        // if($res1->num_rows()>0){
+        //     $res2 = $res1->result_array();
+        //     $result = $res2[0]['id_anggota'];
 
-            $user = array(
-            'id_anggota' => $a,
-            'karyatulis' => $this->input->post('karyatulis'),
-            'tglpublish' => date('Y-m-d'),
-            'file' =>$uploadfile['file']['file_name']
-            );
+        //     $user = array(
+        //     'id_anggota' => $a,
+        //     'karyatulis' => $this->input->post('karyatulis'),
+        //     'tglpublish' => date('Y-m-d'),
+        //     'file' =>$uploadfile['file']['file_name']
+        //     );
             
-            $this->db->insert('tb_karyatulis', $user);
+        //     $this->db->insert('tb_karyatulis', $user);
 
-        } else {
-            $user = array(
-            'id_anggota' => '1',
-            'karyatulis' => $this->input->post('karyatulis'),
-            'tglpublish' => date('Y-m-d'),
-            'file' =>$uploadfile['file']['file_name']
-        );
+        // } else {
+        //     $user = array(
+        //     'id_anggota' => '1',
+        //     'karyatulis' => $this->input->post('karyatulis'),
+        //     'tglpublish' => date('Y-m-d'),
+        //     'file' =>$uploadfile['file']['file_name']
+        // );
         
-        $this->db->insert('tb_karyatulis', $user);
-        }
+        // $this->db->insert('tb_karyatulis', $user);
+        // }
     }
 
     function daftarulang($upload){
@@ -601,6 +601,18 @@ class M_User extends CI_Model {
         );
         $query = $this->db->get_where('tb_anggota', $where);
         return $query->result();
+    }
+
+     function simpan_barcode($nik,$image_name){
+        $user = array(
+            'bar_code' => $image_name
+        );
+        $where = array(
+            'nik' =>  $nik
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_anggota',$user);
     }
 
 

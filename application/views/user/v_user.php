@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -77,16 +77,21 @@
                     } else { echo '-'; } ?></td>
                   <td> 
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_User/send/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="Kirim Email!"><i class="fa fa-fw fa-send"></i></button></a>
-                    <?php if($user->statusanggota == 'menunggu konfirmasi'){ ?>
-                      <a href="<?php echo site_url('user-konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="konfirmasi!"><i class="fa fa-fw fa-check"></i></button></a>
+
+                    <?php if($this->session->userdata('statusanggota') == 'administrator'){ 
+                      if($user->bar_code == NULL){ ?>
+                      <a href="<?php echo site_url('C_User/qrcode/'.$user->nik.'/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title="Create!"><i class="fa fa-fw fa-barcode"></i></button></a>
                     <?php } ?>
-                      <a href="<?php echo site_url('user-view/'.$user->id_anggota); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Lihat User!"><i class="fa fa-fw fa-search"></i></button></a>
+                      <a href="<?php echo site_url('C_User/send/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-warning" data-toggle="tooltip" data-placement="bottom" title="Kirim Email!"><i class="fa fa-fw fa-send"></i></button></a>
+                    <?php } else if($user->statusanggota == 'menunggu konfirmasi'){ ?>
+                      <a href="<?php echo site_url('user-konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-warning" data-toggle="tooltip" data-placement="bottom" title="konfirmasi!"><i class="fa fa-fw fa-check"></i></button></a>
+                    <?php } ?>
+                      <a href="<?php echo site_url('user-view/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-success" data-toggle="tooltip" data-placement="bottom" title="Lihat User!"><i class="fa fa-fw fa-search"></i></button></a>
                       <?php if($aksesedit == 'aktif'){?>
-                      <a href="<?php echo site_url('user-edit/'.$user->id_anggota); ?>"><button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit User!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
+                      <a href="<?php echo site_url('user-edit/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit User!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                       <?php } ?>
                       <?php if($akseshapus == 'aktif'){?>
-                      <a href="<?php echo site_url('C_User/hapus/'.$user->id_anggota); ?>"><button type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus User!"><i class="fa fa-fw fa-trash-o"></i></button></a>
+                      <a href="<?php echo site_url('C_User/hapus/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus User!"><i class="fa fa-fw fa-trash-o"></i></button></a>
                       <?php } ?>
                     </div>
                   </td>
@@ -105,4 +110,4 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- Modal Ubah -->
+  <!-- Modal Ubah

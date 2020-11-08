@@ -12,9 +12,9 @@ class C_User extends CI_Controller{
         $this->load->model('M_Korwil');
         $this->load->model('M_Setting');
 
-        require APPPATH.'libraries/PHPMailer/src/Exception.php';
-        require APPPATH.'libraries/PHPMailer/src/PHPMailer.php';
-        require APPPATH.'libraries/PHPMailer/src/SMTP.php';
+        // require APPPATH.'libraries/PHPMailer/src/Exception.php';
+        // require APPPATH.'libraries/PHPMailer/src/PHPMailer.php';
+        // require APPPATH.'libraries/PHPMailer/src/SMTP.php';
     }
 
     function index()
@@ -297,6 +297,7 @@ class C_User extends CI_Controller{
         // echo "tes"; 
         $upload = $this->M_User->upload();
         if ($upload['result'] == "success"){
+            
             $this->M_User->tambahdata($upload);
             $this->load->library('mailer');
             $email_penerima = 'alief.febrina@gmail.com';
@@ -315,7 +316,8 @@ class C_User extends CI_Controller{
             // }else{ // Jika dengan attachment
             //   $send = $this->mailer->send_with_attachment($sendmail); // Panggil fungsi send_with_attachment yang ada di librari Mailer
             // }
-            
+            $nik = $this->input->post('nik');
+            $this->qrcode($nik);
             $this->session->set_flashdata('Sukses', "Data Telah Disimpan!!");
             redirect('user');    
         } else {
@@ -434,8 +436,10 @@ Ketua SPK ( Sahabat Pena Kita)
         
        //  $mail->Send();
        //     echo $mail->ErrorInfo;
-            $this->session->set_flashdata('Sukses', "Username dan Password telah dikirim ke Email anda!!");
-            redirect('login'); 
+        $nik = $this->input->post('nik');
+        $this->qrcode($nik);
+        $this->session->set_flashdata('Sukses', "Username dan Password telah dikirim ke Email anda!!");
+        redirect('login'); 
     }
 
 
@@ -596,7 +600,6 @@ Ketua SPK ( Sahabat Pena Kita)
         $data['korwil'] = $this->M_Korwil->getkorwil(); 
         $this->load->view('user/v_pilihkorwil',$data); 
         $this->load->view('template/footer');
-
     }
 
     function laporan()
@@ -916,4 +919,29 @@ Ketua SPK ( Sahabat Pena Kita)
          }
 
       }
+
+    function qrcode($nik){
+        $this->load->library('ciqrcode'); //pemanggilan library QR CODE
+ 
+        $config['cacheable']    = true; //boolean, the default is true
+        $config['cachedir']     = './assets/'; //string, the default is application/cache/
+        $config['errorlog']     = './assets/'; //string, the default is application/logs/
+        $config['imagedir']     = './assets/images/'; //direktori penyimpanan qr code
+        $config['quality']      = true; //boolean, the default is true
+        $config['size']         = '1024'; //interger, the default is 1024
+        $config['black']        = array(224,255,255); // array, default is array(255,255,255)
+        $config['white']        = array(70,130,180); // array, default is array(0,0,0)
+        $this->ciqrcode->initialize($config);
+ 
+        $image_name=$nik.'.png'; //buat name dari qr code sesuai dengan nim
+ 
+        $params['data'] = $nik; //data yang akan di jadikan QR CODE
+        $params['level'] = 'H'; //H=High
+        $params['size'] = 10;
+        $params['savename'] = FCPATH.$config['imagedir'].$image_name; //simpan image QR CODE ke folder assets/images/
+        $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
+
+        $this->M_User->simpan_barcode($nik, $image_name); //simpan ke database
+        // redirect('user'); //redirect ke product usai simpan data
+    }
 }
