@@ -26,10 +26,23 @@ class C_User extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $tabel = 'tb_akses';
+        
+        $add = array(
+            'tipeuser' => $id,
+            'add' => '1',
+            'id_menu' => '2'
+        );
+        $hasiladd = $this->M_Setting->cekakses($tabel, $add);
+        if(count($hasiladd)!=0){ 
+            $tomboladd = 'aktif';
+        } else {
+            $tomboladd = 'tidak';
+        }
+
         $edit = array(
             'tipeuser' => $id,
             'edit' => '1',
-            'id_menu' => '9'
+            'id_menu' => '2'
         );
         $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
         if(count($hasiledit)!=0){ 
@@ -41,17 +54,22 @@ class C_User extends CI_Controller{
         $hapus = array(
             'tipeuser' => $id,
             'delete' => '1',
-            'id_menu' => '9'
+            'id_menu' => '2'
         );
         $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
         if(count($hasilhapus)!=0){ 
             $tombolhapus = 'aktif';
         } else {
-            $tomboledit = 'tidak';
+            $tombolhapus = 'tidak';
         }
+        $data['aksestambah'] = $tomboladd;
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
+        if($this->session->userdata('statusanggota') == 'administrator'){ 
         $data['user'] = $this->M_User->getall();   
+        } else {
+        $data['user'] = $this->M_User->getjumlahwilayah($this->session->userdata('korwil')); 
+        }
         $data['header'] = 'Anggota';        
         $data['korwil'] = $this->M_Korwil->getkorwil();   
         $this->load->view('user/v_user',$data); 
@@ -67,10 +85,23 @@ class C_User extends CI_Controller{
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $tabel = 'tb_akses';
+
+        $add = array(
+            'tipeuser' => $id,
+            'add' => '1',
+            'id_menu' => '2'
+        );
+        $hasiladd = $this->M_Setting->cekakses($tabel, $add);
+        if(count($hasiladd)!=0){ 
+            $tomboladd = 'aktif';
+        } else {
+            $tomboladd = 'tidak';
+        }
+
         $edit = array(
             'tipeuser' => $id,
             'edit' => '1',
-            'id_menu' => '9'
+            'id_menu' => '2'
         );
         $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
         if(count($hasiledit)!=0){ 
@@ -82,14 +113,15 @@ class C_User extends CI_Controller{
         $hapus = array(
             'tipeuser' => $id,
             'delete' => '1',
-            'id_menu' => '9'
+            'id_menu' => '2'
         );
         $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
         if(count($hasilhapus)!=0){ 
             $tombolhapus = 'aktif';
         } else {
-            $tomboledit = 'tidak';
+            $tombolhapus = 'tidak';
         }
+        $data['aksestambah'] = $tomboladd;
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
         $data['user'] = $this->M_User->getjumlahwilayah($korwil);   
@@ -943,5 +975,11 @@ Ketua SPK ( Sahabat Pena Kita)
 
         $this->M_User->simpan_barcode($nik, $image_name); //simpan ke database
         // redirect('user'); //redirect ke product usai simpan data
+    }
+
+    function qrcode1($nik){
+        $this->qrcode($nik);
+        $this->session->set_flashdata('Sukses', "Data Telah Disimpan!!");
+        redirect('user');    
     }
 }

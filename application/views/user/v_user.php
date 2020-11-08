@@ -33,6 +33,7 @@
 
             <div class="box-header">
 
+                    <?php if($this->session->userdata('statusanggota') == 'administrator'){ ?>
                   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" id="korwiluser">Cabang / Wilayah 
                     <span class="fa fa-caret-down"></span></button>
                     <ul class="dropdown-menu">
@@ -40,7 +41,11 @@
                       <li><a href="<?php echo site_url('user-sort/'.$korwil->id_korwil); ?>"><?php echo $korwil->namakorwil ?></a></li>
                       <?php } ?>
                     </ul>
+                  <?php } ?>
+
+                      <?php if($akseshapus == 'aktif'){?>
               <a href="<?php echo site_url('user-add'); ?>"><button type="button" class="btn btn-warning" >Tambah Data</button></a>
+            <?php } ?>
             </div>
             <!-- /.box-header -->
 
@@ -80,7 +85,7 @@
 
                     <?php if($this->session->userdata('statusanggota') == 'administrator'){ 
                       if($user->bar_code == NULL){ ?>
-                      <a href="<?php echo site_url('C_User/qrcode/'.$user->nik.'/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title="Create!"><i class="fa fa-fw fa-barcode"></i></button></a>
+                      <a href="<?php echo site_url('C_User/qrcode1/'.$user->nik.'/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title="Create!"><i class="fa fa-fw fa-barcode"></i></button></a>
                     <?php } ?>
                       <a href="<?php echo site_url('C_User/send/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-warning" data-toggle="tooltip" data-placement="bottom" title="Kirim Email!"><i class="fa fa-fw fa-send"></i></button></a>
                     <?php } else if($user->statusanggota == 'menunggu konfirmasi'){ ?>

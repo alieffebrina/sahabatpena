@@ -54,6 +54,7 @@ class M_User extends CI_Model {
     }
 
     function profiluser($ida){
+        $this->db->select('tb_korwil.namakorwil, tb_anggota.*, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
         $this->db->join('tb_korwil', 'tb_korwil.id_korwil = tb_anggota.id_korwil');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
