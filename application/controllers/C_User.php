@@ -364,7 +364,7 @@ class C_User extends CI_Controller{
         $jenis=$this->input->post('jenisdu');
         $penerbit=$this->input->post('penerbitdu');
         // print_r($karyatulis);
-        echo $karyatulis;
+       // echo $karyatulis;
             $index = 0;
             foreach ((array)$karyatulis as $key) {
                 $data = array('id_anggota' => $a,
@@ -376,7 +376,7 @@ class C_User extends CI_Controller{
                 $this->db->insert('tb_karyatulis', $data);
             }
 
-        echo "tes"; 
+        // echo "tes"; 
         $upload = $this->M_User->upload();
         if ($upload['result'] == "success"){
             $this->M_User->tambahregis($upload);
@@ -470,6 +470,11 @@ Ketua SPK ( Sahabat Pena Kita)
        //     echo $mail->ErrorInfo;
         $nik = $this->input->post('nik');
         $this->qrcode($nik);
+
+
+        $wherecalon = array('statusanggota' => 'calonanggota');
+        $this->M_Setting->delete($wherecalon,'tb_anggota');
+
         $this->session->set_flashdata('Sukses', "Username dan Password telah dikirim ke Email anda!!");
         redirect('login'); 
     }

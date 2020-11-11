@@ -112,5 +112,9 @@ $route['mutasi-add'] = 'C_Mutasi/add';
 
 $route['Profil'] = 'C_Profil';
 
+$route['cetak'] = 'C_KTA';
+$route['cetak-kta/(:any)'] = 'C_KTA/kta/$1';
+$route['cetak-sort/(:any)'] = 'C_KTA/sort/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
