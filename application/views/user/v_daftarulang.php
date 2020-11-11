@@ -117,7 +117,8 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Nama Panggilan (*)</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="namapanggilan" name="namapanggilan" required>
+                    <input type="text" class="form-control" id="namapanggilan" name="namapanggilan" onkeyup="cek_username()" required>
+                  <span id="pesanusername"></span>
                   </div>
                 </div>
                 <div class="form-group">
@@ -162,7 +163,7 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Tanggal Lahir (*)</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="tgllahir" required name="tgllahir"  >
+                    <input type="date" class="form-control" id="tgllahir" required name="tgllahir" >
                   </div>
                 </div>  
                 <div class="form-group">
@@ -174,7 +175,8 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">E-Mail (*)</label>
                   <div class="col-sm-9"> 
-                    <input type="email" class="form-control" id="email" name="email"required  >
+                    <input type="email" class="form-control" id="email" name="email" required onkeyup="cek_email()" >
+                  <span id="pesanemail"></span>
                   </div>
                 </div>   
                 <div class="form-group">
@@ -341,7 +343,7 @@
                   <label for="inputPassword3" class="col-sm-2 control-label">Penerbit / Publisher (*)</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="penerbit" placeholder="Penerbit / Publisher" >
-                    <input type="text" class="form-control" id="kar" name="kar">
+                    <input type="hidden" class="form-control" id="kar" name="kar">
                   </div>
                 </div>    
               </div>

@@ -311,6 +311,7 @@ function toggle(source) {
                         $("#nik").css("border-color","#fc5d32");
                         $("#pesannik").html("NIK sudah digunakan !");
  
+                        $("#nik").val("");
                         error = 1;
                     }else{
                         $("#pesannik").css("color","#59c113");
@@ -320,6 +321,71 @@ function toggle(source) {
                     }
  
                     $("#pesannik").fadeIn(1000);
+                }
+            });
+        }                
+    }
+     
+</script>
+<script type='text/javascript'>
+    var error = 1; // nilai default untuk error 1
+    function cek_email(){
+        $("#pesanemail").hide();
+        var email = $("#email").val();
+        if(nik != ""){
+            $.ajax({
+                url: "<?php echo site_url() . '/C_User/cek_email'; ?>", //arahkan pada proses_tambah di controller member
+                data: 'email='+email,
+                type: "POST",
+                success: function(msg){
+                    if(msg==1){
+                        $("#pesanemail").css("color","#fc5d32");
+                        $("#email").css("border-color","#fc5d32");
+                        $("#pesanemail").html("Email sudah digunakan !");
+ 
+                        $("#email").val("");
+                        error = 1;
+                    }else{
+                        $("#pesanemail").css("color","#59c113");
+                        $("#email").css("border-color","#59c113");
+                        $("#pesanemail").html("");
+                        error = 0;
+                    }
+ 
+                    $("#pesanemail").fadeIn(1000);
+                }
+            });
+        }                
+    }
+     
+</script>
+
+<script type='text/javascript'>
+    var error = 1; // nilai default untuk error 1
+    function cek_username(){
+        $("#pesanusername").hide();
+        var namapanggilan = $("#namapanggilan").val();
+        if(nik != ""){
+            $.ajax({
+                url: "<?php echo site_url() . '/C_User/cek_username'; ?>", //arahkan pada proses_tambah di controller member
+                data: 'namapanggilan='+namapanggilan,
+                type: "POST",
+                success: function(msg){
+                    if(msg==1){
+                        $("#pesanusername").css("color","#fc5d32");
+                        $("#namapanggilan").css("border-color","#fc5d32");
+                        $("#pesanusername").html("Nama Panggilan sudah digunakan !");
+ 
+                        $("#namapanggilan").val("");
+                        error = 1;
+                    }else{
+                        $("#pesanusername").css("color","#59c113");
+                        $("#namapanggilan").css("border-color","#59c113");
+                        $("#pesanusername").html("");
+                        error = 0;
+                    }
+ 
+                    $("#pesanusername").fadeIn(1000);
                 }
             });
         }                

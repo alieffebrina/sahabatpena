@@ -39,7 +39,14 @@
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" required>
                   </div>
-                </div>                
+                </div>          
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Nama Panggilan (*)</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="namapanggilan" name="namapanggilan" onkeyup="cek_username()" required>
+                  <span id="pesanusername"></span>
+                  </div>
+                </div>      
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Tempat Lahir</label>
                   <div class="col-sm-9">
@@ -90,11 +97,12 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">E-Mail</label>
-                  <div class="col-sm-9">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail" required>
+                  <label for="inputEmail3" class="col-sm-2 control-label">E-Mail (*)</label>
+                  <div class="col-sm-9"> 
+                    <input type="email" class="form-control" id="email" name="email" required onkeyup="cek_email()" >
+                  <span id="pesanemail"></span>
                   </div>
-                </div>
+                </div>   
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Instagram</label>
                   <div class="col-sm-9">

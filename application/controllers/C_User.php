@@ -311,10 +311,36 @@ class C_User extends CI_Controller{
          
     }
 
+    function cek_email(){
+        $tabel = 'tb_anggota';
+        $cek = 'email';
+        $kode = $this->input->post('email');
+        $hasil_kode = $this->M_Setting->cek($cek,$kode,$tabel);
+        if(count($hasil_kode)!=0){ 
+            echo '1';
+        }else{
+            echo '2';
+        }
+         
+    }
+
     function cek_anggota(){
         $tabel = 'tb_anggota';
         $cek = 'id_anggota';
         $kode = $this->input->post('noanggota');
+        $hasil_kode = $this->M_Setting->cek($cek,$kode,$tabel);
+        if(count($hasil_kode)!=0){ 
+            echo '1';
+        }else{
+            echo '2';
+        }
+         
+    }
+
+    function cek_username(){
+        $tabel = 'tb_anggota';
+        $cek = 'username';
+        $kode = $this->input->post('namapanggilan');
         $hasil_kode = $this->M_Setting->cek($cek,$kode,$tabel);
         if(count($hasil_kode)!=0){ 
             echo '1';

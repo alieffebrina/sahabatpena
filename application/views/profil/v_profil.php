@@ -181,7 +181,7 @@
                   <tr>
                   <td width="180px"> TANNGAL REGISTRASI </td>
                   <td width="10px"> : </td>
-                  <td><?php echo date('m-d-Y', strtotime($user->institusi)) ?></td>
+                  <td><?php echo date('m-d-Y', strtotime($user->tglregistrasi)) ?></td>
                 </tr>
                 <tr>
                   <td> CABANG / WILAYAH </td>
