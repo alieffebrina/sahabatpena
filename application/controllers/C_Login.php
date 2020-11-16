@@ -18,6 +18,18 @@ class C_Login extends CI_Controller {
 
 	function cekanggota()
 	{
+        // Data untuk page index
+        $data['scan']=$this->scan_model->read();
+
+        // $data['scan'] = $this->scan_model->get()->result();
+
+        $data['sumData']=$this->scan_model->sumData();
+
+        $data['show_table']=$this->view_table();
+
+        $this->load->view('scan/scanList', $data);
+
+
 		$this->load->view('template/cek');
 		
 	}

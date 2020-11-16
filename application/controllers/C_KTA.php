@@ -162,7 +162,74 @@ class C_KTA extends CI_Controller{
             $pdf->Cell(44,3,'',0,0,'L');
             $pdf->Cell(35,3,$key->noanggota,0,1,'L');
         }
-        $pdf->Output();
+        // $a = $pdf->Output();
 
+
+     // create Imagick object
+     $imagick = new Imagick();
+     // Reads image from PDF
+     $imagick->readImage();
+     // Writes an image or image sequence Example- converted-0.jpg, converted-1.jpg
+     $imagick->writeImages($key->nama.'.jpg', false);
+    }
+
+    function jpg($ida){
+        $label = imagecreate(1004, 650);
+        $black = imagecolorallocate($label, 0, 0, 0);
+        $white = imagecolorallocate($label, 255, 255, 255);
+        imagefill($label, 0, 0, $black);
+
+        // imagettftext($label, 50, 0, 0, 150, $white, "arial.ttf", "UP UP UP");
+
+        $src = imagecreatefrompng("images/KTA.png");
+        $pic = imagecreatetruecolor(1004, 650);
+        imagecopyresampled($label, $src, 0, 0, 0, 0, 1004, 650, imagesx($src), imagesy($src));
+        $white2 = imagecolorallocate($pic, 255, 255, 255);
+
+        // imagettftext($label, 50, 0, 0, 350, $white, "arial.ttf", "DOWN DOWN DOWN");
+        $passion_one = "./arial.ttf";
+        imagettftext($src, 90, 0, 100, 100, $black, $passion_one, "DOWN DOWN DOWN");
+        // imagettftext(image, size, angle, x, y, color, fontfile, text)
+        imagestring($label, 5, 300, 200,  "A computer science portal", $white); 
+        ob_end_clean();
+        header('Content-type: image/png');
+        imagepng($label);
+
+        imagedestroy($src);
+        imagedestroy($pic);
+        imagedestroy($label);
+    }
+
+    function jpg1($ida){
+        // Create the size of image or blank image 
+        $image = imagecreate(1004, 650); 
+          
+        // Set the background color of image 
+        // $background_color = imagecreatefromjpeg($image, 0, 0, 0); 
+        $src = imagecreatefrompng('images/KTA.png'); 
+        $dest = imagecreatetruecolor(1004, 650); 
+          
+        // Image copy from source to destination 
+        imagecopy($dest, $src, 0, 0, 0, 0, 1004, 650); 
+        
+// putenv('GDFONTPATH=' . realpath('.'));
+        // $font = 'arial.ttf';
+        $textcolor = imagecolorallocate($image, 0,0,0);
+        $forecolor2= imagecolorallocate ($image, 255,128,0);
+
+        // imagefontheight($image);
+        ImageFtText($image,25, 15, 5,125,$forecolor2,$fontfile,$string);  
+        header("Content-Type: image/png");  
+        imagepng($dest); 
+          
+        imagedestroy($dest); 
+        imagedestroy($src); 
+        
+
+        // imagestring($image, 5, 180, 100,  "GeeksforGeeks", $text_color); 
+        // imagestring($image, 3, 160, 120,  "A computer science portal", $text_color); 
+        
+        // header('Content-Disposition: attachment; filename="YourFilenameHere.jpg"');
+  
     }
 }

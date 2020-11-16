@@ -77,7 +77,7 @@
                     } else { echo '-'; } ?></td>
                   <td> 
                     <div class="btn-group">
-                      <a href="<?php echo site_url('C_KTA/kta/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title="KTA!"><i class="fa fa-fw fa-credit-card"></i></button></a>
+                      <a href="<?php echo site_url('C_KTA/jpg/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title="KTA!"><i class="fa fa-fw fa-credit-card"></i></button></a>
                     </div>
                   </td>
                 </tr>
