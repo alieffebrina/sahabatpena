@@ -174,29 +174,38 @@ class C_KTA extends CI_Controller{
     }
 
     function jpg($ida){
-        $label = imagecreate(1004, 650);
+        $label = imagecreate(828, 535);
         $black = imagecolorallocate($label, 0, 0, 0);
         $white = imagecolorallocate($label, 255, 255, 255);
-        imagefill($label, 0, 0, $black);
-
-        // imagettftext($label, 50, 0, 0, 150, $white, "arial.ttf", "UP UP UP");
-
+        // imagefilledrectangle($label, 0, 0, 399, 29, $white);   
+        // imagefill($label, 0, 0, $black);
         $src = imagecreatefrompng("images/KTA.png");
-        $pic = imagecreatetruecolor(1004, 650);
-        imagecopyresampled($label, $src, 0, 0, 0, 0, 1004, 650, imagesx($src), imagesy($src));
+        $pic = imagecreatetruecolor(828, 535);
+        imagecopyresampled($label, $src, 0, 0, 0, 0, 828, 535, imagesx($src), imagesy($src));
         $white2 = imagecolorallocate($pic, 255, 255, 255);
 
-        // imagettftext($label, 50, 0, 0, 350, $white, "arial.ttf", "DOWN DOWN DOWN");
-        $passion_one = "./arial.ttf";
-        imagettftext($src, 90, 0, 100, 100, $black, $passion_one, "DOWN DOWN DOWN");
+        $font = imageloadfont('./arial.gdf');
+
+        $user = $this->M_User->getspek($ida);
+        foreach ($user as $key ) {
+
+            $barcode = imagecreatefrompng("assets/images/".$key->bar_code);
+            imagecopyresampled($label, $barcode, 270, 330, 0, 0, 100, 100, imagesx($barcode), imagesy($barcode));
+            $foto = imagecreatefromjpeg("assets/images/".$key->foto);
+            imagecopyresampled($label, $foto, 110, 235, 0, 0, 150, 199, imagesx($foto), imagesy($foto));
+            imagestring($label, $font, 424, 233,  $key->nama , $white);
+            imagestring($label, $font, 424, 266, $key->tempatlahir.'/'.date('d-m-Y', strtotime($key->tanggallahir)), $white);
+            imagestring($label, $font, 424, 299,  $key->noanggota , $white);
+        }
         // imagettftext(image, size, angle, x, y, color, fontfile, text)
-        imagestring($label, 5, 300, 200,  "A computer science portal", $white); 
         ob_end_clean();
         header('Content-type: image/png');
         imagepng($label);
 
         imagedestroy($src);
         imagedestroy($pic);
+        imagedestroy($barcode);
+        imagedestroy($foto);
         imagedestroy($label);
     }
 
