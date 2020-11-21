@@ -174,39 +174,43 @@ class C_KTA extends CI_Controller{
     }
 
     function jpg($ida){
-        $label = imagecreate(828, 535);
-        $black = imagecolorallocate($label, 0, 0, 0);
-        $white = imagecolorallocate($label, 255, 255, 255);
-        // imagefilledrectangle($label, 0, 0, 399, 29, $white);   
-        // imagefill($label, 0, 0, $black);
-        $src = imagecreatefrompng("images/KTA.png");
-        $pic = imagecreatetruecolor(828, 535);
-        imagecopyresampled($label, $src, 0, 0, 0, 0, 828, 535, imagesx($src), imagesy($src));
-        $white2 = imagecolorallocate($pic, 255, 255, 255);
-
-        $font = imageloadfont('./arial.gdf');
 
         $user = $this->M_User->getspek($ida);
         foreach ($user as $key ) {
 
-            $barcode = imagecreatefrompng("assets/images/".$key->bar_code);
-            imagecopyresampled($label, $barcode, 270, 330, 0, 0, 100, 100, imagesx($barcode), imagesy($barcode));
-            $foto = imagecreatefromjpeg("assets/images/".$key->foto);
-            imagecopyresampled($label, $foto, 110, 235, 0, 0, 150, 199, imagesx($foto), imagesy($foto));
-            imagestring($label, $font, 424, 233,  $key->nama , $white);
-            imagestring($label, $font, 424, 266, $key->tempatlahir.'/'.date('d-m-Y', strtotime($key->tanggallahir)), $white);
-            imagestring($label, $font, 424, 299,  $key->noanggota , $white);
-        }
-        // imagettftext(image, size, angle, x, y, color, fontfile, text)
-        ob_end_clean();
-        header('Content-type: image/png');
-        imagepng($label);
+            $image1 = 'images/IDCARD.png';
+            $image2 = 'images/'.$key->foto;
+            list($width, $height) = getimagesize($image2);
+            $image1 = imagecreatefromstring(file_get_contents($image1));
+            $image2 = imagecreatefromstring(file_get_contents($image2));
+            $k = $width / 221;
+            $newwidth = $width / $k;
+            $l = $height / 300;
+            $newheight = $height / $l;
 
-        imagedestroy($src);
-        imagedestroy($pic);
-        imagedestroy($barcode);
-        imagedestroy($foto);
-        imagedestroy($label);
+            imagecopyresized($image1, $image2, 85,272,0,0, $newwidth, $newheight, $width, $height);
+
+            $barcode = imagecreatefrompng("assets/images/".$key->bar_code);
+            imagecopyresampled($image1, $barcode, 330, 410, 0, 0, 160, 160, imagesx($barcode), imagesy($barcode));
+
+
+            $white = imagecolorallocate($image1, 255, 255, 255);
+
+            $font = imageloadfont('./HomBold_16x24_LE.gdf');
+            $a= imagefontwidth($font);
+            // $filefont = 'arial.ttf';
+            // imagettftext($image1, 20, 0, imagesx($image1)-125, imagesy($image1)-20, $white, 'arial.ttf', 'aaa');
+            imagestring($image1, $font, 520, 287,  strtoupper($key->nama) , $white);
+
+            imagestring($image1, $font, 520, 327, strtoupper($key->tempatlahir).'/'.date('d-m-Y', strtotime($key->tgllahir)), $white);
+            imagestring($image1, $font, 520, 367,  strtoupper($key->noanggota) , $white);
+
+        }
+
+        header('Content-Type: image/png');
+        imagepng($image1);
+        imagedestroy($image1);
+
     }
 
     function jpg1($ida){
@@ -240,5 +244,45 @@ class C_KTA extends CI_Controller{
         
         // header('Content-Disposition: attachment; filename="YourFilenameHere.jpg"');
   
+    }
+
+    function coba($ida){
+
+        $user = $this->M_User->getspek($ida);
+        foreach ($user as $key ) {
+
+            $image1 = 'images/IDCARD.png';
+            $image2 = 'images/'.$key->foto;
+            list($width, $height) = getimagesize($image2);
+            $image1 = imagecreatefromstring(file_get_contents($image1));
+            $image2 = imagecreatefromstring(file_get_contents($image2));
+            $k = $width / 221;
+            $newwidth = $width / $k;
+            $l = $height / 300;
+            $newheight = $height / $l;
+
+            imagecopyresized($image1, $image2, 85,272,0,0, $newwidth, $newheight, $width, $height);
+
+            $barcode = imagecreatefrompng("assets/images/".$key->bar_code);
+            imagecopyresampled($image1, $barcode, 330, 410, 0, 0, 160, 160, imagesx($barcode), imagesy($barcode));
+
+
+            $white = imagecolorallocate($image1, 255, 255, 255);
+
+            $font = imageloadfont('./HomBold_16x24_LE.gdf');
+            $a= imagefontwidth($font);
+            // $filefont = 'arial.ttf';
+            // imagettftext($image1, 20, 0, imagesx($image1)-125, imagesy($image1)-20, $white, 'arial.ttf', 'aaa');
+            imagestring($image1, $font, 520, 287,  strtoupper($a) , $white);
+
+            imagestring($image1, $font, 520, 327, strtoupper($key->tempatlahir).'/'.date('d-m-Y', strtotime($key->tgllahir)), $white);
+            imagestring($image1, $font, 520, 367,  strtoupper($key->noanggota) , $white);
+
+        }
+
+        header('Content-Type: image/png');
+        imagepng($image1);
+        imagedestroy($image1);
+
     }
 }
