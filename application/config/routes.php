@@ -89,6 +89,8 @@ $route['laporan-korwil'] = 'C_Korwil/laporan';
 
 $route['login'] = 'C_Login';
 $route['login-1'] = 'C_Login/login/0';
+$route['qrcode'] = 'C_Login/qrcode';
+$route['hasilqr'] = 'C_Login/hasilcek';
 
 
 $route['registrasi'] = 'C_User/registrasi';

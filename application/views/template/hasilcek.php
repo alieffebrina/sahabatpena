@@ -36,8 +36,7 @@
                                 <div class="row">
                                     <div class="col-7">
                                         <div class="text-primary p-4">
-                                            <h5 class="text-primary">Cek Member</h5>
-                                            <p>Masukkan Nama, No Anggota atau Scan Kode QR Anda!</p>
+                                            <h5 class="text-primary">Profil Anggota Sahabat Pena Kita</h5>
                                         </div>
                                     </div>
                                     <div class="col-5 align-self-end">
@@ -46,32 +45,70 @@
                                 </div>
                             </div>
                             <div class="card-body pt-0"> 
+
+                                <?php
+
+                                $this->db->select('tb_korwil.namakorwil, tb_anggota.*, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
+                                $this->db->join('tb_korwil', 'tb_korwil.id_korwil = tb_anggota.id_korwil');
+                                $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+                                $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+                                $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+                                 $where = array(
+                                        'nik' => $this->input->post('noijazah')
+                                    );
+
+                                 $query = $this->db->get_where('tb_anggota', $where);
+
+                                if($query->num_rows() < 1){
+                                    ?>
+                                    <div class="alert alert-danger">
+                                        <center>
+                                        <strong>Maaf, Data tidak ditemukan..!</strong><br>
+                                        <i>Silahkan menghubungi Perguruan Tinggi terkait untuk menanyakan masalah ini</i>
+                                        </center>
+                                    </div>
+                                    <?php
+                                }else{
+                                    foreach ($query->result() as $key) {
+                                ?>
                                 <div>
                                     <a href="index.html">
                                         <div class="avatar-md profile-user-wid mb-4">
                                             <span class="avatar-title rounded-circle bg-light">
-                                               <img src="<?php echo base_url() ?>Favicon/ms-icon-310x310.png" alt="" class="rounded-circle" height="34">
+                                               <img src="<?php echo base_url() ?>images/<?php echo $key->foto ?>" alt="" class="rounded-circle" height="34">
                                             </span>
                                         </div>
                                     </a>
                                 </div>
+
                                 <div class="p-2">
-                                    <div class="form-group">
-                                        <label for="userpassword"></label>
-                                        <input type="text" class="form-control" id="cekawal" name="cekawal" placeholder="Nama, No Anggota">
-                                    </div>
-                                    <div class="form-group row mb-0">
-                                        <div class="col-12 text-right">
-                                            <a href="<?php echo site_url('qrcode'); ?>"><button class="btn btn-primary w-md waves-effect waves-light" type="submit">Scan QR</button></a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-content py-4">
-                                        <div class="tab-pane show active" id="chat">
-                                            <ul>
-                                                <div id="hasilcek"></div>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                <table class="table table-bordered table-striped">
+                                    <tr>
+                                        <th>NIK</th>
+                                        <td><?php echo $key->nik ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>No Anggota</th>
+                                        <td><?php echo $key->noanggota ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <td><?php echo $key->nama ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Alamat</th>
+                                        <td><?php echo $key->alamat ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td><?php echo $key->email ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Cabang / Wilayah</th>
+                                        <td><?php echo $key->namakorwil ?></td>
+                                    </tr>
+                                </table>
+                                <?php } }  ?>
                                 </div>
             
                             </div>
@@ -96,34 +133,6 @@
         
         <!-- App js -->
         <script src="<?php echo base_url() ?>assets/login/assets/js/app.js"></script>
-
-<script>
-  $(document).ready(function(){ // Ketika halaman sudah siap (sudah selesai di load)
-    // Kita sembunyikan dulu untuk loadingnya
-    $("#cekawal").keypress(function(){ // Ketika user mengganti atau memilih data provinsi
-    
-      $.ajax({
-        type: "POST", // Method pengiriman data bisa dengan GET atau POST
-        url: "<?php echo base_url("index.php/C_User/get_listuser"); ?>", // Isi dengan url/path file php yang dituju
-        data: {cek : $("#cekawal").val()}, // data yang akan dikirim ke file yang dituju
-        dataType: "json",
-        beforeSend: function(e) {
-          if(e && e.overrideMimeType) {
-            e.overrideMimeType("application/json;charset=UTF-8");
-          }
-        },
-        success: function(response){ // Ketika proses pengiriman berhasil
-          // set isi dari combobox kota
-          // lalu munculkan kembali combobox kotanya
-          $("#hasilcek").html(response.list_user).show();
-        },
-        error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
-          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
-        }
-      });
-    });
-  });
-  </script>
     </body>
 
 <!-- Mirrored from themesbrand.com/skote/layouts/vertical/auth-lock-screen.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 Aug 2020 23:54:51 GMT -->
