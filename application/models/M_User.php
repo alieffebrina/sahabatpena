@@ -405,7 +405,6 @@ class M_User extends CI_Model {
             'email' => $this->input->post('email'),
             'tlp' => $this->input->post('tlp'),
             'tempatlahir' => $this->input->post('tempatlahir'),
-            'tgllahir' => $this->input->post('tgllahir'),
             'facebook' => $this->input->post('facebook'),
             'instagram' => $this->input->post('instagram'),
             'twitter' => $this->input->post('twitter'),
@@ -426,6 +425,13 @@ class M_User extends CI_Model {
         
         $this->db->where($where);
         $this->db->update('tb_anggota',$user);
+
+        if ($this->input->post('tgllahir') != NULL){
+            $tgl = array('tgllahir' => $this->input->post('tgllahir'));
+            $this->db->where($where);
+            $this->db->update('tb_anggota',$tgl);
+        }
+
     }
 
     function savedu(){

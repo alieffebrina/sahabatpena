@@ -205,9 +205,10 @@ class C_KTA extends CI_Controller{
             imagestring($image1, $font, 520, 327, strtoupper($key->tempatlahir).'/'.date('d-m-Y', strtotime($key->tgllahir)), $white);
             imagestring($image1, $font, 520, 367,  strtoupper($key->noanggota) , $white);
 
-        }
+            $noanggota = $key->noanggota;
+        }   
 
-        header('Content-Type: image/png');
+        header('Content-Disposition: attachment; filename="'.$noanggota.'.jpg"');
         imagepng($image1);
         imagedestroy($image1);
 
