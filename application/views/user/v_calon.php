@@ -8,7 +8,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="<?php echo site_url('C_User'); ?>">Data Anggota</a></li>
+        <li><a href="<?php echo site_url('calonuser'); ?>">Data Calon Anggota</a></li>
         <li class="active"><?php echo $header; ?></li>
       </ol>
     </section>
@@ -38,7 +38,7 @@
                     <span class="fa fa-caret-down"></span></button>
                     <ul class="dropdown-menu">
                       <?php foreach ($korwil as $korwil) { ?>
-                      <li><a href="<?php echo site_url('user-sort/'.$korwil->id_korwil); ?>"><?php echo $korwil->namakorwil ?></a></li>
+                      <li><a href="<?php echo site_url('calon-sort/'.$korwil->id_korwil); ?>"><?php echo $korwil->namakorwil ?></a></li>
                       <?php } ?>
                     </ul>
                   <?php } ?>
@@ -83,11 +83,8 @@
                   <td> 
                     <div class="btn-group">
 
-                    <?php if($this->session->userdata('statusanggota') == 'administrator'){ 
-                      if($user->bar_code == NULL){ ?>
-                      <a href="<?php echo site_url('C_User/qrcode1/'.$user->nik.'/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-primary" data-toggle="tooltip" data-placement="bottom" title="Create!"><i class="fa fa-fw fa-barcode"></i></button></a>
-                    <?php } ?>
-                      <a href="<?php echo site_url('C_User/send/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-warning" data-toggle="tooltip" data-placement="bottom" title="Kirim Email!"><i class="fa fa-fw fa-send"></i></button></a>
+                    <?php if($this->session->userdata('statusanggota') == 'administrator'){ ?>
+                      <a href="<?php echo site_url('user-konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-warning" data-toggle="tooltip" data-placement="bottom" title="konfirmasi!"><i class="fa fa-fw fa-check"></i></button></a>
                     <?php } ?>
                       <a href="<?php echo site_url('user-view/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-success" data-toggle="tooltip" data-placement="bottom" title="Lihat User!"><i class="fa fa-fw fa-search"></i></button></a>
                       <?php if($aksesedit == 'aktif'){?>

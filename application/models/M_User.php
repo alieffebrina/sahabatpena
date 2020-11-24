@@ -45,6 +45,29 @@ class M_User extends CI_Model {
         return $query->result();
     }
 
+      function getcalon(){
+        $this->db->order_by('tb_anggota.id_anggota', 'ASC');
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $this->db->where('statusanggota', 'calonanggota');
+        $this->db->where('statusanggota', 'menunggu konfirmasi');
+        $query = $this->db->get('tb_anggota');
+        return $query->result();
+    }
+
+    function getjumlahwilayahcalon($id){
+        $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
+        $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
+        $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
+        $this->db->where('id_korwil', $id);
+        $this->db->where('statusanggota', 'calonanggota');
+        $this->db->where('statusanggota', 'menunggu konfirmasi');
+        $query = $this->db->get('tb_anggota');
+        return $query->result();
+    }
+
+
     function getaktif(){
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');

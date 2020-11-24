@@ -63,6 +63,10 @@ $route['user-karyatulis'] = 'C_User/karyatulis';
 $route['user-sort/(:any)'] = 'C_User/sort/$1';
 $route['user-send/(:any)'] = 'C_User/send/$1';
 
+
+$route['calonuser'] = 'C_Calon';
+$route['calon-sort/(:any)'] = 'C_Calon/sort/$1';
+
 $route['view-karyatulis'] = 'C_User/viewkaryatulis';
 $route['edit-karyatulis/(:any)/(:any)'] = 'C_User/editkt/$1/$2';
 
