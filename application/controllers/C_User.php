@@ -134,20 +134,66 @@ class C_User extends CI_Controller{
     public function get_listuser(){
             $id = $this->input->post('cek');
             $kec = $this->M_User->get_listuser($id);
-            $lists = "<div class='form-group'> </div>";                                   
-            foreach($kec as $data){
-              $lists .= "<li><div class='media'>
-                            <div class='align-self-center mr-3'>
-                                <img src='".base_url()."/images/".$data->foto."' class='rounded-circle avatar-xs' alt=''>
+            $lists = "<br>";  
+
+            if($kec->num_rows() == 1){
+            foreach($kec->result() as $tunggal){
+                $lists .= '<div class="box box-primary">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="text-primary p-4">
+                                        </div>
+                                    </div>
+                                    <div class="col-4 align-self-center">
+                                       <img src="'.base_url()."/images/".$tunggal->foto.'" alt="" class="rounded-circle" height="104">
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-primary p-4">
+                                        </div>
+                                    </div>
                             </div>
-                            
-                            <div class='media-body overflow-hidden'>
-                                <h5 class='text-truncate font-size-14 mb-1'>".$data->noanggota."</h5>
-                                <p class='text-truncate mb-0'>".$data->nama."</p>
-                            </div>
-                        </div></li><br>"; // Tambahkan tag option ke variabel $lists
-                            // <div class='font-size-11'><a href=".site_url('C_Login/login/'.$data->username).">Login</a></div>
-            }
+                            <div class="p-2">
+                                <div class="form-group">
+                                    <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item">
+                                      <b>Nama</b> <a class="pull-right">'.$tunggal->nama.'</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                      <b>No Anggota</b> <a class="pull-right">'.$tunggal->noanggota.'</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                      <b>Cabang / Wilayah</b> <a class="pull-right">'.$tunggal->namakorwil.'</a>
+                                    </li>
+                                    </ul>
+                                </div>
+                            </div>';
+                }
+            } else {
+
+                $lists = '<div class="tab-content py-4">
+                                        <div class="tab-pane show active" id="chat">
+                                            <ul>';
+            foreach($kec->result() as $data){
+                  $lists .= "<a href = ".site_url('Profil/'.$data->id_anggota)."><li><div class='media'>
+                                <div class='align-self-center mr-3'>
+                                    <img src='".base_url()."/images/".$data->foto."' class='rounded-circle avatar-xs' alt=''>
+                                </div>
+                                
+                                <div class='media-body overflow-hidden'>
+                                    <h5 class='text-truncate font-size-14 mb-1'>".$data->noanggota."</h5>
+                                    <p class='text-truncate mb-0'>".$data->nama."</p>
+                                </div>
+                            </div></li></a><br>"; // Tambahkan tag option ke variabel $lists
+                                // <div class='font-size-11'><a href=".site_url('C_Login/login/'.$data->username).">Login</a></div>
+            }   
+            $lists .='
+                                                <div id="hasilcek"></div>
+                                            </ul>
+                                        </div>
+                                    </div>';
+
+            }                         
+            
             
             $callback = array('list_user'=>$lists); // Masukan variabel lists tadi ke dalam array $callback dengan index array : list_kota
             echo json_encode($callback); // konversi varibael $callback menjadi JSON
@@ -983,7 +1029,7 @@ Ketua SPK ( Sahabat Pena Kita)
 
       }
 
-    function qrcode($nik){
+    function qrcode($nik, $ids){
         $this->load->library('ciqrcode'); //pemanggilan library QR CODE
  
         $config['cacheable']    = true; //boolean, the default is true
@@ -998,7 +1044,7 @@ Ketua SPK ( Sahabat Pena Kita)
  
         $image_name=$nik.'.png'; //buat name dari qr code sesuai dengan nim
  
-        $params['data'] = $nik; //data yang akan di jadikan QR CODE
+        $params['data'] = 'https://anggota.sahabatpenakita.id/Profil/'.$ids; //data yang akan di jadikan QR CODE
         $params['level'] = 'H'; //H=High
         $params['size'] = 10;
         $params['savename'] = FCPATH.$config['imagedir'].$image_name; //simpan image QR CODE ke folder assets/images/
@@ -1008,8 +1054,8 @@ Ketua SPK ( Sahabat Pena Kita)
         // redirect('user'); //redirect ke product usai simpan data
     }
 
-    function qrcode1($nik){
-        $this->qrcode($nik);
+    function qrcode1($nik, $ids){
+        $this->qrcode($nik,$ids);
         $this->session->set_flashdata('Sukses', "Data Telah Disimpan!!");
         redirect('user');    
     }

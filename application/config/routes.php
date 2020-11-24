@@ -113,6 +113,7 @@ $route['mutasi-add'] = 'C_Mutasi/add';
 
 
 $route['Profil'] = 'C_Profil';
+$route['Profil/(:any)'] = 'C_Profil/anggota/$1';
 
 $route['cetak'] = 'C_KTA';
 $route['cetak-kta/(:any)'] = 'C_KTA/kta/$1';

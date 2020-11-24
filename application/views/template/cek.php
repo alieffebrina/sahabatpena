@@ -20,13 +20,17 @@
         <link href="<?php echo base_url() ?>assets/login/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
         <!-- App Css-->
         <link href="<?php echo base_url() ?>assets/login/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/dist/css/skins/_all-skins.min.css">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
     </head>
 
     <body>
-        <div class="home-btn d-none d-sm-block">
-            <a href="index.html" class="text-dark"><i class="fas fa-home h2"></i></a>
-        </div>
         <div class="account-pages my-5 pt-sm-5">
             <div class="container">
                 <div class="row justify-content-center">
@@ -65,20 +69,12 @@
                                             <a href="<?php echo site_url('qrcode'); ?>"><button class="btn btn-primary w-md waves-effect waves-light" type="submit">Scan QR</button></a>
                                         </div>
                                     </div>
-                                    <div class="tab-content py-4">
-                                        <div class="tab-pane show active" id="chat">
-                                            <ul>
-                                                <div id="hasilcek"></div>
-                                            </ul>
-                                        </div>
-                                    </div>
+                                    <div id="hasilcek"></div>
                                 </div>
             
                             </div>
                         </div>
                         <div class="mt-5 text-center">
-                            <p><a href="<?php echo site_url('login'); ?>" class="font-weight-medium text-primary"> Login </a> </p>
-                            <p>Belum menjadi anggota ?<a href="<?php echo site_url('registrasi'); ?>" class="font-weight-medium text-primary"> Registrasi </a> </p>
                             <p>Development By &copy; 2020 <a href="https://hosterweb.co.id">HOSTERWEB INDONESIA</a></p>
                         </div>
 

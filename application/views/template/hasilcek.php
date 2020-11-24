@@ -64,7 +64,7 @@
                                     <div class="alert alert-danger">
                                         <center>
                                         <strong>Maaf, Data tidak ditemukan..!</strong><br>
-                                        <i>Silahkan menghubungi Perguruan Tinggi terkait untuk menanyakan masalah ini</i>
+                                        <i>Silahkan menghubungi Admin Sahabat Pena Kita terkait untuk menanyakan masalah ini</i>
                                         </center>
                                     </div>
                                     <?php

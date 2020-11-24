@@ -86,8 +86,10 @@
         resultFunction: function(result) {
             //$('.hasilscan').append($('<input name="noijazah" value=' + result.code + ' readonly><input type="submit" value="Cek"/>'));
            // $.post("../cek.php", { noijazah: result.code} );
-            var redirect = '<?php echo site_url('hasilqr'); ?>';
-            $.redirectPost(redirect, {noijazah: result.code});
+            var redirect = '<?php echo 'hasilqr'; ?>';
+            // $.redirectPost(redirect, {noijazah: result.code});
+            // $.redirectPost(redirect);
+            window.location = result.code;
         }
     };
     
@@ -104,13 +106,19 @@
     // jquery extend function
     $.extend(
     {
-        redirectPost: function(location, args)
+        // redirectPost: function(location, args)
+        // {
+        //     var form = '';
+        //     $.each( args, function( key, value ) {
+        //         form += '<input type="hidden" name="'+key+'" value="'+value+'">';
+        //     });
+        //     $('<form action="'+location+'" method="POST">'+form+'</form>').appendTo('body').submit();
+        // }
+
+        redirectPost: function(location)
         {
-            var form = '';
-            $.each( args, function( key, value ) {
-                form += '<input type="hidden" name="'+key+'" value="'+value+'">';
-            });
-            $('<form action="'+location+'" method="POST">'+form+'</form>').appendTo('body').submit();
+            
+            $('<form action="'+location+'" method="POST"></form>').appendTo('body').submit();
         }
     });
 
