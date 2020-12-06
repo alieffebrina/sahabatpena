@@ -541,7 +541,8 @@ Ketua SPK ( Sahabat Pena Kita)
        //  $mail->Send();
        //     echo $mail->ErrorInfo;
         $nik = $this->input->post('nik');
-        $this->qrcode($nik);
+        $id = $this->input->post('id');
+        $this->qrcode($nik, $id);
 
 
         $wherecalon = array('statusanggota' => 'calonanggota');
