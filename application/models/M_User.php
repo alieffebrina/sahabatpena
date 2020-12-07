@@ -435,6 +435,8 @@ class M_User extends CI_Model {
             'twitter' => $this->input->post('twitter'),
             'youtube' => $this->input->post('youtube'),
             'id_korwil' => $this->input->post('korwil'),
+            'username' => $this->input->post('username'),
+            'password' => $this->input->post('password'),
             'noanggota' => $kode,
             'latarbelakang' => $this->input->post('latarbelakang1').'/'.$this->input->post('latarbelakang2').'/'.$this->input->post('latarbelakang3'),
             'institusi' => $this->input->post('institusi'),

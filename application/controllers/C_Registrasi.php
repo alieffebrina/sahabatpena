@@ -110,27 +110,27 @@ Salam Literasi<br>
 Ketua SPK (Sahabat Pena Kita)<br>
 Dr. M. Arfan Mu’ammar, M.Pd.I
 ";//isi dari email
-       //  $mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
-       //  $mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
-       //                                             // 1 = Error dan pesan
-       //                                             // 2 = Pesan saja
-       //  $mail->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
-       //  $mail->SMTPSecure = "ssl";                 // jenis kemananan
-       //  $mail->Host       = "smtp.gmail.com";      // masukkan GMAIL sebagai smtp server
-       //  $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
-       //  $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username
-       //  $mail->Password   = "xxslesqdaashbskh";            // GMAIL password
-       //  $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
-       //  $mail->Subject    = "SAHABAT PENA KITA";//masukkan subject
-       //  $mail->MsgHTML($body);//masukkan isi dari email
+        $mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mail->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mail->SMTPSecure = "ssl";                 // jenis kemananan
+        $mail->Host       = "smtp.gmail.com";      // masukkan GMAIL sebagai smtp server
+        $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username
+        $mail->Password   = "xxslesqdaashbskh";            // GMAIL password
+        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mail->Subject    = "SAHABAT PENA KITA";//masukkan subject
+        $mail->MsgHTML($body);//masukkan isi dari email
         
-       // // $address = "alief.febrina@gmail.com"; //masukkan penerima
-       //  $mail->AddAddress($email_penerima, $nama); //masukkan penerima
+       // $address = "alief.febrina@gmail.com"; //masukkan penerima
+        $mail->AddAddress($email_penerima, $nama); //masukkan penerima
         
-       //  $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
+        $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
         
-        // $mail->Send();
-        //    echo $mail->ErrorInfo;
+        $mail->Send();
+           echo $mail->ErrorInfo;
             $this->session->set_flashdata('Sukses', "Username dan Password telah dikirim ke Email anda!!");
             redirect('login'); 
         } else {
