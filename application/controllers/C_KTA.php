@@ -178,7 +178,7 @@ class C_KTA extends CI_Controller{
         $user = $this->M_User->getspek($ida);
         foreach ($user as $key ) {
 
-            $image1 = 'images/IDCARD.png';
+            $image1 = 'images/KTA EDIT POLOS.png';
             $image2 = 'images/'.$key->foto;
             list($width, $height) = getimagesize($image2);
             $image1 = imagecreatefromstring(file_get_contents($image1));
@@ -199,15 +199,27 @@ class C_KTA extends CI_Controller{
             $font = imageloadfont('./HomBold_16x24_LE.gdf');
             $a= imagefontwidth($font);
             // $filefont = 'arial.ttf';
-            // imagettftext($image1, 20, 0, imagesx($image1)-125, imagesy($image1)-20, $white, 'arial.ttf', 'aaa');
-            imagestring($image1, $font, 520, 287,  strtoupper($key->nama) , $white);
+            // imagettftext($image1, 20, 0, imagesx($image1)-125, imagesy($image1)-20, $white, 'arial.ttf', 'aaa');;
+            imagestring($image1, $font, 330, 270, 'NO ANGGOTA ' , $white);
+            imagestring($image1, $font, 500, 270, ':' , $white);
+            imagestring($image1, $font, 527, 270,  strtoupper($key->noanggota) , $white);
+            imagestring($image1, $font, 330, 305, 'NAMA ' , $white);
+            imagestring($image1, $font, 500, 305, ':' , $white);
+            imagestring($image1, $font, 527, 305,  strtoupper($key->nama) , $white);
+            imagestring($image1, $font, 330, 340, 'TTL' , $white);
+            imagestring($image1, $font, 500, 340, ':' , $white);
+            imagestring($image1, $font, 527, 340, strtoupper($key->tempatlahir).'/'.date('d-m-Y', strtotime($key->tgllahir)), $white);
+            imagestring($image1, $font, 330, 375, 'CABANG' , $white);
+            imagestring($image1, $font, 500, 375, ':' , $white);
+            imagestring($image1, $font, 527, 375,  strtoupper($key->namakorwil) , $white);
 
-            imagestring($image1, $font, 520, 327, strtoupper($key->tempatlahir).'/'.date('d-m-Y', strtotime($key->tgllahir)), $white);
-            imagestring($image1, $font, 520, 367,  strtoupper($key->noanggota) , $white);
+            
 
             $noanggota = $key->noanggota;
         }   
 
+
+        // header('Content-Type: image/png');
         header('Content-Disposition: attachment; filename="'.$noanggota.'.jpg"');
         imagepng($image1);
         imagedestroy($image1);

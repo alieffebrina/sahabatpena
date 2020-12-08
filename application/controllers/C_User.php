@@ -12,9 +12,9 @@ class C_User extends CI_Controller{
         $this->load->model('M_Korwil');
         $this->load->model('M_Setting');
 
-        // require APPPATH.'libraries/PHPMailer/src/Exception.php';
-        // require APPPATH.'libraries/PHPMailer/src/PHPMailer.php';
-        // require APPPATH.'libraries/PHPMailer/src/SMTP.php';
+        require APPPATH.'libraries/PHPMailer/src/Exception.php';
+        require APPPATH.'libraries/PHPMailer/src/PHPMailer.php';
+        require APPPATH.'libraries/PHPMailer/src/SMTP.php';
     }
 
     function index()
@@ -947,7 +947,7 @@ Ketua SPK ( Sahabat Pena Kita)
         $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
         
         $mail->Send();
-//            echo $mail->ErrorInfo;
+           echo $mail->ErrorInfo;
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Kirim!!");
         redirect('user');
        

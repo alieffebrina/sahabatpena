@@ -24,10 +24,9 @@ class M_Mutasi extends CI_Model {
         $this->db->insert('tb_mutasi', $user);
     }
 
-    function konfirm($id, $a){
+    function konfirm($id){
         
         $user = array(
-            'noanggota' => $a,
             'id_korwil' => $this->input->post('korwilmutasi'),
             'tglupdate' => date('Y-m-d h:i:s'),
         );
