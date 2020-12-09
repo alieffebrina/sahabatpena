@@ -464,17 +464,26 @@ class C_User extends CI_Controller{
 
             $kode = $this->M_Korwil->cekkode($korwil);
             foreach ($kode as $modul) {
-                $a = $modul->kodekorwil;
+                $a = $modul->kodekorwil;            
                 $pecah = explode('.', $a);
                 $pecahkorwil = $pecah[0].'.'.$pecah[1];
                 date_default_timezone_set('Asia/Jakarta');
                 $tgl = date('dmY');
                 $a = str_replace("tanggal", $tgl, $a);
                 $data = $this->M_User->getkode($pecahkorwil);
-                $kodemax = $data->id_anggota;
-                $pecahkodemax = explode('.', $kodemax);
-                $id = $pecahkodemax[2]+1;
-                $a = str_replace("no", $id, $a);
+                foreach ($data as $data) {
+                    $kodemax = $this->M_User->getspek($data->id_anggota);
+                    foreach ($kodemax as $kodemax) {
+                        $pecahkodemax = explode('.', $kodemax->noanggota);
+                        $ida = $pecahkodemax[2]+1;
+                        if(strlen($id)>2){
+                            $id = '0'.$ida;
+                        } else {
+                            $id = $ida;
+                        }
+                        $a = str_replace("no", $id, $a);
+                    }
+                }
             }
             $kode = $a;
             $this->M_User->noanggota($kode);
@@ -626,25 +635,30 @@ Ketua SPK ( Sahabat Pena Kita)
         $korwil = $this->input->post('korwil');
 
         $kode = $this->M_Korwil->cekkode($korwil);
-        foreach ($kode as $modul) {
-            // $d = $modul->kodekorwil;
-            $a = $modul->kodekorwil;            
-            $pecah = explode('.', $a);
-            $pecahkorwil = $pecah[0].'.'.$pecah[1];
-            date_default_timezone_set('Asia/Jakarta');
-            $tgl = date('dmY');
-            $a = str_replace("tanggal", $tgl, $a);
-            $data = $this->M_User->getkode($pecahkorwil);
-            foreach ($data as $data) {
-                $kodemax = $this->M_User->getspek($data->id_anggota);
-                foreach ($kodemax as $kodemax) {
-                    $pecahkodemax = explode('.', $kodemax->noanggota);
-                    $id = $pecahkodemax[1]+1;
-                    $a = str_replace("no", $id, $a);
+        
+            foreach ($kode as $modul) {
+                $a = $modul->kodekorwil;            
+                $pecah = explode('.', $a);
+                $pecahkorwil = $pecah[0].'.'.$pecah[1];
+                date_default_timezone_set('Asia/Jakarta');
+                $tgl = date('dmY');
+                $a = str_replace("tanggal", $tgl, $a);
+                $data = $this->M_User->getkode($pecahkorwil);
+                foreach ($data as $data) {
+                    $kodemax = $this->M_User->getspek($data->id_anggota);
+                    foreach ($kodemax as $kodemax) {
+                        $pecahkodemax = explode('.', $kodemax->noanggota);
+                        $ida = $pecahkodemax[2]+1;
+                        if(strlen($id)>2){
+                            $id = '0'.$ida;
+                        } else {
+                            $id = $ida;
+                        }
+                        $a = str_replace("no", $id, $a);
+                    }
                 }
             }
             $namako = $modul->kodekorwil;
-        }
 
         // echo $a.'/'.$kodemax.'/'.$pecahkodemax[2].'/'.$id;
         $kode = $a;
