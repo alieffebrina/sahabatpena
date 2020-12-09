@@ -54,7 +54,6 @@
                 <thead>
                 <tr>
                   <th>ID</th>
-                  <th>No Anggota</th>
                   <th>Username</th>
                   <th>Password</th>
                   <th>Nama</th>
@@ -69,7 +68,6 @@
                   foreach ($user as $user) { ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
-                  <td><?php echo $user->noanggota; ?></td>
                   <td><?php echo $user->username; ?></td>
                   <td><?php echo $user->password; ?></td>
                   <td><?php echo $user->nama; ?></td>

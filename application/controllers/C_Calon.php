@@ -65,11 +65,13 @@ class C_Calon extends CI_Controller{
         $data['aksestambah'] = $tomboladd;
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
-        if($this->session->userdata('statusanggota') == 'administrator'){ 
         $data['user'] = $this->M_User->getcalon();   
-        } else {
-        $data['user'] = $this->M_User->getjumlahwilayah($this->session->userdata('korwil')); 
-        }
+        // if($this->session->userdata('statusanggota') == 'administrator'){ 
+        //     $data['user'] = $this->M_User->getcalon();   
+        // } 
+        // else {
+        //     $data['user'] = $this->M_User->getjumlahwilayah($this->session->userdata('korwil')); 
+        // }
         $data['header'] = 'Calon Anggota';        
         $data['korwil'] = $this->M_Korwil->getkorwil();   
         $this->load->view('user/v_calon',$data); 

@@ -13,9 +13,9 @@ class C_Registrasi extends CI_Controller{
         $this->load->model('M_Setting');
         $this->load->model('M_User');
 
-        // require APPPATH.'libraries/phpmailer/src/Exception.php';
-        // require APPPATH.'libraries/phpmailer/src/PHPMailer.php';
-        // require APPPATH.'libraries/phpmailer/src/SMTP.php';
+        require APPPATH.'libraries/PHPMailer/src/Exception.php';
+        require APPPATH.'libraries/PHPMailer/src/PHPMailer.php';
+        require APPPATH.'libraries/PHPMailer/src/SMTP.php';
     }
 
     function getkabupaten(){
@@ -64,51 +64,17 @@ class C_Registrasi extends CI_Controller{
                $this->M_User->karyatulisregistrasi($uploadfile, $a);
             }
 
-            $this->load->library('mailer');
             $email_penerima = $this->input->post('email');
-            $subjek = 'Terima kasih telah mendaftar';
-            $pesan = 'Terima kasih Bapak/Ibu '.$this->input->post('nama').'. telah mendaftar sebagai calon anggota Sahabat Pena Kita (SPK). Seleksi penerimaan anggota baru akan dilakukan di setiap bulan Januari dan Juli oleh pengurus SPK. Pengumuman penerimaan seleksi akan dikirim melalui notifikasi email masing-masing calon anggota SPK. Tetap berkarya.
-
-Salam Literasi
-Ketua SPK (Sahabat Pena Kita)
-Dr. M. Arfan Mu’ammar, M.Pd.I
-'; // $this->input->post('pesan');
-            // $attachment = $_FILES['attachment']; 
-            $content = $pesan; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
-            $sendmail = array(
-              'email_penerima'=>$email_penerima,
-              'subjek'=>$subjek,
-              'content'=>$content,
-              //'attachment'=>$attachment//
-            );
-            //  $send = $this->mailer->send($sendmail); // Panggil fungsi send yang ada di librari Mailer
-            header("location: https://www.sahabatpenakita.id");
-        } else {
-            'upload gagal';
-        }
-    }
-
-     public function tambah()
-    {   
-        $upload = $this->M_User->upload();
-        if ($upload['result'] == "success"){
-            $uploadfile = $this->M_User->uploadfile();
-            $this->M_User->tambahregis($upload, $uploadfile);
-            $selectmax = $this->M_User->selectmax();
-            foreach ($selectmax as $key) {
-                $a = $key->id_anggota;
-                echo $a;
-               $this->M_User->karyatulisregistrasi($uploadfile, $a);
-            }
             
-            $email_penerima = $this->input->post('email');
-            $nama  = $this->input->post('nama');
-           // $mail             = new PHPMailer();
-            $body             = "Terima kasih Bapak/Ibu ".$nama.". telah mendaftar sebagai calon anggota Sahabat Pena Kita (SPK). Seleksi penerimaan anggota baru akan dilakukan di setiap bulan Januari dan Juli oleh pengurus SPK. Pengumuman penerimaan seleksi akan dikirim melalui notifikasi email masing-masing calon anggota SPK. Tetap berkarya.<br><br>
+              date_default_timezone_set('Asia/Jakarta'); // setting time zone;
 
-Salam Literasi<br>
-Ketua SPK (Sahabat Pena Kita)<br>
-Dr. M. Arfan Mu’ammar, M.Pd.I
+        $mail             = new PHPMailer();
+        $body             = "Terima kasih Bapak/Ibu '.$this->input->post('nama').'. telah mendaftar sebagai calon anggota Sahabat Pena Kita (SPK). Seleksi penerimaan anggota baru akan dilakukan di setiap bulan Januari dan Juli oleh pengurus SPK. Pengumuman penerimaan seleksi akan dikirim melalui notifikasi email masing-masing calon anggota SPK. Tetap berkarya.
+
+Salam <br>
+Ketua SPK ( Sahabat Pena Kita ) <br>
+Dr. M. Arfan Mu’ammar, M.Pd.I<br>
+
 ";//isi dari email
         $mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
         $mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
@@ -120,23 +86,75 @@ Dr. M. Arfan Mu’ammar, M.Pd.I
         $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
         $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username
         $mail->Password   = "xxslesqdaashbskh";            // GMAIL password
-        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
         $mail->Subject    = "SAHABAT PENA KITA";//masukkan subject
         $mail->MsgHTML($body);//masukkan isi dari email
         
        // $address = "alief.febrina@gmail.com"; //masukkan penerima
         $mail->AddAddress($email_penerima, $nama); //masukkan penerima
         
-        $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
+        // $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
+        
+        $mail->Send();
+//         echo $mail->ErrorInfo;   
+
+            header("location: https://www.sahabatpenakita.id");
+        } else {
+            'upload gagal';
+        }
+    }
+
+     public function tambah()
+    {   
+        $upload = $this->M_User->upload();
+        if ($upload['result'] == "success"){
+            $uploadfile = $this->M_User->uploadfile();
+            echo $uploadfile['error'];
+            $this->M_User->tambahregis($upload, $uploadfile);
+            $selectmax = $this->M_User->selectmax();
+            foreach ($selectmax as $key) {
+                $a = $key->id_anggota;
+                echo $a;
+               $this->M_User->karyatulisregistrasi($uploadfile, $a);
+            }
+           
+              date_default_timezone_set('Asia/Jakarta'); // setting time zone;
+
+        $mail             = new PHPMailer();
+        $body             = "Terima kasih Bapak/Ibu '.$this->input->post('nama').'. telah mendaftar sebagai calon anggota Sahabat Pena Kita (SPK). Seleksi penerimaan anggota baru akan dilakukan di setiap bulan Januari dan Juli oleh pengurus SPK. Pengumuman penerimaan seleksi akan dikirim melalui notifikasi email masing-masing calon anggota SPK. Tetap berkarya.
+
+Salam <br>
+Ketua SPK ( Sahabat Pena Kita ) <br>
+Dr. M. Arfan Mu’ammar, M.Pd.I<br>
+
+";//isi dari email
+        $mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mail->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mail->SMTPSecure = "ssl";                 // jenis kemananan
+        $mail->Host       = "smtp.gmail.com";      // masukkan GMAIL sebagai smtp server
+        $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username
+        $mail->Password   = "xxslesqdaashbskh";            // GMAIL password
+        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mail->Subject    = "SAHABAT PENA KITA";//masukkan subject
+        $mail->MsgHTML($body);//masukkan isi dari email
+        
+       // $address = "alief.febrina@gmail.com"; //masukkan penerima
+        $mail->AddAddress($email_penerima, $nama); //masukkan penerima
+        
+        // $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
         
         $mail->Send();
            echo $mail->ErrorInfo;
-            $this->session->set_flashdata('Sukses', "Username dan Password telah dikirim ke Email anda!!");
+            $this->session->set_flashdata('Sukses', "Terima Kasih Telah Mendaftar!!");
             redirect('login'); 
         } else {
-
-            $this->session->set_flashdata('Sukses', "Gagal Silahkan Coba Lagi!!");
-            redirect('login'); 
+            echo $upload['error'];
+            // $this->session->set_flashdata('Sukses', "Gagal Silahkan Coba Lagi!!");
+            // redirect('login'); 
         }
     }
 

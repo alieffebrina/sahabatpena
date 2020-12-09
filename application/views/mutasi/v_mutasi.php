@@ -54,7 +54,7 @@
                   <td><?php echo $no++; ?></td>
                   <td><?php echo $mutasi->nama; ?></td>
                   <td><?php echo $mutasi->korwilawal; ?></td>
-                  <td><?php echo $mutasi->tglupdate; ?></td>
+                  <td><?php echo date('d-m-Y h:i:s', strtotime($mutasi->tglupdate)); ?></td>
                   <td><?php echo $mutasi->korwilmutasi ?></td>
                 </tr>
                   <?php } ?>

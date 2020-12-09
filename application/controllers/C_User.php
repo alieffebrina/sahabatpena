@@ -403,18 +403,18 @@ class C_User extends CI_Controller{
         if ($upload['result'] == "success"){
             
             $this->M_User->tambahdata($upload);
-            $this->load->library('mailer');
-            $email_penerima = 'alief.febrina@gmail.com';
-            $subjek = $this->input->post('subjek');
-            $pesan = 'php mail sukses'; // $this->input->post('pesan');
-            // $attachment = $_FILES['attachment']; 
-            $content = 'data berhasil dikirim'; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
-            $sendmail = array(
-              'email_penerima'=>$email_penerima,
-              'subjek'=>$subjek,
-              'content'=>$content,
-              //'attachment'=>$attachment//
-            );
+            // $this->load->library('mailer');
+            // $email_penerima = 'alief.febrina@gmail.com';
+            // $subjek = $this->input->post('subjek');
+            // $pesan = 'php mail sukses'; // $this->input->post('pesan');
+            // // $attachment = $_FILES['attachment']; 
+            // $content = 'data berhasil dikirim'; // $this->load->view('content', array('pesan'=>$pesan), true) Ambil isi file content.php dan masukan ke variabel $content
+            // $sendmail = array(
+            //   'email_penerima'=>$email_penerima,
+            //   'subjek'=>$subjek,
+            //   'content'=>$content,
+            //   //'attachment'=>$attachment//
+            // );
             // if(empty($attachment['name'])){ // Jika tanpa attachment
             //   $send = $this->mailer->send($sendmail); // Panggil fungsi send yang ada di librari Mailer
             // }else{ // Jika dengan attachment
@@ -425,7 +425,7 @@ class C_User extends CI_Controller{
             $this->session->set_flashdata('Sukses', "Data Telah Disimpan!!");
             redirect('user');    
         } else {
-            'upload gagal';
+            echo 'upload gagal';
         }
     }
 
@@ -453,7 +453,7 @@ class C_User extends CI_Controller{
         if ($upload['result'] == "success"){
             $this->M_User->tambahregis($upload);
             
-        $thnterbit = $this->input->post('kar'); 
+            // $thnterbit = $this->input->post('kar'); 
         // echo $thnterbit;
             $selectmax = $this->M_User->selectmax();
             foreach ($selectmax as $key) {
@@ -465,11 +465,15 @@ class C_User extends CI_Controller{
             $kode = $this->M_Korwil->cekkode($korwil);
             foreach ($kode as $modul) {
                 $a = $modul->kodekorwil;
+                $pecah = explode('.', $a);
+                $pecahkorwil = $pecah[0].'.'.$pecah[1];
                 date_default_timezone_set('Asia/Jakarta');
                 $tgl = date('dmY');
                 $a = str_replace("tanggal", $tgl, $a);
-                $data = $this->M_User->getjumlahwilayah($korwil);
-                $id = count($data)+1;
+                $data = $this->M_User->getkode($pecahkorwil);
+                $kodemax = $data->id_anggota;
+                $pecahkodemax = explode('.', $kodemax);
+                $id = $pecahkodemax[2]+1;
                 $a = str_replace("no", $id, $a);
             }
             $kode = $a;
@@ -477,9 +481,10 @@ class C_User extends CI_Controller{
             
         //     $this->session->set_flashdata('Sukses', "Data Berhasil Silakan Login!!");
             redirect('daftarulang-cek/'.$idanggota); 
-
+            // echo "bener";
         } else {
-            'upload gagal';
+            echo $upload['error'];
+            // echo 'upload gagal';
         }
     }
 
@@ -587,22 +592,8 @@ Ketua SPK ( Sahabat Pena Kita)
     {   
         $korwilawal = $this->input->post('korwilawal');
         $korwilskrg = $this->input->post('korwil');
-        if($korwilawal == $korwilskrg){
-            $kode = $this->input->post('noanggota');
-        } else {
-            $kode = $this->M_Korwil->cekkode($korwilskrg);
-            foreach ($kode as $modul) {
-                $a = $modul->kodekorwil;
-                date_default_timezone_set('Asia/Jakarta');
-                $tgl = date('dmY');
-                $a = str_replace("tanggal", $tgl, $a);
-                $data = $this->M_User->getjumlahwilayah($korwilskrg);
-                $id = count($data)+1;
-                $a = str_replace("no", $id, $a);
-            }
-            $kode = $a;
-        }
-        $this->M_User->edit($kode);
+        
+        $this->M_User->edit();
         $status = $this->input->post('aktivasi');
         if ($status == 'tidak') {
             $this->M_User->nonaktif();
@@ -636,15 +627,26 @@ Ketua SPK ( Sahabat Pena Kita)
 
         $kode = $this->M_Korwil->cekkode($korwil);
         foreach ($kode as $modul) {
-            $a = $modul->kodekorwil;
+            // $d = $modul->kodekorwil;
+            $a = $modul->kodekorwil;            
+            $pecah = explode('.', $a);
+            $pecahkorwil = $pecah[0].'.'.$pecah[1];
             date_default_timezone_set('Asia/Jakarta');
             $tgl = date('dmY');
             $a = str_replace("tanggal", $tgl, $a);
-            $data = $this->M_User->getjumlahwilayah($korwil);
-            $id = count($data)+1;
-            $a = str_replace("no", $id, $a);
+            $data = $this->M_User->getkode($pecahkorwil);
+            foreach ($data as $data) {
+                $kodemax = $this->M_User->getspek($data->id_anggota);
+                foreach ($kodemax as $kodemax) {
+                    $pecahkodemax = explode('.', $kodemax->noanggota);
+                    $id = $pecahkodemax[1]+1;
+                    $a = str_replace("no", $id, $a);
+                }
+            }
             $namako = $modul->kodekorwil;
         }
+
+        // echo $a.'/'.$kodemax.'/'.$pecahkodemax[2].'/'.$id;
         $kode = $a;
         // echo $kode;
         $id = $this->session->userdata('statusanggota');
@@ -683,17 +685,17 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
         $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
         $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username
         $mail->Password   = "xxslesqdaashbskh";            // GMAIL password
-        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
         $mail->Subject    = "SAHABAT PENA KITA";//masukkan subject
         $mail->MsgHTML($body);//masukkan isi dari email
         
        // $address = "alief.febrina@gmail.com"; //masukkan penerima
         $mail->AddAddress($email_penerima, $nama); //masukkan penerima
         
-        $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
+        // $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
         
         $mail->Send();
-//         echo $mail->ErrorInfo;   
+        echo $mail->ErrorInfo;   
 
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Konfirmasi dan Email Berhasil Dikirim!!");
             redirect('user');
@@ -722,9 +724,9 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         if($id == "administrator"){
-        $data['user'] = $this->M_User->getall();   
+            $data['user'] = $this->M_User->getall();   
         } else { 
-        $data['user'] = $this->M_User->getjumlahwilayah($korwil);    
+            $data['user'] = $this->M_User->getjumlahwilayah($korwil);    
         }
         $this->load->view('user/v_laporanuser',$data); 
         $this->load->view('template/footer');
@@ -789,14 +791,14 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
         $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
         $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username
         $mail->Password   = "xxslesqdaashbskh";            // GMAIL password
-        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
         $mail->Subject    = "SAHABAT PENA KITA";//masukkan subject
         $mail->MsgHTML($body);//masukkan isi dari email
         
        // $address = "alief.febrina@gmail.com"; //masukkan penerima
         $mail->AddAddress($email_penerima, $nama); //masukkan penerima
         
-        $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
+        // $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
         
         $mail->Send();
 //         echo $mail->ErrorInfo;   
@@ -842,14 +844,14 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
         $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
         $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username
         $mail->Password   = "xxslesqdaashbskh";            // GMAIL password
-        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
         $mail->Subject    = "SAHABAT PENA KITA";//masukkan subject
         $mail->MsgHTML($body);//masukkan isi dari email
         
        // $address = "alief.febrina@gmail.com"; //masukkan penerima
         $mail->AddAddress($email_penerima, $nama); //masukkan penerima
         
-        $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
+        // $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
         
         $mail->Send();
 //         echo $mail->ErrorInfo;   
@@ -914,18 +916,18 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
          date_default_timezone_set('Asia/Jakarta'); // setting time zone;
         
         $mail             = new PHPMailer();
-        $body             = "Terima kasih Bapak/Ibu ".$nama." telah mengisi database SPK, berikut kami sertakan username dan password Bapak/Ibu untuk login di database SPK yang tercantum dibawah ini :<br>
+        $body             = "Terima kasih Bapak/Ibu <b>".$nama."</b> telah mengisi database SPK, berikut kami sertakan username dan password Bapak/Ibu untuk login di database SPK yang tercantum di bawah ini:<br>
 
-1. Username : ".$username.".<br>
-2. Password : ".$password.".<br><br>
+1. Username: ".$username."<br>
+2. Password: ".$password."<br><br>
 
 Link Url login www.anggota.sahabatpenakita.id<br><br>
 
 Setelah login, bapak ibu bisa melakukan edit data atau update data terkini<br><br>
 
 Salam<br>
-Ketua SPK ( Sahabat Pena Kita)
-
+Ketua SPK (Sahabat Pena Kita)<br>
+Dr. M. Arfan Mu’ammar, M.Pd.I
 "; //isi dari email
         $mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
         $mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
@@ -937,14 +939,14 @@ Ketua SPK ( Sahabat Pena Kita)
         $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
         $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username
         $mail->Password   = "xxslesqdaashbskh";            // GMAIL password
-        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
-        $mail->Subject    = "SAHABAT PENA KITA";//masukkan subject
+        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mail->Subject    = "Terima Kasih Telah Berganbung !";//masukkan subject
         $mail->MsgHTML($body);//masukkan isi dari email
         
         $address = "alief.febrina@gmail.com"; //masukkan penerima
         $mail->AddAddress($email_penerima, $nama); //masukkan penerima
         
-        $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
+        // $mail->AddCC('info.sahabatpenakita@gmail.com', 'Ketua Sahabat Pena Kita');
         
         $mail->Send();
            echo $mail->ErrorInfo;

@@ -12,10 +12,18 @@ class M_User extends CI_Model {
     }
 
     function getjumlahwilayah($id){
+        $this->db->order_by('tb_anggota.noanggota', 'ASC');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
         $this->db->where('id_korwil', $id);
+        $query = $this->db->get('tb_anggota');
+        return $query->result();
+    }
+
+    function getkode($id){
+        $this->db->select_max('id_anggota');
+        $this->db->like('noanggota', $id);
         $query = $this->db->get('tb_anggota');
         return $query->result();
     }
@@ -51,7 +59,7 @@ class M_User extends CI_Model {
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
         $this->db->where('statusanggota', 'calonanggota');
-        $this->db->where('statusanggota', 'menunggu konfirmasi');
+        $this->db->or_where('statusanggota', 'menunggu konfirmasi');
         $query = $this->db->get('tb_anggota');
         return $query->result();
     }
@@ -109,9 +117,9 @@ class M_User extends CI_Model {
      public function upload(){
         $file_name = $this->input->post('foto');
         $path= FCPATH.'images';
-        //echo $path;
+        echo $path;
         $config['upload_path'] = $path;
-        $config['allowed_types'] = 'jpg|png|jpeg';
+        $config['allowed_types'] = '*';
         $config['max_size'] = '2048';
         $config['remove_space'] = TRUE;
         $config['width']= '3000';
@@ -262,7 +270,7 @@ class M_User extends CI_Model {
             'id_anggota' => $a,
             'karyatulis' => $this->input->post('karyatulis'),
             'tglpublish' => date('Y-m-d'),
-            'file' =>$uploadfile['file']['file_name']
+            'file' =>$uploadfile['file']['file_name'],
         );
         
         $this->db->insert('tb_karyatulis', $user);
@@ -420,7 +428,7 @@ class M_User extends CI_Model {
         return $query->result();
     }
 
-    function edit($kode){
+    function edit(){
         $user = array(
             'nik' => $this->input->post('nik'),
             'nama' => $this->input->post('nama'),
@@ -438,7 +446,7 @@ class M_User extends CI_Model {
             'id_korwil' => $this->input->post('korwil'),
             'username' => $this->input->post('username'),
             'password' => $this->input->post('password'),
-            'noanggota' => $kode,
+            'website' => $this->input->post('website'),
             'latarbelakang' => $this->input->post('latarbelakang1').'/'.$this->input->post('latarbelakang2').'/'.$this->input->post('latarbelakang3'),
             'institusi' => $this->input->post('institusi'),
             'statusanggota' => $this->input->post('aktivasi'),
