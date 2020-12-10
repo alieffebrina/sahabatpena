@@ -17,6 +17,7 @@ class C_Mutasi extends CI_Controller{
         $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
+        $korwil = $this->session->userdata('korwil');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
         $tabel = 'tb_akses';
@@ -45,7 +46,11 @@ class C_Mutasi extends CI_Controller{
         }
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
-        $data['mutasi'] = $this->M_Mutasi->getmutasi();         
+        if($id == "administrator"){
+            $data['mutasi'] = $this->M_Mutasi->getall();  
+        } else { 
+            $data['mutasi'] = $this->M_Mutasi->getmutasi($korwil);         
+        } 
         $this->load->view('mutasi/v_mutasi',$data); 
         $this->load->view('template/footer');
     }
@@ -55,10 +60,16 @@ class C_Mutasi extends CI_Controller{
         $data['activeMenu'] = 'info';
         $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
+        $data['korwil'] = $this->M_Korwil->getall();
+
+        $korwil = $this->session->userdata('korwil');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['user'] = $this->M_User->getall();
-        $data['korwil'] = $this->M_Korwil->getall();
+        if($id == "administrator"){
+            $data['user'] = $this->db->query("select * from tb_anggota order by nama asc")->result();   
+        } else { 
+            $data['user'] =$this->db->query("select * from tb_anggota where id_korwil=$korwil order by nama asc")->result();    
+        } 
         $this->load->view('mutasi/v_addmutasi', $data); 
         $this->load->view('template/footer');
     }

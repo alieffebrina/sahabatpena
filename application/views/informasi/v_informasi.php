@@ -52,7 +52,7 @@
                   foreach ($informasi as $informasi) { ?>
                 <tr>
                   <td><?php echo $no++; ?></td>
-                  <td><?php echo $informasi->tglupdate; ?></td>
+                  <td><?php echo date('d-m-Y', strtotime($informasi->tglupdate)); ?></td>
                   <td><?php echo $informasi->judulinformasi; ?></td>
                   <td><div class="btn-group">
                       <a href="<?php echo site_url('informasi-view/'.$informasi->id_informasi); ?>"><button type="button" class="btn-xs btn-success" data-toggle="tooltip" data-placement="bottom" title="View Korwil!"><i class="fa fa-fw fa-search"></i></button></a>

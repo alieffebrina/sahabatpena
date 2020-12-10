@@ -151,23 +151,12 @@ class M_Korwil extends CI_Model {
     }
 
     function editstatususer($ida){
-        $wherenonaktif = array(
-            'id_korwil' =>  $ida
-        );
-
-        $editnonaktif = array(
-            'statusanggota' =>  'anggota',
-        );
-
-        $this->db->where($wherenonaktif);
-        $this->db->update('tb_anggota',$editnonaktif);    
-
         $where = array(
             'id_anggota' =>  $this->input->post('nama')
         );
 
         $view = array(
-            'statusanggota' =>  'korwil',
+            'statusanggota' =>  'anggota',
             'id_korwil' =>  $ida
         );
 

@@ -75,9 +75,14 @@ class C_Setting extends CI_Controller{
         $this->load->view('template/header.php', $data);
         $id = $this->session->userdata('statusanggota');
         $iduser = $this->session->userdata('id_user');
+        $korwil = $this->session->userdata('korwil');
         $data['menu'] = $this->M_Setting->getmenu1($id);
         $this->load->view('template/sidebar.php', $data);
-        $data['user'] = $this->M_User->getuser();
+        if($id == "administrator"){
+            $data['user'] = $this->M_User->getuser();  
+        } else { 
+            $data['user'] = $this->M_User->getjumlahwilayah($korwil);    
+        } 
         $this->load->view('setting/v_setting',$data); 
         $this->load->view('template/footer');
     }

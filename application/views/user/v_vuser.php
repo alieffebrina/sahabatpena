@@ -166,6 +166,13 @@
             </div>
               <!-- Date dd/mm/yyyy -->
               <div class="form-horizontal">
+                
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Website</label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="website" name="website" value="<?php echo $key->website; ?>" readonly>
+                  </div>
+                </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Instagram</label>
                   <div class="col-sm-9">

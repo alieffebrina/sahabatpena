@@ -125,6 +125,11 @@
               <table id="example1" class="table table-bordered table-striped table-hover">
                 <tbody>
                   <tr>
+                  <td width="180px"> WEBSITE </td>
+                  <td width="10px"> : </td>
+                  <td><?php echo $user->website ?></td>
+                </tr>
+                  <tr>
                   <td width="180px"> INSTAGRAM </td>
                   <td width="10px"> : </td>
                   <td><?php echo $user->instagram ?></td>

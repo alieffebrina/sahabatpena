@@ -37,7 +37,7 @@
                   foreach ($informasi as $informasi) { ?>
                 <tr>
                   <td style="width: 300px">Tanggal Publish</td>
-                  <td><?php echo $informasi->tglupdate; ?></td>
+                  <td><?php echo date('d-m-Y', strtotime($informasi->tglupdate)); ?></td>
                 </tr>
                 <tr>
                   <td>Judul</td>

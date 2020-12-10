@@ -52,15 +52,6 @@
                 </tr>
                 <tr>
                   <td><?php echo '2'; ?></td>
-                  <td><?php echo 'Korwil'; ?></td>
-                  <td>
-                    <div class="btn-group">
-                      <a href="<?php echo site_url('C_Setting/view/korwil'); ?>"><button type="button" class="btn btn-success">Hak Akses Login</button></a>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td><?php echo '3'; ?></td>
                   <td><?php echo 'Anggota'; ?></td>
                   <td>
                     <div class="btn-group">

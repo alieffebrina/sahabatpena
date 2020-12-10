@@ -89,8 +89,8 @@ class C_Korwil extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['korwil'] = $this->M_Korwil->getkorwilspek($ida); 
-        $data['pengurus'] = $this->M_Korwil->getpenguruskorwil($ida); 
-        $data['user'] = $this->M_User->getuser(); 
+        $data['pengurus'] = $this->M_Korwil->getpenguruskorwil($ida);
+        $data['user'] =$this->db->query("select * from tb_anggota where id_korwil=$ida order by nama asc")->result();    
         $this->load->view('korwil/v_pengurus', $data); 
         $this->load->view('user/v_modal'); 
         $this->load->view('template/footer');
@@ -106,7 +106,7 @@ class C_Korwil extends CI_Controller{
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['korwil'] = $this->M_Korwil->getkorwilspek($ida); 
         $data['pengurus'] = $this->M_Korwil->getpenguruskorwile($ida); 
-        $data['user'] = $this->M_User->getuser(); 
+        $data['user'] =$this->db->query("select * from tb_anggota where id_korwil=$ida order by nama asc")->result();    
         $this->load->view('korwil/v_epengurus', $data); 
         $this->load->view('user/v_modal'); 
         $this->load->view('template/footer');
@@ -122,7 +122,7 @@ class C_Korwil extends CI_Controller{
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['korwil'] = $this->M_Korwil->getkorwilspek($ida); 
         $data['pengurus'] = $this->M_Korwil->getpenguruskorwil($ida);  
-        $data['user'] = $this->M_User->getuser(); 
+        $data['user'] =$this->db->query("select * from tb_anggota where id_korwil=$ida order by nama asc")->result();    
         $this->load->view('korwil/v_vkorwil', $data); 
         $this->load->view('user/v_modal'); 
         $this->load->view('template/footer');
@@ -138,7 +138,7 @@ class C_Korwil extends CI_Controller{
         $data['provinsi'] = $this->M_Setting->getprovinsi();
         $data['korwil'] = $this->M_Korwil->getkorwilspek($ida); 
         $data['pengurus'] = $this->M_Korwil->getpenguruskorwil($ida); 
-        $data['user'] = $this->M_User->getuser(); 
+        $data['user'] =$this->db->query("select * from tb_anggota where id_korwil=$ida order by nama asc")->result();    
         $this->load->view('korwil/v_ekorwil', $data); 
         $this->load->view('user/v_modal'); 
         $this->load->view('template/footer');
