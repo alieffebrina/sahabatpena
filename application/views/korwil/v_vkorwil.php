@@ -46,7 +46,7 @@
                 <tr>
                   <th style="text-align: right; width: 150px" >Tanggal Berdiri</th>
                   <td>:</td>
-                  <td><?php echo $korwil->tglberdiri; ?></td>
+                  <td><?php echo date("d-m-Y", strtotime($korwil->tglberdiri)); ?></td> 
                 </tr>
                 <tr>
                   <th style="text-align: right; width: 150px" >Alamat</th>
@@ -71,7 +71,7 @@
                 <tr>
                   <th style="text-align: right; width: 150px" >Kode  Cabang / Wilayah</th>
                   <td>:</td>
-                  <td><?php echo $korwil->kodekorwil; ?></td>
+                  <td><?php echo $korwil->kodeshow; ?></td>
                 </tr>
                 </tbody>
               </table>
@@ -112,7 +112,7 @@
                   <td><?php echo $pengurus->jabatan; ?></td>
                   <td><?php echo $pengurus->nosk; ?></td>
                   <td><?php echo $pengurus->nama; ?></td>
-                  <td><?php echo $pengurus->tglaktif.' s/d '.$pengurus->tglakhir; ?></td>
+                  <td><?php echo date("d-m-Y", strtotime($pengurus->tglaktif)).' s/d '.date("d-m-Y", strtotime($pengurus->tglakhir)); ?></td>
                   <td><?php echo $pengurus->status ?></td>
                 </tr>
                   <?php  } ?>

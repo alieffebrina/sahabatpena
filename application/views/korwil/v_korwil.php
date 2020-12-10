@@ -57,7 +57,7 @@
                   <td><?php echo date('d-m-Y', strtotime($korwil->tglberdiri)); ?></td>
                   <td><?php echo $korwil->namakorwil; ?></td>
                   <td><?php echo $korwil->alamat.', '.$korwil->name_kota.', '.$korwil->name_prov; ?></td>
-                  <td><?php echo $korwil->kodekorwil; ?></td>
+                  <td><?php echo $korwil->kodeshow; ?></td>
                   <td> 
                     <div class="btn-group">
                       <?php if($this->session->userdata('statusanggota') == 'administrator'){ ?>

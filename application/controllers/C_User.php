@@ -268,7 +268,7 @@ class C_User extends CI_Controller{
         if(count($hasilhapus)!=0){ 
             $tombolhapus = 'aktif';
         } else {
-            $tomboledit = 'tidak';
+            $tombolhapus = 'tidak';
         }
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
