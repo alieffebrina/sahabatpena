@@ -44,6 +44,20 @@ class M_Informasispk extends CI_Model {
         $this->db->update('tb_informasi',$view);         
     }
 
+    function nonaktif($id){
+        $where = array(
+            'id_informasi' =>  $id
+        );
+
+        $view = array(
+            'status' => 'tidak',
+            'tglupdate' => date('Y-m-d h:i:s')
+        );
+
+        $this->db->where($where);
+        $this->db->update('tb_informasi',$view);         
+    }
+
     function getspek($a){
         $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_informasi.id_user');
         $this->db->order_by('tb_informasi.tglupdate', 'DESC');
@@ -51,4 +65,11 @@ class M_Informasispk extends CI_Model {
         $query = $this->db->get('tb_informasi');
     	return $query->result();
     }
+
+     function jumlahinformasi(){
+        $this->db->join('tb_anggota', 'tb_anggota.id_anggota = tb_informasi.id_user');
+        $this->db->where('status', 'aktif');
+        $query = $this->db->get('tb_informasi');
+        return $query->num_rows();
+    } 
 } 

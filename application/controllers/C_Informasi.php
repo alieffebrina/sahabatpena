@@ -117,8 +117,7 @@ class C_Informasi extends CI_Controller{
     }
 
     function hapus($id){
-        $where = array('id_informasi' => $id);
-        $this->M_Setting->delete($where,'tb_informasi');
+        $this->M_Informasispk->nonaktif($id);
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Hapus!!");
         redirect('informasi');
     }

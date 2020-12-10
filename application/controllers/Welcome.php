@@ -36,6 +36,8 @@ class Welcome extends CI_Controller {
 	{
 
 		$data['activeMenu'] = 'dashboard';
+		$data['jumlahinformasi'] = $this->M_Informasispk->jumlahinformasi();
+ 		$data['informasi'] = $this->M_Informasispk->getall();
 		$this->load->view('template/header.php', $data);
 		$id = $this->session->userdata('statusanggota');
         $data['menu'] = $this->M_Setting->getmenu1($id);
@@ -60,7 +62,6 @@ class Welcome extends CI_Controller {
 			
 		}
 		$data['dash'] = $this->M_Informasispk->dash();
-		$data['informasi'] = $this->M_Informasispk->getall();
 		$this->load->view('template/index.php', $data);
 		// $this->load->view('template/index.php', $data);
 		// $this->load->view('template/footer.php');
