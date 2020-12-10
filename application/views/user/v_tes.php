@@ -167,7 +167,7 @@
           </div>
       <div class="box box-primary">
       	<div class="box-header with-border">
-              <h3 class="box-title">Quick Example</h3>
+              <h3 class="box-title">Latar Belakang Pendidikan</h3>
             </div>
               <!-- Date dd/mm/yyyy -->
                 <div class="form-group">

@@ -193,7 +193,7 @@
      foreach ($totalall as $totalall) {
      $totalang = $totalall->totalalla;
      }
-     $total = $this->db->query("select tb_korwil.namakorwil as namakorwil, tb_anggota.id_korwil, count(id_anggota) as jumlah_anggota from tb_anggota INNER JOIN tb_korwil on tb_korwil.id_korwil = tb_anggota.id_korwil where statusanggota = 'anggota'  or statusanggota= 'korwil' or statusanggota='administrator' GROUP BY tb_anggota.id_korwil " )->result();
+     $total = $this->db->query("select tb_korwil.namakorwil as namakorwil, tb_anggota.id_korwil, count(id_anggota) as jumlah_anggota from tb_anggota INNER JOIN tb_korwil on tb_korwil.id_korwil = tb_anggota.id_korwil where statusanggota = 'anggota' or statusanggota='administrator' GROUP BY tb_anggota.id_korwil " )->result();
      ?>
     var donutData = [ <?php 
       $no = 0;
