@@ -476,7 +476,7 @@ class C_User extends CI_Controller{
                     foreach ($kodemax as $kodemax) {
                         $pecahkodemax = explode('.', $kodemax->noanggota);
                         $ida = $pecahkodemax[2]+1;
-                        if(strlen($id)>2){
+                        if(strlen($id)<2){
                             $id = '0'.$ida;
                         } else {
                             $id = $ida;
@@ -649,7 +649,7 @@ Ketua SPK ( Sahabat Pena Kita)
                     foreach ($kodemax as $kodemax) {
                         $pecahkodemax = explode('.', $kodemax->noanggota);
                         $ida = $pecahkodemax[2]+1;
-                        if(strlen($id)>2){
+                        if(strlen($id)<2){
                             $id = '0'.$ida;
                         } else {
                             $id = $ida;
