@@ -76,7 +76,7 @@
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-success"><?php echo $info->num_rows(); ?></span>
+              <span class="label label-danger"><?php echo $info->num_rows(); ?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">Kamu mempunyai <?php echo $info->num_rows(); ?> pesan </li>
@@ -85,7 +85,7 @@
                 <ul class="menu">
                  <?php foreach ($info->result() as $informasi) { ?>
                    <li>
-                    <a href="#">
+                    <a href="<?php echo site_url('informasi-view/'.$informasi->id_informasi); ?>">
 
                       <div class="pull-left">
                       </div>
@@ -93,13 +93,12 @@
                         <?php echo $informasi->judulinformasi ?>
                         <small><i class="fa fa-clock-o"></i><?php echo date('d-m-Y', strtotime($informasi->tglupdate)); ?></small>
                       </h4>
-                      <p> <?php echo $informasi->informasi; ?></p>
                     </a>
                   </li>
                 <?php } ?>
                 </ul>
               </li>
-              <li class="footer"><a href="<?php echo site_url('informasi-view/'.$informasi->id_informasi); ?>">Lihat semua pesan</a></li>
+              <li class="footer"><a href="<?php echo site_url('informasi'); ?>">Lihat semua pesan</a></li>
             </ul>
           </li>
           <!-- Messages: style can be found in dropdown.less-->

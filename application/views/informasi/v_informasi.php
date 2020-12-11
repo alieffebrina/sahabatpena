@@ -43,6 +43,7 @@
                   <th>No</th>
                   <th>Tanggal </th>
                   <th>Judul</th>
+                  <th>Isi Informasi</th>
                   <th>Action</th>
                 </tr>
                 </thead>
@@ -54,6 +55,7 @@
                   <td><?php echo $no++; ?></td>
                   <td><?php echo date('d-m-Y', strtotime($informasi->tglupdate)); ?></td>
                   <td><?php echo $informasi->judulinformasi; ?></td>
+                  <td><?php echo $informasi->informasi; ?></td>
                   <td><div class="btn-group">
                       <a href="<?php echo site_url('informasi-view/'.$informasi->id_informasi); ?>"><button type="button" class="btn-xs btn-success" data-toggle="tooltip" data-placement="bottom" title="View Korwil!"><i class="fa fa-fw fa-search"></i></button></a>
                       <?php if($aksesedit == 'aktif'){?>

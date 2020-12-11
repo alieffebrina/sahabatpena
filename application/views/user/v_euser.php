@@ -210,6 +210,7 @@
           </div>
         </div>
         
+        <?php $id = $this->session->userdata('statusanggota'); ?>
       <div class="row">
         <!-- left column -->
         <div class="col-md-12">
@@ -224,27 +225,44 @@
                <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Tanggal Registrasi</label>
                   <div class="col-sm-9">
-                    <input type="date" class="form-control" id="tglregistrasi" name="tglregistrasi" value="<?php echo $key->tglregistrasi; ?>">
+                    <input type="date" class="form-control" id="tglregistrasi" name="tglregistrasi" value="<?php echo $key->tglregistrasi; ?>" <?php if($id != "administrator"){ echo "readonly"; } ?> >
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Cabang / Wilayah</label>
                   <div class="col-sm-9">
+                     <?php if($id != "administrator"){ echo "<input type='text' class='form-control' value= '".$key->namakorwil."' readonly>"; } else { ?> 
                     <select class="form-control select2" id="korwil" name="korwil" style="width: 100%;">
                       <?php foreach ($korwil as $korwil) { ?>
                         <option value="<?php echo $korwil->id_korwil ?>" <?php if($key->id_korwil == $korwil->id_korwil){ echo "selected"; } ?> ><?php echo $korwil->namakorwil ?></option>
                       <?php } ?>
                     </select>
+                  <?php } ?>
                   </div>
                 </div>         
                 <div class="form-group">
-                  <label for="inputPassword3" class="col-sm-2 control-label">Status Anggota</label>
+                  <label for="inputPassword3" class="col-sm-2 control-label">Kategori Anggota</label>
                   <div class="col-sm-9">
+                    <?php if($id != "administrator"){ echo "<input type='text' value= '".$key->statusanggota."' class='form-control' readonly>"; } else { ?> 
                     <select class="form-control select2" id="aktivasi" name="aktivasi" style="width: 100%;">
                       <option value="anggota" <?php if($key->statusanggota != 'tidak aktif'){ echo "selected"; } ?>>Aktif</option>
                       <option value="tidak" <?php if($key->statusanggota == 'tidak aktif' && $key->alasan == NULL ){ echo "selected"; } ?> >Tidak Aktif</option>
                       <option value="resign" <?php if($key->statusanggota == 'tidak aktif' && $key->alasan != NULL ){ echo "selected"; } ?>  >Mengundurkan Diri </option>
                     </select>
+                  <?php } ?>
+                  </div>
+                </div>   
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label">Status Anggota</label>
+                  <div class="col-sm-9">
+                    <?php if($id != "administrator"){ if($key->statusanggota != 'tidak aktif') { echo "<input type='text' value='Aktif' class='form-control' readonly>"; } else { 
+                      echo "<input type='text' value='Tidak Aktif' class='form-control' readonly>"; } } else { ?> 
+                    <select class="form-control select2" id="aktivasi" name="aktivasi" style="width: 100%;">
+                      <option value="anggota" <?php if($key->statusanggota != 'tidak aktif'){ echo "selected"; } ?>>Aktif</option>
+                      <option value="tidak" <?php if($key->statusanggota == 'tidak aktif' && $key->alasan == NULL ){ echo "selected"; } ?> >Tidak Aktif</option>
+                      <option value="resign" <?php if($key->statusanggota == 'tidak aktif' && $key->alasan != NULL ){ echo "selected"; } ?>  >Mengundurkan Diri </option>
+                    </select>
+                  <?php } ?>
                   </div>
                 </div>       
                 <input type="hidden" name="korwilawal" value="<?php echo $key->id_korwil; ?>">
@@ -252,7 +270,7 @@
                   <div id = 'idresign'>
                   <label for="inputPassword3" class="col-sm-2 control-label">Alasan Mengundurkan Diri</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="idresign" name="reason"  value="<?php if( $key->alasan == NULL){ echo '-'; } else { echo $key->alasan; } ?>" >
+                    <input type="text" class="form-control" id="idresign" name="reason"  value="<?php if( $key->alasan == NULL){ echo '-'; } else { echo $key->alasan; } ?>"  <?php if($id != "administrator"){ echo "readonly"; } ?> >
                   </div>
                 </div>
                 </div>
