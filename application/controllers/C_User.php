@@ -959,7 +959,7 @@ Dr. M. Arfan Mu’ammar, M.Pd.I
         $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username
         $mail->Password   = "xxslesqdaashbskh";            // GMAIL password
         $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
-        $mail->Subject    = "Terima Kasih Telah Berganbung !";//masukkan subject
+        $mail->Subject    = "Terima Kasih Telah Bergabung !";//masukkan subject
         $mail->MsgHTML($body);//masukkan isi dari email
         
         $address = "alief.febrina@gmail.com"; //masukkan penerima
