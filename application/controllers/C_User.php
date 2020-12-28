@@ -462,31 +462,49 @@ class C_User extends CI_Controller{
             }
             $korwil = $this->input->post('korwil');
 
-            $kode = $this->M_Korwil->cekkode($korwil);
-            foreach ($kode as $modul) {
-                $a = $modul->kodekorwil;            
-                $pecah = explode('.', $a);
-                $pecahkorwil = $pecah[0].'.'.$pecah[1];
-                date_default_timezone_set('Asia/Jakarta');
-                $tgl = date('dmY');
-                $a = str_replace("tanggal", $tgl, $a);
-                $data = $this->M_User->getkode($pecahkorwil);
-                foreach ($data as $data) {
-                    $kodemax = $this->M_User->getspek($data->id_anggota);
-                    foreach ($kodemax as $kodemax) {
-                        $pecahkodemax = explode('.', $kodemax->noanggota);
-                        $ida = $pecahkodemax[2]+1;
-                        if(strlen($id)<2){
-                            $id = '0'.$ida;
-                        } else {
-                            $id = $ida;
-                        }
-                        $a = str_replace("no", $id, $a);
-                    }
-                }
+             $kode = $this->M_Korwil->cekkode($korwil);
+        
+            // foreach ($kode as $modul) {
+            //     $a = $modul->kodekorwil;            
+            //     $pecah = explode('.', $a);
+            //     $pecahkorwil = $pecah[0].'.'.$pecah[1];
+            //     date_default_timezone_set('Asia/Jakarta');
+            //     $tgl = date('dmY');
+            //     $a = str_replace("tanggal", $tgl, $a);
+            //     $data = $this->M_User->getkode($pecahkorwil);
+            //     foreach ($data as $data) {
+            //         $kodemax = $this->M_User->getspek($data->id_anggota);
+            //         foreach ($kodemax as $kodemax) {
+            //             $pecahkodemax = explode('.', $kodemax->noanggota);
+            //             $ida = $pecahkodemax[2]+1;
+            //             if(strlen($id)<2){
+            //                 $id = '0'.$ida;
+            //             } else {
+            //                 $id = $ida;
+            //             }
+            //             $a = str_replace("no", $id, $a);
+            //         }
+            //     }
+            // }
+
+        foreach ($kode as $kode) {
+            $a = $kode->kodekorwil;
+            $kodekorwil = $kode->kodeshow;
+            date_default_timezone_set('Asia/Jakarta');
+            $tgl = date('dmY'); 
+            $a = str_replace("tanggal", $tgl, $a);
+            $jumlah = $this->M_User->jumlahkode($kodekorwil);
+            $kodenow = $jumlah+1;
+            if(strlen($kodenow)<2){
+                $id = '0'.$kodenow;
+            } else {
+                $id = $kodenow;
             }
-            $kode = $a;
-            $this->M_User->noanggota($kode);
+            $a = str_replace("no", $id, $a);
+        }
+
+            $kodeko = $a;
+            $this->M_User->noanggota($kodeko);
             
         //     $this->session->set_flashdata('Sukses', "Data Berhasil Silakan Login!!");
             redirect('daftarulang-cek/'.$idanggota); 
