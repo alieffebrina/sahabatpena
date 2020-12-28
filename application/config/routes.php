@@ -55,6 +55,7 @@ $route['user-setting'] = 'C_User/setting';
 $route['user'] = 'C_User';
 $route['user-edit/(:any)'] = 'C_User/edit/$1';
 $route['user-view/(:any)'] = 'C_User/view/$1';
+$route['user-vcalon/(:any)'] = 'C_Calon/view/$1';
 $route['user-konfirm/(:any)'] = 'C_User/konfirmasi/$1';
 $route['user-nonaktif/(:any)'] = 'C_User/nonaktif/$1';
 $route['user-aktif/(:any)'] = 'C_User/aktif/$1';

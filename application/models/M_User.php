@@ -11,6 +11,7 @@ class M_User extends CI_Model {
     	return $query->result();
     }
 
+
     function getjumlahwilayah($id){
         $this->db->order_by('tb_anggota.noanggota', 'ASC');
         $this->db->join('tb_provinsi', 'tb_provinsi.id_provinsi = tb_anggota.id_provinsi');

@@ -132,4 +132,19 @@ class C_Calon extends CI_Controller{
         $this->load->view('user/v_calon',$data); 
         $this->load->view('template/footer');
     }
+
+    function view($ida)
+    {
+        $data['activeMenu'] = 'info';
+        $this->load->view('template/header.php', $data);
+        $id = $this->session->userdata('statusanggota');
+        $data['menu'] = $this->M_Setting->getmenu1($id);
+        $this->load->view('template/sidebar.php', $data);
+        $data['user'] = $this->M_User->getcalon($ida);
+        $data['karyatulis'] = $this->M_User->getkaryatulis($ida);
+        $data['provinsi'] = $this->M_Setting->getprovinsi();
+        $data['korwil'] = $this->M_Korwil->getkorwil();
+        $this->load->view('user/v_vcuser',$data); 
+        $this->load->view('template/footer');
+    }
 }

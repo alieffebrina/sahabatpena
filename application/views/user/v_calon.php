@@ -84,12 +84,9 @@
                     <?php if($this->session->userdata('statusanggota') == 'administrator'){ ?>
                       <a href="<?php echo site_url('user-konfirm/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-warning" data-toggle="tooltip" data-placement="bottom" title="konfirmasi!"><i class="fa fa-fw fa-check"></i></button></a>
                     <?php } ?>
-                      <a href="<?php echo site_url('user-view/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-success" data-toggle="tooltip" data-placement="bottom" title="Lihat User!"><i class="fa fa-fw fa-search"></i></button></a>
-                      <?php if($aksesedit == 'aktif'){?>
-                      <a href="<?php echo site_url('user-edit/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit User!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
-                      <?php } ?>
+                      <a href="<?php echo site_url('user-vcalon/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-success" data-toggle="tooltip" data-placement="bottom" title="Lihat User!"><i class="fa fa-fw fa-search"></i></button></a>
                       <?php if($akseshapus == 'aktif'){?>
-                      <a href="<?php echo site_url('C_User/hapus/'.$user->id_anggota); ?>"><button type="button" class="btn-xs btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus User!"><i class="fa fa-fw fa-trash-o"></i></button></a>
+                      <a href="<?php echo site_url('C_User/hapus/'.$user->id_anggota); ?>" onclick="javascript:return confirm('Yakin data mau dihapus ?')"><button type="button" class="btn-xs btn-danger" data-toggle="tooltip" data-placement="bottom" title="Hapus User!"><i class="fa fa-fw fa-trash-o"></i></button></a>
                       <?php } ?>
                     </div>
                   </td>
