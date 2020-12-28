@@ -29,6 +29,12 @@ class M_User extends CI_Model {
         return $query->result();
     }
 
+     function jumlahkode($kodekorwil){
+        $this->db->like('noanggota', $kodekorwil);
+        $query = $this->db->get('tb_anggota');
+        return $query->num_rows();
+    }
+
     function get_listuser($id){
         $this->db->select('tb_korwil.namakorwil, tb_anggota.*, tb_provinsi.*, tb_kota.*, tb_kecamatan.*');
         $this->db->join('tb_korwil', 'tb_korwil.id_korwil = tb_anggota.id_korwil');

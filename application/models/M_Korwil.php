@@ -240,7 +240,7 @@ class M_Korwil extends CI_Model {
     }
 
     function cekkode($modul){        
-        $this->db->select('kodekorwil');
+        $this->db->select('kodekorwil, kodeshow');
         $where = array(
             'id_korwil' => $modul
         );

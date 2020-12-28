@@ -636,35 +636,53 @@ Ketua SPK ( Sahabat Pena Kita)
 
         $kode = $this->M_Korwil->cekkode($korwil);
         
-            foreach ($kode as $modul) {
-                $a = $modul->kodekorwil;            
-                $pecah = explode('.', $a);
-                $pecahkorwil = $pecah[0].'.'.$pecah[1];
-                date_default_timezone_set('Asia/Jakarta');
-                $tgl = date('dmY');
-                $a = str_replace("tanggal", $tgl, $a);
-                $data = $this->M_User->getkode($pecahkorwil);
-                foreach ($data as $data) {
-                    $kodemax = $this->M_User->getspek($data->id_anggota);
-                    foreach ($kodemax as $kodemax) {
-                        $pecahkodemax = explode('.', $kodemax->noanggota);
-                        $ida = $pecahkodemax[2]+1;
-                        if(strlen($id)<2){
-                            $id = '0'.$ida;
-                        } else {
-                            $id = $ida;
-                        }
-                        $a = str_replace("no", $id, $a);
-                    }
-                }
+            // foreach ($kode as $modul) {
+            //     $a = $modul->kodekorwil;            
+            //     $pecah = explode('.', $a);
+            //     $pecahkorwil = $pecah[0].'.'.$pecah[1];
+            //     date_default_timezone_set('Asia/Jakarta');
+            //     $tgl = date('dmY');
+            //     $a = str_replace("tanggal", $tgl, $a);
+            //     $data = $this->M_User->getkode($pecahkorwil);
+            //     foreach ($data as $data) {
+            //         $kodemax = $this->M_User->getspek($data->id_anggota);
+            //         foreach ($kodemax as $kodemax) {
+            //             $pecahkodemax = explode('.', $kodemax->noanggota);
+            //             $ida = $pecahkodemax[2]+1;
+            //             if(strlen($id)<2){
+            //                 $id = '0'.$ida;
+            //             } else {
+            //                 $id = $ida;
+            //             }
+            //             $a = str_replace("no", $id, $a);
+            //         }
+            //     }
+            // }
+
+        foreach ($kode as $kode) {
+            $a = $kode->kodekorwil;
+            $kodekorwil = $kode->kodeshow;
+            date_default_timezone_set('Asia/Jakarta');
+            $tgl = date('dmY'); 
+            $a = str_replace("tanggal", $tgl, $a);
+            $jumlah = $this->M_User->jumlahkode($kodekorwil);
+            $kodenow = $jumlah+1;
+            if(strlen($kodenow)<2){
+                $id = '0'.$kodenow;
+            } else {
+                $id = $kodenow;
             }
+            $a = str_replace("no", $id, $a);
+        }
+
+            // echo $a;
             $namako = $modul->kodekorwil;
 
         // echo $a.'/'.$kodemax.'/'.$pecahkodemax[2].'/'.$id;
-        $kode = $a;
+        $kodeko = $a;
         // echo $kode;
         $id = $this->session->userdata('statusanggota');
-        $this->M_User->konfirm($id, $kode);
+        $this->M_User->konfirm($id, $kodeko);
 
         $idanggota = $this->input->post('idanggota');
         $spek = $this->M_User->getspek($idanggota);
