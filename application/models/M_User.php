@@ -460,6 +460,19 @@ class M_User extends CI_Model {
         return $query->result();
     }
 
+    function editfoto($upload){
+         $user = array(
+            'foto' => $upload['file']['file_name'],
+        );
+
+        $where = array(
+            'id_anggota' =>  $this->input->post('id'),
+        );
+
+         $this->db->where($where);
+        $this->db->update('tb_anggota',$user);
+    }
+
     function edit(){
 
         $korwilawal = $this->input->post('korwilawal');

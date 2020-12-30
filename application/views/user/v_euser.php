@@ -38,7 +38,7 @@
                   <label for="inputEmail3" class="col-sm-2 control-label">NIK</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="nik" name="nik" maxlength="16" minlength="16" value="<?php echo $key->nik ?>" onkeypress="return Angkasaja(event)" >
-                    <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $key->id_anggota ?>">
+                    <input type="hidden" class="form-control" id="idfoto" name="id" value="<?php echo $key->id_anggota ?>">
                   <span id="pesannik"></span>
                   </div>
                 </div>
@@ -150,9 +150,20 @@
                 </div> 
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Foto </label>
+                    <div id="fotoganti">    
                     <div class="col-sm-6">
-                      <img class="img-responsive" src="<?php echo base_url() ?>images/<?php echo $key->foto ?>" alt="Photo" width="350px" height="197px">
+                      <img class="img-responsive" src="<?php echo base_url() ?>images/<?php echo $key->foto ?>" alt="Photo" width="350px" height="197px" >
                     </div>
+                    <div class="col-sm-3">
+                      <button type="button" onclick="changefoto()">Ganti</button>
+                    </div>
+                  </div>
+                    <div id="showganti" hidden="true">          
+                      <div class="col-sm-9">
+                        <input type="file" id="foto" class="demoInputBox" name="foto" onchange="ValidateSize(this)">
+                        <p><span class="text-danger">Maksimal 2Mb </span></p>
+                      </div>
+                  </div>
                 </div>
               </div>
           </div>
@@ -348,3 +359,18 @@
     document.getElementById("hidawak").hidden = true;
     }
   </script>
+
+  <script type="text/javascript">
+    function changefoto(){
+      
+      document.getElementById("fotoganti").hidden = true;
+      document.getElementById("showganti").hidden = false;
+    }
+  // $(document).ready(function() {
+    // ketika tombol detail ditekan
+    // $('.print_kartu').on("click", function(){
+    // ambil nilai id dari link print
+    
+  // });
+  
+  </script> 

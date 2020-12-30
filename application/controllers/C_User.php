@@ -395,6 +395,23 @@ class C_User extends CI_Controller{
         }
          
     }
+
+    public function editfoto()
+    {   
+        // echo "tes"; 
+        // $upload = $this->M_User->upload();
+        // if ($upload['result'] == "success"){
+            
+            // $this->M_User->editfoto($upload);
+            $idfoto = $this->input->post('idfoto');
+            // $this->session->set_flashdata('Sukses', "Foto Telah Diganti!!");
+            // redirect('user-edit/'.$idfoto);    
+            // echo $upload['result'];
+            echo $idfoto;
+        // } else {
+        //     echo 'upload gagal';
+        // }
+    }
     
     public function tambah()
     {   
@@ -642,7 +659,15 @@ Ketua SPK ( Sahabat Pena Kita)
     {   
         $korwilawal = $this->input->post('korwilawal');
         $korwilskrg = $this->input->post('korwil');
-        
+        // if($this->input->post('fotoa') != null){
+        //     echo "ganti";
+            $upload = $this->M_User->upload();
+            if ($upload['result'] == "success"){
+                $this->M_User->editfoto($upload);
+                echo $upload['result'];
+            } else { "gagal ganti foto"; }
+        // } else { echo $this->input->post('fotoa'); 
+        // }
         $this->M_User->edit();
         $status = $this->input->post('aktivasi');
         if ($status == 'tidak') {
