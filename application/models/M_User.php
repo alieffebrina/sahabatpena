@@ -450,6 +450,15 @@ class M_User extends CI_Model {
     }
 
     function edit(){
+
+        $korwilawal = $this->input->post('korwilawal');
+        $korwilskrg = $this->input->post('korwil');
+
+        if($korwilskrg == NULL){
+            $korwil = $korwilawal;
+        } else {
+            $korwil = $korwilskrg;
+        }
         $user = array(
             'nik' => $this->input->post('nik'),
             'nama' => $this->input->post('nama'),
@@ -464,7 +473,7 @@ class M_User extends CI_Model {
             'instagram' => $this->input->post('instagram'),
             'twitter' => $this->input->post('twitter'),
             'youtube' => $this->input->post('youtube'),
-            'id_korwil' => $this->input->post('korwil'),
+            'id_korwil' => $korwil,
             'username' => $this->input->post('username'),
             'password' => $this->input->post('password'),
             'website' => $this->input->post('website'),

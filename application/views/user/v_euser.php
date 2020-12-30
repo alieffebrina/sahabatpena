@@ -243,7 +243,7 @@
                 <div class="form-group">
                   <label for="inputPassword3" class="col-sm-2 control-label">Kategori Anggota</label>
                   <div class="col-sm-9">
-                    <?php if($id != "administrator"){ echo "<input type='text' value= '".$key->statusanggota."' class='form-control' readonly>"; } else { ?> 
+                    <?php if($id != "administrator"){ echo "<input type='text' value= '".$key->statusanggota."' name='aktivasi' class='form-control' readonly>"; } else { ?> 
                     <select class="form-control select2" id="aktivasi" name="aktivasi" style="width: 100%;">
                       <option value="anggota" <?php if($key->statusanggota != 'tidak aktif'){ echo "selected"; } ?>>Aktif</option>
                       <option value="tidak" <?php if($key->statusanggota == 'tidak aktif' && $key->alasan == NULL ){ echo "selected"; } ?> >Tidak Aktif</option>
@@ -257,7 +257,7 @@
                   <div class="col-sm-9">
                     <?php if($id != "administrator"){ if($key->statusanggota != 'tidak aktif') { echo "<input type='text' value='Aktif' class='form-control' readonly>"; } else { 
                       echo "<input type='text' value='Tidak Aktif' class='form-control' readonly>"; } } else { ?> 
-                    <select class="form-control select2" id="aktivasi" name="aktivasi" style="width: 100%;">
+                    <select class="form-control select2" id="aktivasi2" name="aktivasi2" style="width: 100%;">
                       <option value="anggota" <?php if($key->statusanggota != 'tidak aktif'){ echo "selected"; } ?>>Aktif</option>
                       <option value="tidak" <?php if($key->statusanggota == 'tidak aktif' && $key->alasan == NULL ){ echo "selected"; } ?> >Tidak Aktif</option>
                       <option value="resign" <?php if($key->statusanggota == 'tidak aktif' && $key->alasan != NULL ){ echo "selected"; } ?>  >Mengundurkan Diri </option>
