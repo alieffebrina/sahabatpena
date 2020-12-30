@@ -66,6 +66,7 @@ class M_User extends CI_Model {
         $this->db->join('tb_kota', 'tb_kota.id_kota = tb_anggota.id_kota');
         $this->db->join('tb_kecamatan', 'tb_kecamatan.id_kecamatan = tb_anggota.id_kecamatan');
         $this->db->where('statusanggota', 'calonanggota');
+        $this->db->or_where('statusanggota', 'tidak aktif');
         $this->db->or_where('statusanggota', 'menunggu konfirmasi');
         $query = $this->db->get('tb_anggota');
         return $query->result();
@@ -369,6 +370,19 @@ class M_User extends CI_Model {
         $this->db->update('tb_anggota',$user);
     }
 
+    function nonaktifid($id){
+        $user = array(
+            'statusanggota' => 'tidak aktif',
+            'tglnonaktif' => date('Y-m-d'),
+        );
+        $where = array(
+            'id_anggota' =>  $id,
+        );
+        
+        $this->db->where($where);
+        $this->db->update('tb_anggota',$user);
+    }
+
     function aktif(){
         $user = array(
             'statusanggota' => 'anggota',
@@ -663,6 +677,14 @@ class M_User extends CI_Model {
         
         $this->db->where($where);
         $this->db->update('tb_anggota',$user);
+    }
+
+    function getname($iduser){
+        $where = array(
+            'tb_anggota.id_anggota' => $iduser
+        );
+        $query = $this->db->get_where('tb_anggota', $where);
+        return $query->result();
     }
 
 

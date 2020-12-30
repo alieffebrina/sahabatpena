@@ -40,7 +40,8 @@
                   <div class="col-lg-12">
                     <label for="inputEmail3" class="col-sm-2 control-label">No Anggota</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" id="noanggota" name="noanggota" readonly value="<?php echo $userspek->id_anggota ?>">
+                        <input type="text" class="form-control" id="nomer" name="nomer" readonly value="<?php echo $userspek->noanggota ?>">
+                        <input type="hidden" class="form-control" id="noanggota" name="noanggota" readonly value="<?php echo $userspek->id_anggota ?>">
                       </div>
                   </div>
                 </div>

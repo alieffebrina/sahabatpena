@@ -36,7 +36,7 @@
             <?php echo form_open("C_User/konfirmkorwil", array('enctype'=>'multipart/form-data') ); ?>
                 <div class='row'>
                   <div class="col-lg-12">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Kowil</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Cabang / Wilayah</label>
                       <div class="col-sm-9">
                         <select class="form-control select2" id="korwil" name="korwil" style="width: 100%;" required>
                             <option value="">--Pilih--</option>

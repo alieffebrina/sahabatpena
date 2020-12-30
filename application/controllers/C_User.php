@@ -572,6 +572,29 @@ Ketua SPK ( Sahabat Pena Kita)
         
         $mail->Send();
            echo $mail->ErrorInfo;
+         $mailcpanel            = new PHPMailer();
+        
+        $mailcpanel->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mailcpanel->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mailcpanel->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mailcpanel->SMTPSecure = "ssl";                 // jenis kemananan
+        $mailcpanel->Host       = "sahabatpenakita.id";      // masukkan GMAIL sebagai smtp server
+        $mailcpanel->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mailcpanel->Username   = "info@sahabatpenakita.id";  // GMAIL username info.sahabatpenakita@gmail.com - xxslesqdaashbskh - smtp.gmail.com -465
+        $mailcpanel->Password   = "Pastisukses2020";            // GMAIL password info@sahabatpenakita.id - Pastisukses2020 - sahabatpenakita.id
+        $mailcpanel->SetFrom('info@sahabatpenakita.id', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mailcpanel->Subject    = "Terima Kasih Telah Bergabung !";//masukkan subject
+        $mailcpanel->MsgHTML($body);//masukkan isi dari email
+        
+        $address = "alief.febrina@gmail.com"; //masukkan penerima
+        $mailcpanel->AddAddress($email_penerima, $nama); //masukkan penerima
+        
+        // $mailcpanel->AddCC('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita');
+        
+        $mailcpanel->Send();
+           echo $mailcpanel->ErrorInfo;
         $nik = $this->input->post('nik');
         $id = $this->input->post('id');
         $this->qrcode($nik, $id);
@@ -708,6 +731,8 @@ Ketua SPK ( Sahabat Pena Kita)
             $nama = $spek->nama;
             $username = $spek->username;
             $password = $spek->password;
+            $namako = $spek->namakorwil;
+            $kode = $spek->noanggota;
             $email_penerima = $spek->email;
         }
          date_default_timezone_set('Asia/Jakarta'); // setting time zone;
@@ -746,6 +771,30 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
         
         $mail->Send();
            echo $mail->ErrorInfo;
+
+         $mailcpanel            = new PHPMailer();
+        
+        $mailcpanel->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mailcpanel->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mailcpanel->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mailcpanel->SMTPSecure = "ssl";                 // jenis kemananan
+        $mailcpanel->Host       = "sahabatpenakita.id";      // masukkan GMAIL sebagai smtp server
+        $mailcpanel->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mailcpanel->Username   = "info@sahabatpenakita.id";  // GMAIL username info.sahabatpenakita@gmail.com - xxslesqdaashbskh - smtp.gmail.com -465
+        $mailcpanel->Password   = "Pastisukses2020";            // GMAIL password info@sahabatpenakita.id - Pastisukses2020 - sahabatpenakita.id
+        $mailcpanel->SetFrom('info@sahabatpenakita.id', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mailcpanel->Subject    = "Terima Kasih Telah Bergabung !";//masukkan subject
+        $mailcpanel->MsgHTML($body);//masukkan isi dari email
+        
+        $address = "alief.febrina@gmail.com"; //masukkan penerima
+        $mailcpanel->AddAddress($email_penerima, $nama); //masukkan penerima
+        
+        // $mailcpanel->AddCC('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita');
+        
+        $mailcpanel->Send();
+           echo $mailcpanel->ErrorInfo;
 
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Konfirmasi dan Email Berhasil Dikirim!!");
             redirect('user');
@@ -814,12 +863,11 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
         $this->load->view('template/footer');
     }
 
-
-    function nonaktif($id)
+    function gagal($id)
     {
-        $this->M_User->nonaktif($id);
+        $this->M_User->nonaktifid($id);
 
-        $spek = $this->M_User->getspek($id);
+        $spek = $this->M_User->getname($id);
         foreach ($spek as $spek) {
             $nama = $spek->nama;
             $username = $spek->username;
@@ -847,7 +895,7 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
         $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username info.sahabatpenakita@gmail.com - xxslesqdaashbskh
         $mail->Password   = "xxslesqdaashbskh";            // GMAIL password info@sahabatpenakita.id - Pastisukses2020 - sahabatpenakita.id
         $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
-        $mail->Subject    = "Terima Kasih Telah Bergabung !";//masukkan subject
+        $mail->Subject    = "Mohon Maaf Anda Belum Di Terima !";//masukkan subject
         $mail->MsgHTML($body);//masukkan isi dari email
         
         $address = "alief.febrina@gmail.com"; //masukkan penerima
@@ -857,6 +905,104 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
         
         $mail->Send();
            echo $mail->ErrorInfo;
+
+         $mailcpanel            = new PHPMailer();
+        
+        $mailcpanel->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mailcpanel->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mailcpanel->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mailcpanel->SMTPSecure = "ssl";                 // jenis kemananan
+        $mailcpanel->Host       = "sahabatpenakita.id";      // masukkan GMAIL sebagai smtp server
+        $mailcpanel->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mailcpanel->Username   = "info@sahabatpenakita.id";  // GMAIL username info.sahabatpenakita@gmail.com - xxslesqdaashbskh - smtp.gmail.com -465
+        $mailcpanel->Password   = "Pastisukses2020";            // GMAIL password info@sahabatpenakita.id - Pastisukses2020 - sahabatpenakita.id
+        $mailcpanel->SetFrom('info@sahabatpenakita.id', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mailcpanel->Subject    = "Terima Kasih Telah Bergabung !";//masukkan subject
+        $mailcpanel->MsgHTML($body);//masukkan isi dari email
+        
+        $address = "alief.febrina@gmail.com"; //masukkan penerima
+        $mailcpanel->AddAddress($email_penerima, $nama); //masukkan penerima
+        
+        // $mailcpanel->AddCC('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita');
+        
+        $mailcpanel->Send();
+           echo $mailcpanel->ErrorInfo;
+
+        $this->session->set_flashdata('Sukses', "Data Berhasil Di Non Aktifkan!!");
+        redirect('calonuser');
+    }
+
+
+    function nonaktif($id)
+    {
+        $this->M_User->nonaktifid($id);
+
+        $spek = $this->M_User->getspek($id);
+        foreach ($spek as $spek) {
+            $nama = $spek->nama;
+            $username = $spek->username;
+            $password = $spek->password;
+            $namako = $spek->namakorwil;
+            $kode = $spek->noanggota;
+            $email_penerima = $spek->email;
+        }
+        date_default_timezone_set('Asia/Jakarta'); // setting time zone;
+
+        $mail             = new PHPMailer();
+        $body             = "Berdasarkan rapat pengurus SPK dan berbagai pertimbangan, kami belum dapat menerima Bapak/Ibu ".$nama." sebagai anggota SPK.<br>
+Semoga di lain waktu dan kesempatan, kita bisa saling bersinergi dan belajar literasi bersama.<br>
+
+Salam<br>
+Ketua SPK (Sahabat Pena Kita)<br>
+Dr. M. Arfan Mu’ammar, M.Pd.I<br>
+";//isi dari email
+         $mail->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mail->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mail->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mail->SMTPSecure = "ssl";                 // jenis kemananan
+        $mail->Host       = "smtp.gmail.com";      // masukkan GMAIL sebagai smtp server
+        $mail->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mail->Username   = "info.sahabatpenakita@gmail.com";  // GMAIL username info.sahabatpenakita@gmail.com - xxslesqdaashbskh
+        $mail->Password   = "xxslesqdaashbskh";            // GMAIL password info@sahabatpenakita.id - Pastisukses2020 - sahabatpenakita.id
+        $mail->SetFrom('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mail->Subject    = "Mohon Maaf Anda Belum Di Terima !";//masukkan subject
+        $mail->MsgHTML($body);//masukkan isi dari email
+        
+        $address = "alief.febrina@gmail.com"; //masukkan penerima
+        $mail->AddAddress($email_penerima, $nama); //masukkan penerima
+        
+        $mail->AddCC('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita');
+        
+        $mail->Send();
+           echo $mail->ErrorInfo;
+
+         $mailcpanel            = new PHPMailer();
+        
+        $mailcpanel->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mailcpanel->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mailcpanel->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mailcpanel->SMTPSecure = "ssl";                 // jenis kemananan
+        $mailcpanel->Host       = "sahabatpenakita.id";      // masukkan GMAIL sebagai smtp server
+        $mailcpanel->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mailcpanel->Username   = "info@sahabatpenakita.id";  // GMAIL username info.sahabatpenakita@gmail.com - xxslesqdaashbskh - smtp.gmail.com -465
+        $mailcpanel->Password   = "Pastisukses2020";            // GMAIL password info@sahabatpenakita.id - Pastisukses2020 - sahabatpenakita.id
+        $mailcpanel->SetFrom('info@sahabatpenakita.id', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mailcpanel->Subject    = "Terima Kasih Telah Bergabung !";//masukkan subject
+        $mailcpanel->MsgHTML($body);//masukkan isi dari email
+        
+        $address = "alief.febrina@gmail.com"; //masukkan penerima
+        $mailcpanel->AddAddress($email_penerima, $nama); //masukkan penerima
+        
+        // $mailcpanel->AddCC('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita');
+        
+        $mailcpanel->Send();
+           echo $mailcpanel->ErrorInfo;
 
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Non Aktifkan!!");
         redirect('user-setting');
@@ -871,6 +1017,8 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
             $nama = $spek->nama;
             $username = $spek->username;
             $password = $spek->password;
+            $namako = $spek->namakorwil;
+            $kode = $spek->noanggota;
             $email_penerima = $spek->email;
         }
         date_default_timezone_set('Asia/Jakarta'); // setting time zone;
@@ -880,7 +1028,7 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
 Silahkan melengkapi biodata di database SPK dengan mengklik mengakses url dan akses login anda :<br>
 1. Username : ".$username."<br>
 2. Passoword : ".$password."<br>
-Link URL Login www.sahabatpenakita.id <br>
+Link URL Login www.anggota.sahabatpenakita.id <br>
 Admin akan segera menghubungi Anda untuk dimasukkan di Grup Sahabat Pena Kita Cabang ".$namako."<br>
 
 Salam <br>
@@ -909,6 +1057,31 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
         
         $mail->Send();
            echo $mail->ErrorInfo;
+
+         $mailcpanel            = new PHPMailer();
+        
+        $mailcpanel->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mailcpanel->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mailcpanel->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mailcpanel->SMTPSecure = "ssl";                 // jenis kemananan
+        $mailcpanel->Host       = "sahabatpenakita.id";      // masukkan GMAIL sebagai smtp server
+        $mailcpanel->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mailcpanel->Username   = "info@sahabatpenakita.id";  // GMAIL username info.sahabatpenakita@gmail.com - xxslesqdaashbskh - smtp.gmail.com -465
+        $mailcpanel->Password   = "Pastisukses2020";            // GMAIL password info@sahabatpenakita.id - Pastisukses2020 - sahabatpenakita.id
+        $mailcpanel->SetFrom('info@sahabatpenakita.id', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mailcpanel->Subject    = "Terima Kasih Telah Bergabung !";//masukkan subject
+        $mailcpanel->MsgHTML($body);//masukkan isi dari email
+        
+        $address = "alief.febrina@gmail.com"; //masukkan penerima
+        $mailcpanel->AddAddress($email_penerima, $nama); //masukkan penerima
+        
+        // $mailcpanel->AddCC('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita');
+        
+        $mailcpanel->Send();
+           echo $mailcpanel->ErrorInfo;
+
 
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Aktifkan!!");
         redirect('user-setting');
@@ -1003,7 +1176,31 @@ Dr. M. Arfan Mu’ammar, M.Pd.I
         $mail->AddCC('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita');
         
         $mail->Send();
-           echo $mail->ErrorInfo;
+           // echo $mail->ErrorInfo;
+
+        $mailcpanel            = new PHPMailer();
+        
+        $mailcpanel->IsSMTP(); // mengirimkan sinyal ke class PHPMail untuk menggunakan SMTP
+        $mailcpanel->SMTPDebug  = 0;                     // mengaktifkan debug mode (untuk ujicoba)
+                                                   // 1 = Error dan pesan
+                                                   // 2 = Pesan saja
+        $mailcpanel->SMTPAuth   = true;                  // aktifkan autentikasi SMTP
+        $mailcpanel->SMTPSecure = "ssl";                 // jenis kemananan
+        $mailcpanel->Host       = "sahabatpenakita.id";      // masukkan GMAIL sebagai smtp server
+        $mailcpanel->Port       = "465";                   // masukkan port yang digunakan oleh SMTP Gmail
+        $mailcpanel->Username   = "info@sahabatpenakita.id";  // GMAIL username info.sahabatpenakita@gmail.com - xxslesqdaashbskh - smtp.gmail.com -465
+        $mailcpanel->Password   = "Pastisukses2020";            // GMAIL password info@sahabatpenakita.id - Pastisukses2020 - sahabatpenakita.id
+        $mailcpanel->SetFrom('info@sahabatpenakita.id', 'Sahabat Pena Kita'); // masukkan alamat pengririm dan nama pengirim jika alamat email tidak sama, maka yang digunakan alamat email untuk username
+        $mailcpanel->Subject    = "Terima Kasih Telah Bergabung !";//masukkan subject
+        $mailcpanel->MsgHTML($body);//masukkan isi dari email
+        
+        $address = "alief.febrina@gmail.com"; //masukkan penerima
+        $mailcpanel->AddAddress($email_penerima, $nama); //masukkan penerima
+        
+        // $mailcpanel->AddCC('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita');
+        
+        $mailcpanel->Send();
+           echo $mailcpanel->ErrorInfo;
         $this->session->set_flashdata('Sukses', "Data Berhasil Di Kirim!!");
         redirect('user');
        
