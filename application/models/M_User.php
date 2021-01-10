@@ -136,7 +136,7 @@ class M_User extends CI_Model {
      public function upload(){
         $file_name = $this->input->post('foto');
         $path= FCPATH.'images';
-        echo $path;
+        // echo $path;
         $config['upload_path'] = $path;
         $config['allowed_types'] = '*';
         $config['max_size'] = '2048';
@@ -311,6 +311,11 @@ class M_User extends CI_Model {
             'instagram' => $this->input->post('ig'),
             'twitter' => $this->input->post('tw'),
             'youtube' => $this->input->post('yt'),
+            'soal1' => $this->input->post('soal1'),
+            'soal2' => $this->input->post('soal2'),
+            'soal3' => $this->input->post('soal3'),
+            'soal4' => $this->input->post('soal4'),
+            'soal5' => $this->input->post('soal5'),
             'foto' => $upload['file']['file_name'],
             'tglupdate' => date('Y-m-d h:i:s'),
             'tglregistrasi' => date('Y-m-d'),

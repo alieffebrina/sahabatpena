@@ -179,7 +179,7 @@ class C_KTA extends CI_Controller{
         foreach ($user as $key ) {
 
             $image1 = 'images/KTA EDIT POLOS.png';
-            $image2 = 'images/'.$key->foto;
+            $image2 = 'images/administrator.jpg';
             list($width, $height) = getimagesize($image2);
             $image1 = imagecreatefromstring(file_get_contents($image1));
             $image2 = imagecreatefromstring(file_get_contents($image2));
@@ -226,76 +226,9 @@ class C_KTA extends CI_Controller{
 
     }
 
-    function jpg1($ida){
-        // Create the size of image or blank image 
-        $image = imagecreate(1004, 650); 
-          
-        // Set the background color of image 
-        // $background_color = imagecreatefromjpeg($image, 0, 0, 0); 
-        $src = imagecreatefrompng('images/KTA.png'); 
-        $dest = imagecreatetruecolor(1004, 650); 
-          
-        // Image copy from source to destination 
-        imagecopy($dest, $src, 0, 0, 0, 0, 1004, 650); 
-        
-// putenv('GDFONTPATH=' . realpath('.'));
-        // $font = 'arial.ttf';
-        $textcolor = imagecolorallocate($image, 0,0,0);
-        $forecolor2= imagecolorallocate ($image, 255,128,0);
-
-        // imagefontheight($image);
-        ImageFtText($image,25, 15, 5,125,$forecolor2,$fontfile,$string);  
-        header("Content-Type: image/png");  
-        imagepng($dest); 
-          
-        imagedestroy($dest); 
-        imagedestroy($src); 
-        
-
-        // imagestring($image, 5, 180, 100,  "GeeksforGeeks", $text_color); 
-        // imagestring($image, 3, 160, 120,  "A computer science portal", $text_color); 
-        
-        // header('Content-Disposition: attachment; filename="YourFilenameHere.jpg"');
+    function coba(){
+       
+        $this->load->view('kta/a'); 
   
-    }
-
-    function coba($ida){
-
-        $user = $this->M_User->getspek($ida);
-        foreach ($user as $key ) {
-
-            $image1 = 'images/IDCARD.png';
-            $image2 = 'images/'.$key->foto;
-            list($width, $height) = getimagesize($image2);
-            $image1 = imagecreatefromstring(file_get_contents($image1));
-            $image2 = imagecreatefromstring(file_get_contents($image2));
-            $k = $width / 221;
-            $newwidth = $width / $k;
-            $l = $height / 300;
-            $newheight = $height / $l;
-
-            imagecopyresized($image1, $image2, 85,272,0,0, $newwidth, $newheight, $width, $height);
-
-            $barcode = imagecreatefrompng("assets/images/".$key->bar_code);
-            imagecopyresampled($image1, $barcode, 330, 410, 0, 0, 160, 160, imagesx($barcode), imagesy($barcode));
-
-
-            $white = imagecolorallocate($image1, 255, 255, 255);
-
-            $font = imageloadfont('./HomBold_16x24_LE.gdf');
-            $a= imagefontwidth($font);
-            // $filefont = 'arial.ttf';
-            // imagettftext($image1, 20, 0, imagesx($image1)-125, imagesy($image1)-20, $white, 'arial.ttf', 'aaa');
-            imagestring($image1, $font, 520, 287,  strtoupper($a) , $white);
-
-            imagestring($image1, $font, 520, 327, strtoupper($key->tempatlahir).'/'.date('d-m-Y', strtotime($key->tgllahir)), $white);
-            imagestring($image1, $font, 520, 367,  strtoupper($key->noanggota) , $white);
-
-        }
-
-        header('Content-Type: image/png');
-        imagepng($image1);
-        imagedestroy($image1);
-
     }
 }

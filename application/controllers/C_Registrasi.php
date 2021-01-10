@@ -109,12 +109,17 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
         $this->load->view('registrasi/registrasiok.php');
     }
 
+     public function lisensi(){
+        
+        $this->load->view('registrasi/lisensi.php');
+    }
+
      public function tambah()
     {   
         $upload = $this->M_User->upload();
         if ($upload['result'] == "success"){
             $uploadfile = $this->M_User->uploadfile();
-            echo $uploadfile['error'];
+            //echo $uploadfile['error'];
             $this->M_User->tambahregis($upload, $uploadfile);
             $selectmax = $this->M_User->selectmax();
             foreach ($selectmax as $key) {
@@ -187,10 +192,10 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
         // redirect('user');
 
          $this->load->view('registrasi/registrasiok.php');
-            header("location: https://www.sahabatpenakita.id");
+            // header("location: https://www.sahabatpenakita.id");
             // redirect('login'); 
         } else {
-            echo $upload['error'];
+            //echo $upload['error'];
             // $this->session->set_flashdata('Sukses', "Gagal Silahkan Coba Lagi!!");
             // redirect('login'); 
         }
