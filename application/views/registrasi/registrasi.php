@@ -20,7 +20,7 @@
         <div class="left_part has-text-centered">
             <div class="text">
                 <a href="#" class="logo">
-                    <img src="<?php echo base_url() ?>Favicon/apple-icon.png" alt="">
+                    <img src="<?php echo base_url() ?>favicon/apple-icon.png" alt="">
                 </a>
                 <p>
                     <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec faucibus quam non imperdiet faucibus. Sed id ligula eget orci dignissim. -->
@@ -37,11 +37,11 @@
                     <section>
                         <div class="container">
                             <div class="columns">
-                                <div class="column is-12 inp_group">
-                                    <input type="text" name="nik" id="nika" class="required" value="" maxlength="16" minlength="16" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()">
-                                    <label for="nik">NIK (*)</label>
+                                <div class="columns is-8">
+                                    <input type="hidden" name="">
                                 </div>
                             </div>
+                            
                             <div class="columns">
                                 <div class="column is-6 inp_group">
                                     <input type="text" name="nama" id="nama" class="required">
@@ -63,7 +63,11 @@
                                 </div>
                             </div>
                             <div class="columns">
-                                <div class="column is-12 inp_group">
+                                <div class="column is-6 inp_group">
+                                    <input type="text" name="nik" id="nika" class="required" value="" maxlength="16" minlength="16" onkeypress="return Angkasaja(event)" onkeyup="cek_nik()">
+                                    <label for="nik">NIK (*)</label>
+                                </div>
+                                <div class="column is-6 inp_group">
                                     <input type="text" name="alamat" id="alamat" class="required">
                                     <label for="alamat" >Alamat(*)</label>
                                 </div>
@@ -95,6 +99,12 @@
                                     <label for="kecamatan" >Kecamatan (*)</label>
                                 </div>
                                 
+                            </div>
+
+                            <div class="columns">   
+                                <div class="column is-4">
+                                    <input type="hidden" name="">
+                                </div>   
                             </div>
                         </div>
                     </section>
@@ -141,90 +151,6 @@
                     <h5>Step 3</h5>
                     <section>
                         <div class="container">
-                            <div class="columns is-centered">
-                                <div class="column is-8">
-                                    <h4><p style="text-align: justify;">Tulislah sebuah essay atau opini maksimal 1.500 kata atau 5 halaman A4, 1,5 spasi, Times New Roman, ukuran 12, dengan bahasa populer yang mudah dicerna. Tulisan akan diseleksi dan dinilai oleh pengurus untuk menjadi bahan pertimbangan menjadi anggota Sahabat Pena Kita. Tulisan orisinil dan bebas dari plagiasi.</p></h4>
-                                </div>
-                            </div>
-                            <div class="columns is-centered">
-                                <div class="column is-8">
-                                    <h4><p  style="text-align: justify;">Jika Anda diterima menjadi anggota Sahabat Pena Kita (SPK), apakah Anda bersedia bersungguh-sungguh untuk belajar menulis?</p></h4>
-                                    <select name="soal1" id="soal1" class="required">
-                                        <optgroup>
-                                            <option value="bersedia"> - Bersedia - </option>
-                                            <option value="tidak"> - Tidak Bersedia - </option>
-                                        </optgroup>
-                                    </select>
-                                     <label for="soal1"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <h5>Step 4</h5>
-                    <section>
-                        <div class="container">
-
-                            <div class="columns is-centered">
-                                <div class="column is-8">
-                                    <h4><p  style="text-align: justify;">Jika Anda diterima menjadi anggota Sahabat Pena Kita (SPK), apakah Anda bersedia untuk mengikuti semua aturan yang ada di komunitas SPK?</p></h4>
-                                    <select name="soal2" id="soal2" class="required">
-                                        <optgroup>
-                                            <option value="bersedia"> - Bersedia - </option>
-                                            <option value="tidak"> - Tidak Bersedia - </option>
-                                        </optgroup>
-                                    </select>
-                                     <label for="soal2"></label>
-                                </div>
-                            </div>
-
-                            <div class="columns is-centered">
-                                <div class="column is-8">
-                                    <h4><p  style="text-align: justify;">Jika Anda diterima menjadi anggota, apakah Anda bersedia membayar iuran rutin bulanan yang telah ditentukan untuk pengembangan komunitas Sahabat Pena Kita?</p></h4>
-                                    <select name="soal3" id="soal3" class="required">
-                                        <optgroup>
-                                            <option value="bersedia"> - Bersedia - </option>
-                                            <option value="tidak"> - Tidak Bersedia - </option>
-                                        </optgroup>
-                                    </select>
-                                     <label for="soal1"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    <h5>Step 5</h5>
-                    <section>
-                        <div class="container">
-                            
-                            <div class="columns is-centered">
-                                <div class="column is-8">
-                                    <h4><p  style="text-align: justify;">Apakah Anda bersedia ditempatkan di cabang Sahabat Pena Kita manapun sesuai hasil penilaian dan seleksi pengurus?</p></h4>
-                                    <select name="soal4" id="soal4" class="required">
-                                        <optgroup>
-                                            <option value="bersedia"> - Bersedia - </option>
-                                            <option value="tidak"> - Tidak Bersedia - </option>
-                                        </optgroup>
-                                    </select>
-                                     <label for="soal4"></label>
-                                </div>
-                            </div>
-                            <div class="columns is-centered">
-                                <div class="column is-8">
-                                    <h4><p  style="text-align: justify;">Apakah Anda bersedia dikeluarkan dari komunita Sahabat Pena Kita jika melakukan pelanggaran tata tertib yang sudah disepakati?</p></h4>
-                                    <select name="soal5" id="soal5" class="required">
-                                        <optgroup>
-                                            <option value="bersedia"> - Bersedia - </option>
-                                            <option value="tidak"> - Tidak Bersedia - </option>
-                                        </optgroup>
-                                    </select>
-                                     <label for="soal5"></label>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    <h5>Step 6</h5>
-                    <section>
-                        <div class="container">
 
                             <div class="columns">
                                 <div class="column is-6">
@@ -251,19 +177,110 @@
                                 </div>
                                 
                             </div>
-                            <div class="columns">
-                                <div class="column is-6">
-                                    &nbsp;<input type="text" name="karyatulis" id="karyaTulis">
-                                    <label for="karyaTulis">Judul Karya Tulis</label>
-                                </div>
-                                <div class="column is-6">
-                                     &nbsp;<input type="file" name="filekt" id="filekt"  onchange="Validatefile(this)">
-                                    <label for="filekt">File Karya Tulis</label>
+                        </div>
+                    </section>
+                    <h5>Step 4</h5>
+                    <section>
+                        <div class="container">
+                            <div class="columns is-centered">
+                                <div class="column is-8">
+                                    <h4><p style="text-align: justify;">Tulislah sebuah essay atau opini maksimal 1.500 kata atau 5 halaman A4, 1,5 spasi, Times New Roman, ukuran 12, dengan bahasa populer yang mudah dicerna. Tulisan akan diseleksi dan dinilai oleh pengurus untuk menjadi bahan pertimbangan menjadi anggota Sahabat Pena Kita. Tulisan orisinil dan bebas dari plagiasi.</p></h4>
                                 </div>
                             </div>
+                            <div class="columns is-centered">
+                                    &nbsp;<input type="hidden" name="karyatulis" id="karyaTulis" value="">
+                                <div class="column is-8">
+                                     &nbsp;<input type="file" name="filekt" id="filekt"  onchange="Validatefile(this)">
+                                    <label for="filekt">File Karya Tulis</label>
+                                    <span>Pdf, Word 2Mb</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                    <h5>Step 5</h5>
+                    <section>
+                        <div class="container">
+                            
+                            <div class="columns is-centered">
+                                <div class="column is-8">
+                                    <h4><p  style="text-align: justify;">Jika Anda diterima menjadi anggota Sahabat Pena Kita (SPK), apakah Anda bersedia bersungguh-sungguh untuk belajar menulis?</p></h4>
+                                    <select name="soal1" id="soal1" class="required">
+                                        <optgroup>
+                                            <option value="bersedia"> - Bersedia - </option>
+                                            <option value="tidak"> - Tidak Bersedia - </option>
+                                        </optgroup>
+                                    </select>
+                                     <label for="soal1"></label>
+                                </div>
+                            </div>
+                            <div class="columns is-centered">
+                                <div class="column is-8">
+                                    <h4><p  style="text-align: justify;">Jika Anda diterima menjadi anggota Sahabat Pena Kita (SPK), apakah Anda bersedia untuk mengikuti semua aturan yang ada di komunitas SPK?</p></h4>
+                                    <select name="soal2" id="soal2" class="required">
+                                        <optgroup>
+                                            <option value="bersedia"> - Bersedia - </option>
+                                            <option value="tidak"> - Tidak Bersedia - </option>
+                                        </optgroup>
+                                    </select>
+                                     <label for="soal2"></label>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                    </section>
+                    <h5>Step 6</h5>
+                    <section>
+                        <div class="container">
+                            <div class="columns is-centered">
+                                <div class="column is-8">
+                                    <h4><p  style="text-align: justify;">Jika Anda diterima menjadi anggota, apakah Anda bersedia membayar iuran rutin bulanan yang telah ditentukan untuk pengembangan komunitas Sahabat Pena Kita?</p></h4>
+                                    <select name="soal3" id="soal3" class="required">
+                                        <optgroup>
+                                            <option value="bersedia"> - Bersedia - </option>
+                                            <option value="tidak"> - Tidak Bersedia - </option>
+                                        </optgroup>
+                                    </select>
+                                     <label for="soal1"></label>
+                                </div>
+                            </div>
+                            <div class="columns is-centered">
+                                <div class="column is-8">
+                                    <h4><p  style="text-align: justify;">Apakah Anda bersedia ditempatkan di cabang Sahabat Pena Kita manapun sesuai hasil penilaian dan seleksi pengurus?</p></h4>
+                                    <select name="soal4" id="soal4" class="required">
+                                        <optgroup>
+                                            <option value="bersedia"> - Bersedia - </option>
+                                            <option value="tidak"> - Tidak Bersedia - </option>
+                                        </optgroup>
+                                    </select>
+                                     <label for="soal4"></label>
+                                </div>
+                            </div>
+                            
                         </div>
                     </section>
                     <h5>Step 7</h5>
+                    <section>
+                        <div class="container">
+                            <div class="columns is-centered">
+                                <div class="column is-8">
+                                    <h4><p  style="text-align: justify;">Apakah Anda bersedia dikeluarkan dari komunita Sahabat Pena Kita jika melakukan pelanggaran tata tertib yang sudah disepakati?</p></h4>
+                                    <select name="soal5" id="soal5" class="required">
+                                        <optgroup>
+                                            <option value="bersedia"> - Bersedia - </option>
+                                            <option value="tidak"> - Tidak Bersedia - </option>
+                                        </optgroup>
+                                    </select>
+                                     <label for="soal5"></label>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </section>
+
+                    <h5>Step 8</h5>
                     <section>
                         <div class="container">
                             <div class="columns is-centered">

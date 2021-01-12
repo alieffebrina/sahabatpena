@@ -184,7 +184,7 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
         $address = "alief.febrina@gmail.com"; //masukkan penerima
         $mailcpanel->AddAddress($email_penerima, $nama); //masukkan penerima
         
-        // $mailcpanel->AddCC('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita');
+        $mailcpanel->AddCC('info.sahabatpenakita@gmail.com', 'Sahabat Pena Kita');
         
         $mailcpanel->Send();
            echo $mailcpanel->ErrorInfo;

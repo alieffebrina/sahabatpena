@@ -247,7 +247,41 @@
             <!-- /.box-body -->
           </div>
         </div>
+       <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- Horizontal Form -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">Komitmen</h3>
+            </div>
+              <!-- Date dd/mm/yyyy -->
+              <div class="form-horizontal">
+                
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-9 control-label" style="text-align: left;">&nbsp; &nbsp; &nbsp; 1. Jika Anda diterima menjadi anggota Sahabat Pena Kita (SPK), apakah Anda bersedia bersungguh-sungguh untuk belajar menulis ? <?php echo $key->soal1; ?></label>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-9 control-label" style="text-align: left;">&nbsp; &nbsp; &nbsp; 2. Jika Anda diterima menjadi anggota Sahabat Pena Kita (SPK), apakah Anda bersedia untuk mengikuti semua aturan yang ada di komunitas SPK ? <?php echo $key->soal2; ?></label>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-9 control-label" style="text-align: left;">&nbsp; &nbsp; &nbsp; 3. Jika Anda diterima menjadi anggota, apakah Anda bersedia membayar iuran rutin bulanan yang telah ditentukan untuk pengembangan komunitas Sahabat Pena Kita ?  <?php echo $key->soal3; ?></label>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-9 control-label" style="text-align: left;">&nbsp; &nbsp; &nbsp; 4. Apakah Anda bersedia ditempatkan di cabang Sahabat Pena Kita manapun sesuai hasil penilaian dan seleksi pengurus ? <?php echo $key->soal4; ?></label>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-9 control-label" style="text-align: left;">&nbsp; &nbsp; &nbsp; 5. Apakah Anda bersedia dikeluarkan dari komunita Sahabat Pena Kita jika melakukan pelanggaran tata tertib yang sudah disepakati ? <?php echo $key->soal5; ?></label>
+                </div>
+                <br>
+              </div>
+              <!-- /.form group -->
 
+            </div>
+            <!-- /.box-body -->
+          </div>
+        </div>
+        
       <div class="row">
         <!-- left column -->
         <div class="col-md-12">
