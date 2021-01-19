@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sahabat Pena Kita</title>
+  <title>Registrasi Anggota Sahabat Pena Kita</title>
   <link rel="icon" type="image/png" href="<?php echo base_url() ?>favicon/favicon.ico"/>
 
     <link rel="stylesheet" href="<?php echo base_url() ?>assets/registrasi/asset/css/normalize.css">
@@ -41,6 +41,9 @@
                                     <input type="hidden" name="">
                                 </div>
                             </div>
+                            <br>
+                            <br>
+                            <br>
                             
                             <div class="columns">
                                 <div class="column is-6 inp_group">
@@ -181,6 +184,7 @@
                     </section>
                     <h5>Step 4</h5>
                     <section>
+                        <br>
                         <div class="container">
                             <div class="columns is-centered">
                                 <div class="column is-8">
@@ -191,8 +195,8 @@
                                     &nbsp;<input type="hidden" name="karyatulis" id="karyaTulis" value="">
                                 <div class="column is-8">
                                      &nbsp;<input type="file" name="filekt" id="filekt"  onchange="Validatefile(this)">
-                                    <label for="filekt">File Karya Tulis</label>
-                                    <span>Pdf, Word 2Mb</span>
+                                    <label for="filekt">File Artikel(*)</label>
+                                    <span>(pdf,word Max. 2Mb)</span>
                                 </div>
                             </div>
 
@@ -200,6 +204,7 @@
                     </section>
 
                     <h5>Step 5</h5>
+                    <br>
                     <section>
                         <div class="container">
                             
@@ -282,11 +287,13 @@
 
                     <h5>Step 8</h5>
                     <section>
+                        <br>
+                        
                         <div class="container">
                             <div class="columns is-centered">
                                 <div class="column is-8 has-text-centered">
                                     <figure>
-                                        <img src="<?php echo base_url() ?>assets/registrasi/asset/images/success.jpg" alt="">
+                                        <img src="<?php echo base_url() ?>assets/registrasi/asset/images/okesukses.png" alt="">
                                     </figure>
                                     <p>Anda telah melengkapi formulir. <br>Klik <strong>Daftar</strong> untuk melanjutkan pendaftaran <br>atau klik KEMBALI untuk memeriksa data anda</p>
                                 </div>
@@ -298,7 +305,7 @@
 
            <?php echo form_close();?>
             
-            <p class="copyright">&copy; webhoster @ 2020 | All rights reserved</p>
+            <p class="copyright">&copy; Development By | HOSTERWEB INDONESIA</p>
 
         </div>
     </div>

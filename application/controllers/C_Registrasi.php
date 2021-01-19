@@ -119,7 +119,7 @@ Dr. M. Arfan Mu’ammar, M.Pd.I<br>
         $upload = $this->M_User->upload();
         if ($upload['result'] == "success"){
             $uploadfile = $this->M_User->uploadfile();
-            //echo $uploadfile['error'];
+            echo $uploadfile['error'];
             $this->M_User->tambahregis($upload, $uploadfile);
             $selectmax = $this->M_User->selectmax();
             foreach ($selectmax as $key) {

@@ -160,7 +160,7 @@ class M_User extends CI_Model {
         $path= FCPATH.'karyatulis';
         //echo $path;
         $config['upload_path'] = $path;
-        $config['allowed_types'] = 'pdf|docs|doc';
+        $config['allowed_types'] = '*';
         $config['max_size'] = '10240';
         $config['remove_space'] = TRUE;
         $this->load->library('upload', $config); // Load konfigurasi uploadnya
