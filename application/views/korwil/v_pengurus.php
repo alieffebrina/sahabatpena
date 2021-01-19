@@ -38,7 +38,6 @@
             <div class="box-body">
 
             <?php echo form_open("C_Korwil/tambahpengurus", array('enctype'=>'multipart/form-data') ); ?>
-              <!-- <form action='<?= site_url("C_Korwil/tambahpengurus")?>' method='POST'> -->
                 <div class='row'>
                   <div class="col-lg-12">
                     <label for="inputEmail3" class="col-sm-2 control-label">Jabatan</label>

@@ -156,7 +156,7 @@ class M_Korwil extends CI_Model {
         );
 
         $view = array(
-            'statusanggota' =>  'anggota',
+            'statusanggota' =>  'pengurus',
             'id_korwil' =>  $ida
         );
 
